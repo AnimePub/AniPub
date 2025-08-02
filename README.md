@@ -1,6 +1,6 @@
 # 🌌 AniPub — The Futuristic Anime Multiverse 🚀
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-anipub.onrender.com-blueviolet?style=for-the-badge)](https://anipub.onrender.com)
+[![Live Site](https://img.shields.io/badge/Live%20Site-anipub.adnandluffy.site-blueviolet?style=for-the-badge)](https://anipub.adnandluffy.site)
 [![Status](https://img.shields.io/badge/Status-UNDER%20DEVELOPMENT-red?style=for-the-badge)](#)
 [![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)](./CONTRIBUTING.md)
 [![License](https://img.shields.io/badge/License-GNU%20GPLv3-blue?style=for-the-badge)](./LICENSE)
