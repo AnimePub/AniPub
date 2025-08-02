@@ -32,7 +32,7 @@ AIsB.addEventListener('click',()=>{
     const bio = document.querySelector("textarea").value;
     if (bio.length <= 50) {
         if (Gender || !Gender) {
-            console.log(bio)
+      
             fetch("/settings/account-info",{
                 method:'POST',
                 headers:{"content-type":"application/json"},

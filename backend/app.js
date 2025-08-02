@@ -364,7 +364,8 @@ app.post("/settings/account-info", (req,res)=>{
             if(image === undefined ) {
                 image = "/Shinbou.jpg"
             }
-            let gender = req.body.gender;
+            let gender = req.body.Gender;
+         
             if(gender){
                 gender = "Female"
             }
