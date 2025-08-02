@@ -1,0 +1,128 @@
+.Second-Section {
+    height: 360px;
+    padding-right: 18px;
+    padding-bottom: 10px;
+    width: 62%;
+    border-bottom: 1px solid blue;
+    border-bottom-right-radius:10px ;
+    background-color: rgba(74, 74, 74, 0.49);
+    position: relative;
+}
+.profile-div {
+    height: 250px;
+    width: 180px;
+    border-radius: 10px;
+    box-shadow: -1px 2px 4px black ;
+    position: absolute;
+    top: -200px;
+    left: 10px;
+    
+}
+.profile-container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: end;
+}
+.profile-div img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    
+} 
+.buttons {
+    position: absolute;
+    top: 68%;
+    margin-left: 200px;
+    column-gap: 10px;
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    flex-direction: row;
+    align-items: center;
+}
+.Play-button {
+    height: 100%;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgb(0, 255, 0);
+}
+.Play-button img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    margin-left: 3px;
+}
+.Add-to-watchlist-button {
+    height: 100%;
+    width: 50px;
+    border-radius: 5px;
+    background-color: greenyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.20s;
+    column-gap: 6px;
+}
+.Add-to-watchlist-button  img {
+    width: 40px;
+    height: 40px;
+}
+.Add-to-watchlist-button p {
+    display: none;
+    white-space: nowrap;
+    font-family: monospace;
+    color: white;
+}
+.Add-to-watchlist-button:hover p {
+    display: block;
+}
+.Add-to-watchlist-button:hover {
+    width: fit-content;
+    padding-right: 6px;
+    padding-left: 6px;
+}
+
+.Download-Button {
+    height: 100%;
+    width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 255, 106);
+    border-radius: 5px;
+    padding-right: 6px;
+    padding-left: 6px;
+    cursor: pointer;
+}
+.Download-Button img {
+    width: 40px;
+    height: 35px;
+
+}
+.Download-Button p {
+    color: white;
+    font-family: monospace;
+}
+.button-div-download {
+    height: 100%;
+}
+.button-div-download a {
+    text-decoration: none;
+}
+.Download-Button:active{
+    opacity: 0.7;
+}
+.Download-Button:hover p {
+    color: green;
+}
+.Download-Button:hover{
+    background-color: white;
+    color: green;
+    border: 1px solid green;
+}

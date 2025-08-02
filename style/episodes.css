@@ -1,0 +1,116 @@
+.Episodes {
+    border-radius: 5px;
+    flex: 1;
+    
+    margin-right: 10px;
+    max-height: 390px ;
+}
+.Episodes p {
+    color: white;
+}
+.title-div {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    width: 100%;
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header {
+    flex: 1;
+    margin-left: 10px;
+    font-family: monospace;
+}
+.b-section {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: fit-content;
+}
+.b-section button {
+    color: white;
+    background-color: transparent;
+    border: 1px solid rgb(11, 11, 105);
+    box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.524);
+    cursor: pointer;
+    padding: 4px 8px 4px 8px;
+    border-radius: 5px;
+    
+}
+.b-section button:active {
+    box-shadow: 0px 0px 0px ;
+    padding: 3px 6px 3px 6px;
+    opacity: 0.8;
+}
+.ep-list {
+    
+    
+    margin:10px;
+    display: grid;
+    flex: 1;
+    height: 323px;
+    grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 5px;
+    column-gap: 10px;
+    
+}
+.ep-list button {
+    font-family: monospace;
+    border-radius: 5px;
+    border: 1px solid blue;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4px;
+    transition: all 300ms;
+    
+}
+.ep-list button:hover {
+    background-color: blue;
+}
+.ep-list button:active {
+    opacity: 0.7;
+}
+.Description {
+    height: 300px;
+    overflow: scroll;
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    
+}
+.Description::-webkit-scrollbar-corner {
+    color: black;
+}
+.Description::-webkit-scrollbar-thumb {
+    background-color: rgba(76, 255, 222, 0.809);
+    border-radius: 10px;
+    cursor: grab;
+}
+.Description::-webkit-scrollbar-track {
+    background-color: rgba(119, 136, 153, 0.512);
+    border-radius: 10px;
+
+}
+.Description::-webkit-scrollbar {
+    height: 0px;
+    width: 10px;
+   
+}
+.Description h2 {
+    color: white;
+    margin: 0;
+}
+.Description p {
+    color: white;
+    
+    font-family: fantasy;
+                                
+    font-size: 16px;
+}

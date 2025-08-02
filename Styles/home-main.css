@@ -1,0 +1,78 @@
+.secoNd-Section {
+    padding-top: 70px;
+}
+.aniLists {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    row-gap: 10px;
+    width: 80%;
+    column-gap: 10px;
+    background-color: rgb(15, 13, 13);
+}
+@media screen and (min-width:953px) and (max-width:1078px) {
+    .aniLists {
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 70%;
+        column-gap: 5px;
+    }
+}
+@media screen and (min-width:300px) and (max-width:952px) {
+    .aniLists {
+        width: 100%;
+    }
+}
+@media screen and (min-width:851px) and (max-width:952px) {
+    .aniLists {
+        width: 100%;
+        column-gap: 5px;
+        grid-template-columns: 1fr 1fr 1fr 1fr ;
+    }
+}
+@media screen and (min-width:640px) and (max-width:850px) {
+    .aniLists {
+        grid-template-columns: 1fr 1fr 1fr ;
+    }
+}
+@media screen and (min-width:440px) and (max-width:639px) {
+    .aniLists {
+        grid-template-columns: 1fr 1fr ;
+    }
+}
+@media screen and (min-width:300px) and (max-width:439px) {
+    .aniLists {
+        grid-template-columns: 1fr  ;
+    }
+}
+@media screen and (min-width:300px) and (max-width:370px) {
+    .name {
+        font-size: 16px;
+    }
+    .slogan {
+        font-size: 10px;
+    }
+    .logo-div {
+        width: 30px;
+       height: 30px;
+    }
+    .logo {
+        height: 100%;
+    }
+    .Second-Section {
+        width: 120px;
+    }
+    .random {
+        height: 28px;
+        font-size: 14px;
+        padding:4px 8px 4px 8px;
+    }
+    .profile-icon {
+        height: 30px;
+        width: 30px;
+    }
+    .searchbox  {
+        height: 30px;
+    }
+    .search-button {
+        height: 36px;
+    } 
+}

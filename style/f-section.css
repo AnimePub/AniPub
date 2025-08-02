@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+    margin-top: 100px;
+}
+.header-div {
+    background-color: black;
+    border-bottom: 1px solid rgba(0, 0, 255, 0.768);
+}
+.f-section {
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom-style: solid;
+   border-bottom-width: 10px;
+   border-bottom-color: rgb(52, 136, 205);
+};
+
+.ship-div {
+    width: 100px;
+    height: 100px;
+}
+.ship {
+    height: 100px;
+    position: absolute;
+    bottom: -15px;
+    right: 100%;
+    z-index: -3;
+    animation: ShipMove 10s linear infinite;
+}
+@keyframes ShipMove {
+    from {
+        right: 50px;
+    }
+    to {
+        right : 100%;
+    }
+
+}

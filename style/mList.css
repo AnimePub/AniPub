@@ -1,0 +1,145 @@
+@media screen and (min-width:1000px) and (max-width:1267px){
+    .ep-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        overflow-y: scroll;
+    }
+    
+}
+@media screen and (min-width:900px) and (max-width:999px){
+    .ep-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        overflow-y: scroll;
+    }
+    
+}
+@media screen and (min-width:800px) and (max-width:899px){
+    .ep-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+        overflow-y: scroll;
+        height: 250px;
+        scroll-behavior: smooth;
+    }
+    .Episodes {
+        height: 300px;
+    }
+    
+}
+
+@media screen and (min-width:500px) and (max-width:799px) {
+    .Video-Section {
+        flex-direction: column;
+        height: 700px;
+        column-gap: 20px;
+        
+    }
+    .con-tainer , .Episodes  {
+        margin: 0;
+    }
+    .Episodes {
+        width: 100%;
+    }
+    .info {
+        flex-direction: column;
+        position: relative;
+        margin: 0;
+    }
+    .Description {
+        width: 100%;
+    }
+    .Fsection {
+       
+        position: absolute;
+        right: 30px;
+        
+        height: 210px;
+        width: 140px;
+    }
+    .watchlist-b , .Play-b  {
+        height: 30px;
+        width: 30px;
+    }
+    .Text {
+        font-size: 8px;
+        letter-spacing: 0px;
+        word-spacing: -2px;
+        margin-right: -3px;
+    }
+    .s {
+        font-size: 14px;
+    }
+    .sp {
+        font-size: 15px;
+    } 
+    .Name {
+        font-size: 20px;
+    }
+}
+@media screen and (min-width:500px) and (max-width:573px){
+    .Ssection {
+        width: 100%;
+     
+    }
+    .ep-list {
+        grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr;
+        overflow-y: scroll;
+    }
+    .Video-Section {
+        column-gap: 0;    
+    }
+    
+}
+@media screen and (min-width:400px) and (max-width:499px){
+    .Video-Section {
+        flex-direction: column;
+        height: 700px;
+        column-gap: 20px;
+        
+    }
+    .ep-list {
+        grid-template-columns:   1fr 1fr 1fr 1fr 1fr;
+        overflow-y: scroll;
+    }
+    .con-tainer {
+        margin: 0;
+    }
+    .Episodes {
+        width: 100%;
+        margin: 0;
+    }
+    .info {
+        flex-direction: column;
+        position: relative;
+        margin-top: 100px;
+    }
+    .Ssection {
+        width:100%;
+    } 
+    .Description  {
+        width: 100%;
+    }
+    .Fsection {
+        justify-content: space-between;
+        position: absolute;
+        right: 10px;
+        top: -65px;
+        height: 210px;
+        width: 150px;
+    }
+    .watchlist-b , .Play-b  {
+        height: 30px;
+        width: 30px;
+    }
+    .Text {
+        font-size: 8px;
+        letter-spacing: 0px;
+        word-spacing: -2px;
+        margin-right: -3px;
+    }
+    .pic {
+        height: 84%;
+    }
+    .buttons {
+        margin-top: 2px;
+    }
+}
+

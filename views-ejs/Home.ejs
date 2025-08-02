@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniPub</title>
+
+    <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="/third-section.css">
+    <link rel="stylesheet" href="/home-main.css">
+    <link rel="stylesheet" href="/footer.css">
+
+</head>
+
+<body > <!--onload="CheckAuth();"-->
+
+    <%- include("./include/haHeader.ejs") %> 
+
+    <div class="secoNd-Section">
+
+        <div class="aniLists">
+            <% Anime.forEach(value => {%>
+                <div class="Profile-div">
+                    <div class="Profile" data-anime="<%=value[0].id%>">
+                    <div class="Image-div">
+                        <img class="poster" src="<%=value[0].poster%>" alt="<%=value[0].Name%> Anime Poster">
+                    </div>
+                    <div class="Title-div"><p class="Title"><%=value[0].Name%></p></div>
+                    <div class="ratings-div">
+                        <p class="mal-score"><%=value[0].MALScore%></p>
+                        <img src="rating-<%=value[0].RatingsNum%>.png" alt="Rating Star Image">
+                    </div>
+                    <div class="des-div">
+                        <p class="des">
+                        <%=value[0].DescripTion%>
+                        </p>
+                    </div>
+                </div>
+                </div>
+           <% }); %> 
+        </div>
+   
+
+    
+        
+    
+    
+    
+    </div>
+
+
+    <footer>
+       
+        
+    
+    </footer>
+   
+<!--
+    <script type="module" src="animeInfo.js"></script>
+     <script type="module" src="/Home.js"></script>
+-->
+    <script src="home.js"></script>
+    <script type="module" src="/ANiPlayer-render.js"></script>
+
+</body>
+</html>

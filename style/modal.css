@@ -1,0 +1,115 @@
+.intro {
+    color: rgb(255, 255, 255);
+    font-family: monospace;        
+}
+.salam , .info {
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    margin-top: 8px;
+    margin-bottom: 0px;
+    font-family: Gruppo;
+    font-weight:bolder ;
+}
+.info {
+    font-size: 20px;
+} 
+.nameM {
+    color: rgb(255, 255, 255);
+}
+.Git-buttonM {
+    color: #ffffff;
+    background-color: #24292e;
+    border: 1px solid  #24292e;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    cursor: pointer;
+    height: 30px;
+    transition: all 0.26s;
+}
+.Git-buttonM:hover {
+    background-color: white;
+    color:#090a0b ;
+}
+.Git-buttonM:active {
+    opacity: 0.7;
+}
+.fb-bM {
+
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+column-gap: 5px;
+height: 30px;
+border-radius: 7px;
+border: 1px solid blue;
+font-size: 12px;
+width: 90px;
+cursor: pointer;
+color: white;   
+background-color: blue;
+}
+.fb-bM:hover {
+    background-color: white;
+    color: blue;
+
+}
+.fb-bM:active {
+    opacity: 0.7;
+}
+.b-m-div {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+dialog {
+    background-color: black ;
+    width: 300px;
+    padding: 10px;
+    height: fit-content;
+    border: 1px solid blue;
+    border-radius: 15px;
+}
+.Wm {
+    color: red;
+    font-family: monospace;
+}
+.lbm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+.leave , .stay {
+    height: 30px;
+    background-color: red;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    border: 1px solid red;
+    width: 50px;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.stay {
+   
+    background-color: blue;
+    border: 1px solid blue;
+    cursor: pointer;
+}
+.leave:hover ,.stay:hover {
+    background-color: white;
+    color: red;
+   
+}
+.stay:hover{
+   color: blue;
+
+}
+.wmdiv {
+    display: flex;
+    justify-content: center;
+    
+}

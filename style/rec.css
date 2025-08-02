@@ -1,0 +1,62 @@
+.profile-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Rec-div {
+    border-right: 1px solid blue;
+    padding: 0;
+    margin-top: 20px;
+    padding-top: 70px;
+    padding-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+.Recomendation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: blue;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    font-family: Gruppo;
+    font-weight: bold;
+    color: white;
+}
+.Nothing3 {
+    position: relative;
+    width: fit-content;
+
+} 
+@media (min-width:401px) and (max-width:500px) {
+    .Nothing3 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+    } 
+}
+@media (min-width:300px) and (max-width:400px) {
+    .Nothing3 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+    } 
+}
+@media (min-width:700px) and (max-width:850px) {
+    .Nothing3 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+    } 
+}

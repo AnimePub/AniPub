@@ -1,0 +1,236 @@
+@media screen and (min-width:300px) and (max-width:1360px){
+    .f-section {
+        flex-direction: column;
+        align-items: center;
+       
+    }
+    .An-div {
+        margin-bottom: 140px;
+    }
+   
+    .abt-site {
+     flex-direction: column;
+     row-gap: 30px;
+     justify-content: center;
+     align-items: center;
+    }
+
+}
+
+
+
+
+@media  (min-width:600px) and (max-width:1360px){
+   .con-tainer2,.con-tainer {
+        width: 610px;
+        height: 410px;
+      
+    }
+   
+    .video-js2 {
+        width: 98%;
+        height: 98%;
+        object-fit: cover;
+    }
+    .ReviewS {
+        max-width: 610px
+    }
+    .dialog-div {
+        max-width: 610px;
+    }
+    
+    
+  };
+
+
+
+@media screen and (min-width:300px) and (max-width:684px) {
+    .description {
+        line-height: 30px;
+    }
+    .description2 {
+        line-height: 25px;
+    }
+
+}
+@media screen and (min-width:500px) and (max-width:655px) {
+    
+    .An-div {
+        margin-left: 0;
+        margin-bottom: 15px ;
+        width: 510px;
+        height: 500px;
+        margin-bottom: 40px;
+    }
+    .An-div::after  ,  .An-div::before {
+        height: 505px;
+        width: 515px;
+    }
+    .construction , .an-d  {
+        display: none;
+    }
+    .s6 {
+        display :hidden;
+    }
+    .First-section {
+        height: 60px;
+    }
+    .im-div {
+        height:60px;
+        position: relative;
+    }
+    .logo-l {
+        height: 100px;
+        width: 100px;
+        object-position: center;
+        transform: rotateZ(0deg);
+        
+        margin: 0;
+        position: absolute;
+        top: -40px;
+        animation: MoVe 6s linear infinite;
+
+    }
+   
+    .header span {
+        display: none;
+    
+    }
+    .hp {
+        margin-left:100px;
+        font-size: 30px;
+        margin-top: -20px;
+    }
+    .ann-div {
+        width: 250px;
+    }
+    .img-div {
+        width: fit-content;
+    }
+    .logo2 {
+        margin-top: 36px;
+        filter: brightness(1.1);
+        filter: contrast(1.1);
+        object-fit: cover;
+        transform: rotate(-12deg);
+    }
+    .Git-button {
+        bottom: -23px;
+        transform: rotateZ(90deg);
+        right: -36px;
+        padding-left: 4px;
+      
+    }
+    .fb-b {
+
+        right: 15px;
+        bottom:-25px;
+        transform: rotate(-45deg);
+        border-bottom: 1px solid blue;
+    }
+}
+@media screen and (min-width:300px) and (max-width:499px) {
+    .An-div {
+        margin-left: 0;
+        margin-bottom: 15px ;
+        width: 98%;
+        height: 400px;
+        margin-bottom: 40px;
+    }
+    .An-div::after  ,  .An-div::before {
+        width: 300px;
+        height: 300px;
+    }
+    .header span {
+        display: none;
+    
+    }
+    .hp {
+        margin-left:1px;
+        font-size: 20px;
+        margin-top: 0px;
+    }
+    .construction , .an-d  {
+        display: none;
+    }
+    .First-section {
+        height: 60px;
+        flex: 1;
+    }
+    .im-div {
+        height:50px;
+        position: relative;
+    }
+    .start {
+        font-size: 17px;
+    }
+    .s6 {
+        display: none;
+    }
+    .ann-div {
+        height: 250px;
+        margin-top: -79px;
+    }
+    .s2,.s3,.s4 {
+        line-height: 14px;
+    }
+    .logo-l {
+        height: 60px;
+        width: 60px;
+        object-position: center;
+        transform: rotateZ(0deg);
+        right: 10px;
+        margin: 0;
+        position: absolute;
+        top: -40px;
+        animation: MoVe 6s linear infinite;
+
+    }
+
+    .img-div {
+        width: 250px;
+    }
+    .logo2 {
+        width: 100%;
+        height: 260px;
+        margin-top: 50px;
+        filter: brightness(1.1);
+        filter: contrast(1.1);
+        transform: rotate(0deg);
+        
+    }
+    .Git-button {
+        bottom: 0px;
+        transform: rotateZ(0deg);
+        right: 12px;
+        height: 20px;
+      
+    }
+    .fb-b {
+
+        right: -55px;
+        bottom:13px;
+        height: 20px;
+        transform: rotate(18deg);
+        border-top: 1px solid blue;
+        border-bottom: 1px solid blue;
+    }
+}
+
+
+@keyframes MoVe {
+    0%{
+        transform: rotateZ(50deg);
+        top: -40px;
+    }
+
+    50% {
+        transform: rotateZ(0deg);
+        top: -50px;
+    }
+    100% {
+        transform: rotateZ(50deg); 
+        top: -40px;
+    }
+   
+}

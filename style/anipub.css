@@ -1,0 +1,369 @@
+body {
+    background-color: rgb(0, 0, 0);
+}
+a {
+    text-decoration: none;
+    text-decoration: none;
+    
+}
+.s {
+    margin-top: 15px;
+}
+.First-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    flex: 1;
+    column-gap: 20px;
+    flex-direction: row;
+
+}
+.im-div {
+    width: 100px;
+    height: 75px;
+    margin-top: 10px;
+
+}
+.logo-l {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+   
+}
+.header {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 3px;
+    
+}
+.s2 {
+  margin: 0;
+}
+
+.hp {
+    
+    font-size: 23px;
+    margin: 0;
+    color:blue;
+    font-family: Gruppo;
+    font-weight: bolder;
+    
+
+
+}
+.second-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;      
+}
+.ann-div {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    
+
+}
+.s4 {
+    margin: 0;
+}
+.ann-div div {
+    height:fit-content;
+    position: relative;
+}
+.start {
+    margin: 0px;
+    font-size: 23px;
+    color: rgb(0, 21, 255);
+    position: absolute;
+    top: -20px;
+    font-family: Gruppo;
+    font-weight: bold;
+}
+.s3 {
+    
+    margin: 0;        
+}
+p {
+    color: white;
+}
+.img-div {
+    display: flex;
+    width: 190px;
+    height: 310px;
+    margin-top: 15px;
+    position: relative;
+    
+}
+.Git-button {
+    height: 30px;
+    position: absolute;
+    bottom: 20px;
+    right: -55px;
+    transform: rotate(10deg);
+    color: #ffffff;
+    background-color: #24292e;
+    border: 1px solid  #24292e;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    cursor: pointer;
+    
+}
+.git-im {
+    height: 80%;
+} 
+.an-d p {
+    margin: 0;
+}
+.an-d {
+    
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    flex-direction: column;
+    background-color: rgba(184, 0, 0, 0.995);
+    height: 80px;
+    width: 150px;
+    position: absolute;
+    bottom: -130px;
+    right: -120px;
+    border-radius: 15px;
+}
+.an-d button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 26px;
+}
+.fb-b {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    column-gap: 5px;
+    position: absolute;
+    bottom: -1px;
+    right: 13px;
+    height: 26px;
+    border-radius: 7px;
+    border: 1px solid rgb(33, 9, 9);
+    font-size: 12px;
+    width: 90px;
+    cursor: pointer;
+    color: white;   
+    background-color: blue;
+    
+}
+.construction {
+    height: 181px;
+    position: absolute;
+    bottom: -150px;
+    right: -140px;
+}
+.ci {
+    height: 100%;
+}
+.f-p   {
+    height: 70%;
+}
+.s2 , .s3 , .s4 {
+    color: azure;
+    font-family: Spectral;
+    font-weight: light; 
+    line-height: 19px;
+
+}
+.logo2 {
+    
+    height: 100%;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+    .An-div {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 100px;
+        position: relative;
+        height: 405px;
+        width: 605px;
+        background-color: black;
+        border: 1px solid blue;
+        border-radius: 15px;
+    }
+    .An-div::after  ,  .An-div::before {
+        border-radius: 10px;
+        position: absolute;
+        height: 410px;
+        width: 612px;
+        content: "";
+        top: 50%;
+        left: 50%;
+        background-image: conic-gradient(from var(--angle),blue,red,purple,yellow,green,rgba(130, 130, 130, 0.871),rgb(36, 28, 28),rgb(0, 255, 200),indigo,rgb(229, 106, 240));
+        translate: -50% -50%;
+        z-index: -1;
+        animation: 3s linear spin infinite;
+    }
+    .An-div::before {
+        opacity: 0.7;
+        filter: blur(6px);
+    }
+@keyframes spin {
+    from {
+        --angle:0deg;
+    }
+    to { 
+        --angle:360deg;
+    }
+}
+
+    .con-tainer {
+        margin-bottom: 90px;
+        margin-right: 20px;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        width: 610px;
+        height: 410px;
+        border: 1px solid;
+        border-top: 1px solid blue;
+        border-bottom: 1px solid blue;
+        box-shadow: -2px 3px 5px rgba(10, 58, 191, 0.508);
+    }
+    .con-tainer2 {
+        margin-top: 35px;
+        margin-left: 20px;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        width: 460px;
+        height: 310px;
+    
+        border-right: 1px solid rgb(0, 0, 255);
+        
+        box-shadow: 1px 2px 4px rgba(0,0,225,0.340);
+    }    
+
+
+    .dialog-div {
+        
+        background-color: rgba(0, 0, 0);
+        max-width: 460px;
+        border-top: 1px solid blue;
+        border-bottom: 1px solid blue;
+        margin-left: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        border-radius: 15px;
+        flex: 1;
+    
+    }
+    .text1 , .text2 , .text3 , .ti-tle {
+        
+        color: rgba(0, 21, 255, 0.887);
+        margin: 0;
+        margin-left: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-family: system-ui;
+        width: 215px;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 14px;
+       
+    }
+    .animate {
+        animation: typing 6s steps(47) ,
+        cursor 0.5s step-end infinite alternate;
+    }
+    
+    @keyframes cursor {
+        50% {
+            border-color: transparent;
+        }
+    }
+    @keyframes typing {
+        from {
+            width: 0px;
+        }
+        to {
+        width: 215px;
+    
+        }
+    }
+    .texts { 
+        flex: 1;
+       
+    }
+    .d-m-button {
+        cursor: pointer;
+        height: 30px;
+        margin-right: 10px;
+        border-right: 1px solid blue;
+        border-left: 1px solid blue;
+        border-top: 1px solid skyblue;
+        border-bottom: 1px solid skyblue;
+        background-color: transparent;
+        color: White;
+        border-radius: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
+        transition: all 0.16s;
+    
+    }
+    .d-m-button:hover  {
+        border-right: 1px solid skyblue;
+        border-left: 1px solid skyblue;
+        border-top: 1px solid blue;
+        border-bottom: 1px solid blue;
+        background-color: rgba(34, 216, 229, 0.329);
+        box-shadow: 2px 3px 4px rgba(237, 220, 220, 0.273);
+        padding: 2px 12px 2px 12px ;
+    }
+    .d-m-button:active {
+        opacity: 0.7;
+    } 
+    .buttons {
+        display: flex;
+        height: 86px;
+        flex-direction: column;
+        row-gap: 5px;
+        justify-content: center;
+      
+    }    
+    .fb-b:hover {
+        background-color: white;
+        color: blue;
+    
+    }
+    .fb-b:active {
+        opacity: 0.7;
+    }    
+    .Git-button:hover {
+        background-color: white;
+        color:#090a0b ;
+    }
+    .Git-button:active {
+        opacity: 0.7;
+    }
+    

@@ -1,0 +1,105 @@
+body {
+    padding-top: 100px;
+    padding-left: 100px;
+}
+.Warning {
+    color: white;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 26px;
+}
+.main-body {
+    height: fit-content;
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.Profile-div {
+    height: fit-content;
+    width: 500px;
+    padding: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 119, 255, 0.753);
+    display: flex;
+    border-radius: 10px;
+    flex-direction: row;
+    cursor: pointer;
+}
+.Profile-div:active{
+    opacity: 0.7;
+    box-shadow: none;
+}
+.Poster-div {
+    width: 150px;
+    height: 100%;
+    flex-shrink: 0;
+    
+}
+.Poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.Info-div {
+    height: 100%;
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.name {
+    font-weight: bold;
+    font-size: 26px;
+    margin: 0;
+    margin-top: 10px;
+}
+.Info-div p {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 5px;
+}
+.Info-div span {
+    font-weight: normal;
+}
+.name span {
+    font-weight: normal;
+}
+.ratings-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.ratings-div img {
+    height: 20px;
+}
+.remove-button-div {
+    margin-top: 10px;
+   
+}
+.remove-button {
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 5px;
+    height: 26px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: all 0.15s;
+}
+.remove-button:hover {
+    background-color: transparent;
+}
+.remove-button:active {
+    opacity: 0.7;
+}
+
+.epconfig {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

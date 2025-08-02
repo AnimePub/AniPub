@@ -1,0 +1,92 @@
+
+@media screen and (min-width:400px) and (max-width:499px){
+    .con-tainer2,.con-tainer {
+        width: 410px;
+        height: 310px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .ReviewS {
+        max-width: 410px
+    }
+   
+    .video-js2 {
+        width: 98%;
+        height: 98%;
+        object-fit: cover;
+    }
+    .f-section {
+        flex-direction: column;
+        align-items: center;
+       
+    }
+    .An-div {
+        margin-bottom: 140px;
+    }
+
+
+
+}
+
+@media screen and (min-width:500px) and (max-width:599px) {
+    .con-tainer2 , .con-tainer  {
+        width: 510px;
+        height: 310px;
+        margin-right: 0;
+        margin-left: 0;
+      
+    }
+   
+    .video-js2 {
+        width: 98%;
+        height: 98%;
+        object-fit: cover;
+    }
+    .f-section {
+        flex-direction: column;
+        align-items: center;
+       
+    }
+    .An-div {
+        margin-bottom: 140px;
+    }
+    
+   
+}
+@media screen and (min-width:300px) and (max-width:399px){
+
+    .con-tainer2,.con-tainer {
+        height: 230px;
+        width: 340px;
+        margin-left: 0;
+    }
+    .ReviewS {
+        max-width: 330px;
+        margin-left: 0;
+    }
+   
+    .video-js2 {
+        width: 98%;
+        height: 98%;
+        object-fit: cover;
+    }
+    .f-section {
+        flex-direction: column;
+        align-items: center;
+       
+    }
+    .An-div {
+        margin-bottom: 140px;
+    }
+    .dialog-div {
+    max-width: 330px;
+        margin-left: 0;
+    }
+    .d-m-button {
+        transform: rotateZ(0deg);
+        height: 40px;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+}

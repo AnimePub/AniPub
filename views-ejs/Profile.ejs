@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/hc.css">
+    <link rel="stylesheet" href="/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <%- include("./include/header.ejs")  %> 
+    <%- include("./include/nav.ejs") %> 
+      
+    <main class="box">
+       <div class="container">
+        <div class="img-box">
+            <div class="bg-img-div">
+                <img class="bg-img" src="/Esdeath.jpg" alt="">
+            </div>
+            <div class="profile-pic-div">
+                <img class="profile-pic" 
+                <% if(userInfo.Gender === "Male") {%> 
+                src="/ProfilePic/boys/<%=userInfo.image %> "
+                <% } else {%>
+                    src="/ProfilePic/<%=userInfo.image %> "
+                <% } %>     
+                alt="">
+            </div>
+
+        </div>
+        <div class="other-details">
+            <div class="name-div">
+                <p>Name :</p> 
+               <div class="det-container">
+                <p style="margin-left: 10px;" class="name"  id="name" autocomplete="additional-name"> <%= userInfo.Name %> </p>
+               </div> 
+            </div>
+            <div class="mail-div">
+                 <p>Email : </p> 
+                 <div class="det-container">
+                    <a href="mailto: <%=userInfo.Email%>">
+                         <p style="margin-left: 10px;" class="email" id="Mail" type="email"> <%=userInfo.Email%></p>
+                    </a>
+               
+                 </div>   
+                
+            </div>
+            <div class="genre-div">
+                <p>Fav.Genre :</p> 
+                <div class="det-container">
+                    <% const Genre = userInfo.Genre ;%>
+                    <% Genre.forEach(value => { %>
+                              <a target="_blank" href="https://anipub.adnandluffy.site/genre/search?<%=value%> ">
+                                <span class="genre" id="<%= value %>"><%= value%></span>
+                              </a> 
+                  <%  }); %>  
+               
+                </div>
+               
+                
+            </div>
+            <div class="hobby-div">
+                <p>Hobby : </p>
+                <div class="det-container">
+                 <p class="hobby" id="hobby"></p>
+                </div>  
+            </div>
+            <div class="address-div">
+                <p>Address : </p>
+                <div class="det-container">
+                 <p class="address" id="address"><%= userInfo.Address %> </p>
+                
+                </div>
+                
+            </div>
+            <div class="relationship-status-div">
+                <p style="font-size: 16px;">Relationship Status : </p>
+                <div class="det-container">
+                  <p class="rlsn-status" id="rlsns"><%= userInfo.Relation %>  </p>
+             
+                </div>
+               
+            </div>
+            
+        </div>
+
+       </div>
+    </main>
+
+
+    
+    <script src="/navigator.js"></script>
+</body>
+</html>

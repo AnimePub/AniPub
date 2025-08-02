@@ -1,0 +1,31 @@
+.vjs-matrix .vjs-big-play-button {
+    background: rgba(255, 0, 0, 0.931);
+}
+.vjs-matrix .vjs-volume-level {
+    background: hsl(240, 100%, 51%);
+}
+
+.vjs-matrix .vjs-play-progress {
+    background-color: rgb(0, 0, 0);
+    
+}
+.vjs-matrix .vjs-progress-holder {
+    background: rgb(0, 255, 238);
+    border-radius: 5px;
+}
+.vjs-matrix .vjs-load-progress{
+ background: red;
+}
+.vjs-matrix .vjs-slider-bar {
+    background-color: brown;
+}
+.vjs-matrix .vjs-play-control {
+  
+    background-color: red;
+     box-shadow: 0;
+     border-radius: 5px;
+}
+.vjs-matrix .vjs-control-bar {
+    background-color: transparent;
+    
+}

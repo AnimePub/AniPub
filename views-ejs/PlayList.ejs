@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayList | AniPub</title>
+    <link rel="stylesheet" href="/hc.css">
+    <link rel="stylesheet" href="/profile.css">
+    <link rel="stylesheet" href="/WatchList.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ScrollBar.css">
+</head>
+<body>
+
+    <%- include("./include/header.ejs")  %> 
+    <%- include("./include/nav.ejs") %> 
+      
+
+
+
+        <div class="main-body">
+
+            <% if( List.length > 0 ) {%> 
+                <%List.forEach((value,i)=>{%>
+                    
+                    <div class="Profile-div" data-anime="<%=value.AniID%>" data-ep="<%=value.AniEP%>">
+                        <div class="Poster-div">
+                            <img class="Poster" src="/<%=AniDB[value.AniID][0].ImagePath%>" alt="">
+                        </div>
+                        <div class="Info-div">
+                           <p class="name">Name: <span><%=AniDB[value.AniID][0].Name%></span></p>
+                            <p>Adding Time:<span class="Added-Time"><%=value.Date%></span></p>
+                            <div class="ratings-div">
+                                <p>MAL Score:<span class="mALScore"><%=AniDB[value.AniID][0].MALScore%></span></p>
+                                <img src="/rating-<%=AniDB[value.AniID][0].RatingsNum%>.png" alt="">
+                            </div>
+                            
+                            <p>Studios: <span class="Studios"><%=AniDB[value.AniID][0].Studios%></span></p>
+                            <p>Genres:<span class="Genres"><%=AniDB[value.AniID][0].Genres%></span></p>
+                            <div class="epconfig">
+                             <p>Starting Ep: <span><%=Number(value.AniEP)+1%></span></p>  
+                             <p>Total Ep:<span class="totalEp"><%=AniDB[value.AniID].length%>
+                             </span></p>
+                            </div>
+                           
+                            <div class="remove-button-div">
+                              
+                                <button class="remove-button"  data-del="<%=value.id%>">Remove From List</button>
+                              
+                            </div>
+                        </div>
+                    </div>
+        
+                  
+
+               <% })%>    
+            <%} else {%>
+           <h1 class="Warning">Please Add One before Seeing one</h1>
+            <%}%>    
+
+        </div>
+
+
+
+
+      
+      <script src="/navigator.js"></script>
+      <script src="/deleteList.js"></script> 
+    </body>
+</html>

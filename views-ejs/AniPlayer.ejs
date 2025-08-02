@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniPub | Video</title>
+    <link rel="stylesheet" href="/second-section.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+    <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/first-section.css">
+    <link rel="stylesheet" href="/third-section.css">
+    <link rel="stylesheet" href="/info-container.css">
+    <link rel="stylesheet" href="/media2-styles.css">
+    <link rel="stylesheet" href="/media-styles.css">
+    <link rel="stylesheet" href="/videoPlayerHeader.css">
+    <link rel="stylesheet" href="/body-scrollbar.css">
+</head>
+<body style="position: relative;">
+
+
+    
+    <%- include("./include/aniHeader.ejs") %> 
+
+
+
+    <div class="first-section">
+        <div class="cover-pic-div">
+            <img class="cover-pic" src="/<%=AniDB[AniId][0].Cover%>">
+        </div>
+       <div class="Container-No1">
+        <div class="video-player-box">
+            <video  id="my-video"
+            class="video-js vjs-matrix video-player "
+            controls
+            autoplay
+            preload="auto"
+            data-setup="{}">
+        <source src="/<%=AniDB[AniId][AniEP].link%>" type="video/mp4">
+        </video>
+        </div>
+        <div class="Ep-section">
+            <div class="Ep-list-title"> Next EP:-</div>
+            <div class="list-div-container">
+              <% if (AniDB[AniId].length >0){ %> 
+                <% AniDB[AniId].forEach((value,i) => { %>
+                        <div class="list"  >
+                        <div class="li-fs" data-ep="<%=i%>">
+                        <div class="img-div">
+                        <img src="/<%= AniDB[AniId][0].ImagePath %> " alt="">
+                        </div>
+                        <div class="ep-title">
+                        <p><%= AniDB[AniId][0].Name%> No.<%= i+1 %></p>
+                        </div>
+                        </div>
+                        
+                        <div class="list-button-container">
+                            <div class="add-button-div">
+
+                             <button class="Add-button" data-anime-w-id="<%=AniId%>" data-anime-w-eid="<%=i%>" data-animelink="AniPlayer/<%=AniId%>/<%=AniEP%>">Add</button>
+                           
+                        </div>
+                        </div>
+
+                        
+                        </div>
+               <% }); %> 
+             <% }; %>    
+            </div>
+        </div>
+       </div>
+    </div>
+
+
+
+    <div class="surer-div">
+    <div class="Second-Section">
+        <div class="profile-container">
+        <div class="profile-div">
+            <img class="poster"  alt="" src="/<%=AniDB[AniId][0].ImagePath%>">
+        <div class="buttons">
+
+            <button class="Play-button">
+                <img src="/play-svgrepo-com.svg" alt="Download Image">
+            </button>
+            <div class="button-div-download">
+                <a download href="/<%=AniDB[AniId][AniEP].link%>"> 
+                    <button class="Download-Button" >
+                    <img src="/Download.svg" alt="">
+                    <p>Download</p>
+                </button>
+                </a>
+            </div>
+            
+            
+            
+
+            <button class="Add-to-watchlist-button" data-animelink="https://anipub.onrender.com/AniPlayer/<%=AniId%>/0">
+                <img src="/plus-large-svgrepo-com.svg" alt="">
+                <p>Add to Watchlist</p>
+            </button>
+        </div>
+        </div> 
+        
+        
+        
+        
+        <div class="Info-container">
+            <div class="Detailes">
+                <p class="Name">Name:<span class="name"><%=AniDB[AniId][0].Name%></span></p>
+                <p>Synonyms: <span class="Synonyms"><%=AniDB[AniId][0].Synonyms%></span></p>
+                <p>Aired:<span class="Aired"><%=AniDB[AniId][0].Aired%></span></p>
+                <p>Premiered:<span class="Premiered"><%=AniDB[AniId][0].Premiered%></span></p>
+                <p>Duration:<span class="Duration"><%=AniDB[AniId][0].Duration%></span></p>
+                <p>Status:<span class="Status"><%=AniDB[AniId][0].Status%></span></p>
+                <p>MAL Score:<span class="mALScore"><%=AniDB[AniId][0].MALScore%></span></p>
+                <p>Genres:<span class="Genres"><%=AniDB[AniId][0].Genres%></span></p>
+                <p>Studios: <span class="Studios"><%=AniDB[AniId][0].Studios%></span></p>
+                <p>Producers:<span class="Producers"><%=AniDB[AniId][0].Producers%></span></p>
+            </div>
+
+
+            <div class="Description-container">
+                <div class="des-div-s-div">
+                    <p class="Des-title">Description:</p>
+                    <button class="Share-button">
+                        <img src="/Share.svg" alt="">
+                        
+                    </button>
+                
+                </div>
+                
+                <div class="Description-div">
+                    <p class="Description"><%=AniDB[AniId][0].DescripTion%></p>
+                </div>
+            </div>
+            
+        </div>
+        
+    
+    </div>
+
+
+
+       
+
+    </div>
+    <div class="Marker">
+        Marker
+    </div>
+</div>
+
+
+<div class="third-section">
+
+
+   
+
+    
+    <div class="recommendation-main">
+        <div class="recommendation-div">
+            <% if (AniDB.length > 0) {%>
+                <% AniDB.forEach((value,i) => { %>
+                    <div class="Profile-div">
+                        <div class="Profile" data-anime="<%= i %> ">
+                        <div class="Image-div">
+                            <img class="poster" src="/<%=value[0].poster%>" alt="${value[0].Name} Poster">
+                        </div>
+                        <div class="Title-div"><p class="Title"><%=value[0].Name%></p></div>
+                        <div class="ratings-div">
+                            <p class="mal-score"><%=value[0].MALScore%></p>
+                            <img src="/rating-<%=value[0].RatingsNum%>.png" alt="">
+                        </div>
+                        <div class="des-div">
+                            <p class="des">
+                            <%=value[0].DescripTion%>
+                            </p>
+                        </div>
+                    </div>
+                    </div>
+
+             <%  }); %> 
+            <% } %>     
+        </div>
+        <div class="recommendation-title">
+            Recommendations
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+<div class="modal-container">
+    <div class="Box-modal">
+        <div>
+            <p class="anamemodal">Name: <span><%=AniDB[AniId][0].Name%></span></p>
+        </div>
+        <div>
+            <p class="epno">Ep No. <%=AniEP+1%></p>
+        </div>
+        <div class="link-constainer">
+            <p>https://anipub.onrender.com/AniPlayer/<%=AniId%>/<%=AniEP%></p>
+        </div>
+        <div class="share-media-div">
+            <p class="sn">Share Now:-</p>
+            <div class="options-div">
+                <div class="opt-div">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <button class="shared-button-m">
+                    <img src="/fb.svg" alt="">
+                    </button>
+                    </a>
+                    
+                    <p class="b-title">Facebook</p>
+                </div>
+                <div class="opt-div">
+                    <a href="https://www.messenger.com" target="_blank">
+                        <button class="shared-button-m">
+                    <img src="/messenger.svg" alt="">
+                    </button>
+                    </a>
+                    
+                    <p class="b-title">Messenger</p>
+                </div>
+
+                <div class="opt-div">
+                    <a href="https://whatsapp.com/" target="_blank">
+                        <button class="shared-button-m">
+                    <img src="/WhatsApp.svg" alt="">
+                    </button>
+                    </a>
+                    
+                    <p class="b-title">WhatsApp</p>
+                </div>
+
+                <div class="opt-div">
+                    <a href="https://web.telegram.org" target="_blank">
+                         <button class="shared-button-m">
+                    <img src="/telegram.svg" alt="">
+                    </button>
+                    </a>
+                   
+                    <p class="b-title">Telegram</p>
+                </div>
+               
+            </div>
+        </div>
+        <p class="last-msge">As This a prototype page please understand that
+            there may be some bugs or broken links.. and you can also report it to us 
+            here's our contact info:- 
+        </p>
+        <div class="button-container-modal">
+        <a target="_blank" href="https://github.com/AdnanDLuffy/"><button class="Git-buttonM">
+            <img class="git-im" src="/github.svg" alt="">
+            Githhub
+        </button></a>
+     <a target="_blank" href="https://www.facebook.com/NarutoTheHokageDatttebayo13">   <button class="fb-bM">
+            <img  class="f-p" src="/fb.svg" alt="">Facebook
+        </button> </a>
+        </div>
+        
+        <div class="wmdiv"><p class="Wm">Do you want to leave this ?</p> </div>
+          
+        <div class="lbm"><button class="leave">Yes</button><button class="stay">No</button></div>
+    </div>
+</div>
+
+
+
+
+    <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+    <script src="/Changer-AniPlayer.js"></script>
+    <script src="/dialog.js"></script>
+
+
+    <script src="/upDate-playlist.js"></script>
+    <script src="/home.js"></script>
+    <script src="/playList-Up.js"></script>
+</body>
+</html>

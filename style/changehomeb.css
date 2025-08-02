@@ -1,0 +1,27 @@
+@media screen and (min-width:300px) and (max-width:693px){
+    .home-button {
+    display: inline-block;
+    font-size: 16px;
+    font-family: Gruppo;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: transparent;
+    color: white;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: blueviolet;
+    cursor: pointer;
+    transition: background-color 0.15s, opacity 0.15s, font-weight 0.15s;
+    font-weight: 600;
+    }
+    .about-us {
+        display: none;
+    }
+
+    .Second-Section  {
+width: 100px;
+    }
+}
