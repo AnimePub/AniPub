@@ -35,6 +35,11 @@
             </div>
 
         </div>
+
+        <div>
+            <p><%= userInfo.Bio %> </p>
+
+        </div>
         <div class="other-details">
             <div class="name-div">
                 <p>Name :</p> 
@@ -56,12 +61,18 @@
                 <p>Fav.Genre :</p> 
                 <div class="det-container">
                     <% const Genre = userInfo.Genre ;%>
+                    <% if(Genre === null) {%>
+
+ <span class="genre" id="">No Fav Genre Chosen</span>
+
+
+                   <% } else {%> 
                     <% Genre.forEach(value => { %>
                               <a target="_blank" href="https://anipub.adnandluffy.site/genre/search?<%=value%> ">
                                 <span class="genre" id="<%= value %>"><%= value%></span>
                               </a> 
                   <%  }); %>  
-               
+               <% } %> 
                 </div>
                
                 
@@ -75,7 +86,7 @@
             <div class="address-div">
                 <p>Address : </p>
                 <div class="det-container">
-                 <p class="address" id="address"><%= userInfo.Address %> </p>
+                 <p class="address" id="address" style="margin-left: 10px; white-space:wrap; width: 100%;"><%= userInfo.Address %> </p>
                 
                 </div>
                 
@@ -83,7 +94,7 @@
             <div class="relationship-status-div">
                 <p style="font-size: 16px;">Relationship Status : </p>
                 <div class="det-container">
-                  <p class="rlsn-status" id="rlsns"><%= userInfo.Relation %>  </p>
+                  <p class="rlsn-status" id="rlsns" style="margin-left: 10px; white-space:wrap; width: 100%;"><%= userInfo.Relation %>  </p>
              
                 </div>
                
