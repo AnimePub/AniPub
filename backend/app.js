@@ -18,6 +18,7 @@ require('dotenv').config();
 
 //using router makes it more easy to manage the code
 const HomeRouter = require("./router/home.js");
+const Settings = require("./router/pvchng.js")
 
 
 let accountId = "";
@@ -73,7 +74,6 @@ app.use(cookieParser())
 
 //Home router
 app.use(HomeRouter);
-
 
 
 app.get("/Sign-Up",(req,res)=>{
@@ -341,6 +341,10 @@ app.get("/Settings",(req,res)=>{
         })
     }
 })
+
+//Router
+app.use(Settings);
+
 app.post("/Settings/ad-st",async (req,res)=>{
      const Token = req.cookies.anipub;
      if(Token) {
