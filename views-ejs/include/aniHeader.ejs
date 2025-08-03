@@ -20,14 +20,14 @@
         <button class="random">Random</button>
 
         
-        <% if(auth === true) { %> 
+       <% if(auth === true) { %> 
+        <button data-account="<%=ID%>" class="profile-icon" title="Profile Menu">
+         <img style="width: 50px; height: 50px;  object-position: center;border-radius: 50%;" src="/ProfilePic/<%= Link %>" alt="">
+        </button>
+        <% } else {%>
             <button data-account="<%=ID%>" class="profile-icon" title="Profile Menu">
-             <img style="width: 100%; height: 100%;  object-position: center;" src="/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-            </button>
-            <% } else {%>
-                <button data-account="<%=ID%>" class="profile-icon" title="Profile Menu">
-                    <img style="width: 100%; height: 100%;  object-position: center;" src="/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                   </button>
-            <% } %>   
+                <img style="width: 50px; height: 50px;  object-position: center ; border-radius: 50%;" src="<%= Link %>" alt="">
+               </button>
+        <% } %>     
     </div>
 </header>

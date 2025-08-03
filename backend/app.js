@@ -178,16 +178,33 @@ app.get(`/AniPlayer/:AniId/:AniEP`,(req,res)=>{
     const newArray = Array.split("/")
     const AniId = Number(newArray[2]);
     const AniEP = Number(newArray[3]);
+     let linkI  = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if(Token){
         jwt.verify(Token,"I Am Naruto",(err,data)=>{
             if(err){
                 console.log(err)
             }
-             res.render("AniPlayer",{AniDB : OP,AniId,AniEP,auth:true,ID:data.id})
+
+            Data.findById(`${data.id}`)
+            .then(info=>{
+                let link = info.Image;
+                const Gender = info.Gender;
+                if (Gender === "Male") {
+                    const finalLink = `boys/`+ link;
+                res.render("AniPlayer",{AniDB : OP,AniId,AniEP,auth:true,ID:data.id, Link:finalLink});
+                }
+                else {
+                       res.render("AniPlayer",{AniDB : OP,AniId,AniEP,auth:true,ID:data.id,Link:link})
+                }
+              
+              
+    
+            })
+           
         })
     }
     else {
-        res.render("AniPlayer",{AniDB : OP,AniId,AniEP,auth:false,ID:"guest"})
+        res.render("AniPlayer",{AniDB : OP,AniId,AniEP,auth:false,ID:"guest",Link:linkI})
     }
    
    
