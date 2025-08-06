@@ -22,15 +22,16 @@ const mailBody = require("./templates/verification.js") ;
 const HomeRouter = require("./router/home.js");
 const Settings = require("./router/pvchng.js")
 
-const AUTHSMTP = process.env.auth;
-const PASSWORD = process.env.pass;
+const AUTHSMTP = process.env.auth ; 
+
+const PASSWORD = process.env.pass  ;
 const transporter = nodemailer.createTransport({
     host:'smtp.zoho.com',
     port:465,
     secure:true,
     auth:{
-        user:AUTHSMTP,
-        pass:PASSWORD,
+        user:'abdullahal467bp@gmail.com',
+        pass:'TSmy CeYm CCwn',
     }
 })
 
@@ -106,40 +107,69 @@ app.post("/Sign-Up",async (req,res)=>{
         Name:req.body.name,
         Email : req.body.email,
         Password : req.body.pass,
+        AcStats:"Pending",
     })
     const id = newacc._id;
-    if(id) {
-        const code = Math.round(Math.random()*10000);
-       const aluV = await Vcode.create({
-            vCode: code,
+    const aluV = await Vcode.create({
+        _id:id,    
+        vCode: id,
         })
-        console.log(aluV.vCode);
-        const mailOptions = {
+    const code = await aluV.id;
+     const mailOptions = {
             from:`mail@adnandluffy.site`,
             to :`${newacc.Email}`,
             subject:`Verify Your AniPub Account`,
             html:mailBody(newacc.Name,aluV.vCode),
         }
-     transporter.sendMail(mailOptions,(err,info)=>{
-            if(err){
-                console.log(err)
-            }
-            console.log(info.messageId);
-        })
-        
-
-    }
-    const myCookie = TokenGen(id);
-    res.cookie("anipub",myCookie,{httpOnly:true,maxAge:60*24*60*3});
-    res.json(["/Home"])
+    transporter.sendMail(mailOptions,(err,DATAINFO)=>{
+        res.json(['/Home'])
+    })   
     
-
     } catch (err) {
+    console.log(err);
      const errorObj = [{error:err.message}];   
      res.json(errorObj);
      
     }
 })
+
+app.get("/verify/:code",(req,res)=>{
+    const verificationCode = req.params.code;
+    Vcode.findById(verificationCode)
+    .then(info=>{
+        if(info) {
+            const id = info._id;
+            Data.findById(id).then(alu=>{
+                if(alu.AcStats === "Pending") {
+                            Data.findByIdAndUpdate(id,{AcStats:"Active"})
+                    .then(alu=>{
+                            const myCookie = TokenGen(id);
+                    res.cookie("anipub",myCookie,{httpOnly:true,maxAge:60*24*60*3});
+                    res.send(`<a href="/Home"><p>Go to Home</p></a>`)
+                    
+                    })
+                }
+                else {
+                     res.send(`<a>Already Active !</a>`)
+                }
+            })
+
+            
+         
+        
+            
+        }
+        else {
+            res.send("Your Link IS expired ; Please Try again ? Why seeing this ? mail me back! mail@adnandluffy.site")
+        }
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+
+})
+
+
 
 app.post("/Login",async(req,res)=>{
     const Email = req.body.email;
@@ -147,7 +177,7 @@ app.post("/Login",async(req,res)=>{
     Data.findOne({"Email":Email})
     .then(
         info =>{
-            if(info) {
+            if(info && info.AcStats === "Active") {
                 bcrypt.compare(Pass,info.Password,(err,value)=>{
                     if(error) {
                         console.log(error)
@@ -163,6 +193,11 @@ app.post("/Login",async(req,res)=>{
                        }
                    })
                   
+            }
+            else if (info.AcStats === "Pending") {
+                res.send(`<p>This account is on Pending Stat Please Verify The Account first
+                    The Link Only Stays for 30 min ! 
+                    </p>`)
             }
             else {
                 res.json(["Could't find any account with this account"])

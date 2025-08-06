@@ -16,10 +16,13 @@ form.addEventListener('submit',async (event)=>{
             )
             .then(response=>response.json())
             .then(data =>{
+                
                 if(data.includes("/Home")){
                     window.location.href= "/Home"
                 }
+                    
                 else {
+                    console.log(data);
                     wr = data[0];
                 }
             })
@@ -28,5 +31,8 @@ form.addEventListener('submit',async (event)=>{
             console.log(error);
         }
        
+    }
+    else {
+        alert("Make sure your both pass is OK!")
     }
 })

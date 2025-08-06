@@ -7,6 +7,10 @@ const Data = new Schema({
         type:String,
         required:true,
     },
+    AcStats:{
+        type:String,
+        required:true,
+    },
     Email:{
         type:String,
         required:true,
