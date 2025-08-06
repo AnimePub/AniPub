@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message - Anipub</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 100px;
+        }
+        .alu {font-size: 40px; font-family: monospace; color: rgb(255, 255, 255)}
+
+    </style>
+</head>
+<body style="background-color: rgb(0, 0, 0);">
+    
+        <p class="alu">A Link Have been sent to your Account</p>
+        <p class="alu">Please Verify Within 30 minutes !</p>
+        <p class="alu time"></p>
+   
+
+    <script>
+        const time = document.querySelector(".time");
+        let settime = 10;
+        
+        setInterval(()=>{
+            time.innerText = (settime +"s");
+           settime -- ;
+            
+            if (settime === 0) {
+                 Reload()
+            }
+        },1000)
+        function Reload() {
+            window.location.href ="/Home"
+        }
+
+
+    </script>
+</body>
+</html>

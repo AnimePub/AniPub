@@ -102,10 +102,13 @@ const TokenGen = (id) =>{
 
 
 app.post("/Sign-Up",async (req,res)=>{
+      const mailChecker = (req.body.email).split("www.");
+      const finalMail = mailChecker[1];
+
     try {
         const newacc = await Data.create({
         Name:req.body.name,
-        Email : req.body.email,
+        Email : finalMail,
         Password : req.body.pass,
         AcStats:"Pending",
     })
@@ -478,6 +481,12 @@ app.post("/settings/account-info", (req,res)=>{
    
 
 })
+app.get("/Notify",(req,res)=>{
+    console.log(req.query.alu)
+    res.render("Notify")
+
+})
+
 //Update --- false auth to cheking
 app.get("/About-Us",(req,res)=>{
     res.render("About-Us",{SectionName:"About Us Section",Auth:false});

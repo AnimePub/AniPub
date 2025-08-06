@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+const WarningMsge = document.querySelector(".r-n")
 let wr = "";
 form.addEventListener('submit',async (event)=>{
     event.preventDefault();
@@ -18,21 +19,28 @@ form.addEventListener('submit',async (event)=>{
             .then(data =>{
                 
                 if(data.includes("/Home")){
-                    window.location.href= "/Home"
+                    window.location.href= "/Notify"
                 }
                     
                 else {
-                    console.log(data);
-                    wr = data[0];
+                    wr = data[0].error;
+                    
+                    WarningMsge.innerText = wr;
+                    wr = "";
                 }
             })
 
         } catch (error) {
+            wr =  "Couldn't Sent Request";
+            WarningMsge.innerText = wr;
+            wr ="";
             console.log(error);
         }
        
     }
     else {
-        alert("Make sure your both pass is OK!")
+        wr = "Password Didn't Match"
+        WarningMsge.innerText = wr;
+        wr = "";
     }
 })
