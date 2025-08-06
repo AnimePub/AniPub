@@ -31,6 +31,10 @@
         </div>
        <div class="Container-No1">
         <div class="video-player-box">
+            <% if(AniDB[AniId][0].type === "iframe") {%>
+                <iframe  <%=AniDB[AniId][AniEP].link%> style="height:100%;width: 100%;"></iframe>
+               
+                <% } else {%> 
             <video  id="my-video"
             class="video-js vjs-matrix video-player "
             controls
@@ -43,6 +47,7 @@
               <source src="<%=AniDB[AniId][AniEP].link%>" type="video/mp4">
             <% } %>  
         </video>
+        <% } %> 
         </div>
         <div class="Ep-section">
             <div class="Ep-list-title"> Next EP:-</div>
