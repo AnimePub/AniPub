@@ -104,9 +104,8 @@ function mailBody(name,code) {
       <p class="security-notice">If you didn’t request this code, please ignore this email or contact our support team at <a href="mailto:mail@adnandluffy.site">mail@adnandluffy.site</a>.</p>
     </div>
     <div class="footer">
-      <p>&copy; 2025 Your Site Name. All rights reserved.</p>
-       <a href="https://yourwebsite.com/privacy">Privacy Policy</a></p>
-      <p>Your Company Address, City, Country</p>
+      <p>&copy; 2025 AniPub. All rights reserved.</p>
+       <a href="https://anipub.adnandluffy.site/Privacy-policy">Privacy Policy</a></p>
     </div>
   </div>
 </body>
