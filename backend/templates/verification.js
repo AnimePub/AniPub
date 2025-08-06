@@ -98,7 +98,7 @@ function mailBody(name,code) {
     </div>
     <div class="content">
       <p>Welcome, ${name}</p>
-      <p>You're one step away from unlocking the full experience on <strong>Your Site Name</strong>. Use the verification code below to confirm your account.</p>
+      <p>You're one step away from unlocking the full experience on <strong>AniPub</strong>. Use the verification code below to confirm your account.</p>
       <div class="verification-code">${code}</div>
       <p class="instructions">Enter this code on our website to verify your account. For security, this code will <strong>expire in 3 minutes</strong>.</p>
       <p class="security-notice">If you didn’t request this code, please ignore this email or contact our support team at <a href="mailto:mail@adnandluffy.site">mail@adnandluffy.site</a>.</p>

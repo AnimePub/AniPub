@@ -117,7 +117,7 @@ app.post("/Sign-Up",async (req,res)=>{
         const mailOptions = {
             from:`mail@adnandluffy.site`,
             to :`${newacc.Email}`,
-            subject:`Mail meant for testing Verification code`,
+            subject:`Verify Your AniPub Account`,
             html:mailBody(newacc.Name,aluV.vCode),
         }
      transporter.sendMail(mailOptions,(err,info)=>{
