@@ -37,7 +37,11 @@
             autoplay
             preload="auto"
             data-setup="{}">
+            <% if(AniDB[AniId][0].type === "mp4") {%> 
         <source src="/<%=AniDB[AniId][AniEP].link%>" type="video/mp4">
+        <% } else { %>
+              <source src="<%=AniDB[AniId][AniEP].link%>" type="video/mp4">
+            <% } %>  
         </video>
         </div>
         <div class="Ep-section">
@@ -85,7 +89,11 @@
                 <img src="/play-svgrepo-com.svg" alt="Download Image">
             </button>
             <div class="button-div-download">
-                <a download href="/<%=AniDB[AniId][AniEP].link%>"> 
+                   <% if(AniDB[AniId][0].type === "mp4") {%> 
+                <a download href="/<%=AniDB[AniId][AniEP].link%>">
+                    <% } else { %>
+                        <a download href="<%=AniDB[AniId][AniEP].link%>"></a>
+                        <% } %> 
                     <button class="Download-Button" >
                     <img src="/Download.svg" alt="">
                     <p>Download</p>

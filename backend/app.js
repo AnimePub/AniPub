@@ -14,12 +14,25 @@ const cookieParser = require("cookie-parser");
 const {AuthAcc} = require("./middleware/valideAcc.js");
 const bcrypt = require("bcrypt");
 require('dotenv').config();
-
+const nodemailer = require("nodemailer");
+const Vcode = require("./models/auth.js")
+const mailBody = require("./templates/verification.js") ;
 
 //using router makes it more easy to manage the code
 const HomeRouter = require("./router/home.js");
 const Settings = require("./router/pvchng.js")
 
+const AUTHSMTP = process.env.auth;
+const PASSWORD = process.env.pass;
+const transporter = nodemailer.createTransport({
+    host:'smtp.zoho.com',
+    port:465,
+    secure:true,
+    auth:{
+        user:AUTHSMTP,
+        pass:PASSWORD,
+    }
+})
 
 let accountId = "";
 
@@ -86,6 +99,7 @@ const TokenGen = (id) =>{
    return jwt.sign({id},"I Am Naruto",{expiresIn:60*24*60*3*60});
 }
 
+
 app.post("/Sign-Up",async (req,res)=>{
     try {
         const newacc = await Data.create({
@@ -94,6 +108,27 @@ app.post("/Sign-Up",async (req,res)=>{
         Password : req.body.pass,
     })
     const id = newacc._id;
+    if(id) {
+        const code = Math.round(Math.random()*10000);
+       const aluV = await Vcode.create({
+            vCode: code,
+        })
+        console.log(aluV.vCode);
+        const mailOptions = {
+            from:`mail@adnandluffy.site`,
+            to :`${newacc.Email}`,
+            subject:`Mail meant for testing Verification code`,
+            html:mailBody(newacc.Name,aluV.vCode),
+        }
+     transporter.sendMail(mailOptions,(err,info)=>{
+            if(err){
+                console.log(err)
+            }
+            console.log(info.messageId);
+        })
+        
+
+    }
     const myCookie = TokenGen(id);
     res.cookie("anipub",myCookie,{httpOnly:true,maxAge:60*24*60*3});
     res.json(["/Home"])
