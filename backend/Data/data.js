@@ -99,7 +99,7 @@ let OP = [
 [
   {
     name: "Ep 1",
-    id: 3,
+    id: 2,
     Name: "Mattaku Saikin no Tantei to Kitara",
     ImagePath: "Mattaku-Saikin-no-Tantei-to-Kitara.webp",
     Cover: "abfc357374_anitousen-mattaku-saikin-no-tantei-to-kitara-2025.webp",
@@ -148,7 +148,7 @@ let OP = [
 [
   {
     name: "Ep 1",
-    id: 4,
+    id: 3,
     Name: "Necronomico no Cosmic Horror Show",
     ImagePath: "Necronomico-and-the-Cosmic-Horror-Show.webp",
     Cover: "Necronomico-and-the-Cosmic-Horror-Show.webp",
@@ -197,7 +197,7 @@ let OP = [
 [
   {
     name: "Ep 1",
-    id: 5,
+    id: 4,
     Name: "Kakkou no Iinazuke Season 2",
     ImagePath: "kakkou-no-iinazuke-season-2.webp",
     Cover: "Kakkou no CIinazuke.webp",
@@ -241,7 +241,7 @@ let OP = [
 [
   {
     name: "Ep 1",
-    id: 6,
+    id: 5,
     Name: "Kanojo, Okarishimasu 4th Season",
     ImagePath: "Kanojo-Okarishimasu-4th-Season.webp",
     Cover: "HD-wallpaper-anime-rent-a-girlfriend-girl-japanese-kanojo-okarishimasu-pink-hair-rent-a-girlfriend-sumi-sakurasawa-thumbnail.webp",
@@ -291,7 +291,7 @@ let OP = [
 [
   {
     name: "Ep 1",
-    id: 7,
+    id: 6,
     Name: "Watashi ga Koibito ni Nareru Wake Nai jan, Muri Muri! (※Muri ja Nakatta!?)",
     ImagePath: "9784088931104.webp",
     Cover: "Watashi ga Koibito niC.webp",
@@ -335,7 +335,7 @@ let OP = [
 [
   {
     name: "Ep 1",
-    id: 8,
+    id: 7,
     Name: "Grand Blue Season 2",
     ImagePath: "Grand-Blue-Season-2.webp",
     Cover: "Grand Blue SeasonC.webp",
@@ -384,7 +384,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
 [
   {
     name: "Ep 1",
-    id: 9,
+    id: 8,
     Name: "Sakamoto Days Part 2",
     ImagePath: "Sakamoto-Days-Part-II.webp",
     Cover: "Sakamoto Days Part 2C.webp",
@@ -423,7 +423,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
 [
   {
     name: "Ep 1",
-    id: 10,
+    id: 9,
     Name: "Kijin Gentoushou",
     ImagePath: "kijin-gentoushou.webp",
     Cover: "kijin-gentoushouC.webp",
@@ -510,7 +510,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
 [
   {
     name: "Ep 1",
-    id: 11,
+    id: 10,
     Name: "Hotel Inhumans",
     ImagePath: "hotel-inhumans.webp",
     Cover: "hotel-inhumansC.webp",
@@ -554,7 +554,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
 [
   {
     name: "Ep 1",
-    id: 12,
+    id: 11,
     Name: "Gachiakuta",
     ImagePath: "gachiakuta.webp",
     Cover: "gachiakutaC.webp",
@@ -593,7 +593,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
 [
   {
     name: "Ep 1",
-    id: 13,
+    id: 12,
     Name: "Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku",
     ImagePath: "Isekai-Mokushiroku-Mynoghra-Hametsu-no-Bunmei-de-Hajimeru-Sekai-Seifuku.webp",
     Cover: "Isekai Mokushiroku Mynoghra.webp",
@@ -637,7 +637,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
 [
   {
     name: "Ep 1",
-    id: 14,
+    id: 13,
     Name: "Dekin no Mogura: The Earthbound Mole",
     ImagePath: "dekin-no-mogura.webp",
     Cover: "c6517-17515604341824-1920.webp",
