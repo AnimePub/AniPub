@@ -18,8 +18,9 @@
 </head>
 <body style="background-color: rgb(0, 0, 0);">
     
-        <p class="alu">A Link Have been sent to your Account</p>
-        <p class="alu">Please Verify Within 30 minutes !</p>
+        <% Msge.forEach(value => {%>
+            <p class="alu"><%= value %> </p>
+       <% }); %> 
         <p class="alu time"></p>
    
 

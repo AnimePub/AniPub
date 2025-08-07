@@ -19,7 +19,7 @@ form.addEventListener('submit',async (event)=>{
             .then(data =>{
                 
                 if(data.includes("/Home")){
-                    window.location.href= "/Notify"
+                    window.location.href= "/Notify/?active=pending"
                 }
                     
                 else {

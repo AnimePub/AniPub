@@ -20,7 +20,10 @@ const mailBody = require("./templates/verification.js") ;
 
 //using router makes it more easy to manage the code
 const HomeRouter = require("./router/home.js");
-const Settings = require("./router/pvchng.js")
+const Settings = require("./router/pvchng.js");
+const Notify = require("./router/notify.js");
+const VERIFY = require("./router/verify.js")
+
 
 const AUTHSMTP = process.env.auth ; 
 
@@ -136,43 +139,9 @@ app.post("/Sign-Up",async (req,res)=>{
     }
 })
 
-app.get("/verify/:code",(req,res)=>{
-    const verificationCode = req.params.code;
-    Vcode.findById(verificationCode)
-    .then(info=>{
-        if(info) {
-            const id = info._id;
-            Data.findById(id).then(alu=>{
-                if(alu.AcStats === "Pending") {
-                            Data.findByIdAndUpdate(id,{AcStats:"Active"})
-                    .then(alu=>{
-                            const myCookie = TokenGen(id);
-                    res.cookie("anipub",myCookie,{httpOnly:true,maxAge:60*24*60*3});
-                    res.send(`<a href="/Home"><p>Go to Home</p></a>`)
-                    
-                    })
-                }
-                else {
-                     res.send(`<a>Already Active !</a>`)
-                }
-            })
 
-            
-         
-        
-            
-        }
-        else {
-            res.send("Your Link IS expired ; Please Try again ? Why seeing this ? mail me back! mail@adnandluffy.site")
-        }
-    })
-    .catch(err=>{
-        console.log(err);
-    })
-
-})
-
-
+//Verify Router 
+app.use(VERIFY);
 
 app.post("/Login",async(req,res)=>{
     const Email = req.body.email;
@@ -481,11 +450,9 @@ app.post("/settings/account-info", (req,res)=>{
    
 
 })
-app.get("/Notify",(req,res)=>{
-    console.log(req.query.alu)
-    res.render("Notify")
+// Notify
+app.use(Notify)
 
-})
 
 //Update --- false auth to cheking
 app.get("/About-Us",(req,res)=>{
