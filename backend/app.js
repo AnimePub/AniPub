@@ -78,7 +78,7 @@ app.use(express.static(path.join(__dirname,"../JS")));
 app.use(express.static(path.join(__dirname,"../Logo")));
 app.use(express.static(path.join(__dirname,"../Poster Pic")));
 app.use(express.static(path.join(__dirname,"../Styles")));
-
+app.use(express.static(path.join(__dirname,"../google")));
 app.use(express.urlencoded({extended:true}));
 
 
@@ -497,7 +497,10 @@ app.post("/settings/account-info", (req,res)=>{
 })
 // Notify
 app.use(Notify)
-
+//Google Verify
+app.get("/googlec4b408e99b3b10c7.html",(req,res)=>{
+    res.sendFile("/googlec4b408e99b3b10c7.html")
+})
 
 //Update --- false auth to cheking
 app.get("/About-Us",(req,res)=>{
