@@ -106,8 +106,13 @@ const TokenGen = (id) =>{
 
 app.post("/Sign-Up",async (req,res)=>{
       const mailChecker = (req.body.email).split("www.");
-      const finalMail = mailChecker[1];
-
+      let finalMail = "";
+      if(mailChecker.length > 1) {
+        finalMail = mailChecker[1];
+      }
+      else {
+        finalMail = mailChecker[0];
+      }
     try {
         const newacc = await Data.create({
         Name:req.body.name,
@@ -351,6 +356,7 @@ app.delete('/PlayList/Delete/:DeleteID',(req,res)=>{
                 newList.findByIdAndDelete(req.params.DeleteID)
                     .then (info=> {
                         if(info) {
+                            Data.findByIdAndUpdate(data.id,{$pull:{List:{"id":info.Owner}}});
                             res.json(["Delete Done"])
                         }
                         else {
