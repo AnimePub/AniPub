@@ -352,11 +352,12 @@ app.delete('/PlayList/Delete/:DeleteID',(req,res)=>{
         }
         newList.findById(postId)
         .then(info =>{
+            const POSTID = info._id;
             if(info.Owner === data.id) {
                 newList.findByIdAndDelete(req.params.DeleteID)
                     .then (info=> {
                         if(info) {
-                            Data.findByIdAndUpdate(data.id,{$pull:{List:{"id":info._id}}}); // pulling info
+                            Data.findByIdAndUpdate(data.id,{$pull:{List:{id:POSTID}}}); // pulling info
                             res.json(["Delete Done"])
                         }
                         else {
