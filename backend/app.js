@@ -22,7 +22,7 @@ const mailBody = require("./templates/verification.js") ;
 const HomeRouter = require("./router/home.js");
 const Settings = require("./router/pvchng.js");
 const Notify = require("./router/notify.js");
-const VERIFY = require("./router/verify.js")
+
 
 
 const AUTHSMTP = process.env.auth ; 
@@ -146,7 +146,43 @@ app.post("/Sign-Up",async (req,res)=>{
 
 
 //Verify Router 
-app.use(VERIFY);
+app.get("/verify/:code",(req,res)=>{
+    const verificationCode = req.params.code;
+    Vcode.findById(verificationCode)
+    .then(info=>{
+        if(info) {
+            const id = info._id;
+            Data.findById(id).then(alu=>{
+                if(alu.AcStats === "Pending") {
+                            Data.findByIdAndUpdate(id,{AcStats:"Active"})
+                    .then(alu=>{
+                            const myCookie = TokenGen(id);
+                    res.cookie("anipub",myCookie,{httpOnly:true,maxAge:60*24*60*3});
+                        const Msge = [`Hey ${alu.Name}!`
+                        ,"Your Account Have been verified , You are now Good to Go!"]
+                    res.render("Notify",{Msge})  })
+                }
+                else {
+                    res.redirect("/Notify/?active=true")
+                }
+            })
+
+            
+         
+        
+            
+        }
+        else {
+            const Msge = ["This Link Won't Work ? the link only stays for 30min"]
+                    res.render("Notify",{Msge})
+        }
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+
+})
+
 
 app.post("/Login",async(req,res)=>{
     const Email = req.body.email;
