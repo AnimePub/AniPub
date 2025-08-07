@@ -192,8 +192,8 @@ app.post("/Login",async(req,res)=>{
         info =>{
             if(info && info.AcStats === "Active") {
                 bcrypt.compare(Pass,info.Password,(err,value)=>{
-                    if(error) {
-                        console.log(error)
+                    if(err) {
+                        console.log(err)
                     }
                     if(value) {
                         const myCookie = TokenGen(info._id);
