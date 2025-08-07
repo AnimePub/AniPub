@@ -293,7 +293,7 @@ app.get("/PlayList/:id",(req,res)=>{
             })
         }
         else {
-            res.redirect(`/PlayList/${PlayListID}`)
+            res.redirect(`/PlayList/${Token}`)
         }
             
          })
@@ -356,7 +356,7 @@ app.delete('/PlayList/Delete/:DeleteID',(req,res)=>{
                 newList.findByIdAndDelete(req.params.DeleteID)
                     .then (info=> {
                         if(info) {
-                            Data.findByIdAndUpdate(data.id,{$pull:{List:{"id":info.Owner}}});
+                            Data.findByIdAndUpdate(data.id,{$pull:{List:{"id":info._id}}}); // pulling info
                             res.json(["Delete Done"])
                         }
                         else {
