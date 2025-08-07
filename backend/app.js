@@ -220,7 +220,9 @@ app.get(`/AniPlayer/:AniId/:AniEP`,(req,res)=>{
     const newArray = Array.split("/")
     const AniId = Number(newArray[2]);
     const AniEP = Number(newArray[3]);
-     let linkI  = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
+  let linkI  = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
+    if(OP.length > AniId && OP[AniId].length > AniEP){
+  
     if(Token){
         jwt.verify(Token,"I Am Naruto",(err,data)=>{
             if(err){
@@ -238,9 +240,6 @@ app.get(`/AniPlayer/:AniId/:AniEP`,(req,res)=>{
                 else {
                        res.render("AniPlayer",{AniDB : OP,AniId,AniEP,auth:true,ID:data.id,Link:link})
                 }
-              
-              
-    
             })
            
         })
@@ -248,7 +247,10 @@ app.get(`/AniPlayer/:AniId/:AniEP`,(req,res)=>{
     else {
         res.render("AniPlayer",{AniDB : OP,AniId,AniEP,auth:false,ID:"guest",Link:linkI})
     }
-   
+}
+else {
+    res.json("This Anime or Episode doesn't exist in the db why seeing this ?  abdullahal467bp@gmail.com")
+}   
    
 });
 
