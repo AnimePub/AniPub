@@ -176,8 +176,7 @@
             <% if (AniDB.length > 0) {%>
                 <% AniDB.forEach((value,i) => { %>
                  <div class="Profile-div">
-   <!-- <a target="_blank" href="https://anipub.adnandluffy.site/AniPlayer/<%= value[0].id %>/0"> -->
-                        <div class="Profile" data-anime="<%= i %> ">
+                        <div class="Profile" data-anime="<%=i%>">
                         <div class="Image-div">
                             <img class="poster" src="/<%=value[0].poster%>" alt="${value[0].Name} Poster">
                         </div>
@@ -193,7 +192,7 @@
                         </div>
                     </div>
                    
-<!-- </a>  --></div>
+                </div>
              <%  }); %> 
             <% } %>     
         </div>

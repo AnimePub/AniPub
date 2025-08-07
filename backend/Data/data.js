@@ -515,8 +515,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
     ImagePath: "hotel-inhumans.webp",
     Cover: "hotel-inhumansC.webp",
     Synonyms: "Hoteru Inhyūmanzu",
-    link: "https://rr2---sn-nx57ynsd.googlevideo.com/videoplayback?expire=1754493491&ei=swGTaO3LFP6-sfIP187fkQo&ip=192.126.196.19&id=f894a79a55abb257&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754464691,&mh=QM&mm=31&mn=sn-nx57ynsd&ms=au&mv=m&mvi=2&pl=18&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1415.024&lmt=1751843080018204&mt=1754464192&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIgIm5lXXY3wbJpA2YO0F57VbbPVMv721E6eudQl9mMVVkCIQDHiKO11dAmLpbsZySvvoQdiIQjMoty-GRB5X1jvc-4GQ%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRgIhAJmvbVkB84oTWU5UrGzSz7phgYc3K13fvuEGjhvgsqx2AiEAkzKeCrtM-ZhYTE8V6ruAtQW75TymXWWWlMwed_5J_pc%3D",
-    title: "Episode 1",
+    link: `src=https://gogoanime.com.by/streaming.php?id=hotel-inhumans-19745&ep=141677&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,  title: "Episode 1",
     poster: "hotel-inhumans.webp",
     Aired: "Jul 6, 2025 to ?",
     Premiered: "Summer 2025",
@@ -532,22 +531,22 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
   },
   {
     name: "Episode 2",
-    link: "https://rr5---sn-nx57ynsd.googlevideo.com/videoplayback?expire=1754493510&ei=xgGTaOTSBpWRsfIP2qCioQ4&ip=192.126.196.19&id=24b84a92f3aab931&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754464710,&mh=oM&mm=31&mn=sn-nx57ynsd&ms=au&mv=m&mvi=5&pl=18&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1415.070&lmt=1752622321579242&mt=1754464192&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIgEcxC5odYsbbypi2yV4ro0jsszJiumLBjSnllKdSPqy4CIQDuFvER6W328yEya0C2nY6rcnabg8oIhF3f7pOJealX6g%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIgDbxKErk_NOfV85JYbH-nylM2q8KSpmiqRGX9eLxT4fcCIQCKMkNCLkcHbjL4K1w-Du73cGe-PdzAfehzfDbjIqKsug%3D%3D",
+    link:`src=https://gogoanime.com.by/streaming.php?id=hotel-inhumans-19745&ep=141812&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen` ,
     title: "Hotel Inhumans"
   },
   {
     name: "Episode 3",
-    link: "https://rr3---sn-n4v7snll.googlevideo.com/videoplayback?expire=1754493530&ei=2gGTaIkemL2fzw_u-auZDQ&ip=196.51.200.124&id=00ba58fc74e057d5&itag=18&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754464730,&mh=Sl&mm=31&mn=sn-n4v7snll&ms=au&mv=m&mvi=3&pl=17&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1415.140&lmt=1753041450595203&mt=1754464192&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIgUIlnQj2X4ZbnUqWVQ39FQu44aAMHUqZJR9pAIU2acB4CIQDk2tR-l-1BW3cGwYPFBVwlUEckOXmme35-EU5zdxCz8g%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIhAMfXOz5TB4GkpM_CPupm_hUux_ZvKyEzwwiwHMINIRYBAiBoUytk2sRJVBJ3cvKIgsw9nfCHTbBrvEt7ZfID4wPfxA%3D%3D",
+    link:`src=https://gogoanime.com.by/streaming.php?id=hotel-inhumans-19745&ep=142013&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Hotel Inhumans"
   },
   {
     name: "Episode 4",
-    link: "https://rr2---sn-o097znsd.googlevideo.com/videoplayback?expire=1754493548&ei=7AGTaObiFbG6n88PprL7kA8&ip=196.51.200.2&id=aea7c629322dd434&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754464748,&mh=63&mm=31&mn=sn-o097znsd&ms=au&mv=m&mvi=2&pl=17&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1415.116&lmt=1753741398052039&mt=1754464192&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIhANHxLk9P-3EUi9gwv38NSYdaQ_lfc-Gjhmsx-72nfBoTAiAnpzldkZQx6qTeD5BJ0T9HCGZcKjig5bew4sVsCfxSpA%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIhAIRMbX0MxoU3DTSrRw17kN5IgMhivvl6DeT7zw2gcDHHAiAlPDwNGBlcDcFusYOfseVaY4Oss4gzQbR4aHB-LF75jQ%3D%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=hotel-inhumans-19745&ep=142915&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Hotel Inhumans"
   },
   {
     name: "Episode 5",
-    link: "https://rr2---sn-n4v7sney.googlevideo.com/videoplayback?expire=1754493565&ei=_QGTaIuyI6SD2OMP2ZTmkQg&ip=196.51.204.196&id=157c506dc637a0cd&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754464765,&mh=ui&mm=31&mn=sn-n4v7sney&ms=au&mv=m&mvi=2&pl=17&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1415.163&lmt=1754331397441988&mt=1754464192&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRAIgQ53mMWBAluaFl4M7CvC7e1-fzHETHfWqtyuzI_dVR7ECIEe1QrHOdG04f1ZGqwFLNXAkS_sUZJHP0HyBqb-QPCLy&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIgI8eTOIIZDXunBlLgDTFqGWybwh8V13-V1ZdFjqoTd8QCIQDq3qgnZi7Ay3yO12X3ef-xXJNW2r3jwQ8eVqGSnm0thg%3D%3D",
+    link:`src=https://gogoanime.com.by/streaming.php?id=hotel-inhumans-19745&ep=143137&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Hotel Inhumans"
   }
 ],
@@ -559,8 +558,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
     ImagePath: "gachiakuta.webp",
     Cover: "gachiakutaC.webp",
     Synonyms: "Gachiakuta: Trashpunk Adventure",
-    link: "https://rr1---sn-o097znzr.googlevideo.com/videoplayback?expire=1754493710&ei=jgKTaJzpJdbtn88PybarqQ8&ip=196.51.204.206&id=4c860620974414ee&itag=18&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754464910,&mh=-r&mm=31&mn=sn-o097znzr&ms=au&mv=m&mvi=1&pl=17&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.085&lmt=1751826269907360&mt=1754464432&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRAIgYpLnl3c2xi3c125SYs5XBiOrCwBTydO5qxwTx_TKpZwCIBsdAuh6yOqHiEywzPPkPllEw4S_Ehkftwely0eG0Wtm&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIhAIorTNBek_-wu9MZJ7C22S7j0BxCDIzlJ7-4gZhKu547AiB8Ns-6QU3Ovu_ZI6PPH5nNE0BhFO4TPaCiu7O7GWLgng%3D%3D",
-    title: "Episode 1",
+    link:`src=https://gogoanime.com.by/streaming.php?id=gachiakuta-19785&ep=141674&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen` , title: "Episode 1",
     poster: "gachiakuta.webp",
     Aired: "Jul 6, 2025 to ?",
     Premiered: "Summer 2025",
@@ -576,17 +574,17 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
   },
   {
     name: "Episode 2",
-    link: "https://rr2---sn-vg5obxgv-vu2e.googlevideo.com/videoplayback?expire=1754493739&ei=qwKTaPvBDsXHrcUPtcrYkQo&ip=86.62.59.91&id=592b652f3245520b&itag=18&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754464939,&mh=S7&mm=31&mn=sn-vg5obxgv-vu2e&ms=au&mv=u&mvi=2&pl=23&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.132&lmt=1752614385269186&mt=1754462998&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRAIgUGoJ9rIEm-bOa1QGBqLeaRF2DJC6jxm-L41x34mFcX0CIDkqSdM2Sc31FIKWY374ZvixSKBBk307pL6kS51aKOrc&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIgeRUyzi0XRslxdWY24OkHpAsfoJOlDew4ygGpO8NNroACIQCf5DEDrz03WM6W8dovYQZ3nJ06INaDSB69Xi3fLtpYZQ%3D%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=gachiakuta-19785&ep=141808&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Gachiakuta"
   },
   {
     name: "Episode 3",
-    link: "https://rr4---sn-vg5obxgv-vu2e.googlevideo.com/videoplayback?expire=1754493759&ei=vwKTaN_LDNepkucP-PWCsQo&ip=86.62.56.97&id=7a2473cacc0d9638&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754464959,&mh=RH&mm=31&mn=sn-vg5obxgv-vu2e&ms=au&mv=u&mvi=4&pl=23&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.132&lmt=1753740651843892&mt=1754462998&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRAIgSWPtY9mHEGdHlOGpkIHHth4sGTqDXK2t7pusKBFXIRoCIAwqS1qZhWow-0jTMTulQ98CQ7QznjNTO4IT9LJ-C2Ah&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIgIchX5upjhEXypWxw-PdPdA6QVhDiQg6lVXfzYD5T6FkCIQCClpjBEkDfXQR1DmatV_a7k7n9yf2Z0JS4blMnDb5UqQ%3D%3D",
+    link:`src=https://gogoanime.com.by/streaming.php?id=gachiakuta-19785&ep=142910&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen` ,
     title: "Gachiakuta"
   },
   {
     name: "Episode 4",
-    link: "https://rr2---sn-vg5obxgv-vu2s.googlevideo.com/videoplayback?expire=1754493780&ei=1AKTaNDjEaKbrcUPiYirkQQ&ip=86.62.56.184&id=03b495af873fe5c4&itag=18&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754464980,&mh=ka&mm=31&mn=sn-vg5obxgv-vu2s&ms=au&mv=u&mvi=2&pl=23&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.132&lmt=1754234233790355&mt=1754462998&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIgXaOIjYPEIpkJjElkTYePCtawzZdUBWCntTMPt3NyJR4CIQDxKgPVzgi2BvVBM4n4HS8_Lgq3LLs_0FAK9Qh0xRhlgA%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRgIhAJ95DAy7_-wvqF1j8FMQ3dHGIz36AhEPRbA_dd7aSAbrAiEAlVBypQrSI9ChdlddiZptVpspli06Ag4dNKo_U-2_nrE%3D",
+    link:`src=https://gogoanime.com.by/streaming.php?id=gachiakuta-19785&ep=143134&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Gachiakuta"
   }
 ],
@@ -598,7 +596,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
     ImagePath: "Isekai-Mokushiroku-Mynoghra-Hametsu-no-Bunmei-de-Hajimeru-Sekai-Seifuku.webp",
     Cover: "Isekai Mokushiroku Mynoghra.webp",
     Synonyms: "Apocalypse Bringer Mynoghra: World Conquest Starts with the Civilization of Ruin",
-    link: "https://rr4---sn-nx57ynse.googlevideo.com/videoplayback?expire=1754493935&ei=bwOTaOLMIKSZsfIPnNCM8AM&ip=192.126.196.90&id=4b0cb191df9d7242&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465135,&mh=Iu&mm=31&mn=sn-nx57ynse&ms=au&mv=m&mvi=4&pl=18&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.178&lmt=1751826135275281&mt=1754464432&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIgPHJWdmifYQi_YqJxGyIHYc5VFLHlc9R_A1o5g0W_4UUCIQDbEY9saXBV_0OT1UaeS6ObI6hu7dBfnNofckexpCs_1g%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIgarJEUq7HO2PzYk9Yh73XeZtTw04mhw9AVc5JYUDdJ-UCIQDqm8k0FMwfzUeFz_RULQWkq_RO1nZ5tEi0g_XjpcNbeQ%3D%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=apocalypse-bringer-mynoghra-19772&ep=141668&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Episode 1",
     poster: "Isekai-Mokushiroku-Mynoghra-Hametsu-no-Bunmei-de-Hajimeru-Sekai-Seifuku.webp",
     Aired: "Jul 6, 2025 to ?",
@@ -615,22 +613,22 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
   },
   {
     name: "Episode 2",
-    link: "https://rr6---sn-vg5obxgv-vu2e.googlevideo.com/videoplayback?expire=1754493967&ei=jwOTaNuJB4uKtvkPkbKC0Ac&ip=86.62.59.234&id=b19cdb123562ba7b&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465167,&mh=di&mm=31&mn=sn-vg5obxgv-vu2e&ms=au&mv=u&mvi=6&pl=23&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.178&lmt=1752570602818373&mt=1754462998&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRAIgQD0njseRMyeE95JoxzjoV5mCTn75zX2nKgSTEO0YnJsCIFMpCGF5Oll3ccD430u0guE54eNUIHmfU2EKg6wfv0Y3&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRgIhANb8sFznl3SYpGhVzyq1uOOxKOHX7SMO0639TQ52gGkkAiEAgH8jXBZCg5cu_q5ajzUQxYwMxW5FlYSldxrR1pFs4hA%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=apocalypse-bringer-mynoghra-19772&ep=141803&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku"
   },
   {
     name: "Episode 3",
-    link: "https://rr4---sn-nx57ynsk.googlevideo.com/videoplayback?expire=1754493984&ei=oAOTaMmYJrK8n88P2LDpsAk&ip=192.126.246.249&id=8940b54b6fb6be04&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465184,&mh=j-&mm=31&mn=sn-nx57ynsk&ms=au&mv=m&mvi=4&pl=18&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.132&lmt=1753042164690560&mt=1754464432&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIgCBXLYTra6vofkM4f0XDNYDrHwLOBixFPx6axgfXpllUCIQD1VIrbPhWnv9dOLWWiHho61DPODpj4ug88_UbzAw7mww%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIgQ2c6SaoqWYIUVOfGq4m3YSfIRNiDy7X-zXU4m5_t-YACIQCOYZgGubO1Gj5S0yOP6RWsMXvxmcW87DfRNq7lSTtFAw%3D%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=apocalypse-bringer-mynoghra-19772&ep=142007&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku"
   },
   {
     name: "Episode 4",
-    link: "https://rr1---sn-o097znsr.googlevideo.com/videoplayback?expire=1754494001&ei=sQOTaJOgDJu_n88P6PiH-Q0&ip=196.51.200.85&id=ca8ab8a9f599a154&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465201,&mh=Oe&mm=31&mn=sn-o097znsr&ms=au&mv=m&mvi=1&pl=17&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.178&lmt=1753748274614096&mt=1754464917&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIhAPrgwJj0uQfTjrd9-dK9NhwM25AMjaaZT0AQhFPlmO9RAiAT5ADJLmtCphBXROLRVdleT1kpxx88khAp9Nx5WyLT-w%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIgauXjdJIgLyI5zJTLDgmjW3fE-9cP_3hsCzy2gXiwQXACIQDz73w4jbZ7i81lBIxfl-wk3_Eb3b1AQet2tdHQpAdxgQ%3D%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=apocalypse-bringer-mynoghra-19772&ep=142906&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku"
   },
   {
     name: "Episode 5",
-    link: "https://rr5---sn-nx57ynsz.googlevideo.com/videoplayback?expire=1754494013&ei=vQOTaM2lGZmun88PxLLZ6QU&ip=192.126.246.249&id=afc44852efd7c4ef&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465213,&mh=NC&mm=31&mn=sn-nx57ynsz&ms=au&mv=m&mvi=5&pl=18&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.225&lmt=1754251015114933&mt=1754464432&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRgIhAMToQXCMWWk_HrPbpKN0o4TZdGLrpBk-rQdPvckuAePNAiEAsnnBjnaHqU5XRpk8giQBMLRThizJsYs3QUmHJfv2Eng%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRgIhAIamdvQZDMalYrTbr11gzPBQXUDLR8iUMs-5TqN3eWDyAiEA7EAIQZBxgtdDbU8UVuzRBL3QFoOq1BWTnTLkw254kho%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=apocalypse-bringer-mynoghra-19772&ep=143129&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku"
   }
 ],
@@ -642,7 +640,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
     ImagePath: "dekin-no-mogura.webp",
     Cover: "c6517-17515604341824-1920.webp",
     Synonyms: "The Banned Mole",
-    link: "https://rr4---sn-o097znzd.googlevideo.com/videoplayback?expire=1754494106&ei=GgSTaOu4OZiLsfIPgtz32AM&ip=196.51.204.28&id=a75b75e64a26041c&itag=18&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465306,&mh=Ey&mm=31&mn=sn-o097znzd&ms=au&mv=m&mvi=4&pl=17&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.225&lmt=1751877755334284&mt=1754464917&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRAIgZrj3cMXMX9Tg3DxLcKSmkBBodT4lRp0R4VU5HEDSU2UCIBRw1g2ZYOSaX-mzELkZwyUqZtuzTRpKe5m_5sxekFh-&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRAIgbyGbqzCK7OtwSxABpYfoSyrnpVi-PbWqbVukN9BGzkACIDIr2n792RE0DXYWdSSILdkrZs6M6OJwlWoJLEedmXcp",
+    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=141667&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Episode 1",
     poster: "dekin-no-mogura.webp",
     Aired: "Jul 7, 2025 to ?",
@@ -659,22 +657,22 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
   },
   {
     name: "Episode 2",
-    link: "https://rr1---sn-nx57ynss.googlevideo.com/videoplayback?expire=1754494136&ei=OASTaOH9A-Cgn88Pz8Wz0A0&ip=192.126.196.200&id=76972da388b736b4&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465336,&mh=oe&mm=31&mn=sn-nx57ynss&ms=au&mv=m&mvi=1&pl=18&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.178&lmt=1752472804313627&mt=1754464917&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRAIgf_Fm2onUqUEecFiusZRe-W7ZOtcVCesr82Ks3tVAeNACICsqgCcdaF8m1zBge58AZQY7DjY7rCnoxUR07Y1xLoK8&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIhAPiwLvp0basiyGXPVfNiDUScsGcUNEuCGVwPNXrzLdPEAiA2j-iVcpvaI6DbomEl7SpVmT5w-28ZrBThBPIC1m5Row%3D%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=141802&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Dekin no Mogura: The Earthbound Mole"
   },
   {
     name: "Episode 3",
-    link: "https://rr3---sn-vg5obxgv-vu2e.googlevideo.com/videoplayback?expire=1754494156&ei=TASTaJfZCJaDkucPha2T8AI&ip=86.62.56.97&id=c20a9996110cfea2&itag=22&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465356,&mh=EP&mm=31&mn=sn-vg5obxgv-vu2e&ms=au&mv=u&mvi=3&pl=23&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.178&lmt=1753067512875684&mt=1754462998&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIgZVH1FGokAPsQ2atI0uhY_VRkdniKD_tVeZPK6MiabmQCIQCzdtlEI_Nc_quhuJltWt5JlbPWzV3HjML6IJcF0AOiKQ%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRAIgA9w1bfOycj4G7fiE9NZg-CeXdbRag7gMeQrHqhzNpv4CIF4gRWOt6iqDYhTMKE1pYQZljqHe_yq6n0lpHTRtqZxb",
+    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=142005&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Dekin no Mogura: The Earthbound Mole"
   },
   {
     name: "Episode 4",
-    link: "https://rr3---sn-o097znzr.googlevideo.com/videoplayback?expire=1754494176&ei=YASTaNmhJYfWsfIPi62lsQc&ip=196.51.204.100&id=4343c70e27ed42f3&itag=18&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465376,&mh=CI&mm=31&mn=sn-o097znzr&ms=au&mv=m&mvi=3&pl=17&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.085&lmt=1753737542166396&mt=1754464917&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRQIhAKJiZnogwcxYM9iMl0Ysc2BbOIutpInjzWVq-wtcCrNWAiAkJteTdPoWJBkgcxKVNGKO5kB69g_DW2J-E4Y-CoCc5A%3D%3D&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRQIhANsDhHrlbXdO-G8Qy7LrwsTinPy70a9py4_qgjCh_NWiAiArAMSY2X9Asoc5DDpC30sKUEuK6gcfkUw4PJvlI2L16g%3D%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=142904&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Dekin no Mogura: The Earthbound Mole"
   },
   {
     name: "Episode 5",
-    link: "https://rr3---sn-n4v7snls.googlevideo.com/videoplayback?expire=1754494199&ei=dwSTaKiLAtXFsfIPlpn9uAU&ip=196.51.204.196&id=64b1c6b0da30bd62&itag=18&source=blogger&xpc=Egho7Zf3LnoBAQ%3D%3D&met=1754465399,&mh=TB&mm=31&mn=sn-n4v7snls&ms=au&mv=m&mvi=3&pl=17&rms=au,au&susc=bl&eaua=PeUnYgorTqI&mime=video/mp4&vprv=1&rqh=1&dur=1420.225&lmt=1754234907820666&mt=1754464917&txp=1311224&sparams=expire,ei,ip,id,itag,source,xpc,susc,eaua,mime,vprv,rqh,dur,lmt&sig=AJfQdSswRAIgb8Iv5AU7YObHOQsFVu3gjJTat-SurN0pOlPm0RLKDAcCIBy96PadhHX7koKOhefa8nPPB72xi9HLro7mbs-IITZM&lsparams=met,mh,mm,mn,ms,mv,mvi,pl,rms&lsig=APaTxxMwRgIhAKlBMM9VoDjgXrXQHQd6TZ0lSQmXA-0stQVEkObX8TdcAiEA260bCuHfBYRTT_B66dXgAQFqfr38tZ2WucLNdAQLnII%3D",
+    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=143128&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
     title: "Dekin no Mogura: The Earthbound Mole"
   }
 ]
