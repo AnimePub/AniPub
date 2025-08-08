@@ -18,5 +18,5 @@
       "dest": "backend/app.js"
     }
   ],
-  "root": "/"
+  "root": ""
 }
