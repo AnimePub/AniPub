@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/app.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["backend/**"],
+        "installCommand": "npm install",
+        "buildCommand": null,
+        "outputDirectory": null
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "backend/app.js"
+    }
+  ],
+  "root": "/"
+}
