@@ -1,0 +1,51 @@
+.container {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.76);
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+p {
+    color: white;
+}
+.container div {
+    width: 80vh;
+    min-width: 280px;
+}
+input ,textarea{
+    border: 1px solid blue;
+    height: 35px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 20px;
+    outline: none;
+    width: 100%;
+    min-width: 200px;
+}
+textarea {
+    height: 100px;
+}
+.Genre-list {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 5px;
+    column-gap: 5px;
+}
+.Genre-list span {
+    color: rgb(0, 255, 0);
+    border: 1px solid green;
+    border-radius: 5px;
+    padding: 4px 6px 4px 6px;
+    cursor: pointer;
+}
+.Genre-list span:hover {
+    opacity: 0.8;
+    color: white;
+}
+.Genre-list span:active {
+    opacity: 0.5;
+    background: rgb(28, 247, 28);
+    color: rgb(0, 0, 0);
+}

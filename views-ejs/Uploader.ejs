@@ -4,16 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uploader</title>
-    <link rel="stylesheet" href="hc.css">
+    <!-- <link rel="stylesheet" href="hc.css">
     <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="main-body.css">
+    <link rel="stylesheet" href="main-body.css"> -->
+    <link rel="stylesheet" href="/uploader.css">
 </head>
-<body>
-    <%- include("./include/header.ejs")  %> 
-    <%- include("./include/nav.ejs") %> 
 
+<body>
     <div class="main-body">
-    
+    <form class="container">
+<div>
+    <p>ID</p>
+    <input    type="number" class="ID" name="ID" placeholder="ID">
+</div>
+<div>
+    <p>name</p>
+    <input    type="text" class="name" name="Name" placeholder="name">
+</div>
+<div>
+    <p>ip</p>
+    <input    type="text" class="ip" name="ip" placeholder="ip">
+</div>
+<div>
+    <p>cover</p>
+    <input    type="text" class="cover" name="cover" placeholder="cover">
+</div>
+<div>
+    <p>syn</p>
+    <input    type="text" class="syn" name="syn" placeholder="syn">
+</div>
+<div>
+    <p>link</p>
+    <input    type="text" class="link" name="link" placeholder="link">
+</div>
+<div>
+    <p>title</p>
+    <input    type="text" class="title" name="title" placeholder="title">
+</div>
+<div>
+    <p>Aired</p>
+    <input    type="text" class="aired" name="aired" placeholder="Aired">
+</div>
+<div>
+    <p>Premiered</p>
+    <input    type="text" class="Premiered" name="Premiered" placeholder="Premiered">
+</div>
+<div>
+    <p>Ongoing</p>
+    <input    type="text" class="Ongoing" name="Ongoing" placeholder="Ongoing">
+</div>
+<div>
+    <p>Status</p>
+    <input    type="text" class="Status" name="Status" placeholder="Status">
+</div>
+<div>
+    <p>MLScore</p>
+    <input    type="text" class="MLScore" name="MLScore" placeholder="MLScore">
+</div>
+<div>
+    <p>ratings</p>
+    <input    type="text" class="ratings" name="ratings" placeholder="ratings">
+</div>
+<div>
+    <p>Studios</p>
+    <input    type="text" class="Studios" name="Studios" placeholder="Studios">
+</div>
+<div>
+    <p>Producers</p>
+    <input    type="text" class="Producers" name="Producers" placeholder="Producers">
+</div>
+<div>
+    <p>Genre</p>
+    <div class="Genre-list">
+                    <span class="genre action" data-genre="action">Action</span>
+                    <span class="genre adventure" data-genre="adventure">Adventure</span>
+                    <span class="genre comedy" data-genre="comedy">Comedy</span>
+                    <span class="genre drama" data-genre="drama">Drama</span>
+                    <span class="genre fantasy" data-genre="fantasy">Fantasy</span>
+                    <span class="genre sci-fi" data-genre="sci-fi">Sci-Fi</span>
+                    <span class="genre mecha" data-genre="mecha">Mecha</span>
+                    <span class="genre mystery" data-genre="mystery">Mystery</span>
+                    <span class="genre psychological" data-genre="psychological">Psychological</span>
+                    <span class="genre slice-of-life" data-genre="slice-of-life">Slice of Life</span>
+                    <span class="genre romance" data-genre="romance">Romance</span>
+                    <span class="genre supernatural" data-genre="supernatural">Supernatural</span>
+                    <span class="genre horror" data-genre="horror">Horror</span>
+                    <span class="genre sports" data-genre="sports">Sports</span>
+                    <span class="genre martial-arts" data-genre="martial-arts">Martial Arts</span>
+                    <span class="genre historical" data-genre="historical">Historical</span>
+                    <span class="genre samurai" data-genre="samurai">Samurai</span>
+                    <span class="genre school" data-genre="school">School</span>
+                    <span class="genre music" data-genre="music">Music</span>
+                    <span class="genre isekai" data-genre="isekai">Isekai</span>
+                    <span class="genre post-apocalyptic" data-genre="post-apocalyptic">Post-Apocalyptic</span>
+                    <span class="genre cyberpunk" data-genre="cyberpunk">Cyberpunk</span>
+                    <span class="genre steampunk" data-genre="steampunk">Steampunk</span>
+                    <span class="genre military" data-genre="military">Military</span>
+                    <span class="genre police" data-genre="police">Police</span>
+                    <span class="genre thriller" data-genre="thriller">Thriller</span>
+                    <span class="genre game" data-genre="game">Game</span>
+                    <span class="genre cooking" data-genre="cooking">Cooking</span>
+                    <span class="genre parody" data-genre="parody">Parody</span>
+                    <span class="genre kids" data-genre="kids">Kids</span>
+                    <span class="genre shounen" data-genre="shounen">Shounen</span>
+                    <span class="genre shoujo" data-genre="shoujo">Shoujo</span>
+                    <span class="genre seinen" data-genre="seinen">Seinen</span>
+                </div>
+                
+</div>
+<div>
+    <p>Description</p>
+    <textarea class="Description" name="Description" placeholder="Description"></textarea>
+</div>
+
+<div>
+    <button>Submit</button>
+</div>
+    </form>
     
     
     
@@ -22,5 +129,7 @@
     
     
     </div>
+
+    <script src="/upload-genre.js"></script>
 </body>
 </html>

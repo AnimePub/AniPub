@@ -513,6 +513,10 @@ app.get("/Privacy-Policy",(req,res)=>{
 app.get("/Uploader",(req,res)=>{
     res.render("Uploader",{SectionName:"Uploader Section"});
 });
+//Upload
+app.post("/Upload",(req,res)=>{
+    console.log(req.body);
+})
 
 // app.get("/Upload",(req,res)=>{
 //     const AnidB = new AniDB({
