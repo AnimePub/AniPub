@@ -22,18 +22,18 @@
         <div class="aniLists">
             <% Anime.forEach(value => {%>
                 <div class="Profile-div">
-                    <div class="Profile" data-anime="<%=value[0].id%>">
+                    <div class="Profile" data-anime="<%=value._id%>">
                     <div class="Image-div">
-                        <img class="poster" src="<%=value[0].poster%>" alt="<%=value[0].Name%> Anime Poster">
+                        <img class="poster" src="<%=value.poster%>" alt="<%=value.Name%> Anime Poster">
                     </div>
-                    <div class="Title-div"><p class="Title"><%=value[0].Name%></p></div>
+                    <div class="Title-div"><p class="Title"><%=value.Name%></p></div>
                     <div class="ratings-div">
-                        <p class="mal-score"><%=value[0].MALScore%></p>
-                        <img src="rating-<%=value[0].RatingsNum%>.png" alt="Rating Star Image">
+                        <p class="mal-score"><%=value.MALScore%></p>
+                        <img src="rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
                     </div>
                     <div class="des-div">
                         <p class="des">
-                        <%=value[0].DescripTion%>
+                        <%=value.DescripTion%>
                         </p>
                     </div>
                 </div>

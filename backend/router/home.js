@@ -1,14 +1,16 @@
 const express = require("express");
 const HomeRouter = express.Router();
 const jwt = require("jsonwebtoken");
-const OP = require("../Data/data");
+
 const mongoose = require("mongoose");
 const Data = require("../models/model");
+const AnimeDB = require("../models/AniDB.js");
 
 HomeRouter.get("/",(req,res)=>{
     res.render("index");
 })
-HomeRouter.get("/Home",(req,res)=>{
+HomeRouter.get("/Home",async(req,res)=>{
+     const animeDb = await AnimeDB.find().sort({createdAt: -1}).limit(20)
     const Token = req.cookies.anipub;
     let linkI  = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if(Token){
@@ -16,18 +18,21 @@ HomeRouter.get("/Home",(req,res)=>{
             if(err) {
                 console.log(err);
             }
-            
+
             Data.findById(`${data.id}`)
-            .then(info=>{
+            .then((info)=>{
                 let link = info.Image;
                 const Gender = info.Gender;
+               
                 if (Gender === "Male") {
                     const finalLink = `boys/`+ link;
-                res.render("Home",{Anime:OP,auth:true,ID:data.id,Link:finalLink});
+                                             
+                    res.render("Home",{Anime:animeDb,auth:true,ID:data.id,Link:finalLink});
 
                 }
                 else {
-                     res.render("Home",{Anime:OP,auth:true,ID:data.id,Link:link});
+                    
+                     res.render("Home",{Anime:animeDb,auth:true,ID:data.id,Link:link});
                 }
               
               
@@ -37,7 +42,7 @@ HomeRouter.get("/Home",(req,res)=>{
         })
     }
     else {
-        res.render("Home",{Anime:OP,auth:false,ID:"guest",Link:linkI});
+        res.render("Home",{Anime:animeDb,auth:false,ID:"guest",Link:linkI});
     }
     
     

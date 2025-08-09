@@ -29,13 +29,17 @@
 
     <div class="first-section">
         <div class="cover-pic-div">
-            <img class="cover-pic" src="/<%=AniDB[AniId][0].Cover%>">
+            <img class="cover-pic" src="/<%=video.Cover%>">
         </div>
        <div class="Container-No1">
         <div class="video-player-box">
-            <% if(AniDB[AniId][0].type === "iframe") {%>
-                <iframe  <%=AniDB[AniId][AniEP].link%> style="height:100%;width: 100%;"></iframe>
-               
+            <% if(video.type === "iframe") {%>
+                <% if(Number(AniEP) === 0 ) {%> 
+                <iframe  <%=video.link%> style="height:100%;width: 100%;"></iframe>
+               <% } else { %>
+                <% const Episode = Number(AniEP) - 1 %> 
+                <iframe  <%=video.ep[Episode].link%> style="height:100%;width: 100%;"></iframe>
+               <%}%> 
                 <% } else {%> 
             <video  id="my-video"
             class="video-js vjs-matrix video-player "
@@ -43,10 +47,21 @@
             autoplay
             preload="auto"
             data-setup="{}">
-            <% if(AniDB[AniId][0].type === "mp4") {%> 
-        <source src="/<%=AniDB[AniId][AniEP].link%>" type="video/mp4">
-        <% } else { %>
-              <source src="<%=AniDB[AniId][AniEP].link%>" type="video/mp4">
+            <% if(video.type === "mp4") {%> 
+                <% if(Number(AniEP) === 0 ) {%> 
+                <source src="/<%=video.link%>" type="video/mp4">
+                    <% } else { %> 
+                         <% const Episode = Number(AniEP) - 1 %> 
+                      <source src="/<%=video.ep[Episode].link%>" type="video/mp4">
+        <% } %> 
+        
+                <% } else { %>
+                      <% if(Number(AniEP) === 0 ) {%> 
+              <source src="<%=video.link%>" type="video/mp4">
+                        <% } else {%> 
+                               <% const Episode = Number(AniEP) - 1 %> 
+                            <source src="<%=video.ep[Episode].link%>" type="video/mp4">
+                            <% } %> 
             <% } %>  
         </video>
         <% } %> 
@@ -54,22 +69,42 @@
         <div class="Ep-section">
             <div class="Ep-list-title"> Next EP:-</div>
             <div class="list-div-container">
-              <% if (AniDB[AniId].length >0){ %> 
-                <% AniDB[AniId].forEach((value,i) => { %>
-                        <div class="list"  >
-                        <div class="li-fs" data-ep="<%=i%>">
+                <div class="list"  >
+                        <div class="li-fs" data-ep="0">
                         <div class="img-div">
-                        <img src="/<%= AniDB[AniId][0].ImagePath %> " alt="">
+                        <img src="/<%= video.ImagePath %> " alt="">
                         </div>
                         <div class="ep-title">
-                        <p><%= AniDB[AniId][0].Name%> No.<%= i+1 %></p>
+                        <p><%= video.Name%> No.1 </p>
                         </div>
                         </div>
                         
                         <div class="list-button-container">
                             <div class="add-button-div">
 
-                             <button class="Add-button" data-anime-w-id="<%=AniId%>" data-anime-w-eid="<%=i%>" data-animelink="AniPlayer/<%=AniId%>/<%=AniEP%>">Add</button>
+                             <button class="Add-button" data-anime-w-id="<%=AniId+1%>" data-anime-w-eid="0" data-animelink="AniPlayer/<%=AniId + 1%>/<%=AniEP -1 %>">Add</button>
+                           
+                        </div>
+                        </div>
+
+                        
+                        </div>
+              <% if (video.ep.length >0){ %> 
+                <% video.ep.forEach((value,i) => { %>
+                        <div class="list"  >
+                        <div class="li-fs" data-ep="<%=i+1%>">
+                        <div class="img-div">
+                        <img src="/<%= video.ImagePath %> " alt="">
+                        </div>
+                        <div class="ep-title">
+                        <p><%= video.Name%> No.<%= i+2 %></p>
+                        </div>
+                        </div>
+                        
+                        <div class="list-button-container">
+                            <div class="add-button-div">
+
+                             <button class="Add-button" data-anime-w-id="<%=AniId+1%>" data-anime-w-eid="<%=i+1%>" data-animelink="AniPlayer/<%=AniId+1%>/<%=AniEP%>">Add</button>
                            
                         </div>
                         </div>
@@ -89,17 +124,17 @@
     <div class="Second-Section">
         <div class="profile-container">
         <div class="profile-div">
-            <img class="poster"  alt="" src="/<%=AniDB[AniId][0].ImagePath%>">
+            <img class="poster"  alt="" src="/<%=video.ImagePath%>">
         <div class="buttons">
 
             <button class="Play-button">
                 <img src="/play-svgrepo-com.svg" alt="Download Image">
             </button>
             <div class="button-div-download">
-                   <% if(AniDB[AniId][0].type === "mp4") {%> 
-                <a download href="/<%=AniDB[AniId][AniEP].link%>">
+                   <% if(video.type === "mp4") {%> 
+                <a download href="/<%=video.link%>">
                     <% } else { %>
-                        <a download href="<%=AniDB[AniId][AniEP].link%>"></a>
+                        <a download href="<%=video.link%>"></a>
                         <% } %> 
                     <button class="Download-Button" >
                     <img src="/Download.svg" alt="">
@@ -123,16 +158,16 @@
         
         <div class="Info-container">
             <div class="Detailes">
-                <p class="Name">Name:<span class="name"><%=AniDB[AniId][0].Name%></span></p>
-                <p>Synonyms: <span class="Synonyms"><%=AniDB[AniId][0].Synonyms%></span></p>
-                <p>Aired:<span class="Aired"><%=AniDB[AniId][0].Aired%></span></p>
-                <p>Premiered:<span class="Premiered"><%=AniDB[AniId][0].Premiered%></span></p>
-                <p>Duration:<span class="Duration"><%=AniDB[AniId][0].Duration%></span></p>
-                <p>Status:<span class="Status"><%=AniDB[AniId][0].Status%></span></p>
-                <p>MAL Score:<span class="mALScore"><%=AniDB[AniId][0].MALScore%></span></p>
-                <p>Genres:<span class="Genres"><%=AniDB[AniId][0].Genres%></span></p>
-                <p>Studios: <span class="Studios"><%=AniDB[AniId][0].Studios%></span></p>
-                <p>Producers:<span class="Producers"><%=AniDB[AniId][0].Producers%></span></p>
+                <p class="Name">Name:<span class="name"><%=video.Name%></span></p>
+                <p>Synonyms: <span class="Synonyms"><%=video.Synonyms%></span></p>
+                <p>Aired:<span class="Aired"><%=video.Aired%></span></p>
+                <p>Premiered:<span class="Premiered"><%=video.Premiered%></span></p>
+                <p>Duration:<span class="Duration"><%=video.Duration%></span></p>
+                <p>Status:<span class="Status"><%=video.Status%></span></p>
+                <p>MAL Score:<span class="mALScore"><%=video.MALScore%></span></p>
+                <p>Genres:<span class="Genres"><%=video.Genres%></span></p>
+                <p>Studios: <span class="Studios"><%=video.Studios%></span></p>
+                <p>Producers:<span class="Producers"><%=video.Producers%></span></p>
             </div>
 
 
@@ -147,7 +182,7 @@
                 </div>
                 
                 <div class="Description-div">
-                    <p class="Description"><%=AniDB[AniId][0].DescripTion%></p>
+                    <p class="Description"><%=video.DescripTion%></p>
                 </div>
             </div>
             
@@ -178,18 +213,18 @@
             <% if (AniDB.length > 0) {%>
                 <% AniDB.forEach((value,i) => { %>
                  <div class="Profile-div">
-                        <div class="Profile" data-anime="<%=i%>">
+                        <div class="Profile" data-anime="<%=value._id%>">
                         <div class="Image-div">
-                            <img class="poster" src="/<%=value[0].poster%>" alt="${value[0].Name} Poster">
+                            <img class="poster" src="/<%=value.poster%>" alt=`${value.Name} Poster`>
                         </div>
-                        <div class="Title-div"><p class="Title"><%=value[0].Name%></p></div>
+                        <div class="Title-div"><p class="Title"><%=value.Name%></p></div>
                         <div class="ratings-div">
-                            <p class="mal-score"><%=value[0].MALScore%></p>
-                            <img src="/rating-<%=value[0].RatingsNum%>.png" alt="">
+                            <p class="mal-score"><%=value.MALScore%></p>
+                            <img src="/rating-<%=value.RatingsNum%>.png" alt="">
                         </div>
                         <div class="des-div">
                             <p class="des">
-                            <%=value[0].DescripTion%>
+                            <%=value.DescripTion%>
                             </p>
                         </div>
                     </div>
@@ -214,19 +249,19 @@
 <div class="modal-container">
     <div class="Box-modal">
         <div>
-            <p class="anamemodal">Name: <span><%=AniDB[AniId][0].Name%></span></p>
+            <p class="anamemodal">Name: <span><%=video.Name%></span></p>
         </div>
         <div>
             <p class="epno">Ep No. <%=AniEP+1%></p>
         </div>
         <div class="link-constainer">
-            <p>https://anipub.adnandluffy.site/AniPlayer/<%=AniId%>/<%=AniEP%></p>
+            <p>https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%></p>
         </div>
         <div class="share-media-div">
             <p class="sn">Share Now:-</p>
             <div class="options-div">
                 <div class="opt-div">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://anipub.adnandluffy.site/AniPlayer/<%=AniId%>/<%=AniEP%>&quote=Hello,%20this%20%20awesome%20episode%20 target="_blank">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&quote=Hello,%20this%20%20awesome%20episode%20 target="_blank">
                         <button class="shared-button-m">
                     <img src="/fb.svg" alt="">
                     </button>
@@ -246,7 +281,7 @@
                 </div>
 
                 <div class="opt-div">
-                    <a href="https://t.me/share/url?url=https://anipub.adnandluffy.site/AniPlayer/<%=AniId%>/<%=AniEP%>&text=Hello,%20this%20awesome%20episode%20.." target="_blank">
+                    <a href="https://t.me/share/url?url=https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&text=Hello,%20this%20awesome%20episode%20.." target="_blank">
                          <button class="shared-button-m">
                     <img src="/telegram.svg" alt="">
                     </button>
