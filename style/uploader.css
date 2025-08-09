@@ -1,4 +1,9 @@
-.container {
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(65, 65, 65);
+}
+.container , .container2 {
     padding: 20px;
     background: rgba(0, 0, 0, 0.76);
     display: flex;
@@ -10,8 +15,8 @@
 p {
     color: white;
 }
-.container div {
-    width: 80vh;
+.container div , .container2 div{
+    width: 80%;
     min-width: 280px;
 }
 input ,textarea{
@@ -48,4 +53,49 @@ textarea {
     opacity: 0.5;
     background: rgb(28, 247, 28);
     color: rgb(0, 0, 0);
+}
+.Search-Box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background-color: black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    column-gap: 10px;
+}
+.upLoad,.upDate{
+    background-color: rgb(0, 255, 0);
+    border: 0;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.upDate {
+    background: rgb(255, 0, 255);
+}
+.upDate:hover , .upLoad:hover {
+    opacity: 0.8;
+}
+.button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.button-div button {
+    color: white;
+    border-radius: 5px;
+    height: 30px;
+    background: rgb(30, 139, 30);
+    border: none;
+    cursor: pointer;
+    box-shadow: 1px 2px 3px rgba(255, 255, 255, 0.212);
+}
+.button-div button:hover {
+    opacity: 0.8;
+}
+.button-div button:active {
+    opacity: 0.5;
+    box-shadow: none;
 }

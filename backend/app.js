@@ -18,6 +18,9 @@ const nodemailer = require("nodemailer");
 const Vcode = require("./models/auth.js")
 const mailBody = require("./templates/verification.js") ;
 
+//Anime DB init ..
+const AnimeDB = require("./models/AniDB.js");
+
 //using router makes it more easy to manage the code
 const HomeRouter = require("./router/home.js");
 const Settings = require("./router/pvchng.js");
@@ -514,8 +517,64 @@ app.get("/Uploader",(req,res)=>{
     res.render("Uploader",{SectionName:"Uploader Section"});
 });
 //Upload
-app.post("/Upload",(req,res)=>{
-    console.log(req.body);
+app.post("/Upload",async(req,res)=>{
+    try {
+    const Update = await AnimeDB.create({
+         name: req.body.epName,
+  _id:  Number(req.body.id),
+  Name:  req.body.Name,
+  ImagePath:  req.body.ip,                                                                                                                                                                                                                                                                                                                                                     
+  Cover:  req.body.cover, 
+  Synonyms:  req.body.syn,                                                                                                                                                                      
+  link:  req.body.link,
+  title:  req.body.title,
+  poster:  req.body.ip,
+  Aired:  req.body.aired,
+  Premiered:  req.body.premiered,
+  Duration:  req.body.duration,
+  Status:  req.body.staus,
+  MALScore:  req.body.malscore,
+  RatingsNum: Number(req.body.ratings),
+  Genres:  req.body.genre,
+  Studios:  req.body.studios,
+  Producers:  req.body.producers,
+  DescripTion:  req.body.des,
+  type:  req.body.type,
+    })
+}
+catch(err){
+    res.json(err)
+    console.log(err);
+}
+})
+
+app.post("/update/info",(req,res)=>{
+    AnimeDB.findById(Number(req.body.id))
+    .then(info=>{
+        if(info){
+            AnimeDB.findByIdAndUpdate(Number(req.body.id),{$push:{ep:{
+                name:req.body.epName,
+                link:req.body.link,
+                title:req.body.title,
+            }}})
+            .then(Info=>{
+                if(Info){
+                    console.log("DB updated");
+                    res.json("Done");
+                }
+                else {
+                    console.log("There was a error while updating DB")
+                    res.json("Error");
+                }
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+        }
+        else {
+            console.log("Couldn't Find The Account")
+        }
+    })
 })
 
 // app.get("/Upload",(req,res)=>{

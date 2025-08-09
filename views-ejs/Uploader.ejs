@@ -12,13 +12,21 @@
 
 <body>
     <div class="main-body">
-    <form class="container">
+        <div class="Search-Box">
+            <button class="upLoad">Upload New</button>
+            <button class="upDate">Update Existing One</button>
+        </div>
+    <form class="container" style="display: none;">
 <div>
     <p>ID</p>
     <input    type="number" class="ID" name="ID" placeholder="ID">
 </div>
 <div>
-    <p>name</p>
+    <p>Ep:- name</p>
+    <input    type="text" class="name" name="name" placeholder="Ep Name">
+</div>
+<div>
+    <p>Anime Name</p>
     <input    type="text" class="name" name="Name" placeholder="name">
 </div>
 <div>
@@ -117,11 +125,32 @@
     <textarea class="Description" name="Description" placeholder="Description"></textarea>
 </div>
 
-<div>
+<div class="button-div">
     <button>Submit</button>
 </div>
     </form>
-    
+
+     <form class="container2" style="display: none;">
+<div>
+    <p>Anime ID</p>
+    <input    type="number" class="ID" name="ID" placeholder="ID">
+</div>
+<div>
+    <p>Ep:- name</p>
+    <input    type="text" class="name" name="name" placeholder="Ep Name">
+</div>
+<div>
+    <p>link</p>
+    <input    type="text" class="link" name="link" placeholder="link">
+</div>
+<div>
+    <p>title</p>
+    <input    type="text" class="title" name="title" placeholder="title">
+</div>
+<div class="button-div">
+    <button>Submit</button>
+</div>
+     </form>
     
     
     
