@@ -36,7 +36,7 @@
 
 1. **Clone the Repo**
    ```bash
-   git clone https://github.com/AdnanDLuffy/AniPub.git
+   git clone https://github.com/Adnan-D-Luffy/AniPub.git
    cd AniPub
    ```
 
