@@ -73,7 +73,14 @@ form.addEventListener('submit',(e)=>{
         })
         .then(res=>res.json())
         .then(info=>{
-            console.log(info)
+            if(Number(info) === 1) {
+                alert("Anime Added Successfully");
+                window.location.reload();
+            }
+            else {
+                 alert("There was an Error");
+                window.location.reload();
+            }
         })
         
     }
@@ -100,7 +107,14 @@ form1.addEventListener('submit',(e)=>{
         })
         .then(res=>res.json())
         .then(info=>{
-            console.log(info)
+             if(Number(info) === 1) {
+                alert("Ep Added Successfully");
+                window.location.reload();
+            }
+            else {
+                 alert("There was an Error");
+                window.location.reload();
+            }
         })
         
 })
@@ -201,7 +215,14 @@ form3.addEventListener('submit',(e)=>{
     })
     .then(res=>res.json())
     .then(info=>{
-        console.log(info);
+         if(Number(info) === 1) {
+                alert("Anime Added Successfully");
+                window.location.reload();
+            }
+            else {
+                 alert("There was an Error");
+                window.location.reload();
+            }
     })
 
 

@@ -541,9 +541,12 @@ app.post("/Upload",async(req,res)=>{
   DescripTion:  req.body.des,
   type:  req.body.type,
     })
+    if(Update) {
+        res.json(1)
+    }
 }
 catch(err){
-    res.json(err)
+    res.json(2)
     console.log(err);
 }
 })
@@ -560,11 +563,11 @@ app.post("/update/info",(req,res)=>{
             .then(Info=>{
                 if(Info){
                     console.log("DB updated");
-                    res.json("Done");
+                    res.json(1);
                 }
                 else {
                     console.log("There was a error while updating DB")
-                    res.json("Error");
+                    res.json(2);
                 }
             })
             .catch(err=>{
@@ -573,6 +576,7 @@ app.post("/update/info",(req,res)=>{
         }
         else {
             console.log("Couldn't Find The Account")
+            res.json(2);
         }
     })
 })
