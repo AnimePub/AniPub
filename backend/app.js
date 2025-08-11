@@ -515,6 +515,7 @@ app.get("/Privacy-Policy",(req,res)=>{
 app.get("/Uploader",(req,res)=>{
     res.render("Uploader",{SectionName:"Uploader Section"});
 });
+
 //Upload
 app.post("/Upload",async(req,res)=>{
     try {
@@ -576,40 +577,3 @@ app.post("/update/info",(req,res)=>{
     })
 })
 
-// app.get("/Upload",(req,res)=>{
-//     const AnidB = new AniDB({
-//         Anime:[
-//              {   Anime: "One Piece",
-//                 ImagePath: "One-Piece.jpg",
-//                 Cover:"One Piece.jpg",
-//                 Name:"One Piece",
-//                 Synonyms: "OP",
-//                 poster:"One-Piece.jpg",
-//                 Aired: "Oct 20,1999 to ?",
-//                 Premiered: "Fall 1999",
-//                 Duration: "24m",
-//                 Status: "Currently Airing",
-//                 MALScore: "8.62",
-//                 RatingsNum:40,
-//                 Genres:"Action,Adventure,Comedy,Drama,Fantasy",
-//                 Studios: "Toei Animation",
-//                 Producers: "Fuji TV, TAP, Shueisha, Toei Animation, Funimation, 4Kids Entertainment",
-//                 DescripTion:"One Piece is an iconic anime that follows the journey of Monkey D. Luffy, a young pirate with the extraordinary ability to stretch his body like rubber after consuming a Devil Fruit. Driven by his dream to become the Pirate King, Luffy sets sail to find the legendary treasure known as \"One Piece,\" said to be hidden at the end of the Grand Line. As Luffy assembles his diverse crew, the Straw Hat Pirates, they encounter a world filled with rich lore, complex characters, and deep mysteries. Each crew member has their own aspirations, from becoming the world's greatest swordsman to finding a long-lost friend, adding layers of depth to their adventures. The series explores themes of friendship, freedom, and the pursuit of dreams, while delving into the intricate history of the world, including the enigmatic Void Century and the powerful Ancient Weapons. Throughout their journey, the Straw Hat Pirates face formidable foes, including rival pirate crews, the oppressive World Government, and the mysterious Marines. Each battle reveals more about the world’s secrets and the true nature of the One Piece treasure itself. With its masterful storytelling, emotional depth, and a blend of humor and action, One Piece invites viewers to join Luffy and his crew on an unforgettable adventure filled with twists, revelations, and the enduring spirit of adventure.",
-//                 Videos:[{
-//                     name:"Video1",
-//                     link:"one-piece-amv-welcome-to-onigashima-1080-publer.io.mp4",
-//                     title:"One Piece amv welcome to Onigashima",
-//                 }]
-//     }]       
-//     })
-
-
-//     AnidB.save()
-//     .then(info=>{
-//         res.send(info)
-//     })
-// });
-// app.get("/Delete",(req,res)=>{
-//     AniDB.find()
-//     .then(info=>res.send(info))
-// })

@@ -1,4 +1,8 @@
+
 const genreList = [];
+const updateExisting = document.querySelector(".update-existing")
+const form3 = document.querySelector(".container3");
+
 
 const genre =  document.querySelectorAll(".genre");
 genre.forEach(value=>{
@@ -50,7 +54,7 @@ form.addEventListener('submit',(e)=>{
          title : form.title.value,
          aired : form.aired.value,
          premiered : form.Premiered.value,
-         ongoing : form.Ongoing.value,
+         duration : form.Duration.value,
          Status : form.Status.value ,
          mlscore : form.MLScore.value,
          ratings : form.ratings.value,
@@ -107,10 +111,102 @@ const upLoad = document.querySelector(".upLoad");
 const upDate = document.querySelector(".upDate");
 
 upLoad.addEventListener("click",()=>{
-    form.style.display ="flex"
-    form1.style.display = "none"
+    form.style.display ="flex";
+    form1.style.display = "none";
+    form3.style.display = "none"
+    
 })
 upDate.addEventListener('click',()=>{
     form1.style.display = "flex"
+    form.style.display ="none";
+    form3.style.display = "none"
+})
+
+const option = document.querySelector("select");
+const title = document.querySelector(".title-div");
+const Name = document.querySelector(".name-div");
+const link = document.querySelector(".link-div");
+const img = document.querySelector(".img-div");
+
+
+updateExisting.addEventListener('click',()=>{
+     form1.style.display = "none"
     form.style.display ="none"
+    form3.style.display = "flex"
+})
+
+option.addEventListener("change",()=>{
+    if (option.value === "name") {
+        Name.style.display = "flex" ;
+        title.style.display = "none"
+         link.style.display = "none" ;
+         img.style.display = "none";
+
+    }
+    else if (option.value === "title") {
+         Name.style.display = "none" ;
+        title.style.display = "flex"
+         link.style.display = "none" ;
+         img.style.display = "none";
+    }
+     else if (option.value === "link") {
+         Name.style.display = "none" ;
+        title.style.display = "none"
+         link.style.display = "flex" ;
+         img.style.display = "none";
+    }
+     else if (option.value === "image") {
+         Name.style.display = "none" ;
+        title.style.display = "none"
+         link.style.display = "none" ;
+         img.style.display = "flex";
+    }
+    else {
+         Name.style.display = "none" ;
+        title.style.display = "none"
+         link.style.display = "none" ;
+         img.style.display = "none";
+    }
+})
+
+form3.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    let VAlue = "";
+    if(option.value) {
+     if (option.value === "name") {
+      VAlue = form3.name.value;
+    }
+    else if (option.value === "title") {
+        VAlue = form3.title.value;
+    }
+     else if (option.value === "link") {
+      VAlue = form3.link.value;
+    }
+     else if (option.value === "image") {
+       VAlue = form3.image.value;
+    }
+    const BODY = {
+       ID : form3.ID.value ,
+       EP : form3.EP.value,
+        TYPE : option.value ,
+        Value : VAlue ,
+    }
+    const endpoint = "/update/ext"
+    fetch(endpoint,{
+          method:'POST',
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(BODY)
+    })
+    .then(res=>res.json())
+    .then(info=>{
+        console.log(info);
+    })
+
+
+     }
+     else {
+        alert("Option Value Not Set Bro");
+     }
 })

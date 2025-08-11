@@ -14,7 +14,8 @@
     <div class="main-body">
         <div class="Search-Box">
             <button class="upLoad">Upload New</button>
-            <button class="upDate">Update Existing One</button>
+            <button class="upDate">Add Episode</button>
+            <button class="update-existing">Edit Ep</button>
         </div>
     <form class="container" style="display: none;">
 <div>
@@ -58,12 +59,12 @@
     <input required    type="text" class="Premiered" name="Premiered" placeholder="Premiered">
 </div>
 <div>
-    <p>Ongoing</p>
-    <input required    type="text" class="Ongoing" name="Ongoing" placeholder="Ongoing">
-</div>
-<div>
     <p>Status</p>
     <input required    type="text" class="Status" name="Status" placeholder="Status">
+</div>
+<div>
+    <p>Duration</p>
+    <input required    type="text" class="Duration" name="Duration" placeholder="Status">
 </div>
 <div>
     <p>MLScore</p>
@@ -152,7 +153,44 @@
 </div>
      </form>
     
-    
+    <form class="container3" style="display: none;">
+        <div>
+            <p>ID</p>
+            <input required type="text" name="ID">
+        </div>
+        <div>
+            <p>Ep Number</p>
+            <input required type="text" name="EP">
+        </div>
+        <div>
+            <select>
+                <option>Select</option>
+                <option value="link">Link</option>
+                <option value="name">name</option>
+                <option value="title">title</option>
+                <option value="image">image</option>
+            </select>
+        </div>
+        <div class="name-div" style="display: none;">
+    <p>Ep:- name</p>
+    <input type="text" class="name" name="name" placeholder="Ep Name">
+</div>
+<div class="link-div" style="display: none;">
+    <p>link</p>
+    <input  type="text" class="link" name="link" placeholder="link">
+</div>
+<div class="title-div" style="display: none;">
+    <p>title</p>
+    <input  type="text" class="title" name="title" placeholder="title">
+</div>
+<div class="img-div" style="display: none;">
+    <p>Image</p>
+    <input type="text" class="image" name="image" placeholder="image">
+</div>
+<div class="button-div">
+    <button>Submit</button>
+</div>
+    </form>
     
     
     

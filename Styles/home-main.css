@@ -40,7 +40,10 @@
 }
 @media screen and (min-width:300px) and (max-width:439px) {
     .aniLists {
-        grid-template-columns: 1fr  ;
+        grid-template-columns: 1fr 1fr ;
+    }
+    .Profile {
+        width: 160px;
     }
 }
 @media screen and (min-width:300px) and (max-width:370px) {
