@@ -578,7 +578,7 @@ app.post("/update/ext",async (req,res)=>{
     const Value = req.body.Value;
     if(Type === "link") {
         if(EP ===0) {
-       AnimeDB.findByIdAndUpdate(ID,{link:Value})
+       AnimeDB.findByIdAndUpdate(ID,{$set:{link:Value}})
        .then(info=>{
         if(info) {
             res.json(1);
@@ -589,7 +589,20 @@ app.post("/update/ext",async (req,res)=>{
        })
         }
         else {
-            //Something
+            const epNum = EP -1;
+            const update = {
+                [`ep.${epNum}.link`]:Value 
+            }
+            //dynamic update 
+            AnimeDB.findByIdAndUpdate(ID,{$set:update})
+            .then(info=>{
+        if(info) {
+            res.json(1);
+        }
+        else {
+            res.json(2)
+        }
+       })
         }
     }
     else if (Type === "name") {
@@ -605,7 +618,20 @@ app.post("/update/ext",async (req,res)=>{
             })
         }
         else {
-            //Next Time
+            const epNum = EP-1;
+            const update = {
+                [`ep.${epNum}.name`]:Value
+            }
+              AnimeDB.findByIdAndUpdate(ID,{$set:update})
+            .then(info=>{
+        if(info) {
+            res.json(1);
+        }
+        else {
+            res.json(2)
+        }
+       })
+        
         }
     }
 })
