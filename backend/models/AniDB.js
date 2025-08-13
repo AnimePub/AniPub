@@ -9,14 +9,17 @@ const Episodes = new Schema ({
   name:{
         type:String,
         required:false,
+        trim:true,
      },
 
     link:{
          type:String,
+         trim:true,
            required:false,
     },
     title:{
          type:String,
+         trim:true,
            required:false,
           },
 })

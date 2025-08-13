@@ -1,47 +1,4 @@
 let OP = [
- 
-    [
-  {
-    name: "Ep 1",
-    id: 1,
-    Name: "Osomatsu-san 4th Season",
-    ImagePath: "osomatsu-san-4th-season.webp",
-    Cover: "Osomatsu-san-4th-Season–-01-22.webp",
-    Synonyms: "Mr. Osomatsu 4th Season",
-    link: `src=https://gogoanime.com.by/streaming.php?id=mr-osomatsu-4-19739&ep=141704&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
-       title: "Episode 1",
-    poster: "osomatsu-san-4th-season.webp",
-    Aired: "Jul 9, 2025 to ?",
-    Premiered: "Summer 2025",
-    Duration: "23m",
-    Status: "Ongoing",
-    MALScore: "7.0",
-    RatingsNum: 50,
-    Genres: "Comedy, Parody",
-    Studios: "Pierrot Films",
-    Producers: "TV Tokyo, Shueisha, Pierrot",
-    DescripTion: "The Matsuno sextuplets return in the fourth season of Osomatsu-san, delivering their signature chaotic and irreverent comedy. Osomatsu, Karamatsu, Choromatsu, Ichimatsu, Jyushimatsu, and Todomatsu stumble through absurd situations as NEETs, from failed job attempts to ridiculous sibling rivalries. Episode 1 sets the stage with their hilarious antics, blending slapstick humor and quirky personalities in a wild new adventure.",
-    type: "iframe"
-  },
-  {
-    name: "Episode 2",
-    link:`src=https://gogoanime.com.by/streaming.php?id=mr-osomatsu-4-19739&ep=141892&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,  title: "Osomatsu-san 4th Season"
-  },
-  {
-    name: "Episode 3",
-    link: `src=https://gogoanime.com.by/streaming.php?id=mr-osomatsu-4-19739&ep=141892&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
-    title: "Osomatsu-san 4th Season"
-  },
-  {
-    name: "Episode 4",
-    link: `src=https://gogoanime.com.by/streaming.php?id=mr-osomatsu-4-19739&ep=141892&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,   title: "Osomatsu-san 4th Season"
-  },
-  {
-    name: "Episode 5",
-    link: `src=https://gogoanime.com.by/streaming.php?id=mr-osomatsu-4-19739&ep=142955&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
-    title: "Osomatsu-san 4th Season"
-  }
-],
 [
   {
     name: "Ep 1",
@@ -578,51 +535,7 @@ src=https://gogoanime.com.by/streaming.php?id=grand-blue-dreaming-season-2-19786
     title: "Isekai Mokushiroku Mynoghra: Hametsu no Bunmei de Hajimeru Sekai Seifuku"
   }
 ],
-[
-  {
-    name: "Ep 1",
-    id: 13,
-    Name: "Dekin no Mogura: The Earthbound Mole",
-    ImagePath: "dekin-no-mogura.webp",
-    Cover: "c6517-17515604341824-1920.webp",
-    Synonyms: "The Banned Mole",
-    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=141667&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
-    title: "Episode 1",
-    poster: "dekin-no-mogura.webp",
-    Aired: "Jul 7, 2025 to ?",
-    Premiered: "Summer 2025",
-    Duration: "24m",
-    Status: "Ongoing",
-    MALScore: "6.5",
-    RatingsNum: 40,
-    Genres: "Comedy, Mystery, Supernatural, Fantasy",
-    Studios: "Brain's Base",
-    Producers: "Kodansha, Crunchyroll, Tokyo MX, BS11",
-    DescripTion: "Dekin no Mogura: The Earthbound Mole follows Momoyuki Mogura, a shady hermit banned from the afterlife, who collects spirit-possessed will-o'-the-wisps in his magical lantern to survive. Episode 1 introduces university students Magi and Yaeko, who encounter Mogura after a mysterious Kōjien dictionary falls on his head. Their meeting sparks strange supernatural phenomena, blending humor, mystery, and ghostly antics as Mogura’s past and motives begin to unfold.",
-    type: "iframe"
-  },
-  {
-    name: "Episode 2",
-    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=141802&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
-    title: "Dekin no Mogura: The Earthbound Mole"
-  },
-  {
-    name: "Episode 3",
-    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=142005&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
-    title: "Dekin no Mogura: The Earthbound Mole"
-  },
-  {
-    name: "Episode 4",
-    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=142904&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
-    title: "Dekin no Mogura: The Earthbound Mole"
-  },
-  {
-    name: "Episode 5",
-    link: `src=https://gogoanime.com.by/streaming.php?id=dekin-no-mogura-the-earthbound-mole-19755&ep=143128&server=hd-1&type=sub scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen`,
-    title: "Dekin no Mogura: The Earthbound Mole"
-  }
-]
-    
+
  
 
   
