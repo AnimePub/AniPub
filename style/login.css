@@ -140,3 +140,31 @@ form{
     flex-direction: column;
     align-items: center;
 }
+.logout-div {
+    height: 50px;
+    border-radius: 5px;
+    width: 90%;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    column-gap: 10px;
+    background: rgb(119, 118, 118);
+}
+
+.logout-div:hover {
+     background: rgba(102, 95, 95, 0.945);
+}
+.logout-div:active {
+    opacity: 0.7;
+
+}
+.logout-div p {
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    font-family: monospace;
+    font-size: 18px;
+    margin: 0;
+}
+.logout-div img {
+    height: 40px;
+}

@@ -157,7 +157,7 @@ option.addEventListener("change",()=>{
          img.style.display = "none";
 
     }
-    else if (option.value === "title") {
+    else if (option.value === "cover") {
          Name.style.display = "none" ;
         title.style.display = "flex"
          link.style.display = "none" ;

@@ -54,9 +54,10 @@
                     <p class="nameA">AniPub</p>
                     <p class="sloganA" style="margin-left: 1px; margin-top: -2px;">Yamate Kudasai</p>
                 </div>
-            </div>
+            </div> <% if(Auth=== false) { %> 
             <p class="warning"></p>
             <form>
+               
             <div class="username-div">
                 <input name="Email" class="username" type="email" placeholder="Username or Email" id="mail">
             </div>
@@ -69,15 +70,28 @@
             </div>               
                 
                  <button class="login-button">Login</button> 
-        </form>
-                 <button onclick="window.location.href=`/Sign-up`" class="sign-up-button">Sign Up</button>
-               
-            </div>
+        
+                </form>
+                     <button onclick="window.location.href=`/Sign-up`" class="sign-up-button">Sign Up</button>
+                
+<script src="login.js"></script>
+        
+<% } else { %> 
+    <div class="logout-div" data-id="<%=Data %> ">
+        <div>
+            <img  src="logout-svgrepo-com.svg" alt="">
+        </div>
+        <p>Logout</p>
+    </div>
+<script src="logout.js"></script>
+
+
+    <% } %> 
+                </div>
                
         </div>
         
   
-    
-<script src="login.js"></script>
+   
 </body>
 </html>

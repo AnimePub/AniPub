@@ -32,21 +32,21 @@
                     
                     <div class="Profile-div" data-anime="<%=value.AniID%>" data-ep="<%=value.AniEP%>">
                         <div class="Poster-div">
-                            <img class="Poster" src="/<%=AniDB[value.AniID][0].ImagePath%>" alt="">
+                            <img class="Poster" src="/<%=AniDB[i].ImagePath%>" alt="">
                         </div>
                         <div class="Info-div">
-                           <p class="name">Name: <span><%=AniDB[value.AniID][0].Name%></span></p>
+                           <p class="name">Name: <span><%=AniDB[i].Name%></span></p>
                             <p>Adding Time:<span class="Added-Time"><%=value.Date%></span></p>
                             <div class="ratings-div">
-                                <p>MAL Score:<span class="mALScore"><%=AniDB[value.AniID][0].MALScore%></span></p>
-                                <img src="/rating-<%=AniDB[value.AniID][0].RatingsNum%>.png" alt="">
+                                <p>MAL Score:<span class="mALScore"><%=AniDB[i].MALScore%></span></p>
+                                <img src="/rating-<%=AniDB[i].RatingsNum%>.png" alt="">
                             </div>
                             
-                            <p>Studios: <span class="Studios"><%=AniDB[value.AniID][0].Studios%></span></p>
-                            <p>Genres:<span class="Genres"><%=AniDB[value.AniID][0].Genres%></span></p>
+                            <p>Studios: <span class="Studios"><%=AniDB[i].Studios%></span></p>
+                            <p>Genres:<span class="Genres"><%=AniDB[i].Genres%></span></p>
                             <div class="epconfig">
                              <p>Starting Ep: <span><%=Number(value.AniEP)+1%></span></p>  
-                             <p>Total Ep:<span class="totalEp"><%=AniDB[value.AniID].length%>
+                             <p>Total Ep:<span class="totalEp"><%=AniDB[i].ep.length +1%>
                              </span></p>
                             </div>
                            

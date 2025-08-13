@@ -7,8 +7,7 @@ const mongoose = require("mongoose");
 const Data = require("./models/model");
 const {newList} = require("./models/list");
 const {myPlaylist} = require("./models/list")
-const { error, profile } = require("console");
-const OP = require("./Data/data");
+const validAdmin = require("./middleware/validAdmin.js");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const {AuthAcc} = require("./middleware/valideAcc.js");
@@ -17,6 +16,8 @@ require('dotenv').config();
 const nodemailer = require("nodemailer");
 const Vcode = require("./models/auth.js")
 const mailBody = require("./templates/verification.js") ;
+
+const OP = require("./Data/data");
 
 //Anime DB init ..
 const AnimeDB = require("./models/AniDB.js");
@@ -221,7 +222,28 @@ app.post("/Login",async(req,res)=>{
     )
 })
 app.get("/Login",(req,res)=>{
-    res.render("Login");
+    const Token = req.cookies.anipub;
+    if(Token) {
+        jwt.verify(Token,"I Am Naruto",(err,data)=>{
+            if(err) {
+                console.log(err) 
+            }
+            
+            if(data.id) {
+                 res.render("Login",{Auth:true,Data:data.id});
+            }
+        })
+    }
+    else {
+           res.render("Login",{Auth:false,Data:""});
+    }
+ 
+})
+//Logout 
+app.get("/logout",(req,res)=>{
+    res.cookie("anipub","",{maxAge:1,})
+    res.json(1);
+
 })
 app.get("/Profile/:id",AuthAcc,(req,res)=>{
    const profileID = req.params.id;
@@ -247,7 +269,9 @@ app.get("/Profile/:id",AuthAcc,(req,res)=>{
                  }
                  res.render("Profile",{SectionName:"Profile",Auth:true,userInfo})
             })
-            .catch(err=>{console.log("Account could not be found")})     
+            .catch(err=>{
+                res.json("This user doesn't Exist, Why seeing this ? mail me :- abdullahal467bp@gmail.com")
+            })     
           
        })
    }
@@ -309,8 +333,6 @@ app.get("/PlayList/:id",(req,res)=>{
             const accountID = data.id;
 
             if(accountID === PlayListID) {
-
-
             Data.findById(accountID)
             .then( async (info)=>{
                 const PlayList = info.List;
@@ -319,7 +341,12 @@ app.get("/PlayList/:id",(req,res)=>{
                     PlayListArray.push(value.id);
                 })
                const PlayListDB = await newList.find({_id:{$in:PlayListArray}})
-               res.render("PlayList",{SectionName:"PlayList Section",List: PlayListDB ,AniDB:OP,Auth:false,ID:accountID});
+              const DBarray = [];
+              PlayListDB.forEach(value=>{
+                DBarray.push(value.AniID)
+              })
+              const DBAnime = await AnimeDB.find({_id:{$in:DBarray}})
+               res.render("PlayList",{SectionName:"PlayList Section",List: PlayListDB ,AniDB:DBAnime,Auth:false,ID:accountID});
             })
         }
         else {
@@ -421,6 +448,9 @@ app.get("/Settings",(req,res)=>{
              res.render("Settings",{SectionName:"Settings Section",Auth:true,userInfo});
         })
     }
+    else {
+        res.redirect("/Login")
+    }
 })
 
 //Router
@@ -494,18 +524,43 @@ app.use(Notify)
 
 //Update --- false auth to cheking
 app.get("/About-Us",(req,res)=>{
+    const Token = req.cookies.anipub;
+    if(Token){
+        jwt.verify(Token,"I Am Naruto",(err,data)=>{
+            if(err){
+                console.log(err)
+            }
+            const userInfo = {ID:data.id};
+           
+             res.render("About-Us",{SectionName:"About Us Section", Auth:true,userInfo});
+
+        })
+    }else{
     res.render("About-Us",{SectionName:"About Us Section",Auth:false});
+}
 })
 
 app.get("/Privacy-Policy",(req,res)=>{
+    const Token = req.cookies.anipub;
+    if(Token){
+        jwt.verify(Token,"I Am Naruto",(err,data)=>{
+            if(err){
+                console.log(err)
+            }
+            const userInfo = {ID:data.id};
+             res.render("Privacy-Policy",{SectionName:"Privacy Policy Section", Auth:true,userInfo});
+        })
+    }else{
     res.render("Privacy-Policy",{SectionName:"Privacy Policy Section",Auth:false});
+}
+   
 });
-app.get("/Uploader",(req,res)=>{
+app.get("/Uploader",validAdmin,(req,res)=>{
     res.render("Uploader",{SectionName:"Uploader Section"});
 });
 
 //Upload
-app.post("/Upload",async(req,res)=>{
+app.post("/Upload",validAdmin,async(req,res)=>{
     try {
     const Update = await AnimeDB.create({
          name: req.body.epName,
@@ -539,7 +594,7 @@ catch(err){
 }
 })
 
-app.post("/update/info",(req,res)=>{
+app.post("/update/info",validAdmin,(req,res)=>{
     AnimeDB.findById(Number(req.body.id))
     .then(info=>{
         if(info){
@@ -569,7 +624,7 @@ app.post("/update/info",(req,res)=>{
     })
 })
 
-app.post("/update/ext",async (req,res)=>{
+app.post("/update/ext",validAdmin,async (req,res)=>{
     // { ID: '3', EP: '1', TYPE: 'link', Value: 'alu.com' }
     const Type = req.body.TYPE ;
     const EP = Number(req.body.EP);
@@ -659,8 +714,6 @@ app.post("/update/ext",async (req,res)=>{
     else {
         res.json(2);
     }
-
-
 
 })
 
