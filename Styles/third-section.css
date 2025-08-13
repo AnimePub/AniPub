@@ -57,11 +57,17 @@
     width: 200px;
     background-color: black;
     display: flex;
-    box-shadow: -1px 2px 4px rgba(72, 72, 255, 0.88);
+   box-shadow: 0px 0px 7px 1px rgb(167 167 185 / 48%);
     border-radius: 10px;
     flex-direction: column;
     justify-content: start;
     cursor: pointer;
+}
+.Profile:hover {
+    box-shadow: 0;
+}
+.Profile:active{
+    opacity: 0.7;
 }
 .Image-div {
     height:70%;
