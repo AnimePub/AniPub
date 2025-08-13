@@ -93,12 +93,12 @@
               <% if (video.ep.length >0){ %> 
                 <% video.ep.forEach((value,i) => { %>
                         <div class="list"  >
-                        <div class="li-fs" data-ep="<%=i+1%>">
+                        <div class="li-fs" data-ep="<%=i+1%>"  >
                         <div class="img-div">
                         <img src="/<%= video.ImagePath %> " alt="">
                         </div>
                         <div class="ep-title">
-                        <p><%= video.Name%> No.<%= i+2 %></p>
+                        <p><%= video.ep[i].name%> No.<%= i+2 %></p>
                         </div>
                         </div>
                         

@@ -216,7 +216,7 @@ form3.addEventListener('submit',(e)=>{
     .then(res=>res.json())
     .then(info=>{
          if(Number(info) === 1) {
-                alert("Anime Added Successfully");
+                alert("Anime Edited Successfully");
                 window.location.reload();
             }
             else {

@@ -297,13 +297,6 @@ app.get(`/AniPlayer/:AniId/:AniEP`,async(req,res)=>{
    
 });
 
-//Delete all account
-
-// app.get("/D",(req,res)=>{
-//      Data.deleteMany()
-//      .then(res.redirect("/"))
-//  })
-
 
 app.get("/PlayList/:id",(req,res)=>{
     const Token = req.cookies.anipub;
@@ -499,10 +492,6 @@ app.post("/settings/account-info", (req,res)=>{
 })
 // Notify
 app.use(Notify)
-//Google Verify
-app.get("/googlec4b408e99b3b10c7.html",(req,res)=>{
-    res.sendFile("/googlec4b408e99b3b10c7.html")
-})
 
 //Update --- false auth to cheking
 app.get("/About-Us",(req,res)=>{
@@ -580,4 +569,46 @@ app.post("/update/info",(req,res)=>{
         }
     })
 })
+
+app.post("/update/ext",async (req,res)=>{
+    // { ID: '3', EP: '1', TYPE: 'link', Value: 'alu.com' }
+    const Type = req.body.TYPE ;
+    const EP = Number(req.body.EP);
+    const ID = Number(req.body.ID);
+    const Value = req.body.Value;
+    if(Type === "link") {
+        if(EP ===0) {
+       AnimeDB.findByIdAndUpdate(ID,{link:Value})
+       .then(info=>{
+        if(info) {
+            res.json(1);
+        }
+        else {
+            res.json(2)
+        }
+       })
+        }
+        else {
+            //Something
+        }
+    }
+    else if (Type === "name") {
+        if(EP === 0) {
+             AnimeDB.findByIdAndUpdate(ID,{name:Value})
+              .then(info=>{
+                if(info) {
+                    res.json(1);
+                }
+                else {
+                    res.json(2)
+                }
+            })
+        }
+        else {
+            //Next Time
+        }
+    }
+})
+
+
 
