@@ -54,6 +54,10 @@ const Data = new Schema({
         type:String,
         required:false,
     },
+    userType:{
+     type:String,
+     required:true,   
+    },
     List: [
         {
             _id:{

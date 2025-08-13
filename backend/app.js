@@ -122,6 +122,7 @@ app.post("/Sign-Up",async (req,res)=>{
         Email : finalMail,
         Password : req.body.pass,
         AcStats:"Pending",
+        userType:"Member"
     })
     const id = newacc._id;
     const aluV = await Vcode.create({
@@ -159,10 +160,8 @@ app.get("/verify/:code",(req,res)=>{
                 if(alu.AcStats === "Pending") {
                             Data.findByIdAndUpdate(id,{AcStats:"Active"})
                     .then(alu=>{
-                            const myCookie = TokenGen(id);
-                    res.cookie("anipub",myCookie,{httpOnly:true,maxAge:60*24*60*3});
-                        const Msge = [`Hey ${alu.Name}!`
-                        ,"Your Account Have been verified , You are now Good to Go!"]
+                    const Msge = [`Hey ${alu.Name}!`
+                        ,"Your Account Have been verified , You are now Good to Go! And Login "]
                     res.render("Notify",{Msge})  })
                 }
                 else {
@@ -634,6 +633,35 @@ app.post("/update/ext",async (req,res)=>{
         
         }
     }
+
+    else if (Type === "image") {
+           AnimeDB.findByIdAndUpdate(ID,{ImagePath:Value})
+              .then(info=>{
+                if(info) {
+                    res.json(1);
+                }
+                else {
+                    res.json(2)
+                }
+            })
+    }
+    else if (Type === "cover") {
+           AnimeDB.findByIdAndUpdate(ID,{Cover:Value})
+              .then(info=>{
+                if(info) {
+                    res.json(1);
+                }
+                else {
+                    res.json(2)
+                }
+            })
+    }
+    else {
+        res.json(2);
+    }
+
+
+
 })
 
 

@@ -190,7 +190,7 @@ form3.addEventListener('submit',(e)=>{
      if (option.value === "name") {
       VAlue = form3.name.value;
     }
-    else if (option.value === "title") {
+    else if (option.value === "cover") {
         VAlue = form3.title.value;
     }
      else if (option.value === "link") {
