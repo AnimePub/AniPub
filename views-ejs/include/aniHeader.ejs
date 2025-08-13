@@ -24,10 +24,14 @@
         <button data-account="<%=ID%>" class="profile-icon" title="Profile Menu">
          <img style="width: 50px; height: 50px;  object-position: center;border-radius: 50%;" src="/ProfilePic/<%= Link %>" alt="">
         </button>
-        <% } else {%>
+        <% } else if (auth === false ) {%>
             <button data-account="<%=ID%>" class="profile-icon" title="Profile Menu">
                 <img style="width: 50px; height: 50px;  object-position: center ; border-radius: 50%;" src="<%= Link %>" alt="">
                </button>
-        <% } %>     
+        <% } else { %>     
+         <button data-account="<%=ID%>" class="profile-icon" title="Profile Menu">
+                <img style="width: 50px; height: 50px;  object-position: center ; border-radius: 50%;" src="/Shinbou.jpg" alt="">
+               </button>
+        <% } %> 
     </div>
 </header>

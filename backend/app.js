@@ -717,5 +717,22 @@ app.post("/update/ext",validAdmin,async (req,res)=>{
 
 })
 
+// give myself Admin Permission 
+
+app.get("/AdminMake",AuthAcc,(req,res)=>{
+    Data.find({"Email":"abdullahal467bp@gmail.com"})
+    .then(info=>{
+        if(info.userType === "Admin") {
+            Data.findOneAndUpdate({"Email":"abdullahal467bp@gmail.com"},{"userType":"Admin"})
+                .then(info=>{
+                    res.redirect("/Home");
+                })
+        }
+        else {
+            res.redirect("/Home")
+        }
+    })
+  
+})
 
 
