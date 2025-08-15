@@ -291,7 +291,11 @@ app.get(`/AniPlayer/:AniId/:AniEP`,async(req,res)=>{
     const AniId = Number(newArray[2]) -1 ;
     const AniEP = Number(newArray[3]);
   let linkI  = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
- 
+if(Number(req.params.AniId)===NaN || Number(req.params.AniEP)===NaN) {
+    res.send("Hello")
+}else {
+
+
     if(Token){
         jwt.verify(Token,"I Am Naruto",(err,data)=>{
             if(err){
@@ -317,7 +321,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`,async(req,res)=>{
         
         res.render("AniPlayer",{AniDB : animeDb,video,AniId,AniEP,auth:false,ID:"guest",Link:linkI})
     }  
-   
+   }
 });
 
 

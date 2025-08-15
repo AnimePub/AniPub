@@ -41,7 +41,7 @@
                <% } else { %>
                 <% const Episode = Number(AniEP) - 1 %> 
                 <iframe  <%=video.ep[Episode].link%> style="height:100%;width: 100%;"></iframe>
-               <%}%> 
+               <%}%>
                 <% } else {%> 
             <video  id="my-video"
             class="video-js vjs-matrix video-player "
@@ -66,6 +66,8 @@
                             <% } %> 
             <% } %>  
         </video>
+    <script src="/videoPlay.js"></script>
+
         <% } %> 
         </div>
         <div class="Ep-section">
@@ -339,14 +341,17 @@
 
     <script id="dsq-count-scr" src="//anipub.disqus.com/count.js" async></script>
     <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
-    <script src="/Changer-AniPlayer.js"></script>
+    <script src="/Changer-AniPlayer.js"></script> 
+   
     <script src="/dialog.js"></script>
 
-
+   
     <script src="/upDate-playlist.js"></script>
     <script src="/home.js"></script>
     <script src="/playList-Up.js"></script>
-    <script src="/videoPlay.js"></script>
-    <script src="/ANiPlayer-render.js"></script>
+    <script src="/ANiPlayer-render.js"></script> 
+    <script src="/play.js">
+       
+    </script>
 </body>
 </html>
