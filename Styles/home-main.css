@@ -2,17 +2,22 @@
     padding-top: 70px;
 }
 .aniLists {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
-    row-gap: 10px;
-    width: 80%;
-    column-gap: 10px;
-    background-color: rgb(15, 13, 13);
+    padding-top: 40px;
+    padding-bottom: 20px;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 15px;
+    column-gap: 15px;
+    position: relative;
 }
 @media screen and (min-width:953px) and (max-width:1078px) {
     .aniLists {
-        grid-template-columns: 1fr 1fr 1fr;
-        width: 70%;
+        
         column-gap: 5px;
     }
 }
@@ -25,22 +30,22 @@
     .aniLists {
         width: 100%;
         column-gap: 5px;
-        grid-template-columns: 1fr 1fr 1fr 1fr ;
+
     }
 }
 @media screen and (min-width:640px) and (max-width:850px) {
     .aniLists {
-        grid-template-columns: 1fr 1fr 1fr ;
+        
     }
 }
 @media screen and (min-width:440px) and (max-width:639px) {
     .aniLists {
-        grid-template-columns: 1fr 1fr ;
+       
     }
 }
 @media screen and (min-width:300px) and (max-width:439px) {
     .aniLists {
-        grid-template-columns: 1fr 1fr ;
+      
     }
     .Profile {
         width: 160px;
@@ -93,4 +98,23 @@
         width: fit-content;
     }
 
+}
+.recents {
+    position: absolute;
+    top: 0;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    left: 20px;
+}
+.recents p {
+    font-size: 28px;
+    font-family: Roboto;
+    font-weight: bold;
+}
+.ntg {
+    height: 30px;
+    width: 10px;
+    border-radius: 10px;
+    background-color: blue;
 }

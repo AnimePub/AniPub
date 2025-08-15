@@ -43,9 +43,7 @@
 .Profile-div {
     margin-top: 20px;
     max-height: 100%;
-    width: 100%;
     min-height: 250px;
-    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,14 +55,14 @@
     width: 200px;
     background-color: black;
     display: flex;
-   box-shadow: 0px 0px 7px 1px rgb(167 167 185 / 48%);
+   box-shadow: 0px 0px 7px 1px rgba(107, 107, 107, 0.637);
     border-radius: 10px;
     flex-direction: column;
     justify-content: start;
     cursor: pointer;
 }
 .Profile:hover {
-    box-shadow: 0;
+    box-shadow: none;
 }
 .Profile:active{
     opacity: 0.7;

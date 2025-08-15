@@ -59,7 +59,7 @@
                         <button class="watch-button" data-ANIMEID="<%=value.id%>">
                             <img style="margin-left:4px; height: 90%; width: 90%; margin-top: 3px;" src="/play-svgrepo-com.svg" alt="">
                         </button>
-                        <button class="watch-list">
+                        <button class="watch-list" data-ANIMEID="<%=value.id%>">
                             <img  src="/plus-large-svgrepo-com.svg" alt="">
                         </button>
                     </div>
@@ -73,6 +73,13 @@
     <div class="secoNd-Section">
 
         <div class="aniLists">
+            
+            <div class="recents">
+                <div class="ntg"></div>
+                <p>
+                Recent:-
+            </p>
+        </div>
             <% Anime.forEach(value => {%>
                 <div class="Profile-div">
                     <div class="Profile" data-anime="<%=value._id%>">
@@ -82,7 +89,7 @@
                     <div class="Title-div"><p class="Title"><%=value.Name%></p></div>
                     <div class="ratings-div">
                         <p class="mal-score"><%=value.MALScore%></p>
-                        <img src="rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
+                        <img style="width: 90px;" src="rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
                     </div>
                     <div class="des-div">
                         <p class="des">
@@ -114,6 +121,7 @@
      <script type="module" src="/Home.js"></script>
 -->
     <script src="/Hslider.js"></script>
+    <script src="/playListUP.js"></script>
     <script src="/home.js"></script>
     <script type="module" src="/ANiPlayer-render.js"></script>
 

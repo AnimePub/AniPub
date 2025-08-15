@@ -56,7 +56,7 @@ form.addEventListener('submit',(e)=>{
          premiered : form.Premiered.value,
          duration : form.Duration.value,
          Status : form.Status.value ,
-         mlscore : form.MLScore.value,
+         malscore : form.MLScore.value,
          ratings : form.ratings.value,
          studios : form.Studios.value,
          producers : form.Producers.value,
