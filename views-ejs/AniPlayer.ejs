@@ -44,7 +44,11 @@
         webkitallowfullscreen="webkitallowfullscreen" style="height:100%;width: 100%;"></iframe>
                <% } else { %>
                 <% const Episode = Number(AniEP) - 1 %> 
-                <iframe  <%=video.ep[Episode].link%> style="height:100%;width: 100%;"></iframe>
+                <iframe  <%=video.ep[Episode].link%> sandbox="allow-same-origin allow-scripts"  allowfullscreen="allowfullscreen"
+        mozallowfullscreen="mozallowfullscreen" 
+        msallowfullscreen="msallowfullscreen" 
+        oallowfullscreen="oallowfullscreen" 
+        webkitallowfullscreen="webkitallowfullscreen"  style="height:100%;width: 100%;"></iframe>
                <%}%>
                 <% } else {%> 
             <video  id="my-video"
