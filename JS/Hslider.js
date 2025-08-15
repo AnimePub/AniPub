@@ -27,7 +27,7 @@ function SlidShow() {
 }
 setInterval(() => {
     goleft()    
-},3000);
+},5000);
 
  
 EhName.forEach(value=>{

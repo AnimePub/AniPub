@@ -91,11 +91,14 @@ img{
 .watch-button {
     height: 50px;
     width: 50px;
-    background: rgb(17, 255, 17);
+    background: transparent;
     border-radius: 50%;
     border: 0;
     cursor: pointer;
     transition: all 0.30s;
+}
+.watch-button img {
+    object-fit: cover;
 }
 .watch-button:hover {
      background: rgb(11, 211, 11);
