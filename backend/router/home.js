@@ -11,7 +11,7 @@ HomeRouter.get("/",(req,res)=>{
 })
 HomeRouter.get("/Home",async(req,res)=>{
      const animeDb = await AnimeDB.find().sort({createdAt: -1}).limit(20);
-        const DBarray = [1,3,6,9]
+        const DBarray = [10,3,6,9]
      const DBAnime = await AnimeDB.find({_id:{$in:DBarray}})
     const Token = req.cookies.anipub;
     let linkI  = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
