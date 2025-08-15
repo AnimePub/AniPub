@@ -286,7 +286,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`,async(req,res)=>{
      const Array = req.url;
      const animeDb = await AnimeDB.find().sort({createdAt:-1}).limit(20)
    const video = await AnimeDB.findById(Number(req.params.AniId))
-    
+
      const newArray = Array.split("/")
     const AniId = Number(newArray[2]) -1 ;
     const AniEP = Number(newArray[3]);
