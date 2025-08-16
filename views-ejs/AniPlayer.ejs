@@ -254,17 +254,7 @@
                  <div class="Profile-div">
                         <div class="Profile" data-anime="<%=value._id%>">
                         <div class="Image-div">
-
-                            <% const IMAGE6 = video.ImagePath;
-                            const IAGE6 = IMAGE6.split("https://");
-                            %> 
-                            <% if (IAGE6 && IAGE6[1]) { %>
-                                <img class="poster" src="<%=value.poster%>" alt=`${value.Name} Poster`>
-                           <% } else {%> 
                         <img class="poster" src="/<%=value.poster%>" alt=`${value.Name} Poster`>
-                            <% } %> 
-
-                          
                         </div>
                         <div class="Title-div"><p class="Title"><%=value.Name%></p></div>
                         <div class="ratings-div">
@@ -397,6 +387,19 @@
     <script src="/playList-Up.js"></script>
     <script src="/ANiPlayer-render.js"></script> 
     <script src="/play.js"> </script>
+    <script>
+       const NEWL = document.querySelectorAll(".poster")
+       NEWL.forEach(value=>{
+        const SRC = value.src;
+       const hiluR = SRC.split("https://");
+       if(hiluR.length === 2) {
+         const SEC = hiluR[1];
+       const ILU = `https://` + SEC;
+       value.src = ILU ; 
+       }
+      
+       })
+    </script>
     <%- include("./include/footer.ejs") %> 
 </body>
 </html>14563
