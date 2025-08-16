@@ -721,6 +721,31 @@ app.post("/update/ext",validAdmin,async (req,res)=>{
 
 })
 
+app.post("/Bulk/Add",async(req,res)=>{
+    const ID = req.body.ID;
+    const ARY = req.body.ARY;
+const Yo = await   AnimeDB.bulkWrite([
+        {updateOne:{
+            filter:{"_id":Number(ID)},
+            update:{
+                $push:{
+                    ep:{
+                        $each:ARY
+                    }
+                }
+            }
+        }}
+    ])
+if(Yo) {
+    res.json(1)
+}
+else {
+    res.json(2)
+}
+
+})
+
+
 // give myself Admin Permission 
 
 app.get("/AdminMake",AuthAcc,(req,res)=>{
