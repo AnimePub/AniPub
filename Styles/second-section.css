@@ -58,6 +58,16 @@
     border-radius: 50%;
    
 }
+.Play-button:hover{
+    opacity: 0.8;
+    background-color: rgb(119, 199, 0);
+}
+.Play-button:hover img {
+    filter: brightness(0);
+}
+.Play-button:active {
+    opacity: 0.7;
+}
 .Add-to-watchlist-button {
     height: 100%;
     width: 50px;

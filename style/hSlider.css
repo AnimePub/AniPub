@@ -101,7 +101,6 @@ img{
     object-fit: cover;
 }
 .watch-button:hover {
-     background: rgb(11, 211, 11);
      opacity: 0.9;
 }
 .watch-button:active {
@@ -136,4 +135,15 @@ img{
 .ep {
     background: rgb(27, 88, 78);
     font-family: Roboto;
+}
+@media screen and (min-width:300px) and (max-width:900px) {
+    .DesCrip {
+        display: none;
+    }
+  
+}
+@media screen and (min-width:300px) and (max-width:600px) {
+  .box {
+    width: 50%;
+   } 
 }

@@ -18,8 +18,9 @@
     <link rel="stylesheet" href="/media2-styles.css">
     <link rel="stylesheet" href="/media-styles.css">
     <link rel="stylesheet" href="/videoPlayerHeader.css">
-    <link rel="stylesheet" href="/body-scrollbar.css">
-  
+    <link rel="stylesheet" href="/body-scrollbar.css"> 
+    <link rel="stylesheet" href="/Footer.css">
+ 
 </head>
 <body style="position: relative;">
 
@@ -37,18 +38,11 @@
         <div class="video-player-box">
             <% if(video.type === "iframe") {%>
                 <% if(Number(AniEP) === 0 ) {%> 
-                <iframe  <%=video.link%> sandbox="allow-same-origin allow-scripts"  allowfullscreen="allowfullscreen"
-        mozallowfullscreen="mozallowfullscreen" 
-        msallowfullscreen="msallowfullscreen" 
-        oallowfullscreen="oallowfullscreen" 
-        webkitallowfullscreen="webkitallowfullscreen" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen style="height:100%;width: 100%;"></iframe>
+                <iframe  <%=video.link%> sandbox="allow-same-origin allow-scripts"  
+      scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen style="height:100%;width: 100%;"></iframe>
                <% } else { %>
                 <% const Episode = Number(AniEP) - 1 %> 
-                <iframe  <%=video.ep[Episode].link%> sandbox="allow-same-origin allow-scripts"  allowfullscreen="allowfullscreen"
-        mozallowfullscreen="mozallowfullscreen" 
-        msallowfullscreen="msallowfullscreen" 
-        oallowfullscreen="oallowfullscreen" 
-        webkitallowfullscreen="webkitallowfullscreen" scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen  style="height:100%;width: 100%;"></iframe>
+                <iframe  <%=video.ep[Episode].link%> sandbox="allow-same-origin allow-scripts"   scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen  style="height:100%;width: 100%;"></iframe>
                <%}%>
                 <% } else {%> 
             <video  id="my-video"
@@ -347,6 +341,7 @@
 
 
 
+
     <script id="dsq-count-scr" src="//anipub.disqus.com/count.js" async></script>
     <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
     <script src="/Changer-AniPlayer.js"></script> 
@@ -361,5 +356,6 @@
     <script src="/play.js">
        
     </script>
+    <%- include("./include/footer.ejs") %> 
 </body>
 </html>
