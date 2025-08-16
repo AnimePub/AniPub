@@ -1,0 +1,121 @@
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.logo-div img {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+.logo-div img:hover {
+    transform: rotate(-10deg) scale(1.2);
+    filter: drop-shadow(0 0 10px #ff3c3c) drop-shadow(0 0 15px #ff00ff);
+}
+
+.navbar {
+    display: flex;
+    gap: 30px;
+    position: relative;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0%;
+    height: 3px;
+    background: #ff3c3c;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #ff3c3c;
+    text-shadow: 0 0 8px #ff3c3c, 0 0 15px #ff00ff;
+    transform: scale(1.1) rotate(-2deg);
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.nav-link.glitch:hover {
+    animation: glitch 0.3s infinite;
+}
+
+.page-title {
+    text-align: center;
+    padding: 50px 20px 20px 20px;
+    color: #fff;
+    text-shadow: 0 0 5px #ff3c3c, 0 0 10px #ff00ff;
+}
+
+.page-title h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #ff3c3c, #ff00ff, #00f0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: hueShift 6s linear infinite;
+}
+
+.page-title p {
+    font-size: 1.3rem;
+    color: #ccc;
+}
+
+@keyframes hueShift {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .page-title h1 {
+        font-size: 2rem;
+    }
+    .page-title p {
+        font-size: 1rem;
+    }
+}
