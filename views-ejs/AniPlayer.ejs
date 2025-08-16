@@ -125,8 +125,12 @@
                             <% } %> 
                         </div>
                         <div class="ep-title">
+                            <% if(video.ep[i].name) {%> 
                         <p><%= video.ep[i].name%> No.<%= i+2 %></p>
-                        </div>
+                        <% } else { %>
+                             <p>Episode No.<%= i+2 %></p>
+                            <% } %>  
+                    </div>
                         </div>
                         
                         <div class="list-button-container">
