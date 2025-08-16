@@ -254,7 +254,17 @@
                  <div class="Profile-div">
                         <div class="Profile" data-anime="<%=value._id%>">
                         <div class="Image-div">
-                            <img class="poster" src="/<%=value.poster%>" alt=`${value.Name} Poster`>
+
+                            <% const IMAGE6 = video.ImagePath;
+                            const IAGE6 = IMAGE6.split("https://");
+                            %> 
+                            <% if (IAGE6 && IAGE6[1]) { %>
+                                <img class="poster" src="<%=value.poster%>" alt=`${value.Name} Poster`>
+                           <% } else {%> 
+                        <img class="poster" src="/<%=value.poster%>" alt=`${value.Name} Poster`>
+                            <% } %> 
+
+                          
                         </div>
                         <div class="Title-div"><p class="Title"><%=value.Name%></p></div>
                         <div class="ratings-div">

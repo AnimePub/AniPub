@@ -3,7 +3,7 @@ body {
     margin: 0;
     background-color: rgb(65, 65, 65);
 }
-.container , .container2 , .container3 {
+.container , .container2 , .container3 , .form5{
     padding: 20px;
     background: rgba(0, 0, 0, 0.76);
     display: flex;
@@ -15,7 +15,7 @@ body {
 p {
     color: white;
 }
-.container div , .container2 div , .container3 div{
+.container div , .container2 div , .container3 div,.form5 div{
     width: 80%;
     min-width: 280px;
 }
@@ -59,6 +59,8 @@ textarea {
 }
 .Search-Box {
     display: flex;
+    flex-direction: column;
+    row-gap: 20px;
     justify-content: center;
     align-items: center;
     height: 200px;
@@ -67,7 +69,7 @@ textarea {
     border-top-right-radius: 10px;
     column-gap: 10px;
 }
-.upLoad,.upDate , .update-existing{
+.upLoad,.upDate , .update-existing , .BulkAdd{
     background-color: rgb(0, 255, 0);
     border: 0;
     height: 30px;
@@ -77,7 +79,10 @@ textarea {
 .upDate {
     background: rgb(255, 0, 255);
 }
-.upDate:hover , .upLoad:hover , .update-existing:hover {
+.BulkAdd {
+     background: rgb(255, 0, 76);
+}
+.upDate:hover , .upLoad:hover , .update-existing:hover , .BulkAdd:hover {
     opacity: 0.8;
 }
 .button-div {

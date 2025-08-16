@@ -1,8 +1,9 @@
-
+const SELECT = document.querySelector(".BULK");
 const genreList = [];
+const form5 = document.querySelector(".form5");
 const updateExisting = document.querySelector(".update-existing")
 const form3 = document.querySelector(".container3");
-
+const BulkADDB = document.querySelector(".BulkAdd");
 
 const genre =  document.querySelectorAll(".genre");
 genre.forEach(value=>{
@@ -127,16 +128,20 @@ const upDate = document.querySelector(".upDate");
 upLoad.addEventListener("click",()=>{
     form.style.display ="flex";
     form1.style.display = "none";
-    form3.style.display = "none"
+    form3.style.display = "none";
+    form5.style.display = "none";
+    SELECT.style.display = "none"
     
 })
 upDate.addEventListener('click',()=>{
     form1.style.display = "flex"
     form.style.display ="none";
+    SELECT.style.display = "none"
     form3.style.display = "none"
+     form5.style.display = "none"
 })
 
-const option = document.querySelector("select");
+const option = document.querySelector(".Slct");
 const title = document.querySelector(".title-div");
 const Name = document.querySelector(".name-div");
 const link = document.querySelector(".link-div");
@@ -146,7 +151,9 @@ const img = document.querySelector(".img-div");
 updateExisting.addEventListener('click',()=>{
      form1.style.display = "none"
     form.style.display ="none"
+    SELECT.style.display = "none"
     form3.style.display = "flex"
+     form5.style.display = "none";
 })
 
 option.addEventListener("change",()=>{
@@ -230,4 +237,43 @@ form3.addEventListener('submit',(e)=>{
      else {
         alert("Option Value Not Set Bro");
      }
+})
+
+BulkADDB.addEventListener('click',()=>{
+    SELECT.style.display = "flex"
+})
+let HTMLTOADD = "";
+SELECT.addEventListener('change',()=>{
+    form1.style.display = "none"
+    HTMLTOADD = "";
+    form.style.display ="none"
+    form3.style.display = "none"
+     form5.style.display = "flex";
+    generate(Number(SELECT.value))
+})
+
+const generate = (a) =>{
+  
+    HTMLTOADD += `<div>
+    <p>Anime ID</p>
+    <input required    type="number" class="ID" name="ID" placeholder="ID">
+</div>`
+    for (let i = 0; i < a; i++) {
+        HTMLTOADD += `<div>
+        <p>Link ${i+1}</p>
+            <input required class="link" type="text" name="link" placeholder=" ${i+1}">
+        </div>`
+    }
+    HTMLTOADD += `<div class="button-div">
+    <button>Submit</button>
+</div>`
+
+form5.innerHTML = HTMLTOADD;
+}
+
+form5.addEventListener('submit',(e)=>{
+    e.preventDefault()
+   const FormDATA = new FormData(form5);
+   const ARY = FormDATA.getAll('link');
+    console.log(ARY)
 })

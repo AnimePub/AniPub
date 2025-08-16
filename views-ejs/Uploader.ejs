@@ -12,11 +12,26 @@
 
 <body>
     <div class="main-body">
+     
+        
         <div class="Search-Box">
-            <button class="upLoad">Upload New</button>
+           <div>    <button class="upLoad">Upload New</button>
             <button class="upDate">Add Episode</button>
             <button class="update-existing">Edit Ep</button>
+            <button class="BulkAdd">Bulk Add EP</button>    
         </div>
+         <div class="Many_DIV">
+        <select class="BULK" style="display: none;">
+            <option>Chose How Many You Want to Add</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50">50</option>
+        </select>
+    </div>
+        </div>
+
+
     <form class="container" style="display: none;">
 <div>
     <p>ID</p>
@@ -163,7 +178,7 @@
             <input required type="text" name="EP">
         </div>
         <div>
-            <select>
+            <select class="Slct">
                 <option>Select</option>
                 <option value="link">Link</option>
                 <option value="name">name</option>
@@ -187,13 +202,15 @@
     <p>Image</p>
     <input type="text" class="image" name="image" placeholder="image">
 </div>
-<div class="button-div">
-    <button>Submit</button>
-</div>
+
     </form>
-    
-    
-    
+    <form class="form5" style="display: none;">
+      
+
+
+
+    </form>
+   
     
     </div>
 
