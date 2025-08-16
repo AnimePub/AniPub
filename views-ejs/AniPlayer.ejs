@@ -32,17 +32,25 @@
 
     <div class="first-section">
         <div class="cover-pic-div">
-            <img class="cover-pic" src="/<%=video.Cover%>">
+                  <% const IMAGE1 = video.ImagePath;
+                            const IAGE1 = IMAGE1.split("https://");
+                            %> 
+                            <% if (IAGE1 && IAGE1[1]) { %>
+                                       <img class="cover-pic" src="<%=video.Cover%>">
+                           <% } else {%> 
+                              <img class="cover-pic" src="/<%=video.Cover%>">
+                            <% } %> 
+     
         </div>
        <div class="Container-No1">
         <div class="video-player-box">
             <% if(video.type === "iframe") {%>
                 <% if(Number(AniEP) === 0 ) {%> 
                 <iframe  <%=video.link%> sandbox="allow-same-origin allow-scripts"  
-      scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen style="height:100%;width: 100%;"></iframe>
+     gyroscope; picture-in-picture" autoplay; scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen geolocation style="height:100%;width: 100%;"></iframe>
                <% } else { %>
                 <% const Episode = Number(AniEP) - 1 %> 
-                <iframe  <%=video.ep[Episode].link%> sandbox="allow-same-origin allow-scripts"   scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen  style="height:100%;width: 100%;"></iframe>
+                <iframe  <%=video.ep[Episode].link%> sandbox="allow-same-origin allow-scripts" gyroscope; picture-in-picture" autoplay; geolocation;  scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen  style="height:100%;width: 100%;"></iframe>
                <%}%>
                 <% } else {%> 
             <video  id="my-video"
@@ -78,7 +86,14 @@
                 <div class="list"  >
                         <div class="li-fs" data-ep="0">
                         <div class="img-div">
-                        <img src="/<%= video.ImagePath %> " alt="">
+                              <% const IMAGE2 = video.ImagePath;
+                            const IAGE2 = IMAGE2.split("https://");
+                            %> 
+                            <% if (IAGE2 && IAGE2[1]) { %>
+                                 <img  src="<%=video.ImagePath %> " alt="">
+                           <% } else {%> 
+                       <img  src="/<%=video.ImagePath %> " alt="">
+                            <% } %> 
                         </div>
                         <div class="ep-title">
                         <p><%= video.name%> No.1 </p>
@@ -100,7 +115,14 @@
                         <div class="list"  >
                         <div class="li-fs" data-ep="<%=i+1%>"  >
                         <div class="img-div">
-                        <img src="/<%= video.ImagePath %> " alt="">
+                            <% const IMAGE3 = video.ImagePath;
+                            const IAGE3 = IMAGE3.split("https://");
+                            %> 
+                            <% if (IAGE3 && IAGE3[1]) { %>
+                                 <img  src="<%=video.ImagePath %> " alt="">
+                           <% } else {%> 
+                       <img  src="/<%=video.ImagePath %> " alt="">
+                            <% } %> 
                         </div>
                         <div class="ep-title">
                         <p><%= video.ep[i].name%> No.<%= i+2 %></p>
@@ -130,7 +152,18 @@
     <div class="Second-Section">
         <div class="profile-container">
         <div class="profile-div">
-            <img class="poster"  alt="" src="/<%=video.ImagePath%>">
+            
+
+                    <% const IMAGE4 = video.ImagePath;
+                            const IAGE4 = IMAGE4.split("https://");
+                            %> 
+                            <% if (IAGE4 && IAGE4[1]) { %>
+                                    <img class="poster"  alt="" src="<%=video.ImagePath%>">
+                           <% } else {%> 
+                               <img class="poster"  alt="" src="/<%=video.ImagePath%>">
+                            <% } %> 
+
+    
         <div class="buttons">
 
             <button class="Play-button">
@@ -353,9 +386,7 @@
     <script src="/home.js"></script>
     <script src="/playList-Up.js"></script>
     <script src="/ANiPlayer-render.js"></script> 
-    <script src="/play.js">
-       
-    </script>
+    <script src="/play.js"> </script>
     <%- include("./include/footer.ejs") %> 
 </body>
-</html>
+</html>14563
