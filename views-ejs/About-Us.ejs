@@ -4,68 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | AniPub</title>
-    <meta name="description" content="About Us Page - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
-
-    <link rel="stylesheet" href="hc.css">
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="main-body.css">
+    <meta name="description" content="About Us Page - A Free Anime Watching Site built by Anime Lovers for Anime Lovers">
+    <link rel="stylesheet" href="/DynamicScrollbar.css">
+    <link rel="stylesheet" href="/about-us.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="ScrollBar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <%- include("./include/header.ejs")  %> 
-    <%- include("./include/nav.ejs") %> 
-      
+    <%- include('include/JHeader.ejs') %>
+    <div class="hero-section">
+        <video autoplay muted loop id="hero-video">
+            <source src="/one-piece-amv-welcome-to-onigashima-1080-publer.io.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome to AniPub</h1>
+            <p>The Ultimate Hub for Anime Lovers</p>
+        </div>
+    </div>
 
-        <div class="main-body">
-            <h1>Assalamualaikum --!</h1>
-            <h2>Welcome to AniPub! 🌊🍃</h2>
-            <p>
-                Ahoy, Nakama! 🏴‍☠️ Are you ready to embark on an epic adventure through the vast seas of anime? Look no further, because AniPub is here to be your trusty ship on this exhilarating journey! Just like the Straw Hat Pirates chasing the legendary One Piece, we’re on a quest to create the ultimate anime hub that every fan has been dreaming of!
-            </p>
-            <h3>
-                *What is AniPub? 🌟
-            </h3>
-            <p>
-                AniPub is not just another anime website; it’s a vision—a vibrant community where anime lovers from all walks of life can come together to celebrate their passion! Whether you’re a seasoned otaku or just dipping your toes into the world of anime, AniPub is designed to be your go-to destination for discovering, exploring, and enjoying everything anime has to offer.
-
-            </p>
-            <p>
-                Imagine a treasure chest overflowing with anime goodness—this is what AniPub is all about! From classic series that defined the genre to the latest hits that are taking the world by storm, we’re dedicated to building a platform that will help you find your next favorite show, connect with fellow fans, and share your love for anime!
-            </p>
-            <h2>
-                Our Vision:
-            </h2>
-            <p>
-                As we’re currently in the production phase, we’re working hard to bring you an incredible experience that will include:
-            </p>
-            <p>
-                1.A Comprehensive Anime Database: A place where you can find detailed information about your favorite shows, characters, and genres.
-            </p>
-            <p>2.User-Friendly Navigation: An intuitive design that makes it easy to explore and discover new content.</p>
-            <p>3.Community Engagement: A platform for fans to share their thoughts, reviews, and recommendations, fostering a sense of camaraderie among anime enthusiasts.</p>
-            <p>4.Personalized Features: Tailored recommendations and interactive elements that will make your experience unique and enjoyable.</p>
-            <h3>Join the Crew! 🤝</h3>
-            <p>Just like Luffy and his crew, we believe that teamwork makes the dream work! We invite you to contribute to AniPub and help us shape this exciting project! Whether you want to share your ideas, suggest features, or help with design, your input is invaluable. Together, we can create a vibrant community that celebrates our love for anime!</p>
-
-            <h2>How to Contribute:</h2>
-            <p>1.Fork the Repository: Create your own copy of AniPub to work on. This is your chance to make your mark!</p>
-            <p>2.Share Your Ideas: We want to hear your thoughts! Whether it’s features you’d love to see or content you think we should include, your feedback is crucial.</p>
-            <p>3.Collaborate with Us: Join our discussions and help us brainstorm ways to make AniPub the best anime site out there!</p>
-            <p>4.Spread the Word: Share AniPub with your friends and fellow anime enthusiasts! The more, the merrier!</p>
-            <p>Set Sail with Us! 🚀 So what are you waiting for, Nakama? Join us on this incredible journey and help us build the anime site that everyone has been looking for! With your passion and creativity, we can make AniPub the ultimate destination for anime fans everywhere!</p>
-            <p>Let’s go, and may our adventure be as thrilling as the Grand Line! 🌊✨ Together, we’ll navigate the waves of anime, uncover hidden treasures, and create unforgettable memories. So grab your straw hat, gather your crew, and let’s set sail on this amazing adventure with AniPub! 🏴‍☠️</p>
+    <div class="main-content">
+        <div class="content-section right-align full-width animate-section">
+            <div class="text-content">
+                <h2>What is AniPub? 🌟</h2>
+                <p>
+                    AniPub is not just another anime website; it’s a vibrant community where anime lovers unite to celebrate their passion! Whether you’re a seasoned otaku or just discovering anime, AniPub is your ultimate destination.
+                </p>
+            </div>
+            <div class="image-content">
+                <img src="Naruto.png" alt="Naruto">
+            </div>
         </div>
 
+        <div class="content-section left-align full-width animate-section">
+            <div class="image-content">
+                <img src="Eren.jpg" alt="Eren">
+            </div>
+            <div class="text-content">
+                <h2>Our Vision 🚀</h2>
+                <p>
+                    We’re crafting a comprehensive anime database, user-friendly navigation, community engagement, and personalized features — all with a futuristic vibe.
+                </p>
+            </div>
+        </div>
 
+        <div class="content-section right-align full-width animate-section">
+            <div class="text-content">
+                <h2>Join the Crew! 🤝</h2>
+                <p>
+                    Just like Luffy and his crew, teamwork makes the dream work! Share ideas, suggest features, or help with design — your input shapes AniPub.
+                </p>
+            </div>
+            <div class="image-content">
+                <img src="Cid.jpg" alt="Cid">
+            </div>
+        </div>
 
+        <div class="team-section full-width animate-section">
+            <h2>Meet the Team</h2>
+            <div class="team-members">
+                <a href="https://github.com/Adnan-D-Luffy" target="_blank" class="team-member-link">
+                    <div class="team-member">
+                        <img src="Bell.jpg" alt="Team Member 1">
+                        <h3>Adnan D Luffy</h3>
+                        <p>Founder & Lead Developer</p>
+                    </div>
+                </a>
 
-     
-      <script src="navigator.js"></script> 
-    </body>
+                <a href="https://github.com/Junaid433" target="_blank" class="team-member-link">
+                    <div class="team-member">
+                        <img src="Zoro.png" alt="Team Member 2">
+                        <h3>Junaid Rahman</h3>
+                        <p>UI/UX Designer</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="cta-section full-width animate-section">
+            <h2>Ready to Contribute?</h2>
+            <p>Join us on our journey to create the ultimate anime hub!</p>
+            <a href="https://github.com/Adnan-D-Luffy/AniPub" target="_blank" class="cta-button">Get Involved</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 AniPub. All Rights Reserved.</p>
+    </div>
+
+    <script src="/navigator.js"></script> 
+    <script>
+        const sections = document.querySelectorAll('.animate-section');
+        window.addEventListener('scroll', () => {
+            const triggerBottom = window.innerHeight / 1.2;
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if(sectionTop < triggerBottom){
+                    section.classList.add('show');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
