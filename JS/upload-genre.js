@@ -274,6 +274,33 @@ form5.innerHTML = HTMLTOADD;
 form5.addEventListener('submit',(e)=>{
     e.preventDefault()
    const FormDATA = new FormData(form5);
-   const ARY = FormDATA.getAll('link');
-    console.log(ARY)
+   const ARD = FormDATA.getAll('link');
+   const ID = form5.ID.value ;
+   const ARY = [];
+   for (let i = 0; i < ARD.length; i++) {
+    ARY.push({link:ARD[i]})
+   }
+   const OBJ = {
+    ID,ARY
+   }
+
+   fetch('/Bulk/Add',{
+    'method':'POST',
+    'headers':{
+        'Content-Type':'application/json'
+    },
+    body:JSON.stringify(OBJ)
+   })
+      .then(res=>res.json())
+    .then(info=>{
+         if(Number(info) === 1) {
+                alert("Bulk Added Successfully");
+                window.location.reload();
+            }
+            else {
+                 alert("There was an Error");
+                window.location.reload();
+            }
+    })
+
 })
