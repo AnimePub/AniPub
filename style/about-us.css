@@ -134,7 +134,7 @@ body {
     margin-bottom: 1.5rem;
     color: #00ffff;
     text-transform: uppercase;
-    text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+ 
     background: linear-gradient(90deg, #ff00ff, #00ffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -160,7 +160,6 @@ body {
     margin-bottom: 4rem;
     color: #00ffff;
     text-transform: uppercase;
-    text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
 }
 
 .team-members {
