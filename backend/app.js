@@ -528,20 +528,8 @@ app.use(Notify)
 
 //Update --- false auth to cheking
 app.get("/About-Us",(req,res)=>{
-    const Token = req.cookies.anipub;
-    if(Token){
-        jwt.verify(Token,"I Am Naruto",(err,data)=>{
-            if(err){
-                console.log(err)
-            }
-            const userInfo = {ID:data.id};
-           
-             res.render("About-Us",{SectionName:"About Us Section", Auth:true,userInfo});
+    res.render("About-Us");
 
-        })
-    }else{
-    res.render("About-Us",{SectionName:"About Us Section",Auth:false});
-}
 })
 
 app.get("/Privacy-Policy",(req,res)=>{
@@ -721,7 +709,7 @@ app.post("/update/ext",validAdmin,async (req,res)=>{
 
 })
 
-app.post("/Bulk/Add",async(req,res)=>{
+app.post("/Bulk/Add",validAdmin,async(req,res)=>{
     const ID = req.body.ID;
     const ARY = req.body.ARY;
 const Yo = await   AnimeDB.bulkWrite([
