@@ -392,17 +392,11 @@
     <script src="/ANiPlayer-render.js"></script> 
     <script src="/play.js"> </script>
     <script>
-       const NEWL = document.querySelectorAll(".poster")
-       NEWL.forEach(value=>{
-        const SRC = value.src;
-       const hiluR = SRC.split("https://");
-       if(hiluR.length === 2) {
-         const SEC = hiluR[1];
-       const ILU = `https://` + SEC;
-       value.src = ILU ; 
-       }
-      
-       })
+       const NEWLS = document.querySelectorAll(".poster") ;
+       NEWLS.forEach(value=>{ const SRC = value.src; 
+        const hiluR = SRC.split("https://"); 
+        if(hiluR.length >= 3 ) { const SEC = hiluR[2];
+             const ILU = `https://` + SEC; value.src = ILU ; } });
     </script>
     <%- include("./include/footer.ejs") %> 
 </body>
