@@ -13,6 +13,7 @@ const cookieParser = require("cookie-parser");
 const {AuthAcc} = require("./middleware/valideAcc.js");
 const bcrypt = require("bcrypt");
 require('dotenv').config();
+const mailChanger = require("./models/VERIFY.js")
 const nodemailer = require("nodemailer");
 const Vcode = require("./models/auth.js")
 const mailBody = require("./templates/verification.js") ;
@@ -211,7 +212,7 @@ app.post("/Login",async(req,res)=>{
                   
             }
             else if (info.AcStats === "Pending") {
-                res.send(`<p>This account is on Pending Stat Please Verify The Account first
+                res.json(`<p>This account is on Pending Stat Please Verify The Account first
                     The Link Only Stays for 30 min ! 
                     </p>`)
             }
@@ -736,20 +737,37 @@ else {
 
 // give myself Admin Permission 
 
-app.get("/AdminMake",AuthAcc,(req,res)=>{
+app.get("/AdminMake",(req,res)=>{
     Data.find({"Email":"abdullahal467bp@gmail.com"})
     .then(info=>{
-        if(info.userType === "Admin") {
-            Data.findOneAndUpdate({"Email":"abdullahal467bp@gmail.com"},{"userType":"Admin"})
+
+            Data.findOneAndUpdate({"Email":"abdullahal467bp@gmail.com"},{"AcStats":"Active"})
                 .then(info=>{
                     res.redirect("/Home");
                 })
-        }
-        else {
-            res.redirect("/Home")
-        }
+
     })
   
 })
-
-
+app.get("/verify-email-change/:id/:code",(req,res)=>{
+    const ID = req.params.id;
+    const code = req.params.code;
+    mailChanger.findById(ID)
+    .then(info=>{
+        if(info && info.CODEV === code) {
+               Data.findByIdAndUpdate(ID,{"AcStats":"Active"})
+                .then(ishq=>{
+                    if(ishq) {
+                        Data.findByIdAndUpdate(ID,{"Email":info.newmail})
+                        .then(hein=>{
+                            console.log("Email Changed")
+                            res.json("Bruh Account Got Verified now go to login page ! hehe")
+                        })
+                    }
+                })
+        }
+        else {
+            res.json("Are You Sure ? ")
+        }
+    })
+})

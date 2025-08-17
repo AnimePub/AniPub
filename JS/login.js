@@ -34,6 +34,9 @@ function Changer (data) {
     else if (data.includes("/Home")){
         window.location.href = "/Home";
     }
+    else {
+        warning("You can't login right now")
+    }
 }
 
 let wrhtml = "";
