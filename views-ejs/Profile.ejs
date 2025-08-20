@@ -3,112 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" href="/hc.css">
-    <meta name="description" content="Profile Page - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
-
-    <link rel="stylesheet" href="/profile.css">
+    <title>Profile - Anime Lovers Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="/JProfile.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Tenali+Ramakrishna&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    <%- include("./include/header.ejs")  %> 
-    <%- include("./include/nav.ejs") %> 
-      
-    <main class="box">
-       <div class="container">
-        <div class="img-box">
-            <div class="bg-img-div">
-                <img class="bg-img" src="/Esdeath.jpg" alt="">
-            </div>
-            <div class="profile-pic-div">
-                <img class="profile-pic" 
-                <% if(userInfo.Gender === "Male") {%> 
-                src="/ProfilePic/boys/<%=userInfo.image %> "
-                <% } else {%>
-                    src="/ProfilePic/<%=userInfo.image %> "
-                <% } %>     
-                alt="">
-            </div>
-
+    <header>
+        <div class="container header-content">
+            <a href="" class="logo">
+                <img src="/favicon.ico" alt="AniPub Logo" class="logo-icon">
+                AniPub
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/home">Anime</a></li>
+                    <li><a href="/home">Community</a></li>
+                    <li><a href="/home" class="active">Profile</a></li>
+                    <li><a href="/home">Settings</a></li>
+                </ul>
+            </nav>
         </div>
-
-        <div>
-            <p><%= userInfo.Bio %> </p>
-
-        </div>
-        <div class="other-details">
-            <div class="name-div">
-                <p>Name :</p> 
-               <div class="det-container">
-                <p style="margin-left: 10px;" class="name"  id="name" autocomplete="additional-name"> <%= userInfo.Name %> </p>
-               </div> 
-            </div>
-            <div class="mail-div">
-                 <p>Email : </p> 
-                 <div class="det-container">
-                    <a href="mailto: <%=userInfo.Email%>">
-                         <p style="margin-left: 10px;" class="email" id="Mail" type="email"> <%=userInfo.Email%></p>
-                    </a>
-               
-                 </div>   
-                
-            </div>
-            <div class="genre-div">
-                <p>Fav.Genre :</p> 
-                <div class="det-container">
-                    <% const Genre = userInfo.Genre ;%>
-                    <% if(Genre === null) {%>
-
- <span class="genre" id="">No Fav Genre Chosen</span>
-
-
-                   <% } else {%> 
-                    <% Genre.forEach(value => { %>
-                              <a target="_blank" href="https://anipub.adnandluffy.site/genre/search?<%=value%> ">
-                                <span class="genre" id="<%= value %>"><%= value%></span>
-                              </a> 
-                  <%  }); %>  
-               <% } %> 
+    </header>
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="/Esdeath.jpg" alt="Cover photo" class="profile-bg">
+                    <div class="profile-img-container">
+                        <img class="profile-img" 
+                        <% if(userInfo.Gender === "Male") {%> 
+                        src="/ProfilePic/boys/<%=userInfo.image %>"
+                        <% } else {%>
+                            src="/ProfilePic/<%=userInfo.image %>"
+                        <% } %>     
+                        alt="Profile picture">
+                    </div>
                 </div>
-               
-                
-            </div>
-            <div class="hobby-div">
-                <p>Hobby : </p>
-                <div class="det-container">
-                 <p class="hobby" id="hobby"></p>
-                </div>  
-            </div>
-            <div class="address-div">
-                <p>Address : </p>
-                <div class="det-container">
-                 <p class="address" id="address" style="margin-left: 10px; white-space:wrap; width: 100%;"><%= userInfo.Address %> </p>
-                
+                <div class="profile-body">
+                    <h2 class="profile-name"><%= userInfo.Name %></h2>
+                    <p class="profile-bio"><%= userInfo.Bio %></p>
+                    
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Watched</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Following</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Followers</div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
                 </div>
-                
-            </div>
-            <div class="relationship-status-div">
-                <p style="font-size: 16px;">Relationship Status : </p>
-                <div class="det-container">
-                  <p class="rlsn-status" id="rlsns" style="margin-left: 10px; white-space:wrap; width: 100%;"><%= userInfo.Relation %>  </p>
-             
-                </div>
-               
             </div>
             
+            <div class="details-card">
+                <div class="details-header">
+                    <h2 class="details-title">Profile Details</h2>
+                    <i class="fas fa-user-circle" style="font-size: 1.8rem; color: var(--primary);"></i>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="detail-content">
+                        <div class="detail-label">Full Name</div>
+                        <div class="detail-value"><%= userInfo.Name %></div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="detail-content">
+                        <div class="detail-label">Email Address</div>
+                        <a href="mailto: <%=userInfo.Email%>" class="detail-value">
+                            <%=userInfo.Email%>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="detail-content">
+                        <div class="detail-label">Favorite Genres</div>
+                        <div class="genre-list">
+                            <% const Genre = userInfo.Genre ;%>
+                            <% if(Genre === null) { %>
+                                <span class="genre-tag">No favorites chosen</span>
+                            <% } else { %> 
+                                <% Genre.forEach(value => { %>
+                                    <a href="https://anipub.adnandluffy.site/genre/search?<%=value%>" target="_blank" class="genre-tag">
+                                        <%= value%>
+                                    </a> 
+                                <% }); %>  
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="detail-content">
+                        <div class="detail-label">Hobbies</div>
+                        <div class="detail-value" id="hobby">Anime, Gaming, Drawing</div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="detail-content">
+                        <div class="detail-label">Address</div>
+                        <div class="detail-value"><%= userInfo.Address %></div>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <div class="detail-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="detail-content">
+                        <div class="detail-label">Relationship Status</div>
+                        <div class="detail-value"><%= userInfo.Relation %></div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
-       </div>
-    </main>
-
-
-    
-    <script src="/navigator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.profile-card, .details-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                    card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.2)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+                });
+            });
+            setTimeout(() => {
+                document.getElementById('hobby').textContent = "Anime, Gaming, Drawing";
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
