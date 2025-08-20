@@ -5,387 +5,458 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Anime Player - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
     <meta name="description" content="<%=video.DescripTion %> ">
-    <meta name="keywords" content="<% video.Genres %> ">
+    <meta name="keywords" content="<%= video.Genres %> ">
     <title>AniPub | <%=video.Name %> </title>
-    <link rel="stylesheet" href="/second-section.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/second-section.css">
     <link rel="stylesheet" href="/first-section.css">
     <link rel="stylesheet" href="/third-section.css">
     <link rel="stylesheet" href="/info-container.css">
     <link rel="stylesheet" href="/media2-styles.css">
+    <link rel="stylesheet" href="/media2-styles.css">
+    <link rel="stylesheet" href="/JPlayer.css">
+    <link rel="stylesheet" href="/JPlayer.js">
     <link rel="stylesheet" href="/media-styles.css">
     <link rel="stylesheet" href="/videoPlayerHeader.css">
     <link rel="stylesheet" href="/body-scrollbar.css"> 
     <link rel="stylesheet" href="/Footer.css">
- 
+   
 </head>
 <body style="position: relative;">
-
-
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">AniPub</div>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search anime...">
+                </div>
+                <div class="user-actions">
+                    <button class="user-action-btn"><i class="fas fa-bookmark"></i></button>
+                    <button class="user-action-btn"><i class="fas fa-bell"></i></button>
+                    <button class="user-action-btn"><i class="fas fa-user"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
     
-    <%- include("./include/aniHeader.ejs") %> 
-
-
-
-    <div class="first-section">
-        <div class="cover-pic-div">
-                  <% const IMAGE1 = video.ImagePath;
-                            const IAGE1 = IMAGE1.split("https://");
-                            %> 
-                            <% if (IAGE1 && IAGE1[1]) { %>
-                                       <img class="cover-pic" src="<%=video.Cover%>">
-                           <% } else {%> 
-                              <img class="cover-pic" src="/<%=video.Cover%>">
-                            <% } %> 
-     
-        </div>
-       <div class="Container-No1">
-        <div class="video-player-box">
-            <% if(video.type === "iframe") {%>
-                <% if(Number(AniEP) === 0 ) {%> 
-                <iframe  <%=video.link%> sandbox="allow-same-origin allow-scripts"  
-     gyroscope; picture-in-picture" autoplay; scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen geolocation style="height:100%;width: 100%;"></iframe>
-               <% } else { %>
-                <% const Episode = Number(AniEP) - 1 %> 
-                <iframe  <%=video.ep[Episode].link%> sandbox="allow-same-origin allow-scripts" gyroscope; picture-in-picture" autoplay; geolocation;  scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen  style="height:100%;width: 100%;"></iframe>
-               <%}%>
-                <% } else {%> 
-            <video  id="my-video"
-            class="video-js vjs-matrix video-player "
-            controls
-            autoplay
-            preload="auto"
-            data-setup="{}">
-            <% if(video.type === "mp4") {%> 
-                <% if(Number(AniEP) === 0 ) {%> 
-                <source src="/<%=video.link%>" type="video/mp4">
-                    <% } else { %> 
-                         <% const Episode = Number(AniEP) - 1 %> 
-                      <source src="/<%=video.ep[Episode].link%>" type="video/mp4">
-        <% } %> 
-        
-                <% } else { %>
-                      <% if(Number(AniEP) === 0 ) {%> 
-              <source src="<%=video.link%>" type="video/mp4">
-                        <% } else {%> 
-                               <% const Episode = Number(AniEP) - 1 %> 
-                            <source src="<%=video.ep[Episode].link%>" type="video/mp4">
-                            <% } %> 
-            <% } %>  
-        </video>
-    <script src="/videoPlay.js"></script>
-
-        <% } %> 
-        </div>
-        <div class="Ep-section">
-            <div class="Ep-list-title"> Next EP:-</div>
-            <div class="list-div-container">
-                <div class="list"  >
-                        <div class="li-fs" data-ep="0">
-                        <div class="img-div">
-                              <% const IMAGE2 = video.ImagePath;
+    <div class="container">
+        <div class="main-content">
+            <div class="main-column">
+                <!-- Video Player Section -->
+                <section class="video-section">
+                    <div class="video-container">
+                        <% if(video.type === "iframe") {%>
+                            <% if(Number(AniEP) === 0 ) {%> 
+                            <iframe  <%=video.link%> sandbox="allow-same-origin allow-scripts"  
+                 gyroscope; picture-in-picture" autoplay; scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen geolocation style="height:100%;width: 100%;"></iframe>
+                           <% } else { %>
+                            <% const Episode = Number(AniEP) - 1 %> 
+                            <iframe  <%=video.ep[Episode].link%> sandbox="allow-same-origin allow-scripts" gyroscope; picture-in-picture" autoplay; geolocation;  scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen  style="height:100%;width: 100%;"></iframe>
+                           <%}%>
+                            <% } else {%> 
+                        <video  id="my-video"
+                        class="video-js vjs-matrix video-player "
+                        controls
+                        autoplay
+                        preload="auto"
+                        data-setup="{}">
+                        <% if(video.type === "mp4") {%> 
+                            <% if(Number(AniEP) === 0 ) {%> 
+                            <source src="/<%=video.link%>" type="video/mp4">
+                                <% } else { %> 
+                                     <% const Episode = Number(AniEP) - 1 %> 
+                                  <source src="/<%=video.ep[Episode].link%>" type="video/mp4">
+                    <% } %> 
+                            
+                            <% } else { %>
+                                  <% if(Number(AniEP) === 0 ) {%> 
+                          <source src="<%=video.link%>" type="video/mp4">
+                                    <% } else {%> 
+                                           <% const Episode = Number(AniEP) - 1 %> 
+                                        <source src="<%=video.ep[Episode].link%>" type="video/mp4">
+                                        <% } %> 
+                        <% } %>  
+                    </video>
+                    <% } %> 
+                    </div>
+                    
+                    <div class="video-info">
+                        <h1 class="video-title"><%=video.Name %></h1>
+                        <div class="video-meta">
+                            <span>Episode <%= Number(AniEP) + 1 %></span>
+                            <span><i class="fas fa-star"></i> <%=video.MALScore %></span>
+                            <span><i class="fas fa-clock"></i> <%=video.Duration %></span>
+                        </div>
+                        
+                        <div class="video-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-arrow-left"></i> Previous Episode
+                            </button>
+                            <button class="btn btn-primary">
+                                Next Episode <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                            <button class="btn btn-secondary share-btn">
+                                <i class="fas fa-share-alt"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Episodes List -->
+                <section class="episodes-section">
+                    <h2 class="section-title"><i class="fas fa-list"></i> Episodes</h2>
+                    <div class="episodes-grid">
+                        <div class="episode-card <%= Number(AniEP) === 0 ? 'active' : '' %>">
+                            <% const IMAGE2 = video.ImagePath;
                             const IAGE2 = IMAGE2.split("https://");
                             %> 
                             <% if (IAGE2 && IAGE2[1]) { %>
-                                 <img  src="<%=video.ImagePath %> " alt="">
+                                 <img class="episode-thumb" src="<%=video.ImagePath %> " alt="">
                            <% } else {%> 
-                       <img  src="/<%=video.ImagePath %> " alt="">
+                       <img class="episode-thumb" src="/<%=video.ImagePath %> " alt="">
                             <% } %> 
+                            <div class="episode-info">
+                                <div class="episode-number">Episode 1</div>
+                                <div class="episode-name"><%= video.name %></div>
+                            </div>
                         </div>
-                        <div class="ep-title">
-                        <p><%= video.name%> No.1 </p>
-                        </div>
-                        </div>
-                        
-                        <div class="list-button-container">
-                            <div class="add-button-div">
-
-                             <button class="Add-button" data-anime-w-id="<%=AniId+1%>" data-anime-w-eid="0" data-animelink="AniPlayer/<%=AniId + 1%>/<%=AniEP -1 %>">Add</button>
-                           
-                        </div>
-                        </div>
-
-                        
-                        </div>
-              <% if (video.ep.length >0){ %> 
-                <% video.ep.forEach((value,i) => { %>
-                        <div class="list"  >
-                        <div class="li-fs" data-ep="<%=i+1%>"  >
-                        <div class="img-div">
-                            <% const IMAGE3 = video.ImagePath;
-                            const IAGE3 = IMAGE3.split("https://");
-                            %> 
-                            <% if (IAGE3 && IAGE3[1]) { %>
-                                 <img  src="<%=video.ImagePath %> " alt="">
-                           <% } else {%> 
-                       <img  src="/<%=video.ImagePath %> " alt="">
-                            <% } %> 
-                        </div>
-                        <div class="ep-title">
-                            <% if(video.ep[i].name) {%> 
-                        <p><%= video.ep[i].name%> No.<%= i+2 %></p>
-                        <% } else { %>
-                             <p>Episode No.<%= i+2 %></p>
-                            <% } %>  
+                        <% if (video.ep.length >0){ %> 
+                            <% video.ep.forEach((value,i) => { %>
+                                    <div class="episode-card <%= Number(AniEP) === (i + 1) ? 'active' : '' %>">
+                                    <% const IMAGE3 = video.ImagePath;
+                                    const IAGE3 = IMAGE3.split("https://");
+                                    %> 
+                                    <% if (IAGE3 && IAGE3[1]) { %>
+                                         <img class="episode-thumb" src="<%=video.ImagePath %> " alt="">
+                                   <% } else {%> 
+                               <img class="episode-thumb" src="/<%=video.ImagePath %> " alt="">
+                                    <% } %> 
+                                    <div class="episode-info">
+                                        <div class="episode-number">Episode <%= i+2 %></div>
+                                        <div class="episode-name">
+                                            <% if(video.ep[i].name) {%> 
+                                        <%= video.ep[i].name%>
+                                        <% } else { %>
+                                             Episode No.<%= i+2 %>
+                                            <% } %>  
+                                    </div>
+                                    </div>
+                                </div>
+                           <% }); %> 
+                         <% }; %>  
                     </div>
-                        </div>
-                        
-                        <div class="list-button-container">
-                            <div class="add-button-div">
-
-                             <button class="Add-button" data-anime-w-id="<%=AniId+1%>" data-anime-w-eid="<%=i+1%>" data-animelink="AniPlayer/<%=AniId+1%>/<%=AniEP%>">Add</button>
-                           
-                        </div>
-                        </div>
-
-                        
-                        </div>
-               <% }); %> 
-             <% }; %>    
-            </div>
-        </div>
-       </div>
-    </div>
-
-
-
-    <div class="surer-div">
-    <div class="Second-Section">
-        <div class="profile-container">
-        <div class="profile-div">
-            
-
-                    <% const IMAGE4 = video.ImagePath;
-                            const IAGE4 = IMAGE4.split("https://");
-                            %> 
-                            <% if (IAGE4 && IAGE4[1]) { %>
-                                    <img class="poster"  alt="" src="<%=video.ImagePath%>">
-                           <% } else {%> 
-                               <img class="poster"  alt="" src="/<%=video.ImagePath%>">
-                            <% } %> 
-
-    
-        <div class="buttons">
-
-            <button class="Play-button">
-                <img src="/play-svgrepo-com.svg" alt="Download Image">
-            </button>
-            <div class="button-div-download">
-                   <% if(video.type === "mp4") {%> 
-                <a download href="/<%=video.link%>">
-                    <% } else { %>
-                        <a download href="<%=video.link%>"></a>
-                        <% } %> 
-                    <button class="Download-Button" >
-                    <img src="/Download.svg" alt="">
-                    <p>Download</p>
-                </button>
-                </a>
-            </div>
-            
-            
-            
-
-            <button class="Add-to-watchlist-button" data-animelink="https://anipub.adnandluffy.site/AniPlayer/<%=AniId%>/0">
-                <img src="/plus-large-svgrepo-com.svg" alt="">
-                <p>Add to Watchlist</p>
-            </button>
-        </div>
-        </div> 
-        
-        
-        
-        
-        <div class="Info-container">
-            <div class="Detailes">
-                <p class="Name">Name:<span class="name"><%=video.Name%></span></p>
-                <p>Synonyms: <span class="Synonyms"><%=video.Synonyms%></span></p>
-                <p>Aired:<span class="Aired"><%=video.Aired%></span></p>
-                <p>Premiered:<span class="Premiered"><%=video.Premiered%></span></p>
-                <p>Duration:<span class="Duration"><%=video.Duration%></span></p>
-                <p>Status:<span class="Status"><%=video.Status%></span></p>
-                <p>MAL Score:<span class="mALScore"><%=video.MALScore%></span></p>
-                <p>Genres:<span class="Genres"><%=video.Genres%></span></p>
-                <p>Studios: <span class="Studios"><%=video.Studios%></span></p>
-                <p>Producers:<span class="Producers"><%=video.Producers%></span></p>
-            </div>
-
-
-            <div class="Description-container">
-                <div class="des-div-s-div">
-                    <p class="Des-title">Description:</p>
-                    <button class="Share-button">
-                        <img src="/Share.svg" alt="">
-                        
-                    </button>
+                </section>
                 
-                </div>
-                
-                <div class="Description-div">
-                    <p class="Description"><%=video.DescripTion%></p>
-                </div>
+                <!-- Comments Section -->
+                <section class="comments-section">
+                    <h2 class="section-title"><i class="fas fa-comments"></i> Comments</h2>
+                    <div id="disqus_thread" style="margin-top: 60px;"></div>
+                </section>
             </div>
             
+            <!-- Sidebar with Anime Info -->
+            <div class="sidebar-column">
+                <div class="anime-info-sidebar">
+                    
+                    <!-- Anime Details -->
+                    <div class="anime-details">
+                        <h2 class="section-title"><i class="fas fa-info-circle"></i> Details</h2>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Japanese:</span>
+                            <span class="detail-value"><%=video.Synonyms %></span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Aired:</span>
+                            <span class="detail-value"><%=video.Aired %></span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Premiered:</span>
+                            <span class="detail-value"><%=video.Premiered %></span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Duration:</span>
+                            <span class="detail-value"><%=video.Duration %></span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Status:</span>
+                            <span class="detail-value"><%=video.Status %></span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">MAL Score:</span>
+                            <span class="detail-value"><%=video.MALScore %></span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Studios:</span>
+                            <span class="detail-value"><%=video.Studios %></span>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <span class="detail-label">Producers:</span>
+                            <span class="detail-value"><%=video.Producers %></span>
+                        </div>
+                        
+                        <div class="detail-item">
+    <span class="detail-label">Genres:</span>
+    <span class="detail-value">
+        <div class="genre-list">
+            <% 
+                // Normalize genres to always be an array
+                const genresArray = Array.isArray(video.Genres) 
+                    ? video.Genres 
+                    : (video.Genres ? video.Genres.split(',').map(g => g.trim()) : []); 
+            %>
+            <% genresArray.forEach(genre => { %>
+                <span class="genre-tag"><%= genre %></span>
+            <% }); %>
         </div>
-        
-    
-    </div>
-
-
-
-       
-
-    </div>
-    <div class="Marker">
-        Marker
-    </div>
+    </span>
 </div>
 
-
-<div class="third-section">
-
-
-   
-
+                    
+                    <div class="divider"></div>
+                    
+                    <!-- Description -->
+                    <h2 class="section-title"><i class="fas fa-file-alt"></i> Synopsis</h2>
+                    <p class="description">
+                        <%=video.DescripTion %>
+                    </p>
+                </div>
+                
+<!-- Recommendations -->
+<div class="recommendations-section">
+    <h2 class="section-title"><i class="fas fa-fire"></i> Recommendations</h2>
+    <div class="recommendations-grid">
+        <% if (AniDB.length > 0) { %>
+            <% AniDB.slice(0, 2).forEach((value, i) => { %>
+                <div class="anime-card">
+                    <img class="anime-thumb" src="/<%= value.poster %>" alt="<%= value.Name %>">
+                    <div class="anime-card-info">
+                        <h3 class="anime-card-title"><%= value.Name %></h3>
+                        <div class="anime-card-meta">
+                            <span><i class="fas fa-star"></i> <%= value.MALScore %></span>
+                            <span><%= value.Episodes %> Episodes</span>
+</div> </div> </div> <% }); %> <% } %> </div> </div> </div> </div> </div>
     
-    <div class="recommendation-main">
-        <div class="recommendation-div">
-            <% if (AniDB.length > 0) {%>
-                <% AniDB.forEach((value,i) => { %>
-                 <div class="Profile-div">
-                        <div class="Profile" data-anime="<%=value._id%>">
-                        <div class="Image-div">
-                        <img class="poster" src="/<%=value.poster%>" alt=`${value.Name} Poster`>
-                        </div>
-                        <div class="Title-div"><p class="Title"><%=value.Name%></p></div>
-                        <div class="ratings-div">
-                            <p class="mal-score"><%=value.MALScore%></p>
-                            <img src="/rating-<%=value.RatingsNum%>.png" alt="">
-                        </div>
-                        <div class="des-div">
-                            <p class="des">
-                            <%=value.DescripTion%>
-                            </p>
-                        </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AniPub</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Browse</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Popular Anime</a></li>
+                        <li><a href="#">Movies</a></li>
+                        <li><a href="#">New Seasons</a></li>
+                        <li><a href="#">Genres</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Community</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Forums</a></li>
+                        <li><a href="#">Discord</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Report Issue</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 AniPub. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-container">
+        <div class="Box-modal">
+            <div>
+                <p class="anamemodal">Name: <span><%=video.Name%></span></p>
+            </div>
+            <div>
+                <p class="epno">Ep No. <%=AniEP+1%></p>
+            </div>
+            <div class="link-constainer">
+                <p>https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%></p>
+            </div>
+            <div class="share-media-div">
+                <p class="sn">Share Now:-</p>
+                <div class="options-div">
+                    <div class="opt-div">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&quote=Hello,%20this%20%20awesome%20episode%20 target="_blank">
+                            <button class="shared-button-m">
+                        <img src="/fb.svg" alt="">
+                        </button>
+                        </a>
+                        
+                        <p class="b-title">Facebook</p>
+                    </div>
+    
+                    <div class="opt-div">
+                        <a href="https://api.whatsapp.com/send?text=Hello,%20this%20awesome%20episode%20..%20https://anipub.adnandluffy.site/AniPlayer/<%=AniId%>/<%=AniEP%>" target="_blank">
+                            <button class="shared-button-m">
+                        <img src="/WhatsApp.svg" alt="">
+                        </button>
+                        </a>
+                        
+                        <p class="b-title">WhatsApp</p>
+                    </div>
+    
+                    <div class="opt-div">
+                        <a href="https://t.me/share/url?url=https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&text=Hello,%20this%20awesome%20episode%20.." target="_blank">
+                             <button class="shared-button-m">
+                        <img src="/telegram.svg" alt="">
+                        </button>
+                        </a>
+                       
+                        <p class="b-title">Telegram</p>
                     </div>
                    
                 </div>
-             <%  }); %> 
-            <% } %>     
-        </div>
-        <div class="recommendation-title">
-            Recommendations
-        </div>
-    </div>
-
-
-
-
-
-</div>
-
-
-<!-- Discuss -->
-<div id="disqus_thread" style="margin-top: 60px;"></div>
-<script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    
-    var disqus_config = function () {
-    this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = window.location.pathname; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://anipub.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-<div class="modal-container">
-    <div class="Box-modal">
-        <div>
-            <p class="anamemodal">Name: <span><%=video.Name%></span></p>
-        </div>
-        <div>
-            <p class="epno">Ep No. <%=AniEP+1%></p>
-        </div>
-        <div class="link-constainer">
-            <p>https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%></p>
-        </div>
-        <div class="share-media-div">
-            <p class="sn">Share Now:-</p>
-            <div class="options-div">
-                <div class="opt-div">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&quote=Hello,%20this%20%20awesome%20episode%20 target="_blank">
-                        <button class="shared-button-m">
-                    <img src="/fb.svg" alt="">
-                    </button>
-                    </a>
-                    
-                    <p class="b-title">Facebook</p>
-                </div>
-
-                <div class="opt-div">
-                    <a href="https://api.whatsapp.com/send?text=Hello,%20this%20awesome%20episode%20..%20https://anipub.adnandluffy.site/AniPlayer/<%=AniId%>/<%=AniEP%>" target="_blank">
-                        <button class="shared-button-m">
-                    <img src="/WhatsApp.svg" alt="">
-                    </button>
-                    </a>
-                    
-                    <p class="b-title">WhatsApp</p>
-                </div>
-
-                <div class="opt-div">
-                    <a href="https://t.me/share/url?url=https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&text=Hello,%20this%20awesome%20episode%20.." target="_blank">
-                         <button class="shared-button-m">
-                    <img src="/telegram.svg" alt="">
-                    </button>
-                    </a>
-                   
-                    <p class="b-title">Telegram</p>
-                </div>
-               
             </div>
+            <p class="last-msge">All videos on this site are hosted on third
+                party website so
+                there may be some bugs or broken links.. and you can also report it to us 
+                here's our contact info:- 
+            </p>
+            <div class="button-container-modal">
+            <a target="_blank" href="https://github.com/Adnan-D-Luffy/"><button class="Git-buttonM">
+                <img class="git-im" src="/github.svg" alt="">
+                Githhub
+            </button></a>
+         <a target="_blank" href="https://www.facebook.com/adnandluffy.atomic">   <button class="fb-bM">
+                <img  class="f-p" src="/fb.svg" alt="">Facebook
+            </button> </a>
+            </div>
+            
+            <div class="wmdiv"><p class="Wm">Do you want to leave this ?</p> </div>
+              
+            <div class="lbm"><button class="leave">Yes</button><button class="stay">No</button></div>
         </div>
-        <p class="last-msge">All videos on this site are hosted on third
-            party website so
-            there may be some bugs or broken links.. and you can also report it to us 
-            here's our contact info:- 
-        </p>
-        <div class="button-container-modal">
-        <a target="_blank" href="https://github.com/Adnan-D-Luffy/"><button class="Git-buttonM">
-            <img class="git-im" src="/github.svg" alt="">
-            Githhub
-        </button></a>
-     <a target="_blank" href="https://www.facebook.com/adnandluffy.atomic">   <button class="fb-bM">
-            <img  class="f-p" src="/fb.svg" alt="">Facebook
-        </button> </a>
-        </div>
-        
-        <div class="wmdiv"><p class="Wm">Do you want to leave this ?</p> </div>
-          
-        <div class="lbm"><button class="leave">Yes</button><button class="stay">No</button></div>
     </div>
-</div>
 
+    <script>
+        // Function to change episode
+        function changeEpisode(epNumber) {
+            window.location.href = `/AniPlayer/<%=AniId%>/` + epNumber;
+        }
+        
+        // Add click event to episode cards
+        document.querySelectorAll('.episode-card').forEach((card, index) => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.episode-card').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                
+                changeEpisode(index);
+            });
+        });
+        
+        // Share button functionality
+        document.querySelector('.share-btn').addEventListener('click', function() {
+            document.querySelector('.modal-container').style.display = 'block';
+        });
+        
+        // Close modal
+        document.querySelector('.stay').addEventListener('click', () => {
+            document.querySelector('.modal-container').style.display = 'none';
+        });
+        document.querySelector('.leave').addEventListener('click', () => {
+            document.querySelector('.modal-container').style.display = 'none';
+        });
+        
+        // Previous and Next buttons
+        const prevBtn = document.querySelector('.btn-primary:first-child');
+        const nextBtn = document.querySelector('.btn-primary:last-child');
+        const currentEp = <%= Number(AniEP) %>;
+        const totalEps = <%= video.ep.length + 1 %>;
 
+        if (currentEp > 0) {
+            prevBtn.addEventListener('click', () => changeEpisode(currentEp - 1));
+        } else {
+            prevBtn.disabled = true;
+        }
 
+        if (currentEp < totalEps - 1) {
+            nextBtn.addEventListener('click', () => changeEpisode(currentEp + 1));
+        } else {
+            nextBtn.disabled = true;
+        }
+
+        // Download button
+        const downloadBtn = document.querySelector('.btn-secondary:first-of-type');
+        <% if(video.type === "mp4") {%> 
+            <% if(Number(AniEP) === 0 ) {%> 
+                downloadBtn.addEventListener('click', () => window.location.href = "/<%=video.link%>");
+            <% } else { %> 
+                <% const Episode = Number(AniEP) - 1 %> 
+                downloadBtn.addEventListener('click', () => window.location.href = "/<%=video.ep[Episode].link%>");
+            <% } %> 
+        <% } else { %>
+            <% if(Number(AniEP) === 0 ) {%> 
+                downloadBtn.addEventListener('click', () => window.location.href = "<%=video.link%>");
+            <% } else {%> 
+                <% const Episode = Number(AniEP) - 1 %> 
+                downloadBtn.addEventListener('click', () => window.location.href = "<%=video.ep[Episode].link%>");
+            <% } %> 
+        <% } %>  
+    </script>
+
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        
+        var disqus_config = function () {
+        this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = window.location.pathname; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://anipub.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
     <script id="dsq-count-scr" src="//anipub.disqus.com/count.js" async></script>
     <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+    <script src="/videoPlay.js"></script>
     <script src="/Changer-AniPlayer.js"></script> 
-   
     <script src="/dialog.js"></script>
-
-   
     <script src="/upDate-playlist.js"></script>
     <script src="/home.js"></script>
     <script src="/playList-Up.js"></script>
@@ -393,7 +464,7 @@
     <script src="/play.js"> </script>
     <script>
         if(window.location.protocol === "http:") {
-            const NEWL = document.querySelectorAll(".poster") ;
+            const NEWL = document.querySelectorAll(".poster,.episode-thumb,.anime-poster,.anime-thumb") ;
             NEWL.forEach(value=>{ const SRC = value.src; 
                 const hiluR = SRC.split("https://"); 
                 if(hiluR.length === 2) 
@@ -402,12 +473,11 @@
                     value.src = ILU ; 
                 } });
         } else {
-       const NEWLS = document.querySelectorAll(".poster") ;
+       const NEWLS = document.querySelectorAll(".poster,.episode-thumb,.anime-poster,.anime-thumb") ;
        NEWLS.forEach(value=>{ const SRC = value.src; 
         const hiluR = SRC.split("https://"); 
         if(hiluR.length >= 3 ) { const SEC = hiluR[2];
              const ILU = `https://` + SEC; value.src = ILU ; } });}
     </script>
-    <%- include("./include/footer.ejs") %> 
 </body>
-</html>14563
+</html>
