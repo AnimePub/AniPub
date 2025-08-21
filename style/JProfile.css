@@ -130,8 +130,8 @@
 
         .profile-img-container {
             position: absolute;
-            bottom: -60px;
-            left: 50%;
+            bottom: 5px;
+            left: 70px;
             transform: translateX(-50%);
             width: 120px;
             height: 120px;
