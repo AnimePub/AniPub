@@ -1,58 +1,59 @@
-// import { getItem } from "./additional-st.js";
-// import { Converter } from "./ad-st-converter.js";
-// let finalAdSt = JSON.parse(localStorage.getItem("finalAdst"))||[];
+import { getItem } from "./additional-st.js";
+import { Converter } from "./ad-st-converter.js";
+let finalAdSt = JSON.parse(localStorage.getItem("finalAdst"))||[];
+const relation = document.querySelector(".ulala");
+const addr = document.querySelector(".addr");
+const bloodG = document.getElementById("bloodgroup");
+const atstSave = document.querySelector(".atst-save");
 
-// const setAdSt = (r,a,b) => {
-//     const Alu = Converter(Number(r),Number(b));
+const setAdSt = (r,a,b) => {
+    const Alu = Converter(Number(r),Number(b));
 
-//     const rl =  Alu.r;
+    const rl =  Alu.r;
    
-//     const blood = Alu.b;
-//     finalAdSt.push(
-//      {
-//        Relation: rl
-//      },
-//      {
-//         address: a
-//      },
-//      {
-//         bloodGroup : blood
-//      },
-//      {
-//         Genre: getItem(),
-//      }     
-//     )
-//      localStorage.setItem("finalAdst",JSON.stringify(finalAdSt))
-// };
+    const blood = Alu.b;
+    finalAdSt.push(
+     {
+       Relation: rl
+     },
+     {
+        address: a
+     },
+     {
+        bloodGroup : blood
+     },
+     {
+        Genre: getItem(),
+     }     
+    )
+     localStorage.setItem("finalAdst",JSON.stringify(finalAdSt))
+};
 
-// const clearAdst = () =>{
-//    finalAdSt.splice(0,finalAdSt.length);
-//    localStorage.setItem("finalAdst",JSON.stringify(finalAdSt));
-// }
-// const relation = document.getElementById("rlts");
-// const addr = document.querySelector(".addr");
-// const bloodG = document.getElementById("bloodgroup");
-// const atstSave = document.querySelector(".atst-save");
+const clearAdst = () =>{
+   finalAdSt.splice(0,finalAdSt.length);
+   localStorage.setItem("finalAdst",JSON.stringify(finalAdSt));
+}
 
-// atstSave.addEventListener('click',()=>{
-//     const rlts = relation.value ;
-//     const address = addr.value;
-//     const bloodGroup = bloodG.value;
-//     clearAdst();
-//     setAdSt(rlts,address,bloodGroup);
-//     console.log(finalAdSt);
 
-//     // now we will fetch it to the server
-//    fetch("Settings/ad-st",{
-//       method:"POST",
-//       headers:{"content-type":"application/json"},
-//       body:JSON.stringify({finalAdSt})
-//    })
-//    .then (info=>info.json())
-//    .then(data =>{
-//       redirect (data);
-//    })
-// })
+atstSave.addEventListener('click',()=>{
+    const rlts = relation.value ;
+    const address = addr.value;
+    const bloodGroup = bloodG.value;
+    clearAdst();
+    setAdSt(rlts,address,bloodGroup);
+   
+
+   // now we will fetch it to the server
+   fetch("Settings/ad-st",{
+      method:"POST",
+      headers:{"content-type":"application/json"},
+      body:JSON.stringify({finalAdSt})
+   })
+   .then (info=>info.json())
+   .then(data =>{
+      redirect (data);
+   })
+})
 
 export function redirect (data) {
    if(data.includes("/Info Saved")) {

@@ -370,7 +370,7 @@
             margin-bottom: 20px;
         }
 
-        .genre-tag {
+        .genre {
             padding: 10px 18px;
             background: var(--darker);
             border-radius: 25px;
@@ -380,12 +380,12 @@
             border: 1px solid transparent;
         }
 
-        .genre-tag:hover {
+        .genre:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .genre-tag:hover, .genre-tag.selected {
+        .genre:hover, .genre.selected {
             background: var(--primary);
             border-color: var(--primary-light);
         }
