@@ -3,33 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - Anime Lovers Community</title>
+    <title>Profile - <%= userInfo.Name %></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="/JProfile.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Tenali+Ramakrishna&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/JProfile.css">
+  
 </head>
 <body>
-    <header>
-        <div class="container header-content">
-            <a href="/Home" class="logo">
-                <div class="fs-div-p">
-                    <img src="/Logo-1.png" alt="AniPub Logo" class="logo-icon">
-                <p>AniPub</p>
-                </div>
-                
-            </a>
-            <nav>
-                <ul>
-                    <li class="isHome"><a href="/Home">Home</a></li>
-                    <li><a href="/Playlist">PlayList</a></li>
-                    <li><a href="/home" class="active">Profile</a></li>
-                    <li><a href="/Settings">Settings</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+   <%- include("./include/nHeader") %> 
     <div class="container">
         <div class="profile-container">
             <div class="profile-card">
