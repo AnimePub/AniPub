@@ -79,7 +79,6 @@ const AnimeDB = new Schema({
   Status: {
     type: String,
     trim: true,
-    enum: ['Ongoing', 'Completed', 'Upcoming']
   },
   MALScore: {
     type: String,
