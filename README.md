@@ -1,6 +1,6 @@
 # 🌌 AniPub — The Ultimate Anime Multiverse 🚀
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-anipub.adnandluffy.site-blueviolet?style=for-the-badge)](https://anipub.adnandluffy.site)
+[![Live Site](https://img.shields.io/badge/Live%20Site-anipub.adnandluffy.site-blueviolet?style=for-the-badge)](https://animehub.adnandluffy.site)
 [![Status](https://img.shields.io/badge/Status-Under%20Development-orange?style=for-the-badge)](#)
 [![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)](./CONTRIBUTING.md)
 [![License](https://img.shields.io/badge/License-GNU%20GPLv3-blue?style=for-the-badge)](./LICENSE)
@@ -36,7 +36,7 @@
 
 1. **Clone the Repo**
    ```bash
-   git clone https://github.com/Adnan-D-Luffy/AniPub.git
+   git clone https://github.com/AnimePub/AniPub.git
    cd AniPub
    ```
 
@@ -83,9 +83,9 @@ AniPub thrives on community love and contributions!
 
 ## 💬 Community & Feedback
 
-- **Issues/Bugs:** Report them [here](https://github.com/Adnan-D-Luffy/AniPub/issues).  
-- **Suggestions:** Share ideas via [discussions](https://github.com/Adnan-D-Luffy/AniPub/discussions) or pull requests!  
-- **Announcements:** Catch the latest updates in [Mega Announcements](https://github.com/Adnan-D-Luffy/AniPub/discussions/categories/announcements).
+- **Issues/Bugs:** Report them [here](https://github.com/AnimePub/AniPub/issues).  
+- **Suggestions:** Share ideas via [discussions](https://github.com/AnimePub/AniPub/discussions) or pull requests!  
+- **Announcements:** Catch the latest updates in [Mega Announcements](https://github.com/AnimePub/AniPub/discussions/categories/announcements).
 
 ---
 
@@ -101,4 +101,4 @@ Licensed under the [GNU General Public License v3.0](./LICENSE). Feel free to us
 
 ---
 
-> Crafted with ❤️ and boundless anime passion by [AdnanDLuffy](https://github.com/Adnan-D-Luffy) and the AniPub community. Join us and let’s make anime history! 🌌
+> Crafted with ❤️ and boundless anime passion by [AdnanDLuffy](https://github.com/AnimePub) and the AniPub community. Join us and let’s make anime history! 🌌
