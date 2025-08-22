@@ -43,7 +43,7 @@ function addingColor () {
     }
 }
 function removeColor(splicedGenre) {
-     document.querySelector(`.${splicedGenre}`).style.color = "rgb(35, 216, 35)";
-    document.querySelector(`.${splicedGenre}`).style.background = "transparent";
+     document.querySelector(`.${splicedGenre}`).style.color = "rgba(255, 255, 255, 1)";
+    document.querySelector(`.${splicedGenre}`).style.background = "#121223";
 
 }
