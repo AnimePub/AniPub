@@ -3,331 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | AniPub</title>
+    <title>Settings | AniPub</title>
     <meta name="description" content="Settings Page - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
-
-    <link rel="stylesheet" href="/hc.css">
-    <link rel="stylesheet" href="/profile.css">
-    <link rel="stylesheet" href="/settings.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/ScrollBar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/JSettings.css">
 </head>
 <body>
-   
-    <%- include("./include/header.ejs")  %> 
-    <%- include("./include/nav.ejs") %> 
-     
-
-        <div class="main-body">
-            <div class="privacy-settings">
-                <div class="txt">
-                   <p>Privecy Settings</p> 
-                </div>
-                <button class="icon iconB PVST">
-                    <img class="pvst" src="/arrow-circle-down-svgrepo-com.svg" alt="">
-                </button>
+    <header class="header">
+        <div class="logo">
+            <img src="/favicon.ico" alt="AniPub Logo">
+            AniPub</span>
+        </div>
+        <div class="user-menu">
+            <div class="user-avatar">
+                <img src="/ProfilePic/boys/luffy.jpg" alt="User Profile">
             </div>
-            <div class="privacy-settings-container" style="display: none;">
-               
-                    <div class="name-changer">
-                        <p>Change Your Name</p>
-                        <input data-input="1" type="text" class="input1" placeholder="Your New Name">
+        </div>
+    </header>
 
-
-                        <button class="change1"  data-change="1">Change</button>
-
-                </div>
-              
-                    <div class="email-changer">
-                        <p>Change Your Email</p>
-                        <input class="input2" data-input="2" type="text" placeholder="Your new Email">
-
-
-                        <button class="change2" data-change="2">Change</button>
-
-                  
-                </div>
-                
-                    <div class="pass-changer">
-                        <p>Change Your Pass</p>
-                        <input type="text" class="input3"  data-input="3" placeholder="Your New Pass">
-
-
-                        <button  class="change3" data-change="3">Change</button>
-
-                    </div>
-                
-            </div>
-
-            <div class="Additional-Info">
-                <div class="txt">
-                    <p>Additional Info</p> 
-                 </div>
-                 <button class="icon iconB ad-info">
-                     <img class="pvst" src="/arrow-circle-down-svgrepo-com.svg" alt="">
-                 </button>
-            </div>
-            <div class="Additional-Info-Box">
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <img src="/ProfilePic/boys/luffy.jpg" alt="User Profile">
                 <div>
-                    <p class="gentxt">Your Fav Genre:</p>
+                    <h3>Monkey D. Luffy</h3>
+                    <p>Straw Hat Captain</p>
                 </div>
-                <div class="Genre-list">
-                    <span class="genre action" data-genre="action">Action</span>
-                    <span class="genre adventure" data-genre="adventure">Adventure</span>
-                    <span class="genre comedy" data-genre="comedy">Comedy</span>
-                    <span class="genre drama" data-genre="drama">Drama</span>
-                    <span class="genre fantasy" data-genre="fantasy">Fantasy</span>
-                    <span class="genre sci-fi" data-genre="sci-fi">Sci-Fi</span>
-                    <span class="genre mecha" data-genre="mecha">Mecha</span>
-                    <span class="genre mystery" data-genre="mystery">Mystery</span>
-                    <span class="genre psychological" data-genre="psychological">Psychological</span>
-                    <span class="genre slice-of-life" data-genre="slice-of-life">Slice of Life</span>
-                    <span class="genre romance" data-genre="romance">Romance</span>
-                    <span class="genre supernatural" data-genre="supernatural">Supernatural</span>
-                    <span class="genre horror" data-genre="horror">Horror</span>
-                    <span class="genre sports" data-genre="sports">Sports</span>
-                    <span class="genre martial-arts" data-genre="martial-arts">Martial Arts</span>
-                    <span class="genre historical" data-genre="historical">Historical</span>
-                    <span class="genre samurai" data-genre="samurai">Samurai</span>
-                    <span class="genre school" data-genre="school">School</span>
-                    <span class="genre music" data-genre="music">Music</span>
-                    <span class="genre isekai" data-genre="isekai">Isekai</span>
-                    <span class="genre post-apocalyptic" data-genre="post-apocalyptic">Post-Apocalyptic</span>
-                    <span class="genre cyberpunk" data-genre="cyberpunk">Cyberpunk</span>
-                    <span class="genre steampunk" data-genre="steampunk">Steampunk</span>
-                    <span class="genre military" data-genre="military">Military</span>
-                    <span class="genre police" data-genre="police">Police</span>
-                    <span class="genre thriller" data-genre="thriller">Thriller</span>
-                    <span class="genre game" data-genre="game">Game</span>
-                    <span class="genre cooking" data-genre="cooking">Cooking</span>
-                    <span class="genre parody" data-genre="parody">Parody</span>
-                    <span class="genre kids" data-genre="kids">Kids</span>
-                    <span class="genre shounen" data-genre="shounen">Shounen</span>
-                    <span class="genre shoujo" data-genre="shoujo">Shoujo</span>
-                    <span class="genre seinen" data-genre="seinen">Seinen</span>
-                </div>
-                
-                <div>
-                    <p class="txt">Select Your RelationShip Status:-</p>
-                    
-                    <select name="rlts" id="rlts">
-                        <option value="1">Single</option>
-                        <option value="2">In my Dream I have a Waifu</option>
-                        <option value="3">Married - Real One</option>
-                        <option value="4">Devorced - Ops Sad</option>
-                        <option value="5">I won't say it , May be 1 bitcoin change my mind </option>
-                    </select>
-                </div>
-                
-                <div>
-                    <p class="txt">Where do you live ?</p>
-                    <input class="addr" type="text" placeholder="Konoha,Hidden Leaf Village" maxlength="20" autocomplete="address-level1">
-                </div>
-                
-                <div>
-                    <p class="txt">Your Blood Group</p>
-                    <select name="bloodgroup" id="bloodgroup">
-                        <option value="1">AB+</option>
-                        <option value="2">AB-</option>
-                        <option value="3">O+</option>
-                        <option value="4">O-</option>
-                        <option value="5">A+</option>
-                        <option value="6">A-</option>
-                        <option value="7">B+</option>
-                        <option value="8">B-</option>
-                        <option value="9">Rare</option>
-                        <option value="10">Prefer not to Say</option>
-                    </select>
-                    
-                </div>
-
-                <div class="ai-sb">
-                    <button class="atst-save">Save</button>
-                </div>
-
             </div>
-
-             <div class="Account-Info">
-                <div class="txt">
-                    <p>Account Info</p> 
-                 </div>
-                 <button class="icon iconB ac-info">
-                     <img class="pvst" src="/arrow-circle-down-svgrepo-com.svg" alt="">
-                 </button>
+            <div class="nav-item active">
+                <i class="fas fa-user-cog"></i>
+                <span>Profile Settings</span>
             </div>
-
-            <div class="account-info-div">
-                <div class="txt-container">
-                     <textarea name="bio" id="bio" cols="30" rows="10"> Bio </textarea>
-
-                     <div class="count-div">
-                        <p class="wrn"><span>Count:-</span> <span class="count"></span>/50</p>
-                        
-                     </div>
-                </div>
-                <div>
-                    <p class="txt">What's Your Gender</p>
-                    <select name="gender" id="gender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-                <p class="txt">Chose Your Profile Pic</p>
-                <div class="pfp-div">
-                   <div class="girls-pfp" >
-
-                    <div class="pfp bunny" data-name="bunny.jpg">
-                        <img src="/ProfilePic/bunny.jpg" alt="bunny profile pic" >
-                    
-                        <div class="info-pfp">
-                            <p>
-                                I’m Mai, a third-year actress navigating love and Adolescence Syndrome mysteries.    </p>
-                        </div>
-                    </div>
-                    <div class="pfp esdeath" data-name="esdeath.jpg">
-                        <img src="/ProfilePic/esdeath.jpg" alt="esdeath profile pic" >
-                        <div class="info-pfp">
-                            <p>
-                                I’m Esdeath, Empire’s ruthless General, wielding ice and thriving on strength. 
-                             </p>
-                        </div>        
-                    
-                    </div>
-                    <div class="pfp luccy" data-name="Luccy.jpg">
-                        <img src="/ProfilePic/Luccy.jpg" alt="luccy profile pic" >
-                        <div class="info-pfp">
-                            <p>
-                             ~ Too Sleepy
-                            </p>
-                        </div>  
-                    </div>
-                    <div class="pfp makima" data-name="makima.jpg">
-                        <img src="/ProfilePic/makima.jpg" alt="makima profile pic" >
-                        <div class="info-pfp">
-                            <p>
-                                I’m Makima, a cunning Control Devil, manipulating for my own dark goals.      </p>
-                        </div>  
-                    </div>
-                    <div class="pfp mitsuri" data-name="mitsuri.jpg">
-                        <img src="/ProfilePic/mitsuri.jpg" alt="mitsuri profile pic" >
-                        <div class="info-pfp">
-                            <p>
-                                I’m Mitsuri, a bubbly Hashira, spreading love with my whip-like blade.      </p>
-                        </div>  
-                    </div>
-                    <div class="pfp princia" data-name="princia.jpg">
-                        <img src="/ProfilePic/princia.jpg" alt="princia profile pic" >
-                        <div class="info-pfp">
-                            <p>
-                                I’m Princia, Clover Kingdom’s fierce Wizard King, commanding Legion Magic    </p>
-                        </div>  
-                    </div>
-                    <div class="pfp tenko" data-name="tenko.jpg">
-                        <img src="/ProfilePic/tenko.jpg" alt="tenko profile pic" >
-                        <div class="info-pfp">
-                            <p>
-                                I’m Tenko, a spirited fighter, wielding powers in Mato’s demon battles.     </p>
-                        </div>  
-                    </div>
-                    <div class="pfp tsukasa" data-name="tsukasa.jpg">
-                        <img src="/ProfilePic/tsukasa.jpg" alt="tsukasa profile pic from Fly me over the moon" >
-                        <div class="info-pfp">
-                            <p>
-                                I’m Tsukasa, a timeless beauty, sharing love and secrets with my husband.  </p>
-                        </div>  
-                    </div>
-
-                </div>
-
-                <div class="boys-pfp">
-                    <div class="pfp cid" data-name="cid.jpg">
-                        <img src="/ProfilePic/boys/cid.jpg" alt="cid profile pic">
-                        <div class="info-pfp">
-                            <p>
-                                I’m Cid, mastermind behind Shadow Garden, orchestrating chaos in the shadows.
-                            </p>
-                        </div>  
-
-                    </div>
-                    <div class="pfp hickigaya" data-name="hickigaya.jpg">
-                        <img src="/ProfilePic/boys/hickigaya.jpg" alt="hickigaya profile pic">
-                        <div class="info-pfp">
-                            <p>
-                                I’m Hachiman, a cynical loner, solving high school problems my way.
-                            </p>
-                        </div>  
-
-                    </div>
-                    <div class="pfp luffy" data-name="luffy.jpg">
-                        <img src="/ProfilePic/boys/luffy.jpg" alt="luffy profile pic">
-                        <div class="info-pfp">
-                            <p>
-                                I’m Luffy, Straw Hat captain, chasing One Piece with my crew! 
-                            </p>
-                        </div>  
-
-                    </div>
-                </div>
-            
+            <div class="nav-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Privacy & Security</span>
             </div>
-            <div class="save-acc-info">
-                <button class="ac-info-save">Save</button>
+            <div class="nav-item">
+                <i class="fas fa-palette"></i>
+                <span>Appearance</span>
             </div>
-            
-            
+            <div class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>Notifications</span>
             </div>
-
-            
-            
-            <div class="Additional-Info">
-                <div class="txt">
-                    <p>Account Settings</p> 
-                 </div>
-                 <button class="icon iconB ad-info">
-                     <img class="pvst" src="/arrow-circle-down-svgrepo-com.svg" alt="">
-                 </button>
+            <div class="nav-item">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Monetization</span>
             </div>
-
-            <div class="Additional-Info">
-                <div class="txt">
-                    <p>Site Settings</p> 
-                 </div>
-                 <button class="icon iconB ad-info">
-                     <img class="pvst" src="/arrow-circle-down-svgrepo-com.svg" alt="">
-                 </button>
+            <div class="nav-item">
+                <i class="fas fa-trash-alt"></i>
+                <span>Account Deletion</span>
             </div>
-
-            <div class="Additional-Info">
-                <div class="txt">
-                    <p>Account Monitization -(Currently Unavailable) </p> 
-                 </div>
-                 <button class="icon iconB ad-info">
-                     <img class="pvst" src="/arrow-circle-down-svgrepo-com.svg" alt="">
-                 </button>
-            </div>
-
-            <div class="Additional-Info">
-                <div class="txt">
-                    <p>Account Delation and Deativation</p> 
-                 </div>
-                 <button class="icon iconB ad-info">
-                     <img class="pvst" src="/arrow-circle-down-svgrepo-com.svg" alt="">
-                 </button>
-            </div>
-
         </div>
 
-        <script src="/image.js"></script>
-        <script src="/pv-st-ch.js"></script> 
-        <script src="/navigator.js"></script>
-        <script type="module" src="/additional-st.js"></script>
-        <script type="module" src="/ad-st-s.js"></script>
-        <script src="/ad-nav.js"></script>
-        <script type="module" src="/acc-info.js"></script>
-    </body>
+        <div class="main-content">
+            <div class="welcome-banner">
+                <h2>Welcome to Your Settings, Nakama!</h2>
+                <p>Customize your AniPub experience and make it truly yours. Update your profile, preferences, and security settings here.</p>
+            </div>
+
+            <h1 class="section-title">
+                <i class="fas fa-cogs"></i> Account Settings
+            </h1>
+
+            <div class="settings-card">
+                <div class="card-header active">
+                    <h3><i class="fas fa-lock"></i> Privacy & Account Security</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="card-content active">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" value="PirateKing2023" placeholder="Enter new username">
+                        <button class="btn btn-primary btn-sm" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i> Update Username
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" value="luffy@strawhats.com" placeholder="Enter new email">
+                        <button class="btn btn-primary btn-sm" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i> Update Email
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Enter new password">
+                        <button class="btn btn-primary btn-sm" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i> Update Password
+                        </button>
+                    </div>
+
+                    <div class="save-container">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save All Changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-info-circle"></i> Additional Information</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="card-content">
+                    <div class="form-group">
+                        <label>Favorite Genres</label>
+                        <div class="genre-list">
+                            <div class="genre-tag">Action</div>
+                            <div class="genre-tag selected">Adventure</div>
+                            <div class="genre-tag">Comedy</div>
+                            <div class="genre-tag">Drama</div>
+                            <div class="genre-tag selected">Fantasy</div>
+                            <div class="genre-tag">Sci-Fi</div>
+                            <div class="genre-tag">Romance</div>
+                            <div class="genre-tag">Supernatural</div>
+                            <div class="genre-tag">Mecha</div>
+                            <div class="genre-tag">Slice of Life</div>
+                            <div class="genre-tag">Sports</div>
+                            <div class="genre-tag">Horror</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="relationship">Relationship Status</label>
+                        <select id="relationship" class="form-control">
+                            <option>Single</option>
+                            <option>In my Dream I have a Waifu</option>
+                            <option>Married - Real One</option>
+                            <option>Divorced - Oops Sad</option>
+                            <option selected>I won't say it, Maybe 1 bitcoin change my mind</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Where do you live?</label>
+                        <input type="text" id="location" class="form-control" value="Thousand Sunny, Grand Line">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bloodgroup">Blood Group</label>
+                        <select id="bloodgroup" class="form-control">
+                            <option>AB+</option>
+                            <option>AB-</option>
+                            <option selected>O+</option>
+                            <option>O-</option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>Rare</option>
+                            <option>Prefer not to Say</option>
+                        </select>
+                    </div>
+                    
+                    <div class="save-container">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Additional Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-user"></i> Account Information</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="card-content">
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" class="form-control" placeholder="Tell us about yourself">I'm Monkey D. Luffy, and I'm going to be the King of the Pirates! I love meat, my crew, and going on adventures. I have the power of the Gum-Gum Fruit, which makes my body rubber!</textarea>
+                        <div class="char-count">142/200</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" class="form-control">
+                            <option selected>Male</option>
+                            <option>Female</option>
+                            <option>Non-binary</option>
+                            <option>Prefer not to say</option>
+                        </select>
+                    </div>
+                    
+                    <h3 class="pfp-section-title">Choose Your Profile Picture</h3>
+                    
+                    <h4 class="pfp-section-title">Female Characters</h4>
+                    <div class="pfp-grid">
+                        <div class="pfp-item">
+                            <img src="/ProfilePic/bunny.jpg" alt="Mai">
+                            <div class="pfp-info">Mai - Actress with mysteries</div>
+                        </div>
+                        <div class="pfp-item">
+                            <img src="/ProfilePic/esdeath.jpg" alt="Esdeath">
+                            <div class="pfp-info">Esdeath - Ruthless General</div>
+                        </div>
+                        <div class="pfp-item">
+                            <img src="/ProfilePic/Luccy.jpg" alt="Luccy">
+                            <div class="pfp-info">Luccy - Too Sleepy</div>
+                        </div>
+                        <div class="pfp-item selected">
+                            <img src="/ProfilePic/makima.jpg" alt="Makima">
+                            <div class="pfp-info">Makima - Cunning Control Devil</div>
+                        </div>
+                        <div class="pfp-item">
+                            <img src="/ProfilePic/mitsuri.jpg" alt="Mitsuri">
+                            <div class="pfp-info">Mitsuri - Bubbly Hashira</div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="pfp-section-title">Male Characters</h4>
+                    <div class="pfp-grid">
+                        <div class="pfp-item">
+                            <img src="/ProfilePic/boys/cid.jpg" alt="Cid">
+                            <div class="pfp-info">Cid - Mastermind in the shadows</div>
+                        </div>
+                        <div class="pfp-item">
+                            <img src="/ProfilePic/boys/hickigaya.jpg" alt="Hachiman">
+                            <div class="pfp-info">Hachiman - Cynical problem solver</div>
+                        </div>
+                        <div class="pfp-item selected">
+                            <img src="/ProfilePic/boys/luffy.jpg" alt="Luffy">
+                            <div class="pfp-info">Luffy - Future Pirate King</div>
+                        </div>
+                    </div>
+                    
+                    <div class="save-container">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Account Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-globe"></i> Site Preferences</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="card-content">
+                    <div class="form-group">
+                        <label for="theme">Theme</label>
+                        <select id="theme" class="form-control">
+                            <option selected>Dark (Default)</option>
+                            <option>Light</option>
+                            <option>Blue</option>
+                            <option>Pink</option>
+                            <option>Custom</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="language">Language</label>
+                        <select id="language" class="form-control">
+                            <option selected>English</option>
+                            <option>Japanese</option>
+                            <option>Spanish</option>
+                            <option>French</option>
+                            <option>German</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="video-quality">Default Video Quality</label>
+                        <select id="video-quality" class="form-control">
+                            <option>Auto</option>
+                            <option>1080p</option>
+                            <option selected>720p</option>
+                            <option>480p</option>
+                            <option>360p</option>
+                        </select>
+                    </div>
+                    
+                    <div class="save-container">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Preferences
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="save-toast">
+        <i class="fas fa-check-circle"></i>
+        <span>Settings saved successfully!</span>
+    </div>
+
+    <script src="/JSettings.js"></script>
+</body>
 </html>
