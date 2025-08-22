@@ -26,7 +26,7 @@ Genres.forEach(value=>{
             setItem(genre);
 
         }
-      
+       
         addingColor ();
     })
 })
