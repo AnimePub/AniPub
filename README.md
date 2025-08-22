@@ -50,6 +50,12 @@
    node backend/app.js
    ```
    Then open [http://localhost:3000](http://localhost:3000) in your browser!
+
+## Using npm
+```
+   npm i anipub
+```
+
 ## Quick Install (Linux)
 
 > **Warning:** This script will install packages and may require root privileges.

@@ -1,4 +1,30 @@
 {
+  "name": "anipub",
+  "version": "1.0.0",
+  "description": "A simple Anime Watching Site using Nodejs",
+  "keywords": [
+    "anime",
+    "anime-site",
+    "one-piece",
+    "naruto",
+    "attack-on-titan"
+  ],
+  "homepage": "https://github.com/AnimePub/AniPub#readme",
+  "bugs": {
+    "url": "https://github.com/AnimePub/AniPub/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnimePub/AniPub.git"
+  },
+  "license": "GPL-3.0",
+  "author": "Abdullah Al Adnan",
+  "type": "nodejs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/app.js",
+    "dev": "npx nodemon backend/app.js"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
@@ -11,8 +37,5 @@
     "nodemailer": "^7.0.5",
     "nodemon": "^3.1.10"
   },
-  "scripts": {
-    "start": "node backend/app.js",
-    "dev": "npx nodemon backend/app.js"
-  }
+  "devDependencies": {}
 }
