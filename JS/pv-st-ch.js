@@ -1,45 +1,3 @@
-
-
-let PShistory = JSON.parse(localStorage.getItem("history")) || false ;
-const pvst = document.querySelector(".privacy-settings-container");
-const PvstB = document.querySelector(".PVST");
-
-
-
-
-PvstB.addEventListener('click',()=>{
-    if (PShistory) {
-        
-         PShistory = false;
-        localStorage.setItem("history",(JSON.stringify(PShistory)))
-        DisplayPV ();
-          }
-    else if (!PShistory){
-        
-        PShistory = true;
-        localStorage.setItem("history", JSON.stringify(PShistory))
-        DisplayPV ();
-    }
-
-    
-    
-})
-
-DisplayPV ();
-function DisplayPV () {
-    
-
-if (PShistory) {
-    PvstB.style.transform = "rotate(180deg)";
-    pvst.style.display = "block";
-}
-else if (PShistory === false) {
-    PvstB.style.transform = "rotate(0deg)";
-    pvst.style.display = "none"
-}
-
-}
-
 const input1 = document.querySelector(".input1");
 const input2 =  document.querySelector(".input2");
 const input3 = document.querySelector(".input3");
@@ -82,15 +40,32 @@ function Fetch (data,type) {
         .then(response=>response.json())
         .then(info=>{
             if(info === 1) {
-                alert("Named Changed");
+                NotifyS(1);
             }
             else if ( info === 2) {
-                alert("Email Changed");
+                  NotifyS(2);
             }
             else if (info === 3) {
-                alert("Password Changed");
+                  NotifyS(3);
             }
         })
 }
 
 
+function NotifyS(v) {
+    const toast = document.getElementById('save-toast');
+    const notifys = document.querySelector(".notify-span");
+    if (v === 1) {
+        notifys.innerText = "Profile Name Changed"
+    }  
+    else if(v=== 2) {
+          notifys.innerText = "Request Done"
+    }
+    else{
+          notifys.innerText = "Password Changed"
+    }
+    toast.classList.add('show');
+             setTimeout(() => {
+                toast.classList.remove('show');
+                }, 3000);
+}
