@@ -74,16 +74,16 @@
                 </div>
                 <div class="card-content active">
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" class="form-control" value="PirateKing2023" placeholder="Enter new username">
+                        <label for="username">Profile Name</label>
+                        <input type="text" id="username" class="form-control"  placeholder="Your Profile Name">
                         <button class="btn btn-primary btn-sm" style="margin-top: 10px;">
-                            <i class="fas fa-sync-alt"></i> Update Username
+                            <i class="fas fa-sync-alt"></i> Update Name
                         </button>
                     </div>
                     
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" value="luffy@strawhats.com" placeholder="Enter new email">
+                        <input type="email" id="email" class="form-control" placeholder="Enter new email">
                         <button class="btn btn-primary btn-sm" style="margin-top: 10px;">
                             <i class="fas fa-sync-alt"></i> Update Email
                         </button>
@@ -97,11 +97,7 @@
                         </button>
                     </div>
 
-                    <div class="save-container">
-                        <button class="btn btn-primary">
-                            <i class="fas fa-save"></i> Save All Changes
-                        </button>
-                    </div>
+                    
                 </div>
             </div>
 
@@ -186,55 +182,53 @@
                         <select id="gender" class="form-control">
                             <option selected>Male</option>
                             <option>Female</option>
-                            <option>Non-binary</option>
-                            <option>Prefer not to say</option>
                         </select>
                     </div>
                     
                     <h3 class="pfp-section-title">Choose Your Profile Picture</h3>
                     
-                    <h4 class="pfp-section-title">Female Characters</h4>
-                    <div class="pfp-grid">
-                        <div class="pfp-item">
+                    <h4 class="pfp-section-title ">Female Characters</h4>
+                    <div class="pfp-grid girls-pfp ">
+                        <div class="pfp-item pfp"  data-name="bunny.jpg">
                             <img src="/ProfilePic/bunny.jpg" alt="Mai">
                             <div class="pfp-info">Mai - Actress with mysteries</div>
                         </div>
-                        <div class="pfp-item">
-                            <img src="/ProfilePic/esdeath.jpg" alt="Esdeath">
+                        <div class="pfp-item pfp" data-name="esdeath.jpg">
+                            <img src="/ProfilePic/esdeath.jpg"  alt="Esdeath">
                             <div class="pfp-info">Esdeath - Ruthless General</div>
                         </div>
-                        <div class="pfp-item">
+                        <div class="pfp-item pfp" data-name="Luccy.jpg">
                             <img src="/ProfilePic/Luccy.jpg" alt="Luccy">
                             <div class="pfp-info">Luccy - Too Sleepy</div>
                         </div>
-                        <div class="pfp-item selected">
+                        <div class="pfp-item pfp" data-name="makima.jpg">
                             <img src="/ProfilePic/makima.jpg" alt="Makima">
                             <div class="pfp-info">Makima - Cunning Control Devil</div>
                         </div>
-                        <div class="pfp-item">
+                        <div class="pfp-item pfp" data-name="mitsuri.jpg">
                             <img src="/ProfilePic/mitsuri.jpg" alt="Mitsuri">
                             <div class="pfp-info">Mitsuri - Bubbly Hashira</div>
                         </div>
                     </div>
                     
                     <h4 class="pfp-section-title">Male Characters</h4>
-                    <div class="pfp-grid">
-                        <div class="pfp-item">
+                    <div class="pfp-grid boys-pfp"  >
+                        <div class="pfp-item pfp" data-name="cid.jpg">
                             <img src="/ProfilePic/boys/cid.jpg" alt="Cid">
                             <div class="pfp-info">Cid - Mastermind in the shadows</div>
                         </div>
-                        <div class="pfp-item">
+                        <div class="pfp-item pfp" data-name="hickigaya.jpg" >
                             <img src="/ProfilePic/boys/hickigaya.jpg" alt="Hachiman">
                             <div class="pfp-info">Hachiman - Cynical problem solver</div>
                         </div>
-                        <div class="pfp-item selected">
+                        <div class="pfp-item pfp" data-name="luffy.jpg">
                             <img src="/ProfilePic/boys/luffy.jpg" alt="Luffy">
                             <div class="pfp-info">Luffy - Future Pirate King</div>
                         </div>
                     </div>
                     
                     <div class="save-container">
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary ac-info-save">
                             <i class="fas fa-save"></i> Save Account Info
                         </button>
                     </div>
@@ -296,5 +290,10 @@
     </div>
 
     <script src="/JSettings.js"></script>
+    <script src="/image.js"></script>
+    <script src="/pv-st-ch.js"></script> 
+    <script type="module" src="/additional-st.js"></script>
+    <script type="module" src="/ad-st-s.js"></script>
+     <script type="module" src="/acc-info.js"></script>
 </body>
 </html>

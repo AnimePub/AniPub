@@ -53,9 +53,6 @@ pfp.forEach(value =>{
     value.addEventListener('click',()=>{
         const name = value.dataset.name;
         checkerPfp(name);
-        imageSammer();
-        imageStyler();
-        
     })
 })
 
@@ -77,20 +74,7 @@ const checkerPfp = (data) =>{
 const updateImage = () =>{
     localStorage.setItem("image",JSON.stringify(image));
 }
-const imageStyler = () => {
-    if (image.length > 0) {
-        let pfpname = image[0];
-        pfpname = pfpname.split(".");
-        pfpname = pfpname[0];
-        pfpname = pfpname.toLowerCase();
-        const Simage = document.querySelector(`.${pfpname}`)
-        Simage.style.height = "96px";
-        Simage.style.width = "96px";
-        Simage.style.border = "2px dotted #00ff00"
-    }
-}
 
-imageStyler ();
 
 const imageSammer = (data) =>{
     pfp.forEach(value =>{
@@ -100,24 +84,3 @@ const imageSammer = (data) =>{
  
     })
 }
-
-// This is for Bio 
-
-let BIO = [];
-const bioEditor = document.querySelector("textarea");
-const bioCount = document.querySelector(".count");
-const wrBio = document.querySelector(".wrn")
-bioEditor.addEventListener('keyup',(event)=>{
- const bio = bioEditor.value;
- BIO =[bio];
- 
- bioCount.innerHTML = bio.length;
- if (bio.length > 50) {
-    wrBio.style.color = "red"
-    bioCount.style.color = "red"
- }
- else {
-    wrBio.style.color = "white"
-    bioCount.style.color = "white"
- }
-})
