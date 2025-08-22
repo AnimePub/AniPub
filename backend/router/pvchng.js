@@ -64,7 +64,7 @@ Settings.post("/data/change",(req,res)=>{
                                 .then(heh=>{
                                     if(heh){
                                     res.cookie("anipub",AccID,{maxAge:1})
-                                    res.json(5);
+                                    res.json(2);
                                     }
                                 })
                                  })      

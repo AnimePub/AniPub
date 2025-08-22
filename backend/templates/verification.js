@@ -105,7 +105,7 @@ function mailBody(name,code) {
     </div>
     <div class="footer">
       <p>&copy; 2025 AniPub. All rights reserved.</p>
-       <a href="https://anipub.adnandluffy.site/Privacy-policy">Privacy Policy</a></p>
+       <a href="https://animehub.adnandluffy.site/Privacy-policy">Privacy Policy</a></p>
     </div>
   </div>
 </body>
