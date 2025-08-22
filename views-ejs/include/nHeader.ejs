@@ -1,0 +1,31 @@
+
+    <link rel="stylesheet" href="/ps.css">
+   
+<header>
+        <div class="container-h header-content">
+            <a href="/Home" class="logo">
+                <div class="fs-div-p">
+                    <img src="/Logo-1.png" alt="AniPub Logo" class="logo-icon">
+                <p>AniPub</p>
+                </div>
+                
+            </a>
+            <nav class="NaV">
+                <ul>
+                    <li class="isHome"><a href="/Home">Home</a></li>
+                    <li><a href="/Playlist">PlayList</a></li>
+                    <% if (alu==="p") { %>
+                         <li><a href="/Profile" class="active">Profile</a></li>
+                    <% } else if (alu!== "p"){ %> 
+                    <li><a href="/Profile">Profile</a></li>
+                        <% } %> 
+                         <% if (alu==="s") { %>
+                          <li><a href="/Settings" class="active">Settings</a></li>
+                    <% } else if (alu!== "s"){ %> 
+                     <li><a href="/Settings">Settings</a></li>
+                        <% } %> 
+                  
+                </ul>
+            </nav>
+        </div>
+    </header>

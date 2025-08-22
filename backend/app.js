@@ -282,7 +282,7 @@ app.get("/Profile/:id",(req,res)=>{
                      Address : info.Address,
                      Relation : info.RelationshipStatus,
                  }
-                 res.render("Profile",{SectionName:"Profile",Auth:true,userInfo})
+                 res.render("Profile",{SectionName:"Profile",Auth:true,userInfo,alu:"p"})
             })
             .catch(err=>{
                 res.json("This user doesn't Exist, Why seeing this ? mail me :- abdullahal467bp@gmail.com")
@@ -480,7 +480,7 @@ app.get("/Settings",(req,res)=>{
                 res.redirect("/Login");
             }
             const userInfo = {ID:data.id}
-             res.render("Settings",{SectionName:"Settings Section",Auth:true,userInfo});
+             res.render("Settings",{SectionName:"Settings Section",Auth:true,userInfo,alu:"s"});
         })
     }
     else {
