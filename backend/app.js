@@ -304,7 +304,7 @@ app.get("/Profile/:id",(req,res)=>{
                      Address : info.Address,
                      Relation : info.RelationshipStatus,
                  }
-                 res.render("Profile",{SectionName:"Profile",Auth:false,userInfo})
+                 res.render("Profile",{SectionName:"Profile",Auth:false,userInfo,alu:"p"})
             })
    }
 
@@ -475,12 +475,13 @@ app.delete('/PlayList/Delete/:DeleteID',(req,res)=>{
 app.get("/Settings",(req,res)=>{
     const Token = req.cookies.anipub;
     if(Token) {
-        jwt.verify(Token,"I Am Naruto",(err,data)=>{
+        jwt.verify(Token,"I Am Naruto",async(err,data)=>{
             if(err) {
                 res.redirect("/Login");
             }
             const userInfo = {ID:data.id}
-             res.render("Settings",{SectionName:"Settings Section",Auth:true,userInfo,alu:"s"});
+            const userData = await Data.findById(data.id)
+             res.render("Settings",{Auth:true,userInfo,alu:"s",userData});
         })
     }
     else {
