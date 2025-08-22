@@ -1,7 +1,7 @@
 # 🌌 AniPub — The Ultimate Anime Multiverse 🚀
 
 [![Live Site](https://img.shields.io/badge/Live%20Site-animehub.adnandluffy.site-blueviolet?style=for-the-badge)](https://animehub.adnandluffy.site)
-[![Status](https://img.shields.io/badge/Status-Under%20Development-orange?style=for-the-badge)](#)
+[![Status](https://img.shields.io/badge/Status-Live-green?style=for-the-badge)](#)
 [![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)](./CONTRIBUTING.md)
 [![License](https://img.shields.io/badge/License-GNU%20GPLv3-blue?style=for-the-badge)](./LICENSE)
 
@@ -110,7 +110,6 @@ Run the script:
 - **Database:** MongoDB
 - **Authentication:** JWT (OAuth integration in progress)
 - **Security:** Hashed passwords, secure sessions, HTTPS
-- **Hosting:** Render.com
 
 ---
 
@@ -126,7 +125,7 @@ Run the script:
 
 AniPub thrives on community love and contributions!  
 - **Contribute Code:** Check out [CONTRIBUTING.md](./CONTRIBUTING.md).  
-- **Support Us:** Star the repo, share with friends, or donate via [AniPub Live](https://anipub.adnandluffy.site).  
+- **Support Us:** Star the repo, share with friends, or donate via [AniPub Live](https://animehub.adnandluffy.site).  
 - **Stay Connected:** Join discussions or report issues to help us grow.
 
 ---
@@ -151,4 +150,4 @@ Licensed under the [GNU General Public License v3.0](./LICENSE). Feel free to us
 
 ---
 
-> Crafted with ❤️ and boundless anime passion by [AdnanDLuffy](https://github.com/AnimePub) and the AniPub community. Join us and let’s make anime history! 🌌
+> Crafted with ❤️ and boundless anime passion by [Adnan](https://github.com/adnan123456a) and the AniPub community. Join us and let’s make anime history! 🌌
