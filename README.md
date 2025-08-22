@@ -1,6 +1,6 @@
 # 🌌 AniPub — The Ultimate Anime Multiverse 🚀
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-anipub.adnandluffy.site-blueviolet?style=for-the-badge)](https://animehub.adnandluffy.site)
+[![Live Site](https://img.shields.io/badge/Live%20Site-animehub.adnandluffy.site-blueviolet?style=for-the-badge)](https://animehub.adnandluffy.site)
 [![Status](https://img.shields.io/badge/Status-Under%20Development-orange?style=for-the-badge)](#)
 [![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)](./CONTRIBUTING.md)
 [![License](https://img.shields.io/badge/License-GNU%20GPLv3-blue?style=for-the-badge)](./LICENSE)
@@ -50,8 +50,58 @@
    node backend/app.js
    ```
    Then open [http://localhost:3000](http://localhost:3000) in your browser!
+## Quick Install (Linux)
+
+> **Warning:** This script will install packages and may require root privileges.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/AnimePub/redirect-domain/bc1105d1e1350aab25b68a49a37cb6ead07a8336/install.sh | bash
+# or
+wget -qO- https://raw.githubusercontent.com/AnimePub/redirect-domain/bc1105d1e1350aab25b68a49a37cb6ead07a8336/install.sh | bash
+```
+
+Review the script if you wish:
+```bash
+less install.sh
+```
+
+Make it executable (if you downloaded it):
+```bash
+chmod +x install.sh
+```
+
+Run the script:
+```bash
+./install.sh
+```
+
+## Quick Install (Arch Linux)
+
+> **Warning:** This script will install packages and may require root privileges.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/AnimePub/redirect-domain/cbdda435d8b9f0ae6d71eba7b7b199771c89dd9a/arch.sh | bash
+# or
+wget -qO- https://raw.githubusercontent.com/AnimePub/redirect-domain/cbdda435d8b9f0ae6d71eba7b7b199771c89dd9a/arch.sh | bash
+```
+
+Review the script if you wish:
+```bash
+less arch.sh
+```
+
+Make it executable:
+```bash
+chmod +x arch.sh
+```
+
+Run the script:
+```bash
+./arch.sh
+```
 
 ---
+
 
 ## 🛠️ Tech Stack
 
