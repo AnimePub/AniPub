@@ -20,10 +20,14 @@
     <div class="container">
         <div class="sidebar">
             <div class="sidebar-header">
-                <img src="/ProfilePic/boys/luffy.jpg" alt="User Profile">
+                <% if (userData.Gender === "Female"){%> 
+                <img src="/ProfilePic/<%=userData.Image%>" alt="User Profile">
+                <% } else if (userData.Gender=== "Male") { %>
+                     <img src="/ProfilePic/boys/<%=userData.Image%>" alt="User Profile">
+                    <% } %> 
                 <div>
-                    <h3>Monkey D. Luffy</h3>
-                    <p>Straw Hat Captain</p>
+                    <h3><%= userData.Name %></h3>
+                    <p><%= userData.userType %> </p>
                 </div>
             </div>
             <div class="nav-item active">
@@ -70,7 +74,7 @@
                 <div class="card-content active">
                     <div class="form-group">
                         <label for="username">Profile Name</label>
-                        <input  type="text" id="username" class="form-control input1"  placeholder="Your Profile Name">
+                        <input  type="text" id="username" class="form-control input1" value="<%=userData.Name%>"  placeholder="Your Profile Name">
                         <button class="btn btn-primary btn-sm change1" style="margin-top: 10px;">
                             <i class="fas fa-sync-alt"></i> Update Name
                         </button>
@@ -78,7 +82,7 @@
                     
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control input2" placeholder="Enter new email">
+                        <input type="email" id="email" class="form-control input2" value="<%=userData.Email%>"  placeholder="Enter new email">
                         <button class="btn btn-primary btn-sm change2" style="margin-top: 10px;">
                             <i class="fas fa-sync-alt"></i> Update Email
                         </button>
@@ -168,15 +172,21 @@
                 <div class="card-content">
                     <div class="form-group">
                         <label for="bio">Bio</label>
-                        <textarea id="bio" class="form-control" placeholder="Tell us about yourself">I'm Monkey D. Luffy, and I'm going to be the King of the Pirates! I love meat, my crew, and going on adventures. I have the power of the Gum-Gum Fruit, which makes my body rubber!</textarea>
-                        <div class="char-count">142/200</div>
+                        <textarea id="bio" class="form-control"  placeholder="Tell us about yourself"><%=userData.Bio%></textarea>
+                        <div class="char-count">?/200</div>
                     </div>
                     
                     <div class="form-group">
                         <label for="gender">Gender</label>
                         <select id="gender" class="form-control">
-                            <option selected>Male</option>
-                            <option>Female</option>
+                                <% if (userData.Gender === "Female"){%> 
+                            <option>Male</option>
+                            <option selected>Female</option>
+                <% } else if (userData.Gender=== "Male") { %>
+                     <option selected>Male</option>
+                            <option >Female</option>
+                    <% } %> 
+                            
                         </select>
                     </div>
                     
