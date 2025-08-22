@@ -3,7 +3,8 @@ const newlink = link.split("/");
 const AniId = newlink[4];
 const AniEp = newlink[5];
 
-const Left = document.querySelector(".fa-arrow-left");
+const Left = document.querySelector(".left-btn");
+const Right = document.querySelector(".right-btn")
 const List = document.querySelectorAll(".episode-card");
 const list = document.querySelectorAll(".li-fs");
 List.forEach(value=>{
@@ -12,11 +13,15 @@ List.forEach(value=>{
         window.location.href=`/AniPlayer/${AniId}/${EpId}`         
     })
 })
-Left.addEventListener('click',()=>{
-  if (AniEp >= 0 ) {
-    window.location.href=`/AniPlayer/${AniId}/${Number(EpId-1)}`    
+Left.addEventListener('click',()=>{  
+  if (AniEp > 0 ) {
+    window.location.href=`/AniPlayer/${AniId}/${Number(AniEp)-1}`    
   }
-   
+})
+Right.addEventListener('click',()=>{
+ 
+     window.location.href=`/AniPlayer/${AniId}/${Number(AniEp)+1}`
+  
 })
 
 const profile = document.querySelectorAll(".Profile");
