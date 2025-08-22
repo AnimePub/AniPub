@@ -6,7 +6,7 @@ const AniEp = newlink[5];
 const Left = document.querySelector(".left-btn");
 const Right = document.querySelector(".right-btn")
 const List = document.querySelectorAll(".episode-card");
-const list = document.querySelectorAll(".li-fs");
+
 List.forEach(value=>{
     value.addEventListener('click',()=>{
         const EpId = value.dataset.ep;
@@ -24,10 +24,19 @@ Right.addEventListener('click',()=>{
   
 })
 
-const profile = document.querySelectorAll(".Profile");
-List[AniEp].classList.add("Alu")
+const Aniprofile = document.querySelectorAll(".anime-card");
 
-videojs ('#my-video', {
+Aniprofile.forEach(value=>{
+    value.addEventListener('click',()=>{
+      console.log("click")
+        const AnimeID = Number(value.dataset.anime);
+
+       window.location.href=`/AniPlayer/${AnimeID}/${0}`
+    })
+})
+
+if (document.querySelector("video")) {
+  videojs ('#my-video', {
     controlBar: {
       skipButtons: {
         forward: 10,
@@ -39,10 +48,5 @@ videojs ('#my-video', {
 
   });
 
-profile.forEach(value=>{
-    value.addEventListener('click',()=>{
-        const AnimeID = Number(value.dataset.anime);
+}
 
-       window.location.href=`/AniPlayer/${AnimeID}/${0}`
-    })
-})

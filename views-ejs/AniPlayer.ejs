@@ -28,22 +28,7 @@
 </head>
 <body style="position: relative;">
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <div class="logo">AniPub</div>
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search anime...">
-                </div>
-                <div class="user-actions">
-                    <button class="user-action-btn"><i class="fas fa-bookmark"></i></button>
-                    <button class="user-action-btn"><i class="fas fa-bell"></i></button>
-                    <button class="user-action-btn"><i class="fas fa-user"></i></button>
-                </div>
-            </nav>
-        </div>
-    </header>
+   <%- include("./include/aniHeader") %> 
     
     <div class="container">
         <div class="main-content">
@@ -156,6 +141,28 @@
                     </div>
                 </section>
                 
+                <div class="recommendations-section">
+    <h2 class="section-title"><i class="fas fa-fire"></i> Recommendations</h2>
+    <div class="recommendations-grid">
+        <% if (AniDB.length > 0) { %>
+            <% AniDB.forEach((value, i) => { %>
+                <div class="anime-card" data-anime="<%=value._id%>">
+                    <img class="anime-thumb" src="/<%= value.poster %>" alt="<%= value.Name %>">
+                    <div class="anime-card-info">
+                        <h3 class="anime-card-title"><%= value.Name %></h3>
+                        <div class="anime-card-meta">
+                            <span><i class="fas fa-star"></i> <%= value.MALScore %></span>
+                            
+                            <span><%= value.ep.length +1 %> Episodes</span>
+</div>
+ </div>
+ </div>
+  <% }); %> 
+  <% } %> 
+</div>
+ </div>
+
+
                 <!-- Comments Section -->
                 <section class="comments-section">
                     <h2 class="section-title"><i class="fas fa-comments"></i> Comments</h2>
@@ -172,7 +179,7 @@
                         <h2 class="section-title"><i class="fas fa-info-circle"></i> Details</h2>
                         
                         <div class="detail-item">
-                            <span class="detail-label">Japanese:</span>
+                            <span class="detail-label">Synonyms:</span>
                             <span class="detail-value"><%=video.Synonyms %></span>
                         </div>
                         
@@ -238,67 +245,9 @@
                     </p>
                 </div>
                 
-<!-- Recommendations -->
-<div class="recommendations-section">
-    <h2 class="section-title"><i class="fas fa-fire"></i> Recommendations</h2>
-    <div class="recommendations-grid">
-        <% if (AniDB.length > 0) { %>
-            <% AniDB.slice(0, 2).forEach((value, i) => { %>
-                <div class="anime-card">
-                    <img class="anime-thumb" src="/<%= value.poster %>" alt="<%= value.Name %>">
-                    <div class="anime-card-info">
-                        <h3 class="anime-card-title"><%= value.Name %></h3>
-                        <div class="anime-card-meta">
-                            <span><i class="fas fa-star"></i> <%= value.MALScore %></span>
-                            <span><%= value.Episodes %> Episodes</span>
-</div> </div> </div> <% }); %> <% } %> </div> </div> </div> </div> </div>
+
     
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>AniPub</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Browse</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Popular Anime</a></li>
-                        <li><a href="#">Movies</a></li>
-                        <li><a href="#">New Seasons</a></li>
-                        <li><a href="#">Genres</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Community</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Forums</a></li>
-                        <li><a href="#">Discord</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Events</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Report Issue</a></li>
-                        <li><a href="#">Feedback</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2023 AniPub. All rights reserved.
-            </div>
-        </div>
-    </footer>
+  
 
     <div class="modal-container">
         <div class="Box-modal">
@@ -366,7 +315,7 @@
             <div class="lbm"><button class="leave">Yes</button><button class="stay">No</button></div>
         </div>
     </div>
-
+    
     <script>
         /**
         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
