@@ -1,4 +1,4 @@
-const share = document.querySelector(".Share-button");
+const share = document.querySelector(".share-btn");
 const modal = document.querySelector(".modal-container")
 const leave = document.querySelector(".leave");
 

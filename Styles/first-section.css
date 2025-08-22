@@ -288,7 +288,7 @@ body {
 
 .Box-modal {
     height: fit-content;
-    width: 300px;
+    width: 350px;
     padding: 10px 10px 10px 10px ;
     background-color: black;
     display: flex;
