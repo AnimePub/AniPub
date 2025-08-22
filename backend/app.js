@@ -246,7 +246,21 @@ app.get("/logout",(req,res)=>{
     res.json(1);
 
 })
-app.get("/Profile/:id",AuthAcc,(req,res)=>{
+app.get("/Profile",(req,res)=>{
+     const Token = req.cookies.anipub;
+      if(Token){
+       jwt.verify(Token,"I Am Naruto",(err,data)=>{
+           if(err) {
+               console.log(err);
+           }; 
+           res.redirect(`/Profile/${data.id}`)
+        })
+}
+    else {
+        res.redirect("/Login")
+    }
+})
+app.get("/Profile/:id",(req,res)=>{
    const profileID = req.params.id;
    const Token = req.cookies.anipub;
    if(Token){
@@ -275,8 +289,24 @@ app.get("/Profile/:id",AuthAcc,(req,res)=>{
             })     
           
        })
+   }else {
+     Data.findById(profileID)
+            .then(info=>{
+                 const userInfo = {
+                     ID : info._id,
+                     Name : info.Name,
+                     Email :info.Email,
+                     Bio : info.Bio,
+                     BloodGroup: info.BloodGroup,
+                     image : info.Image,
+                     Gender: info.Gender,
+                     Genre: info.GenreList,
+                     Address : info.Address,
+                     Relation : info.RelationshipStatus,
+                 }
+                 res.render("Profile",{SectionName:"Profile",Auth:false,userInfo})
+            })
    }
-   
 
  
 })

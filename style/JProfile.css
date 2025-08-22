@@ -71,6 +71,7 @@
         nav ul {
             display: flex;
             list-style: none;
+            align-items: center;
             gap: 2rem;
         }
 
@@ -314,6 +315,15 @@
             color: var(--dark);
             transform: translateY(-2px);
         }
+        .fs-div-p {
+            display: flex;
+            column-gap: 5px;
+            align-items: center;
+
+        }
+        .logo-icon {
+            height: 50px;
+        }
 
         @media (max-width: 768px) {
             .profile-stats {
@@ -326,19 +336,50 @@
             }
             
             .detail-item {
-                flex-direction: column;
-                text-align: center;
+                flex-direction: row;
+               column-gap: 5px;
             }
             
             .detail-icon {
                 margin-right: 0;
                 margin-bottom: 0.5rem;
             }
-            
+            .detail-label {
+                font-size: 20px;
+            }
             nav ul {
                 gap: 1rem;
             }
         }
+        @media screen and (min-width:300px) and (max-width:800px) {
+            nav a {
+                padding: 10px;
+            }
+           
+            nav ul {
+                        column-gap: 10px;
+            }
+        }
+        @media screen and (min-width:300px) and (max-width:542px) {
+             .logo-icon {
+            height: 30px;
+        }
+        .logo{
+            font-size: 25px;
+        }
+        nav a {
+           padding:5px 8px 5px 8px ;
+            font-size: 16px;
+        }
+        nav ul {
+            column-gap: 15px;
+        } 
+        }
+         @media screen and (min-width:300px) and (max-width:500px)  {
+            .isHome {
+                display: none;
+            }
+         }
 
         @keyframes fadeIn {
             from {
