@@ -145,14 +145,15 @@
         
         .episodes-grid {
             display: grid;
+            max-height: 350px;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 15px;
+            overflow: scroll;
         }
         
         .episode-card {
             background-color: var(--gray);
             border-radius: 8px;
-            overflow: hidden;
             transition: transform 0.3s ease;
             cursor: pointer;
         }
