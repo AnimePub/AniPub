@@ -12,25 +12,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/second-section.css">
     <link rel="stylesheet" href="/first-section.css">
     <link rel="stylesheet" href="/third-section.css">
     <link rel="stylesheet" href="/info-container.css">
     <link rel="stylesheet" href="/media2-styles.css">
     <link rel="stylesheet" href="/media2-styles.css">
     <link rel="stylesheet" href="/JPlayer.css">
-    <link rel="stylesheet" href="/JPlayer.js">
+ 
     <link rel="stylesheet" href="/media-styles.css">
     <link rel="stylesheet" href="/videoPlayerHeader.css">
     <link rel="stylesheet" href="/body-scrollbar.css"> 
-    <link rel="stylesheet" href="/Footer.css">
+    
    
 </head>
-<body style="position: relative;">
+<body style="position: relative; ">
     <!-- Header -->
    <%- include("./include/aniHeader") %> 
     
     <div class="container">
+        <div>
         <div class="main-content">
             <div class="main-column">
                 <!-- Video Player Section -->
@@ -39,10 +39,10 @@
                         <% if(video.type === "iframe") {%>
                             <% if(Number(AniEP) === 0 ) {%> 
                             <iframe  <%=video.link%> sandbox="allow-same-origin allow-scripts"  
-                 gyroscope; picture-in-picture" autoplay; scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen geolocation style="height:100%;width: 100%;"></iframe>
+                 gyroscope picture-in-picture autoplay scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen geolocation style="height:100%;width: 100%;"></iframe>
                            <% } else { %>
                             <% const Episode = Number(AniEP) - 1 %> 
-                            <iframe  <%=video.ep[Episode].link%> sandbox="allow-same-origin allow-scripts" gyroscope; picture-in-picture" autoplay; geolocation;  scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen  style="height:100%;width: 100%;"></iframe>
+                            <iframe  <%=video.ep[Episode].link%> sandbox="allow-same-origin allow-scripts" gyroscope picture-in-picture autoplay geolocation  scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen  style="height:100%;width: 100%;"></iframe>
                            <%}%>
                             <% } else {%> 
                         <video  id="my-video"
@@ -96,81 +96,9 @@
                     </div>
                 </section>
                 
-                <!-- Episodes List -->
-                <section class="episodes-section">
-                    <h2 class="section-title"><i class="fas fa-list"></i> Episodes</h2>
-                    <div class="episodes-grid">
-                        <div class="episode-card <%= Number(AniEP) === 0 ? 'active' : '' %>"  data-ep="0" data-anime="<%=Number(AniId)+1%>">
-                            <% const IMAGE2 = video.ImagePath;
-                            const IAGE2 = IMAGE2.split("https://");
-                            %> 
-                            <% if (IAGE2 && IAGE2[1]) { %>
-                                 <img class="episode-thumb" src="<%=video.ImagePath %> " alt="">
-                           <% } else {%> 
-                       <img class="episode-thumb" src="/<%=video.ImagePath %> " alt="">
-                            <% } %> 
-                            <div class="episode-info">
-                                <div class="episode-number">Episode 1</div>
-                                <div class="episode-name"><%= video.name %></div>
-                            </div>
-                        </div>
-                        <% if (video.ep.length >0){ %> 
-                            <% video.ep.forEach((value,i) => { %>
-                                    <div class="episode-card <%= Number(AniEP) === (i + 1) ? 'active' : '' %>" data-ep="<%=i+1%>" data-anime="<%=Number(AniId)+1%>">
-                                    <% const IMAGE3 = video.ImagePath;
-                                    const IAGE3 = IMAGE3.split("https://");
-                                    %> 
-                                    <% if (IAGE3 && IAGE3[1]) { %>
-                                         <img class="episode-thumb" src="<%=video.ImagePath %> " alt="">
-                                   <% } else {%> 
-                               <img class="episode-thumb" src="/<%=video.ImagePath %> " alt="">
-                                    <% } %> 
-                                    <div class="episode-info">
-                                        <div class="episode-number">Episode <%= i+2 %></div>
-                                        <div class="episode-name">
-                                            <% if(video.ep[i].name) {%> 
-                                        <%= video.ep[i].name%>
-                                        <% } else { %>
-                                             Episode No.<%= i+2 %>
-                                            <% } %>  
-                                    </div>
-                                    </div>
-                                </div>
-                           <% }); %> 
-                         <% }; %>  
-                    </div>
-                </section>
+    
                 
-                <div class="recommendations-section">
-    <h2 class="section-title"><i class="fas fa-fire"></i> Recommendations</h2>
-    <div class="recommendations-grid">
-        <% if (AniDB.length > 0) { %>
-            <% AniDB.forEach((value, i) => { %>
-                <div class="anime-card" data-anime="<%=value._id%>">
-                    <img class="anime-thumb" src="/<%= value.poster %>" alt="<%= value.Name %>">
-                    <div class="anime-card-info">
-                        <h3 class="anime-card-title"><%= value.Name %></h3>
-                        <div class="anime-card-meta">
-                            <span><i class="fas fa-star"></i> <%= value.MALScore %></span>
-                            
-                            <span><%= value.ep.length +1 %> Episodes</span>
-</div>
- </div>
- </div>
-  <% }); %> 
-  <% } %> 
-</div>
- </div>
-
-
-                <!-- Comments Section -->
-                <section class="comments-section">
-                    <h2 class="section-title"><i class="fas fa-comments"></i> Comments</h2>
-                    <div id="disqus_thread" style="margin-top: 60px;"></div>
-                </section>
-            </div>
-            
-            <!-- Sidebar with Anime Info -->
+                 <!-- Sidebar with Anime Info -->
             <div class="sidebar-column">
                 <div class="anime-info-sidebar">
                     
@@ -229,7 +157,8 @@
                     : (video.Genres ? video.Genres.split(',').map(g => g.trim()) : []); 
             %>
             <% genresArray.forEach(genre => { %>
-                <span class="genre-tag"><%= genre %></span>
+                <a href="/Search?genre=<%=genre%>"><span class="genre-tag genre" data-genre="<%=genre%>"><%=genre%></span></a>
+           
             <% }); %>
         </div>
     </span>
@@ -246,6 +175,9 @@
                 </div>
                 
 
+            </div>
+            
+         
     
   
 
@@ -315,8 +247,98 @@
             <div class="lbm"><button class="leave">Yes</button><button class="stay">No</button></div>
         </div>
     </div>
-    
+    </div>
+    </div>
+                <!-- Episodes List -->
+                <section class="episodes-section">
+                    <h2 class="section-title"><i class="fas fa-list"></i> Episodes</h2>
+                    <div class="episodes-grid">
+                        <div class="episode-card <%= Number(AniEP) === 0 ? 'active' : '' %>"  data-ep="0" data-anime="<%=Number(AniId)+1%>">
+                            <% const IMAGE2 = video.ImagePath;
+                            const IAGE2 = IMAGE2.split("https://");
+                            %> 
+                            <% if (IAGE2 && IAGE2[1]) { %>
+                                 <img class="episode-thumb" src="<%=video.ImagePath %> " alt="">
+                           <% } else {%> 
+                       <img class="episode-thumb" src="/<%=video.ImagePath %> " alt="">
+                            <% } %> 
+                            <div class="episode-info">
+                                <div class="episode-number">Episode 1</div>
+                                <div class="episode-name"><%= video.name %></div>
+                            </div>
+                        </div>
+                        <% if (video.ep.length >0){ %> 
+                            <% video.ep.forEach((value,i) => { %>
+                                    <div class="episode-card <%= Number(AniEP) === (i + 1) ? 'active' : '' %>" data-ep="<%=i+1%>" data-anime="<%=Number(AniId)+1%>">
+                                    <% const IMAGE3 = video.ImagePath;
+                                    const IAGE3 = IMAGE3.split("https://");
+                                    %> 
+                                    <% if (IAGE3 && IAGE3[1]) { %>
+                                         <img class="episode-thumb" src="<%=video.ImagePath %> " alt="">
+                                   <% } else {%> 
+                               <img class="episode-thumb" src="/<%=video.ImagePath %> " alt="">
+                                    <% } %> 
+                                    <div class="episode-info">
+                                        <div class="episode-number">Episode <%= i+2 %></div>
+                                        <div class="episode-name">
+                                            <% if(video.ep[i].name) {%> 
+                                        <%= video.ep[i].name%>
+                                        <% } else { %>
+                                             Episode No.<%= i+2 %>
+                                            <% } %>  
+                                    </div>
+                                    </div>
+                                </div>
+                           <% }); %> 
+                         <% }; %>  
+                    </div>
+                </section>
+    </div>
+
+
+
+ <div class="recommendations-section">
+    <h2 class="section-title"><i class="fas fa-fire"></i> Recommendations</h2>
+    <div class="recommendations-grid">
+        <% if (AniDB.length > 0) { %>
+            <% AniDB.forEach((value, i) => { %>
+                <div class="anime-card" data-anime="<%=value._id%>">
+                    <img class="anime-thumb" src="/<%= value.poster %>" alt="<%= value.Name %>">
+                    <div class="anime-card-info">
+                        <h3 class="anime-card-title"><%= value.Name %></h3>
+                        <div style="display: flex; align-items: center; justify-content: right;" > <span style="font-size: 10px;"><%= value.ep.length +1 %> Episodes</span></div>
+                        <div class="anime-card-meta">
+                            <span ><%=value.MALScore %></span>
+                
+                             <span>
+                                <img class="ratings-image" src="/rating-<%=value.RatingsNum%>.png" alt="">
+                             </span>
+</div>
+ </div>
+ </div>
+  <% }); %> 
+  <% } %> 
+</div>
+ </div>
+
+      <!-- Comments Section -->
+                <section class="comments-section">
+                    <h2 class="section-title"><i class="fas fa-comments"></i> Comments</h2>
+                    <div id="disqus_thread" style="margin-top: 60px;"></div>
+                </section>
+
+
+
+<%- include("./include/footer") %> 
+</div>
+
+
+
+
+
+
     <script>
+        
         /**
         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */

@@ -145,7 +145,7 @@
         
         .episodes-grid {
             display: grid;
-            max-height: 350px;
+            max-height:1230px;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 15px;
             overflow: scroll;
@@ -262,7 +262,7 @@
         }
         
         .anime-card {
-            background-color: var(--dark-light);
+            background-color: #000000;
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s ease;
@@ -271,6 +271,10 @@
         
         .anime-card:hover {
             transform: translateY(-5px);
+            opacity: 0.9;
+        }
+        .anime-card:active {
+            opacity: 0.7;
         }
         
         .anime-thumb {
@@ -280,12 +284,11 @@
         }
         
         .anime-card-info {
-            padding: 15px;
+            padding: 10px 5px 10px 5px;
         }
         
         .anime-card-title {
             font-weight: 600;
-            margin-bottom: 8px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -437,4 +440,7 @@
             color: var(--text-secondary);
             padding-top: 20px;
             border-top: 1px solid var(--gray);
+        }
+        .ratings-image {
+            width: 80px;
         }
