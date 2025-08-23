@@ -392,6 +392,7 @@ app.get("/PlayList/:id",(req,res)=>{
                 DBarray.push(value.AniID)
               })
               const DBAnime = await AnimeDB.find({_id:{$in:DBarray}})
+              console.log(DBAnime)
                res.render("PlayList",{SectionName:"PlayList Section",List: PlayListDB ,AniDB:DBAnime,Auth:false,ID:accountID});
             })
         }
