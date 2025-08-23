@@ -5,11 +5,11 @@
         }
         
         :root {
-            --primary: #8a2be2;
-            --primary-dark: #6a1cb9;
-            --dark: #121212;
-            --dark-light: #1e1e1e;
-            --gray: #2d2d2d;
+            --primary: #7537af;
+            --primary-dark: #440088;
+            --dark: #000000;
+            --dark-light: #0e0e0e;
+            --gray: #1313139d;
             --text: #f5f5f5;
             --text-secondary: #b3b3b3;
         }
@@ -154,6 +154,7 @@
         .episode-card {
             background-color: var(--gray);
             border-radius: 8px;
+            
             transition: transform 0.3s ease;
             cursor: pointer;
         }
@@ -265,6 +266,7 @@
             background-color: #000000;
             border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0px 0px 7px 1px rgb(28, 20, 148);
             transition: transform 0.3s ease;
             cursor: pointer;
         }
@@ -443,4 +445,47 @@
         }
         .ratings-image {
             width: 80px;
+        }
+        .Watchlist-btn     {
+             padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            font-weight: 500;
+            color: rgb(255, 255, 255);
+            background: rgba(21, 212, 21, 0.849);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .Watchlist-btn:hover{
+            opacity: 0.8;
+        }
+        .Watchlist-btn:active {
+            opacity: 0.7;
+        }
+        .toast {
+    position: fixed;
+    right: 20px;
+    opacity: 0;
+    background: rgba(11, 199, 11, 0.788);
+    color: white;
+    padding:6px 10px 6px 10px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex
+;
+    align-items: center;
+    z-index: 1000;
+    transform: translateY(100px);
+   
+    transition: all 0.5s ease;
+}
+ .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            margin-right: 10px;
+            font-size: 20px;
         }

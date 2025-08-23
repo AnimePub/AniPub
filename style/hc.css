@@ -1,0 +1,112 @@
+body {
+    background-color: black;
+    margin: 0;
+}
+header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: fit-content;
+    z-index: 3;
+    
+}
+
+.logo-div {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+    position: absolute;
+    top: -10px;
+    z-index: 23;
+}
+.logo {
+    width: 100%;
+    object-fit: cover;
+    object-position: cover;
+    filter: brightness(1.1);
+    filter: contrast(1.2);
+    filter: grayscale(-4);
+    
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.568));
+}
+.margin {
+    width: 100%;
+    height: 50px;
+    background-color: blue;
+    
+    position: relative;
+    display: flex;
+
+}
+.Name {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 80px;
+}
+.Name p {
+    font-family: Gruppo;
+    color: White;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+    
+}
+.nav {
+    position: fixed;
+    top: 50px;
+    left: 12px;
+    width: 69px;
+    background-color: blue;
+    bottom: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+}
+.menu {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 550px;
+    justify-content: space-around;
+}
+.nav button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    background-color: transparent;
+    border: 0 none;
+    cursor: pointer;
+    transition: background-color 0.15s , opacity 0.15s;
+}
+.nav p {
+    margin: 0;
+    font-size: 14px;
+}
+.help-button p {
+    margin-top: 5px;
+}
+.nav button:hover {
+    background-color: rgba(12, 12, 189, 0.678);
+}
+.nav button:active {
+    background-color: rgba(7, 7, 136, 0.678);
+    opacity: 0.8;
+}
+
+.About-us {
+    width: 100px;
+    white-space: nowrap;
+}

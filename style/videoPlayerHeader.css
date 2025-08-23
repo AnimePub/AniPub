@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: black;
-    border-bottom: 2px solid rgba(0, 255, 255, 0.66);
+    border-bottom: 2px solid #0084ff67;
 }
 
 .fs {
@@ -101,7 +101,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 background-color: white;
-border-color:  rgb(15, 230, 245);
+border-color:  #006079;
 border-width: 2px;
 border-style: solid;
 

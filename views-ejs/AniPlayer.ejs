@@ -25,10 +25,15 @@
     
    
 </head>
-<body style="position: relative; ">
+<body>   
+   
     <!-- Header -->
    <%- include("./include/aniHeader") %> 
-    
+    <!-- Notify -->
+   <div class="toast" id="save-toast">
+        <i class="fas fa-check-circle"></i>
+        <span class="notify-span">Info Saved</span>
+    </div>
     <div class="container">
         <div>
         <div class="main-content">
@@ -91,6 +96,9 @@
                             </button>
                             <button class="btn btn-secondary share-btn">
                                 <i class="fas fa-share-alt"></i> Share
+                            </button>
+                            <button class="Watchlist-btn Add-to-watchlist-button" data-animelink="https://animehub.adnandluffy.site/AniPlayer/<%=AniId%>/<%=AniEP%>">
+                                Add To Watchlist
                             </button>
                         </div>
                     </div>
@@ -190,13 +198,13 @@
                 <p class="epno">Ep No. <%=AniEP+1%></p>
             </div>
             <div class="link-constainer">
-                <p>https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%></p>
+                <p style="white-space: wrap;">https://animehub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%></p>
             </div>
             <div class="share-media-div">
                 <p class="sn">Share Now:-</p>
                 <div class="options-div">
                     <div class="opt-div">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&quote=Hello,%20this%20%20awesome%20episode%20 target="_blank">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://animehub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&quote=Hello,%20this%20%20awesome%20episode%20 target="_blank">
                             <button class="shared-button-m">
                         <img src="/fb.svg" alt="">
                         </button>
@@ -206,7 +214,7 @@
                     </div>
     
                     <div class="opt-div">
-                        <a href="https://api.whatsapp.com/send?text=Hello,%20this%20awesome%20episode%20..%20https://anipub.adnandluffy.site/AniPlayer/<%=AniId%>/<%=AniEP%>" target="_blank">
+                        <a href="https://api.whatsapp.com/send?text=Hello,%20this%20awesome%20episode%20..%20https://animepub.adnandluffy.site/AniPlayer/<%=AniId%>/<%=AniEP%>" target="_blank">
                             <button class="shared-button-m">
                         <img src="/WhatsApp.svg" alt="">
                         </button>
@@ -216,7 +224,7 @@
                     </div>
     
                     <div class="opt-div">
-                        <a href="https://t.me/share/url?url=https://anipub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&text=Hello,%20this%20awesome%20episode%20.." target="_blank">
+                        <a href="https://t.me/share/url?url=https://animehub.adnandluffy.site/AniPlayer/<%=AniId+1%>/<%=AniEP%>&text=Hello,%20this%20awesome%20episode%20.." target="_blank">
                              <button class="shared-button-m">
                         <img src="/telegram.svg" alt="">
                         </button>
@@ -233,7 +241,7 @@
                 here's our contact info:- 
             </p>
             <div class="button-container-modal">
-            <a target="_blank" href="https://github.com/Adnan-D-Luffy/"><button class="Git-buttonM">
+            <a target="_blank" href="https://github.com/Animepub/"><button class="Git-buttonM">
                 <img class="git-im" src="/github.svg" alt="">
                 Githhub
             </button></a>
@@ -329,23 +337,20 @@
 
 
 
-<%- include("./include/footer") %> 
 </div>
-
+</div>
+ 
+<%- include("./include/footer") %> 
 
 
 
 
 
     <script>
-        
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-        
+       
         var disqus_config = function () {
-        this.page.url = window.location.href;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = window.location.pathname; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = window.location.href; 
+        this.page.identifier = window.location.pathname;
         };
         
         (function() { // DON'T EDIT BELOW THIS LINE

@@ -354,7 +354,18 @@ if(Number(req.params.AniId)===NaN || Number(req.params.AniEP)===NaN) {
     }  
    }
 });
-
+app.get("/PlayList",AuthAcc,(req,res)=>{
+     const Token = req.cookies.anipub;
+    const PlayListID = req.params.id;
+    if(Token) {
+        jwt.verify(Token,"I Am Naruto", async (err,data)=>{
+            if(err) {
+                console.log(err)
+            }
+            res.redirect(`/PlayList/${data.id}`)
+        })
+    }
+})
 
 app.get("/PlayList/:id",(req,res)=>{
     const Token = req.cookies.anipub;
