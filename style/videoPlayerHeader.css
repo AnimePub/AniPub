@@ -3,7 +3,7 @@
 
 .header-div {
     z-index: 10000;
-    position: fixed;
+    position: relative;
     top: 0;
     right: 0;
     left: 0;

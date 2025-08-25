@@ -1,37 +1,51 @@
-<header class="header-div" >
-    <a href="/Home" target="_blank" class="first-section-a">
-        <div class="fs">
-            <div class="logo-div" >
-                <img class="logo" src="/Logo-1.png" alt="">
-            </div>
-            <div class="details">
-                <p class="logoName">AniPub</p>
-                <p class="slogan" style="margin-left: 1px; margin-top: -10px;">Yamate Kudasai</p>
-            </div>
-        </div>
-    </a>
-    <div class="Search-Box-Area">
-        <input class="searchbox" type="text" placeholder="Search">
-        <button class="search-button"></button>
-       
-    </div>
+<%
+  // Normalize: support both "auth" and "Auth"
+  const isAuth = (typeof auth !== "undefined" ? auth : (typeof Auth !== "undefined" ? Auth : null));
+  const userID = typeof ID !== "undefined" ? ID : "";
+  const userLink = (typeof Link !== "undefined" && Link && Link.trim() !== "") ? Link : "favicon.ico";
+%>
 
-    <div class="ss">
-        <button class="random">Random</button>
-
-        
-       <% if(auth === true) { %> 
-        <button data-account="<%=ID%>" class="profile-icon" title="Profile Menu">
-         <img style="width: 50px; height: 50px;  object-position: center;border-radius: 50%;" src="/ProfilePic/<%= Link %>" alt="">
-        </button>
-        <% } else if (auth === false ) {%>
-            <button data-account="<%=ID%>" class="profile-icon" title="Profile Menu">
-                <img style="width: 50px; height: 50px;  object-position: center ; border-radius: 50%;" src="<%= Link %>" alt="">
-               </button>
-        <% } else { %>     
-         <button data-account="<%=ID%>" class="profile-icon" title="Profile Menu">
-                <img style="width: 50px; height: 50px;  object-position: center ; border-radius: 50%;" src="/Shinbou.jpg" alt="">
-               </button>
-        <% } %> 
+<header class="header-div">
+  <a href="/Home" target="_blank" class="first-section-a">
+    <div class="fs">
+      <div class="logo-div">
+        <img class="logo" src="/Logo-1.png" alt="">
+      </div>
+      <div class="details">
+        <p class="logoName">AniPub</p>
+        <p class="slogan" style="margin-left: 1px; margin-top: -10px;">Yamate Kudasai</p>
+      </div>
     </div>
+  </a>
+
+  <div class="Search-Box-Area">
+    <input class="searchbox" type="text" placeholder="Search">
+    <button class="search-button"></button>
+  </div>
+
+  <div class="ss">
+    <button class="random">Random</button>
+
+    <% if (isAuth === true) { %>
+      <button data-account="<%= userID %>" class="profile-icon" title="Profile Menu">
+        <img style="width: 50px; height: 50px; object-position: center; border-radius: 50%;"
+             src="/ProfilePic/<%= userLink %>"
+             alt="Profile">
+      </button>
+
+    <% } else if (isAuth === false) { %>
+      <button data-account="<%= userID %>" class="profile-icon" title="Profile Menu">
+        <img style="width: 50px; height: 50px; object-position: center; border-radius: 50%;"
+             src="<%= userLink %>"
+             alt="Guest">
+      </button>
+
+    <% } else { %>
+      <button data-account="<%= userID %>" class="profile-icon" title="Profile Menu">
+        <img style="width: 50px; height: 50px; object-position: center; border-radius: 50%;"
+             src="/Shinbou.jpg"
+             alt="Default">
+      </button>
+    <% } %>
+  </div>
 </header>
