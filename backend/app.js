@@ -391,9 +391,16 @@ app.get("/PlayList/:id",(req,res)=>{
               PlayListDB.forEach(value=>{
                 DBarray.push(value.AniID)
               })
+              let link = info.Image;
+              let finalLink;
+                if (info.Gender === "Male") {
+                    finalLink = `boys/`+ link;
+                }
+                else {
+                    finalLink = link;
+                }
               const DBAnime = await AnimeDB.find({_id:{$in:DBarray}})
-              console.log(DBAnime)
-               res.render("PlayList",{SectionName:"PlayList Section",List: PlayListDB ,AniDB:DBAnime,Auth:false,ID:accountID});
+               res.render("PlayList",{SectionName:"PlayList Section",List: PlayListDB ,AniDB:DBAnime,Auth:true,ID:accountID, Link:finalLink});
             })
         }
         else {
