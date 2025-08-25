@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
 
 .header-div {
@@ -7,7 +6,7 @@
     top: 0;
     right: 0;
     left: 0;
-    height:70px;
+    height: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -23,40 +22,48 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin-right: 10px ;
+    margin-right: 10px;
 }
+
 .logo-div {
     width: 50px;
     margin-left: 5px;
 }
+
 .logo {
     width: 100%;
     object-fit: cover;
     filter: brightness(3);
-    
+
 }
+
 .logoName {
     color: rgb(255, 255, 255);
     margin: 0;
     font-size: 28px;
-    font-family: Gruppo  ;
+    font-family: Gruppo;
     font-weight: 600;
 }
+
 .slogan {
     font-family: Tenali Ramakrishna;
     color: rgba(240, 232, 232, 0.911);
     font-size: 14px;
     margin: 0;
 }
+
 .first-section-a {
     text-decoration: none;
 }
+
 .first-section-a:hover {
     opacity: 0.9;
 }
+
 .first-section-a:active {
     opacity: 0.8;
 }
+
 .ss {
     margin-right: 10px;
     width: 150px;
@@ -66,6 +73,7 @@
     align-items: center;
     margin-left: 10px;
 }
+
 .random {
     font-size: 16px;
     font-family: Gruppo;
@@ -80,38 +88,42 @@
     border-radius: 15px;
     border-color: rgb(2, 57, 175);
     cursor: pointer;
-    transition: background-color 0.15s , opacity 0.15s , font-weight 0.15s;
+    transition: background-color 0.15s, opacity 0.15s, font-weight 0.15s;
     font-weight: 600;
 
 }
+
 .random:hover {
     background-color: rgba(3, 58, 121, 0.808);
     font-weight: bolder;
 }
+
 .random:active {
     opacity: 0.8;
 }
 
 .profile-icon {
-height: 50px;
-width: 50px;
-border-radius: 50%;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: white;
-border-color:  #006079;
-border-width: 2px;
-border-style: solid;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-color: #006079;
+    border-width: 2px;
+    border-style: solid;
 
 }
+
 .Search-Box-Area {
     display: flex;
     flex: 1;
     align-items: center;
     max-width: 500px;
 }
+
 .searchbox {
     height: 32px;
     border-bottom-left-radius: 15px;
@@ -123,12 +135,14 @@ border-style: solid;
     flex: 1;
     background-color: rgba(0, 0, 0, 0.589);
     width: 0;
-    
+
 }
+
 .searchbox:focus {
     margin: 0;
     outline: 0;
 }
+
 .search-button {
     height: 32px;
     width: 35px;
@@ -144,31 +158,39 @@ border-style: solid;
     border-bottom-right-radius: 5px;
 
 }
+
 .searchbox::placeholder {
     color: rgba(255, 255, 255, 0.801);
 }
+
 @media screen and (min-width:300px) and (max-width:362px) {
     .random {
         display: none;
     }
-    .ss{
+
+    .ss {
         justify-content: flex-end;
         width: 50px;
-    }  
+    }
 }
+
 @media screen and (min-width:300px) and (max-width:343px) {
     .logo-div {
         width: 40px;
     }
-    .ss{
+
+    .ss {
         width: 40px;
-    }  
+    }
+
     .logoName {
         font-size: 18px;
-    } 
+    }
+
     .slogan {
         font-size: 10px;
     }
+
     .profile-icon {
         height: 40px;
         width: 40px;

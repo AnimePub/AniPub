@@ -1,7 +1,7 @@
-<header class="header-div" >
+<header class="header-div">
     <a href="/Home" target="_blank" class="first-section-a">
         <div class="first-section">
-            <div class="logo-div" >
+            <div class="logo-div">
                 <img class="logo" src="Logo-1.png" alt="">
             </div>
             <div class="details">
@@ -13,20 +13,20 @@
     <div class="Search-Box-Area">
         <input class="searchbox" type="text" placeholder="Search">
         <button class="search-button"></button>
-       
+
     </div>
 
     <div class="Second-Section">
         <button class="random">Random</button>
 
-        <% if(auth === true) { %> 
-        <button  class="profile-icon" title="Profile Menu">
-         <img style="width: 50px; height: 50px;  object-position: center;border-radius: 50%;" src="/ProfilePic/<%= Link %>" alt="">
+        <% if(auth === true) { %>
+        <button class="profile-icon" title="Profile Menu">
+            <img style="width: 50px; height: 50px;  object-position: center;border-radius: 50%;" src="/ProfilePic/<%= Link %>" alt="">
         </button>
         <% } else {%>
-            <button  class="profile-icon" title="Profile Menu">
-                <img style="width: 50px; height: 50px;  object-position: center ; border-radius: 50%;" src="<%= Link %>" alt="">
-               </button>
-        <% } %>     
+        <button class="profile-icon" title="Profile Menu">
+            <img style="width: 50px; height: 50px;  object-position: center ; border-radius: 50%;" src="<%= Link %>" alt="">
+        </button>
+        <% } %>
     </div>
 </header>

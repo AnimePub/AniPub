@@ -1,4 +1,4 @@
-function mailBody(name,code) {
+function mailBody(name, code) {
     const temp = `
 <!DOCTYPE html>
 <html lang="en">
@@ -111,7 +111,7 @@ function mailBody(name,code) {
 </body>
 </html>
 `
-return temp ;
+    return temp;
 }
 
 module.exports = mailBody;

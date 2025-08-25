@@ -1,20 +1,20 @@
         :root {
-                    --primary: #8a2be2;
-                    --primary-dark: #6a1cb9;
-                    --secondary: #ff6b6b;
-                    --dark: #1a1a2e;
-                    --darker: #16213e;
-                    --light: #f8f9fa;
-                    --gray: #e9ecef;
-                    --text: #2d3346;
-                    --text-light: #6c757d;
-                    --success: #28a745;
-                    --warning: #ffc107;
-                    --danger: #dc3545;
-                    --border-radius: 12px;
-                    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-                    --transition: all 0.3s ease;
-                }
+            --primary: #8a2be2;
+            --primary-dark: #6a1cb9;
+            --secondary: #ff6b6b;
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #f8f9fa;
+            --gray: #e9ecef;
+            --text: #2d3346;
+            --text-light: #6c757d;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
 
         * {
             margin: 0;
@@ -31,8 +31,8 @@
             padding-bottom: 2rem;
         }
 
-       
-     
+
+
 
         .profile-container {
             margin-top: 2rem;
@@ -260,20 +260,22 @@
             color: var(--dark);
             transform: translateY(-2px);
         }
-       
+
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .profile-card, .details-card {
+        .profile-card,
+        .details-card {
             animation: fadeIn 0.6s ease-out;
         }
 

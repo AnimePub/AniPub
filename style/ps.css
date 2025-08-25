@@ -1,123 +1,134 @@
     .container-h {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    header {
+        background: rgba(26, 26, 46, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+
+        z-index: 100;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-family: 'Gruppo', cursive;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--light);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo i {
+        color: var(--secondary);
+        margin-right: 0.5rem;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    nav a {
+        color: var(--light);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+    }
+
+    nav a:hover,
+    nav a.active {
+        background: rgba(138, 43, 226, 0.2);
+        color: var(--secondary);
+    }
+
+    .logo-icon {
+        height: 50px;
+    }
+
+    .fs-div-p {
+        display: flex;
+        column-gap: 5px;
+        align-items: center;
+
+    }
+
+    @media (max-width: 768px) {
+        .profile-stats {
+            gap: 1rem;
         }
 
-   header {
-            background: rgba(26, 26, 46, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-           
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        .profile-actions {
+            flex-direction: column;
+            gap: 0.75rem;
         }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .detail-item {
+            flex-direction: row;
+            column-gap: 5px;
+        }
+
+        .detail-icon {
+            margin-right: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-label {
+            font-size: 20px;
+        }
+
+        nav ul {
+            gap: 1rem;
+        }
+    }
+
+    @media screen and (min-width:300px) and (max-width:800px) {
+        nav a {
+            padding: 10px;
+        }
+
+        nav ul {
+            column-gap: 10px;
+        }
+    }
+
+    @media screen and (min-width:300px) and (max-width:542px) {
+        .logo-icon {
+            height: 30px;
         }
 
         .logo {
-            font-family: 'Gruppo', cursive;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--light);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo i {
-            color: var(--secondary);
-            margin-right: 0.5rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-        }
-
-        nav a:hover, nav a.active {
-            background: rgba(138, 43, 226, 0.2);
-            color: var(--secondary);
-        }
-          .logo-icon {
-            height: 50px;
-        }
-          .fs-div-p {
-            display: flex;
-            column-gap: 5px;
-            align-items: center;
-
-        }
-
-        @media (max-width: 768px) {
-            .profile-stats {
-                gap: 1rem;
-            }
-            
-            .profile-actions {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-            
-            .detail-item {
-                flex-direction: row;
-               column-gap: 5px;
-            }
-            
-            .detail-icon {
-                margin-right: 0;
-                margin-bottom: 0.5rem;
-            }
-            .detail-label {
-                font-size: 20px;
-            }
-            nav ul {
-                gap: 1rem;
-            }
-        }
-        @media screen and (min-width:300px) and (max-width:800px) {
-            nav a {
-                padding: 10px;
-            }
-           
-            nav ul {
-                        column-gap: 10px;
-            }
-        }
-        @media screen and (min-width:300px) and (max-width:542px) {
-             .logo-icon {
-            height: 30px;
-        }
-        .logo{
             font-size: 25px;
         }
+
         nav a {
-           padding:5px 8px 5px 8px ;
+            padding: 5px 8px 5px 8px;
             font-size: 16px;
         }
+
         nav ul {
             column-gap: 15px;
-        } 
         }
-         @media screen and (min-width:300px) and (max-width:500px)  {
-            .isHome {
-                display: none;
-            }
-         }
+    }
+
+    @media screen and (min-width:300px) and (max-width:500px) {
+        .isHome {
+            display: none;
+        }
+    }
