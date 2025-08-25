@@ -5,6 +5,7 @@ on:
     branches: [main, dev]
   pull_request:
     branches: [main, dev]
+    types: [opened, synchronize]
 
 jobs:
   format:
@@ -17,6 +18,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
+          # For PRs, checkout the head ref
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -47,8 +50,23 @@ jobs:
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Create Pull Request
+      - name: Create Pull Request or Commit
         if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # For PRs, commit directly to the PR branch
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .
+            git commit -m "Auto-format code with js-beautify"
+            git push
+          else
+            # For pushes, create a new PR
+            echo "Creating PR for push event"
+          fi
+
+      - name: Create Pull Request for Push Events
+        if: steps.verify-changed-files.outputs.changed == 'true' && github.event_name == 'push'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.PAT_TOKEN }}
