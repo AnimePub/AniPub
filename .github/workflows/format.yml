@@ -1,4 +1,4 @@
-name: Format Code
+name: Auto-Format Code
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -19,7 +20,7 @@ jobs:
           node-version: 20
 
       - name: Install js-beautify
-        run: npm install js-beautify
+        run: npm install -g js-beautify
 
       - name: Format EJS files
         run: npx js-beautify -r "**/*.ejs" --type html
@@ -40,4 +41,3 @@ jobs:
           git add .
           git diff --cached --quiet || git commit -m "Auto-Format code with js-beautify"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
-
