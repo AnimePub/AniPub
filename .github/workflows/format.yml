@@ -1,4 +1,4 @@
-name: Auto-Format Code
+name: Format Code
 
 on:
   push:
@@ -9,7 +9,6 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -20,7 +19,7 @@ jobs:
           node-version: 20
 
       - name: Install js-beautify
-        run: npm install -g js-beautify
+        run: npm install js-beautify
 
       - name: Format EJS files
         run: npx js-beautify -r "**/*.ejs" --type html
@@ -36,8 +35,22 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b format/code || git checkout format/code
           git add .
           git diff --cached --quiet || git commit -m "Auto-Format code with js-beautify"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
+
+      - name: Push branch
+        run: |
+          git push -u origin format/code --force
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Auto-Format code with js-beautify"
+          branch: format/code
+          title: "Auto-Format code"
+          body: "This PR formats code using js-beautify."
+          base: ${{ github.ref_name }}
