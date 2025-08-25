@@ -6,46 +6,40 @@
 %>
 
 <header class="header-div">
-  <a href="/Home" target="_blank" class="first-section-a">
-    <div class="fs">
-      <div class="logo-div">
-        <img class="logo" src="/Logo-1.png" alt="">
-      </div>
-      <div class="details">
-        <p class="logoName">AniPub</p>
-        <p class="slogan" style="margin-left: 1px; margin-top: -10px;">Yamate Kudasai</p>
-      </div>
+    <a href="/Home" target="_blank" class="first-section-a">
+        <div class="fs">
+            <div class="logo-div">
+                <img class="logo" src="/Logo-1.png" alt="">
+            </div>
+            <div class="details">
+                <p class="logoName">AniPub</p>
+                <p class="slogan" style="margin-left: 1px; margin-top: -10px;">Yamate Kudasai</p>
+            </div>
+        </div>
+    </a>
+
+    <div class="Search-Box-Area">
+        <input class="searchbox" type="text" placeholder="Search">
+        <button class="search-button"></button>
     </div>
-  </a>
 
-  <div class="Search-Box-Area">
-    <input class="searchbox" type="text" placeholder="Search">
-    <button class="search-button"></button>
-  </div>
+    <div class="ss">
+        <button class="random">Random</button>
 
-  <div class="ss">
-    <button class="random">Random</button>
+        <% if (isAuth === true) { %>
+        <button data-account="<%= userID %>" class="profile-icon" title="Profile Menu">
+            <img style="width: 50px; height: 50px; object-position: center; border-radius: 50%;" src="/ProfilePic/<%= userLink %>" alt="Profile">
+        </button>
 
-    <% if (isAuth === true) { %>
-      <button data-account="<%= userID %>" class="profile-icon" title="Profile Menu">
-        <img style="width: 50px; height: 50px; object-position: center; border-radius: 50%;"
-             src="/ProfilePic/<%= userLink %>"
-             alt="Profile">
-      </button>
+        <% } else if (isAuth === false) { %>
+        <button data-account="<%= userID %>" class="profile-icon" title="Profile Menu">
+            <img style="width: 50px; height: 50px; object-position: center; border-radius: 50%;" src="<%= userLink %>" alt="Guest">
+        </button>
 
-    <% } else if (isAuth === false) { %>
-      <button data-account="<%= userID %>" class="profile-icon" title="Profile Menu">
-        <img style="width: 50px; height: 50px; object-position: center; border-radius: 50%;"
-             src="<%= userLink %>"
-             alt="Guest">
-      </button>
-
-    <% } else { %>
-      <button data-account="<%= userID %>" class="profile-icon" title="Profile Menu">
-        <img style="width: 50px; height: 50px; object-position: center; border-radius: 50%;"
-             src="/Shinbou.jpg"
-             alt="Default">
-      </button>
-    <% } %>
-  </div>
+        <% } else { %>
+        <button data-account="<%= userID %>" class="profile-icon" title="Profile Menu">
+            <img style="width: 50px; height: 50px; object-position: center; border-radius: 50%;" src="/Shinbou.jpg" alt="Default">
+        </button>
+        <% } %>
+    </div>
 </header>

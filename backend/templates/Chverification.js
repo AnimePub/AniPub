@@ -1,4 +1,4 @@
-const MailBody =(name,id,code) =>{
+const MailBody = (name, id, code) => {
     const temp = `
     <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +112,7 @@ const MailBody =(name,id,code) =>{
 </html>
     
     `
-return temp;
+    return temp;
 
 }
 module.exports = MailBody;

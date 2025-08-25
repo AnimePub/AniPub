@@ -15,25 +15,25 @@
             --border-radius: 12px;
             --transition: all 0.3s ease;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Outfit', 'Poppins', sans-serif;
         }
-        
+
         body {
             background-color: var(--dark);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-            
-            background-image: 
+
+            background-image:
                 radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.1) 0%, transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(255, 56, 100, 0.1) 0%, transparent 40%);
         }
-        
+
         /* Main Content */
         .main-body {
             max-width: 900px;
@@ -45,7 +45,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .main-body::before {
             content: '';
             position: absolute;
@@ -55,7 +55,7 @@
             height: 5px;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
         }
-        
+
         h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -63,7 +63,7 @@
             position: relative;
             padding-bottom: 1rem;
         }
-        
+
         h1::after {
             content: '';
             position: absolute;
@@ -74,14 +74,14 @@
             background: var(--primary);
             border-radius: 10px;
         }
-        
+
         .date {
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-weight: 400;
             font-size: 1rem;
         }
-        
+
         h2 {
             font-size: 1.8rem;
             margin: 2rem 0 1rem;
@@ -89,7 +89,7 @@
             position: relative;
             padding-left: 1rem;
         }
-        
+
         h2::before {
             content: '';
             position: absolute;
@@ -101,30 +101,30 @@
             background: var(--primary);
             border-radius: 10px;
         }
-        
+
         h3 {
             font-size: 1.3rem;
             margin: 1.5rem 0 0.8rem;
             color: var(--accent);
         }
-        
+
         p {
-        
+
             line-height: 1.7;
             color: var(--text-secondary);
         }
-        
+
         a {
             color: var(--primary);
             text-decoration: none;
             transition: var(--transition);
             position: relative;
         }
-        
+
         a:hover {
             color: var(--accent);
         }
-        
+
         a::after {
             content: '';
             position: absolute;
@@ -135,16 +135,16 @@
             background: var(--accent);
             transition: var(--transition);
         }
-        
+
         a:hover::after {
             width: 100%;
         }
-        
+
         b {
             color: var(--text);
             font-weight: 600;
         }
-        
+
         /* Decorative Elements */
         .anime-character {
             position: absolute;
@@ -154,26 +154,26 @@
             color: var(--primary);
             pointer-events: none;
         }
-        
+
         .char-1 {
             top: 10%;
             right: 5%;
             transform: rotate(15deg);
         }
-        
+
         .char-2 {
             bottom: 10%;
             left: 5%;
             transform: rotate(-15deg);
         }
-        
+
         /* Footer */
         .footer {
             background: var(--dark-light);
             padding: 4rem 2rem 2rem;
             margin-top: 4rem;
         }
-        
+
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -181,7 +181,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .footer-column h3 {
             font-size: 1.3rem;
             margin-bottom: 1.5rem;
@@ -189,7 +189,7 @@
             position: relative;
             padding-bottom: 0.8rem;
         }
-        
+
         .footer-column h3::after {
             content: '';
             position: absolute;
@@ -200,15 +200,15 @@
             background: var(--accent);
             border-radius: 10px;
         }
-        
+
         .footer-links {
             list-style: none;
         }
-        
+
         .footer-links li {
             margin-bottom: 0.8rem;
         }
-        
+
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -217,29 +217,29 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .footer-links a:hover {
             color: var(--primary);
             gap: 0.8rem;
         }
-        
+
         .footer-links a::before {
             content: '▶';
             font-size: 0.6rem;
             opacity: 0;
             transition: var(--transition);
         }
-        
+
         .footer-links a:hover::before {
             opacity: 1;
         }
-        
+
         .social-links {
             display: flex;
             gap: 1rem;
             margin-top: 1.5rem;
         }
-        
+
         .social-links a {
             display: flex;
             align-items: center;
@@ -251,13 +251,13 @@
             color: var(--text);
             transition: var(--transition);
         }
-        
+
         .social-links a:hover {
             background: var(--primary);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px var(--primary-glow);
         }
-        
+
         .copyright {
             text-align: center;
             margin-top: 4rem;
@@ -266,85 +266,85 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-div {
                 padding: 0.8rem 1.5rem;
             }
-            
+
             .nav-links {
                 display: none;
             }
-            
+
             .main-body {
                 padding: 1.5rem;
                 margin: 1.5rem;
             }
-            
+
             h1 {
                 font-size: 2rem;
             }
-            
+
             h2 {
                 font-size: 1.5rem;
             }
         }
-        
+
         @media (max-width: 576px) {
             .header-div {
                 padding: 0.8rem 1rem;
             }
-            
+
             .name {
                 font-size: 1.2rem;
             }
-            
+
             .slogan {
                 display: none;
             }
-            
+
             .search-box {
                 display: none;
             }
-            
+
             .main-body {
                 padding: 1.2rem;
                 margin: 1rem;
             }
-            
+
             h1 {
                 font-size: 1.8rem;
             }
-            
+
             h2 {
                 font-size: 1.3rem;
             }
-            
+
             .footer {
                 padding: 3rem 1rem 1.5rem;
             }
-            
+
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
         }
-        
+
         /* Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 10px;
         }
-        
+
         ::-webkit-scrollbar-track {
             background: var(--dark);
         }
-        
+
         ::-webkit-scrollbar-thumb {
             background: var(--primary);
             border-radius: 5px;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--primary-dark);
         }

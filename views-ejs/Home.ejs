@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AniPub</title>
     <meta name="description" content="Home Page - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
- <link rel="stylesheet" href="/hSlider.css">
+    <link rel="stylesheet" href="/hSlider.css">
     <link rel="stylesheet" href="/home.css">
     <link rel="stylesheet" href="/third-section.css">
     <link rel="stylesheet" href="/home-main.css">
     <link rel="stylesheet" href="/footer.css">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="Footer.css">
-   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Footer.css">
+
 </head>
 
-<body > <!--onload="CheckAuth();"-->
+<body> <!--onload="CheckAuth();"-->
 
-    <%- include("./include/haHeader.ejs") %> 
+    <%- include("./include/haHeader.ejs") %>
 
-     <div class="Slider">
-<% DBAnime.forEach((value,i) => { %>
-        
-     
+    <div class="Slider">
+        <% DBAnime.forEach((value,i) => { %>
+
+
         <div class="slide">
-            
+
             <div class="box">
-               
+
                 <div class="Box_D">
                     <div class="Number-DIV">
-                           <p class="number-List">🔥 Number <%=i+1%>  in the List</p>
+                        <p class="number-List">🔥 Number <%=i+1%> in the List</p>
                     </div>
-                 
+
                     <p class="AniName"><%=value.Name%> </p>
                     <p class="det">
                         <span class="small-d" style="margin: 0;"><%= value.Duration %> </span> <span class="small-d t"><%= value.Aired %> </span>
                         <% if (value.ep.length === 0) {%>
-                            <% const ehe = 1 %> 
-                            <span class="small-d ep">EP<%=ehe%> </span>
+                        <% const ehe = 1 %>
+                        <span class="small-d ep">EP<%=ehe%> </span>
                         <% }else {%>
-                            <% const ehe = value.ep.length + 1 %> 
-                             <span class="small-d ep">EP<%=ehe%> </span>
-                       <% } %> 
+                        <% const ehe = value.ep.length + 1 %>
+                        <span class="small-d ep">EP<%=ehe%> </span>
+                        <% } %>
                     </p>
                     <div>
                         <% const deSC = value.DescripTion ;
@@ -52,7 +53,7 @@
                         for (let i = 0; i < 170; i++) {
                             TEXT += desCA[i];
                         }
-                        %> 
+                        %>
                         <p class="DesCrip"><%= TEXT %> </p>
                     </div>
                     <div class="but-divs">
@@ -60,59 +61,61 @@
                             <img src="/play-svgrepo-com.svg" alt="">
                         </button>
                         <button class="watch-list" data-ANIMEID="<%=value.id%>">
-                            <img  src="/plus-large-svgrepo-com.svg" alt="">
+                            <img src="/plus-large-svgrepo-com.svg" alt="">
                         </button>
                     </div>
-                    
+
                 </div>
             </div>
             <img style="object-position:top;" src="/<%= value.Cover %> " alt="">
         </div>
-   <% }); %> 
- </div> 
+        <% }); %>
+    </div>
     <div class="secoNd-Section">
 
         <div class="aniLists">
-            
+
             <div class="recents">
                 <div class="ntg"></div>
                 <p>
-                Recent:-
-            </p>
-        </div>
+                    Recent:-
+                </p>
+            </div>
             <% Anime.forEach(value => {%>
-                <div class="Profile-div">
-                    <div class="Profile" data-anime="<%=value._id%>">
+            <div class="Profile-div">
+                <div class="Profile" data-anime="<%=value._id%>">
                     <div class="Image-div">
                         <img class="poster" src="<%=value.poster%>" alt="<%=value.Name%> Anime Poster">
                     </div>
-                    <div class="Title-div"><p class="Title"><%=value.Name%></p></div>
+                    <div class="Title-div">
+                        <p class="Title"><%=value.Name%></p>
+                    </div>
                     <div class="ratings-div">
                         <p class="mal-score"><%=value.MALScore%></p>
                         <img style="width: 90px;" src="rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
                     </div>
                     <div class="des-div">
                         <p class="des">
-                        <%=value.DescripTion%>
+                            <%=value.DescripTion%>
                         </p>
                     </div>
                 </div>
-                </div>
-           <% }); %> 
+            </div>
+            <% }); %>
         </div>
-   
 
-    
-        
-    
-    
-    
+
+
+
+
+
+
     </div>
 
 
-    <%- include("./include/footer.ejs") %> 
-   
-<!--
+    <%- include("./include/footer.ejs") %>
+
+    <!--
     <script type="module" src="animeInfo.js"></script>
      <script type="module" src="/Home.js"></script>
 -->
@@ -122,4 +125,5 @@
     <script type="module" src="/ANiPlayer-render.js"></script>
 
 </body>
+
 </html>

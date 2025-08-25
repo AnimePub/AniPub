@@ -1,12 +1,13 @@
 .abt-site {
     height: fit-content;
     width: 1;
-    
+
     display: flex;
     justify-content: space-around;
     align-items: start;
 
 }
+
 .p-container {
     position: relative;
     display: flex;
@@ -15,7 +16,7 @@
     height: fit-content;
     flex: 1;
     border-radius: 10px;
-    
+
 
 }
 
@@ -27,12 +28,14 @@
     font-weight: bold;
     margin-bottom: 10px;
 }
+
 .question1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 22px;
     margin-left: 10px;
 
 }
+
 .description {
     flex: 1;
     margin-left: 10px;
@@ -40,25 +43,29 @@
     font-family: Spectral;
     font-size: 18px;
 }
+
 .container2 {
     width: 1;
     height: 1;
     display: flex;
     flex-direction: column;
-} 
+}
+
 .question2 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 22px;
 
 }
+
 .description2 {
-   flex: 1;
+    flex: 1;
     font-family: Spectral;
     font-size: 16px;
 }
+
 .m-div {
     flex: 1;
-    cursor:pointer;
+    cursor: pointer;
     margin-left: 60px;
     border-radius: 10px;
     border-left: 1px solid blue;
@@ -67,20 +74,24 @@
     padding-left: 10px;
     transition: translate 1s;
 }
+
 .m-div:hover {
-  translate : -30px ;
+    translate: -30px;
     box-shadow: -2px 2px 3px rgba(32, 19, 211, 0.669);
 }
+
 .video-js2 {
     width: 98%;
     height: 98%;
     object-fit: cover;
 }
+
 .main-container {
     display: flex;
     flex-direction: column;
     row-gap: 30px;
 }
+
 .ReviewS {
     position: relative;
     margin-left: 20px;
@@ -98,8 +109,9 @@
     row-gap: 20px;
     align-items: center;
     justify-content: space-between;
-    
+
 }
+
 .ReviewS-c {
     display: flex;
     flex-direction: row;
@@ -111,11 +123,13 @@
     padding-top: 0;
     border-bottom: 1px solid rgb(0, 208, 255);
 }
+
 .img-dp {
     width: 180px;
     height: 70%;
     border-radius: 50%;
 }
+
 .profile-pic {
     width: 100%;
     height: 100%;
@@ -124,13 +138,15 @@
     border-radius: 50%;
     border: 1px blue solid;
 }
+
 .pi-div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-   
+
 
 }
+
 .nameprofile {
     margin: 0;
     margin-left: 10px;
@@ -138,6 +154,7 @@
     font-family: 'Courier New', Courier, monospace;
     color: white;
 }
+
 .desc {
     flex: 1;
     margin: 0;
@@ -147,6 +164,7 @@
     font-size: 14px;
     line-height: 20px;
 }
+
 .r-vtitle {
     top: 0;
     background-color: blue;
@@ -157,9 +175,11 @@
     border-top-left-radius: 8px;
     position: absolute;
 }
+
 .r-rv {
     margin-top: 20px;
 }
+
 .he-ader {
     flex: 1;
 }
