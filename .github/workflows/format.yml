@@ -20,6 +20,12 @@ jobs:
           token: ${{ secrets.PAT_TOKEN }}
           fetch-depth: 0
 
+      - name: Setup PR branch for PR events
+        if: github.event_name == 'pull_request'
+        run: |
+          git checkout -B ${{ github.head_ref }}
+          git pull origin ${{ github.head_ref }}
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -74,4 +80,4 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Auto-format code with js-beautify"
-          git push origin HEAD
+          git push origin ${{ github.head_ref }}
