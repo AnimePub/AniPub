@@ -1,0 +1,42 @@
+name: Format Code
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install js-beautify
+        run: npm install js-beautify
+
+      - name: Format EJS files
+        run: npx js-beautify -r "**/*.ejs" --type html
+
+      - name: Format HTML files
+        run: npx js-beautify -r "**/*.html" --type html
+
+      - name: Format CSS files
+        run: npx js-beautify -r "**/*.css" --type css
+
+      - name: Format JS files
+        run: npx js-beautify -r "**/*.js" --type js
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -m "Auto-Format code with js-beautify"
+          git push
