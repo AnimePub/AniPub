@@ -1,6 +1,6 @@
 :root {
     --background-color: #ffffff;
-    --accent-color: #007bff;   
+    --accent-color: #007bff;
 }
 
 [data-theme="dark"] {
@@ -21,7 +21,7 @@
 ::-webkit-scrollbar-thumb {
     background-color: var(--accent-color);
     border-radius: 10px;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {

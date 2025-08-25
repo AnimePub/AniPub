@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Playlist | AniPub</title>
-  <meta name="description" content="Your personal anime playlist - A Free Anime Watching Site built by Anime Lovers for Anime Lovers">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/videoPlayerHeader.css">
-  <link rel="stylesheet" href="/JPlayList.css">
-  <link rel="stylesheet" href="/body-scrollbar.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Playlist | AniPub</title>
+    <meta name="description" content="Your personal anime playlist - A Free Anime Watching Site built by Anime Lovers for Anime Lovers">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Ubuntu:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/videoPlayerHeader.css">
+    <link rel="stylesheet" href="/JPlayList.css">
+    <link rel="stylesheet" href="/body-scrollbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-  <%- include("./include/aniHeader") %> 
+    <%- include("./include/aniHeader") %>
 
-  <main class="container">
-    <div class="page-header">
-      <h1 class="page-title">My Anime Playlist</h1>
-      <div class="filter-options">
-        <button class="filter-btn active">All</button>
-        <button class="filter-btn">Watching</button>
-        <button class="filter-btn">Completed</button>
-      </div>
-    </div>
-
-    <div class="playlist-grid" id="anime-list">
-      <% if (List.length === 0) { %>
-        <div class="empty-state">
-          <div class="empty-icon"><i class="fas fa-tv"></i></div>
-          <h2 class="empty-title">Your playlist is empty</h2>
-          <p class="empty-desc">
-            It looks like you haven't added any anime to your playlist yet.
-            Start building your collection by browsing our library and adding your favorites.
-          </p>
-          <a href="/browse" class="browse-btn">Browse Anime Library</a>
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">My Anime Playlist</h1>
+            <div class="filter-options">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Watching</button>
+                <button class="filter-btn">Completed</button>
+            </div>
         </div>
-      <% } else { %>
-        <% List.forEach(item => { 
+
+        <div class="playlist-grid" id="anime-list">
+            <% if (List.length === 0) { %>
+            <div class="empty-state">
+                <div class="empty-icon"><i class="fas fa-tv"></i></div>
+                <h2 class="empty-title">Your playlist is empty</h2>
+                <p class="empty-desc">
+                    It looks like you haven't added any anime to your playlist yet.
+                    Start building your collection by browsing our library and adding your favorites.
+                </p>
+                <a href="/browse" class="browse-btn">Browse Anime Library</a>
+            </div>
+            <% } else { %>
+            <% List.forEach(item => { 
              const anime = AniDB.find(a => a._id.toString() === item.AniID.toString());
              if (!anime) return;
              const totalEpisodes = anime.ep ? anime.ep.length : 0;
@@ -46,47 +48,48 @@
              const status = progress === 0 ? 'Plan to Watch' : (progress < 100 ? 'Watching' : 'Completed');
         %>
 
-          <div class="anime-card" data-anime="<%= item.AniID %>" data-ep="<%= item.AniEP %>" data-status="<%= status.toLowerCase() %>">
-            <div class="card-header">
-              <img src="/<%= anime.ImagePath %>" alt="<%= anime.Name %>" class="poster">
+            <div class="anime-card" data-anime="<%= item.AniID %>" data-ep="<%= item.AniEP %>" data-status="<%= status.toLowerCase() %>">
+                <div class="card-header">
+                    <img src="/<%= anime.ImagePath %>" alt="<%= anime.Name %>" class="poster">
 
-              <span class="anime-status"><%= status %></span>
-            </div>
-            <div class="card-body">
-              <h3 class="anime-title"><%= anime.Name %></h3>
-              <div class="anime-info">
-<div><i class="fas fa-star"></i> Ratings: &nbsp;<span><%= anime.RatingsNum %></span></div>
-<div><i class="fas fa-calendar"></i> Added: &nbsp;<span><%= new Date(item.Date).toDateString() %></span></div>
-<div><i class="fas fa-film"></i> Studios: &nbsp;<span><%= anime.Studios %></span></div>
-<div><i class="fas fa-tags"></i> Genres: &nbsp;<span><%= anime.Genres.join(", ") %></span></div>
-
-              </div>
-              <div class="progress-container">
-                <div class="progress-info">
-                  <span>Episode <%= Number(item.AniEP)+1 %> of <%= totalEpisodes %></span>
-                  <span><%= progress.toFixed(0) %>%</span>
+                    <span class="anime-status"><%= status %></span>
                 </div>
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: <%= progress %>%"></div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <a href="/AniPlayer/<%= item.AniID %>/<%= item.AniEP %>" class="action-btn watch-btn">
-                  <i class="fas fa-play"></i> <%= progress === 100 ? 'Rewatch' : 'Continue' %>
-                </a>
-                <form action="/PlayList/Delete/<%= item.id %>" method="POST" class="remove-form">
-                  <button type="submit" class="action-btn remove-btn">
-                    <i class="fas fa-trash"></i> Remove
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        <% }) %>
-      <% } %>
-    </div>
-  </main>
+                <div class="card-body">
+                    <h3 class="anime-title"><%= anime.Name %></h3>
+                    <div class="anime-info">
+                        <div><i class="fas fa-star"></i> Ratings: &nbsp;<span><%= anime.RatingsNum %></span></div>
+                        <div><i class="fas fa-calendar"></i> Added: &nbsp;<span><%= new Date(item.Date).toDateString() %></span></div>
+                        <div><i class="fas fa-film"></i> Studios: &nbsp;<span><%= anime.Studios %></span></div>
+                        <div><i class="fas fa-tags"></i> Genres: &nbsp;<span><%= anime.Genres.join(", ") %></span></div>
 
-  <%- include("./include/footer") %> 
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-info">
+                            <span>Episode <%= Number(item.AniEP)+1 %> of <%= totalEpisodes %></span>
+                            <span><%= progress.toFixed(0) %>%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: <%= progress %>%"></div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/AniPlayer/<%= item.AniID %>/<%= item.AniEP %>" class="action-btn watch-btn">
+                            <i class="fas fa-play"></i> <%= progress === 100 ? 'Rewatch' : 'Continue' %>
+                        </a>
+                        <form action="/PlayList/Delete/<%= item.id %>" method="POST" class="remove-form">
+                            <button type="submit" class="action-btn remove-btn">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+            <% } %>
+        </div>
+    </main>
+
+    <%- include("./include/footer") %>
 </body>
+
 </html>

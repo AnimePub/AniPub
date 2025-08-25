@@ -4,12 +4,13 @@
     top: 0;
     right: 0;
     left: 0;
-    height:70px;
+    height: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
+
 .first-section {
     cursor: pointer;
     width: fit-content;
@@ -18,36 +19,44 @@
     justify-content: center;
     flex-shrink: 0;
 }
+
 .logo-div {
     width: 50px;
     margin-left: 5px;
 }
+
 .logo {
     width: 100%;
     object-fit: cover;
 }
+
 .name {
     color: white;
     margin: 0;
     font-size: 28px;
-    font-family: Gruppo  ;
+    font-family: Gruppo;
     font-weight: 600;
 }
+
 .slogan {
     font-family: Tenali Ramakrishna;
     color: rgba(189, 185, 185, 0.719);
     font-size: 14px;
     margin: 0;
 }
+
 .first-section-a {
     text-decoration: none;
 }
+
 .first-section-a:hover {
     opacity: 0.9;
 }
+
 .first-section-a:active {
     opacity: 0.8;
 }
+
 .Second-Section {
     margin-right: 10px;
     width: 130px;
@@ -56,6 +65,7 @@
     flex-shrink: 0;
     align-items: center;
 }
+
 .about-us {
     font-size: 16px;
     font-family: Gruppo;
@@ -70,17 +80,20 @@
     border-radius: 15px;
     border-color: blueviolet;
     cursor: pointer;
-    transition: background-color 0.15s , opacity 0.15s , font-weight 0.15s;
+    transition: background-color 0.15s, opacity 0.15s, font-weight 0.15s;
     font-weight: 600;
 
 }
+
 .about-us:hover {
     background-color: rgba(137, 43, 226, 0.575);
     font-weight: bolder;
 }
+
 .about-us:active {
     opacity: 0.8;
 }
+
 .help-button {
     border-radius: 50%;
     font-size: 20px;
@@ -94,13 +107,14 @@
     background-color: transparent;
     color: white;
     cursor: pointer;
-    transition: background-color 0.15s , font-weight 0.15s , opacity 0.15s ;
+    transition: background-color 0.15s, font-weight 0.15s, opacity 0.15s;
 }
+
 .help-button:hover {
     background-color: rgba(137, 43, 226, 0.575);
     font-weight: bolder;
 }
+
 .help-button:active {
     opacity: 0.8;
 }
-
