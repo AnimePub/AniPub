@@ -1,5 +1,5 @@
 const profileButton = document.querySelector(".profile-icon");
 
-profileButton.addEventListener('click',()=>{
+profileButton.addEventListener('click', () => {
     window.location.href = `/Profile`
 })

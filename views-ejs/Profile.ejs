@@ -1,38 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - <%= userInfo.Name %></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Tenali+Ramakrishna&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/JProfile.css">
-  
+
 </head>
+
 <body>
-   <%- include("./include/nHeader") %> 
+    <%- include("./include/nHeader") %>
     <div class="container">
         <div class="profile-container">
             <div class="profile-card">
                 <div class="profile-header">
                     <img src="/Esdeath.jpg" alt="Cover photo" class="profile-bg">
                     <div class="profile-img-container">
-                        <img class="profile-img" 
-                        <% if(userInfo.Gender === "Male") {%> 
-                        src="/ProfilePic/boys/<%=userInfo.image %>"
-                        <% } else {%>
-                            src="/ProfilePic/<%=userInfo.image %>"
-                        <% } %>     
-                        alt="Profile picture">
+                        <img class="profile-img" <% if(userInfo.Gender === "Male") {%> src="/ProfilePic/boys/<%=userInfo.image %>" <% } else {%> src="/ProfilePic/<%=userInfo.image %>" <% } %> alt="Profile picture">
                     </div>
                 </div>
                 <div class="profile-body">
                     <h2 class="profile-name"><%= userInfo.Name %></h2>
                     <p class="profile-bio"><%= userInfo.Bio %></p>
-                    
+
                     <div class="profile-stats">
                         <div class="stat">
                             <div class="stat-value">0</div>
@@ -47,30 +43,30 @@
                             <div class="stat-label">Followers</div>
                         </div>
                     </div>
-                    
+
                     <div class="profile-actions">
                         <% if (Auth=== true) { %>
-                            <button class="btn btn-primary">
+                        <button class="btn btn-primary">
                             <i class="fas fa-edit"></i> Edit Profile
                         </button>
-                       <%   } else {%> 
-                          <button class="btn btn-primary">
-                             Follow
+                        <%   } else {%>
+                        <button class="btn btn-primary">
+                            Follow
                         </button>
-                        <% } %> 
+                        <% } %>
                         <button class="btn btn-outline">
                             <i class="fas fa-share-alt"></i> Share
                         </button>
                     </div>
                 </div>
             </div>
-            
+
             <div class="details-card">
                 <div class="details-header">
                     <h2 class="details-title">Profile Details</h2>
                     <i class="fas fa-user-circle" style="font-size: 1.8rem; color: var(--primary);"></i>
                 </div>
-                
+
                 <div class="detail-item">
                     <div class="detail-icon">
                         <i class="fas fa-user"></i>
@@ -80,7 +76,7 @@
                         <div class="detail-value"><%= userInfo.Name %></div>
                     </div>
                 </div>
-                
+
                 <div class="detail-item">
                     <div class="detail-icon">
                         <i class="fas fa-envelope"></i>
@@ -92,7 +88,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="detail-item">
                     <div class="detail-icon">
                         <i class="fas fa-heart"></i>
@@ -102,18 +98,18 @@
                         <div class="genre-list">
                             <% const Genre = userInfo.Genre ;%>
                             <% if(Genre === null) { %>
-                                <span class="genre-tag">No favorites chosen</span>
-                            <% } else { %> 
-                                <% Genre.forEach(value => { %>
-                                    <a href="https://anipub.adnandluffy.site/genre/search?<%=value%>" target="_blank" class="genre-tag">
-                                        <%= value%>
-                                    </a> 
-                                <% }); %>  
+                            <span class="genre-tag">No favorites chosen</span>
+                            <% } else { %>
+                            <% Genre.forEach(value => { %>
+                            <a href="https://anipub.adnandluffy.site/genre/search?<%=value%>" target="_blank" class="genre-tag">
+                                <%= value%>
+                            </a>
+                            <% }); %>
                             <% } %>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="detail-item">
                     <div class="detail-icon">
                         <i class="fas fa-gamepad"></i>
@@ -123,7 +119,7 @@
                         <div class="detail-value" id="hobby">Anime, Gaming, Drawing</div>
                     </div>
                 </div>
-                
+
                 <div class="detail-item">
                     <div class="detail-icon">
                         <i class="fas fa-map-marker-alt"></i>
@@ -133,7 +129,7 @@
                         <div class="detail-value"><%= userInfo.Address %></div>
                     </div>
                 </div>
-                
+
                 <div class="detail-item">
                     <div class="detail-icon">
                         <i class="fas fa-heartbeat"></i>
@@ -166,4 +162,5 @@
         });
     </script>
 </body>
+
 </html>

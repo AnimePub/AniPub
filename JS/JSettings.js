@@ -15,7 +15,7 @@
             item.addEventListener('click', () => {
                 const parentGrid = item.closest('.pfp-grid');
                 parentGrid.querySelectorAll('.pfp-item').forEach(i => i.classList.remove('selected'));
-                
+
                 item.classList.add('selected');
             });
         });

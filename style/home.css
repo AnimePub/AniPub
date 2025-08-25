@@ -1,20 +1,23 @@
 body {
     background-color: black;
 }
+
 div {
     color: white;
 }
+
 p {
     margin: 0;
-    
+
 }
+
 .header-div {
     z-index: 200;
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    height:70px;
+    height: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -23,6 +26,7 @@ p {
     border-bottom-style: solid;
     background-color: black;
 }
+
 .first-section {
     cursor: pointer;
     width: fit-content;
@@ -30,40 +34,48 @@ p {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin-right: 10px ;
+    margin-right: 10px;
 }
+
 .logo-div {
     width: 50px;
     margin-left: 5px;
 }
+
 .logo {
     width: 100%;
     object-fit: cover;
     filter: brightness(3);
-    
+
 }
+
 .name {
     color: rgb(255, 255, 255);
     margin: 0;
     font-size: 28px;
-    font-family: Gruppo  ;
+    font-family: Gruppo;
     font-weight: 600;
 }
+
 .slogan {
     font-family: Tenali Ramakrishna;
     color: rgba(240, 232, 232, 0.911);
     font-size: 14px;
     margin: 0;
 }
+
 .first-section-a {
     text-decoration: none;
 }
+
 .first-section-a:hover {
     opacity: 0.9;
 }
+
 .first-section-a:active {
     opacity: 0.8;
 }
+
 .Second-Section {
     margin-right: 10px;
     width: 150px;
@@ -73,6 +85,7 @@ p {
     align-items: center;
     margin-left: 10px;
 }
+
 .random {
     font-size: 16px;
     font-family: Gruppo;
@@ -87,30 +100,32 @@ p {
     border-radius: 15px;
     border-color: rgb(2, 57, 175);
     cursor: pointer;
-    transition: background-color 0.15s , opacity 0.15s , font-weight 0.15s;
+    transition: background-color 0.15s, opacity 0.15s, font-weight 0.15s;
     font-weight: 600;
 
 }
+
 .random:hover {
     background-color: rgba(3, 58, 121, 0.808);
     font-weight: bolder;
 }
+
 .random:active {
     opacity: 0.8;
 }
 
 .profile-icon {
-height: 50px;
-width: 50px;
-border-radius: 50%;
-display: flex;
-justify-content: center;
-align-items: center;
-cursor: pointer;
-background-color: white;
-border-color:  rgb(2, 57, 175);
-border-width: 2px;
-border-style: solid;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: white;
+    border-color: rgb(2, 57, 175);
+    border-width: 2px;
+    border-style: solid;
 
 }
 
@@ -120,6 +135,7 @@ border-style: solid;
     align-items: center;
     max-width: 500px;
 }
+
 .searchbox {
     height: 32px;
     border-bottom-left-radius: 15px;
@@ -131,12 +147,14 @@ border-style: solid;
     flex: 1;
     background-color: rgba(0, 0, 0, 0.589);
     width: 0;
-    
+
 }
+
 .searchbox:focus {
     margin: 0;
     outline: 0;
 }
+
 .search-button {
     height: 38px;
     width: 35px;
@@ -151,6 +169,7 @@ border-style: solid;
     border-bottom-right-radius: 5px;
 
 }
+
 .searchbox::placeholder {
     color: rgba(255, 255, 255, 0.801);
 }
