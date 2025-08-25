@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,25 @@
     <meta name="description" content="Settings Page - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Tenali+Ramakrishna&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/JSettings.css">
 </head>
+
 <body>
-    <%- include("./include/nHeader") %> 
+    <%- include("./include/nHeader") %>
 
     <div class="container">
         <div class="sidebar">
             <div class="sidebar-header">
-                <% if (userData.Gender === "Female"){%> 
+                <% if (userData.Gender === "Female"){%>
                 <img src="/ProfilePic/<%=userData.Image%>" alt="User Profile">
                 <% } else if (userData.Gender=== "Male") { %>
-                     <img src="/ProfilePic/boys/<%=userData.Image%>" alt="User Profile">
-                    <% } %> 
+                <img src="/ProfilePic/boys/<%=userData.Image%>" alt="User Profile">
+                <% } %>
                 <div>
                     <h3><%= userData.Name %></h3>
                     <p><%= userData.userType %> </p>
@@ -74,20 +76,20 @@
                 <div class="card-content active">
                     <div class="form-group">
                         <label for="username">Profile Name</label>
-                        <input  type="text" id="username" class="form-control input1" value="<%=userData.Name%>"  placeholder="Your Profile Name">
+                        <input type="text" id="username" class="form-control input1" value="<%=userData.Name%>" placeholder="Your Profile Name">
                         <button class="btn btn-primary btn-sm change1" style="margin-top: 10px;">
                             <i class="fas fa-sync-alt"></i> Update Name
                         </button>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control input2" value="<%=userData.Email%>"  placeholder="Enter new email">
+                        <input type="email" id="email" class="form-control input2" value="<%=userData.Email%>" placeholder="Enter new email">
                         <button class="btn btn-primary btn-sm change2" style="margin-top: 10px;">
                             <i class="fas fa-sync-alt"></i> Update Email
                         </button>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" class="form-control input3" placeholder="Enter new password">
@@ -96,7 +98,7 @@
                         </button>
                     </div>
 
-                    
+
                 </div>
             </div>
 
@@ -109,45 +111,45 @@
                     <div class="form-group">
                         <label>Favorite Genres</label>
                         <div class="genre-list">
-                              <span class="genre action" data-genre="action">Action</span>
-                    <span class="genre adventure" data-genre="adventure">Adventure</span>
-                    <span class="genre comedy" data-genre="comedy">Comedy</span>
-                    <span class="genre drama" data-genre="drama">Drama</span>
-                    <span class="genre fantasy" data-genre="fantasy">Fantasy</span>
-                    <span class="genre sci-fi" data-genre="sci-fi">Sci-Fi</span>
-                    <span class="genre mecha" data-genre="mecha">Mecha</span>
-                    <span class="genre mystery" data-genre="mystery">Mystery</span>
-                    <span class="genre psychological" data-genre="psychological">Psychological</span>
-                    <span class="genre slice-of-life" data-genre="slice-of-life">Slice of Life</span>
-                    <span class="genre romance" data-genre="romance">Romance</span>
-                    <span class="genre supernatural" data-genre="supernatural">Supernatural</span>
-                    <span class="genre horror" data-genre="horror">Horror</span>
-                    <span class="genre sports" data-genre="sports">Sports</span>
-                    <span class="genre martial-arts" data-genre="martial-arts">Martial Arts</span>
-                    <span class="genre historical" data-genre="historical">Historical</span>
-                    <span class="genre samurai" data-genre="samurai">Samurai</span>
-                    <span class="genre school" data-genre="school">School</span>
-                    <span class="genre music" data-genre="music">Music</span>
-                    <span class="genre isekai" data-genre="isekai">Isekai</span>
-                    <span class="genre post-apocalyptic" data-genre="post-apocalyptic">Post-Apocalyptic</span>
-                    <span class="genre cyberpunk" data-genre="cyberpunk">Cyberpunk</span>
-                    <span class="genre steampunk" data-genre="steampunk">Steampunk</span>
-                    <span class="genre military" data-genre="military">Military</span>
-                    <span class="genre police" data-genre="police">Police</span>
-                    <span class="genre thriller" data-genre="thriller">Thriller</span>
-                    <span class="genre game" data-genre="game">Game</span>
-                    <span class="genre cooking" data-genre="cooking">Cooking</span>
-                    <span class="genre parody" data-genre="parody">Parody</span>
-                    <span class="genre kids" data-genre="kids">Kids</span>
-                    <span class="genre shounen" data-genre="shounen">Shounen</span>
-                    <span class="genre shoujo" data-genre="shoujo">Shoujo</span>
-                    <span class="genre seinen" data-genre="seinen">Seinen</span>
+                            <span class="genre action" data-genre="action">Action</span>
+                            <span class="genre adventure" data-genre="adventure">Adventure</span>
+                            <span class="genre comedy" data-genre="comedy">Comedy</span>
+                            <span class="genre drama" data-genre="drama">Drama</span>
+                            <span class="genre fantasy" data-genre="fantasy">Fantasy</span>
+                            <span class="genre sci-fi" data-genre="sci-fi">Sci-Fi</span>
+                            <span class="genre mecha" data-genre="mecha">Mecha</span>
+                            <span class="genre mystery" data-genre="mystery">Mystery</span>
+                            <span class="genre psychological" data-genre="psychological">Psychological</span>
+                            <span class="genre slice-of-life" data-genre="slice-of-life">Slice of Life</span>
+                            <span class="genre romance" data-genre="romance">Romance</span>
+                            <span class="genre supernatural" data-genre="supernatural">Supernatural</span>
+                            <span class="genre horror" data-genre="horror">Horror</span>
+                            <span class="genre sports" data-genre="sports">Sports</span>
+                            <span class="genre martial-arts" data-genre="martial-arts">Martial Arts</span>
+                            <span class="genre historical" data-genre="historical">Historical</span>
+                            <span class="genre samurai" data-genre="samurai">Samurai</span>
+                            <span class="genre school" data-genre="school">School</span>
+                            <span class="genre music" data-genre="music">Music</span>
+                            <span class="genre isekai" data-genre="isekai">Isekai</span>
+                            <span class="genre post-apocalyptic" data-genre="post-apocalyptic">Post-Apocalyptic</span>
+                            <span class="genre cyberpunk" data-genre="cyberpunk">Cyberpunk</span>
+                            <span class="genre steampunk" data-genre="steampunk">Steampunk</span>
+                            <span class="genre military" data-genre="military">Military</span>
+                            <span class="genre police" data-genre="police">Police</span>
+                            <span class="genre thriller" data-genre="thriller">Thriller</span>
+                            <span class="genre game" data-genre="game">Game</span>
+                            <span class="genre cooking" data-genre="cooking">Cooking</span>
+                            <span class="genre parody" data-genre="parody">Parody</span>
+                            <span class="genre kids" data-genre="kids">Kids</span>
+                            <span class="genre shounen" data-genre="shounen">Shounen</span>
+                            <span class="genre shoujo" data-genre="shoujo">Shoujo</span>
+                            <span class="genre seinen" data-genre="seinen">Seinen</span>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="relationship">Relationship Status</label>
-                        <select id="relationship"  class="form-control ulala">
+                        <select id="relationship" class="form-control ulala">
                             <option selected value="1">Single</option>
                             <option value="2">In my Dream I have a Waifu</option>
                             <option value="3">Married - Real One</option>
@@ -155,28 +157,28 @@
                             <option value="5">I won't say it, Maybe 1 bitcoin change my mind</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="location">Where do you live?</label>
                         <input type="text" id="location" class="form-control addr" value="Thousand Sunny, Grand Line">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="bloodgroup">Blood Group</label>
                         <select id="bloodgroup" name="bloodgroup" class="form-control">
-                              <option value="1">AB+</option>
-                        <option value="2">AB-</option>
-                        <option value="3">O+</option>
-                        <option value="4">O-</option>
-                        <option value="5">A+</option>
-                        <option value="6">A-</option>
-                        <option value="7">B+</option>
-                        <option value="8">B-</option>
-                        <option value="9">Rare</option>
-                        <option value="10">Prefer not to Say</option>
+                            <option value="1">AB+</option>
+                            <option value="2">AB-</option>
+                            <option value="3">O+</option>
+                            <option value="4">O-</option>
+                            <option value="5">A+</option>
+                            <option value="6">A-</option>
+                            <option value="7">B+</option>
+                            <option value="8">B-</option>
+                            <option value="9">Rare</option>
+                            <option value="10">Prefer not to Say</option>
                         </select>
                     </div>
-                    
+
                     <div class="save-container">
                         <button class="btn btn-primary atst-save">
                             <i class="fas fa-save"></i> Save Additional Info
@@ -193,34 +195,34 @@
                 <div class="card-content">
                     <div class="form-group">
                         <label for="bio">Bio</label>
-                        <textarea id="bio" class="form-control"  placeholder="Tell us about yourself"><%=userData.Bio%></textarea>
+                        <textarea id="bio" class="form-control" placeholder="Tell us about yourself"><%=userData.Bio%></textarea>
                         <div class="char-count">?/200</div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="gender">Gender</label>
                         <select id="gender" class="form-control">
-                                <% if (userData.Gender === "Female"){%> 
+                            <% if (userData.Gender === "Female"){%>
                             <option>Male</option>
                             <option selected>Female</option>
-                <% } else if (userData.Gender=== "Male") { %>
-                     <option selected>Male</option>
-                            <option >Female</option>
-                    <% } %> 
-                            
+                            <% } else if (userData.Gender=== "Male") { %>
+                            <option selected>Male</option>
+                            <option>Female</option>
+                            <% } %>
+
                         </select>
                     </div>
-                    
+
                     <h3 class="pfp-section-title">Choose Your Profile Picture</h3>
-                    
+
                     <h4 class="pfp-section-title ">Female Characters</h4>
                     <div class="pfp-grid girls-pfp ">
-                        <div class="pfp-item pfp"  data-name="bunny.jpg">
+                        <div class="pfp-item pfp" data-name="bunny.jpg">
                             <img src="/ProfilePic/bunny.jpg" alt="Mai">
                             <div class="pfp-info">Mai - Actress with mysteries</div>
                         </div>
                         <div class="pfp-item pfp" data-name="esdeath.jpg">
-                            <img src="/ProfilePic/esdeath.jpg"  alt="Esdeath">
+                            <img src="/ProfilePic/esdeath.jpg" alt="Esdeath">
                             <div class="pfp-info">Esdeath - Ruthless General</div>
                         </div>
                         <div class="pfp-item pfp" data-name="Luccy.jpg">
@@ -236,14 +238,14 @@
                             <div class="pfp-info">Mitsuri - Bubbly Hashira</div>
                         </div>
                     </div>
-                    
+
                     <h4 class="pfp-section-title">Male Characters</h4>
-                    <div class="pfp-grid boys-pfp"  >
+                    <div class="pfp-grid boys-pfp">
                         <div class="pfp-item pfp" data-name="cid.jpg">
                             <img src="/ProfilePic/boys/cid.jpg" alt="Cid">
                             <div class="pfp-info">Cid - Mastermind in the shadows</div>
                         </div>
-                        <div class="pfp-item pfp" data-name="hickigaya.jpg" >
+                        <div class="pfp-item pfp" data-name="hickigaya.jpg">
                             <img src="/ProfilePic/boys/hickigaya.jpg" alt="Hachiman">
                             <div class="pfp-info">Hachiman - Cynical problem solver</div>
                         </div>
@@ -252,7 +254,7 @@
                             <div class="pfp-info">Luffy - Future Pirate King</div>
                         </div>
                     </div>
-                    
+
                     <div class="save-container">
                         <button class="btn btn-primary ac-info-save">
                             <i class="fas fa-save"></i> Save Account Info
@@ -277,7 +279,7 @@
                             <option>Custom</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="language">Language</label>
                         <select id="language" class="form-control">
@@ -288,7 +290,7 @@
                             <option>German</option>
                         </select>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="video-quality">Default Video Quality</label>
                         <select id="video-quality" class="form-control">
@@ -299,7 +301,7 @@
                             <option>360p</option>
                         </select>
                     </div>
-                    
+
                     <div class="save-container">
                         <button class="btn btn-primary">
                             <i class="fas fa-save"></i> Save Preferences
@@ -317,9 +319,10 @@
 
     <script src="/JSettings.js"></script>
     <script src="/image.js"></script>
-    <script src="/pv-st-ch.js"></script> 
+    <script src="/pv-st-ch.js"></script>
     <script type="module" src="/additional-st.js"></script>
     <script type="module" src="/ad-st-s.js"></script>
-     <script type="module" src="/acc-info.js"></script>
+    <script type="module" src="/acc-info.js"></script>
 </body>
+
 </html>

@@ -1,9 +1,14 @@
-@media screen and (min-width:300px) and (max-width:650px){
-    .con-tainer2, .con-tainer , .ReviewS ,  .dialog-div {
+@media screen and (min-width:300px) and (max-width:650px) {
+
+    .con-tainer2,
+    .con-tainer,
+    .ReviewS,
+    .dialog-div {
         margin-right: 0;
         margin-left: 0;
     }
 }
+
 .home-button {
     display: none;
 }

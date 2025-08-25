@@ -1,109 +1,124 @@
  footer {
-    width: 100%;
-display: flex;
-row-gap: 20px;
-margin-top: 10px;
-height:330px;
-padding-bottom: 30px; 
- background-color: rgb(7, 7, 7);
- align-items: center;
- flex-direction: column;
- padding: none;
-    }
-    .Footer {
-        width: 100%;
-     
-        display: flex;
-      
-        padding-top: 30px;
-        justify-content: space-evenly;
-        column-gap: 30px;
-        align-items: start;
-    }
-    
-  .SDIV  a {
-        text-decoration: none;
-        color: rgb(255, 255, 255);
-        
-        margin: 0;
-    }
-   footer p {
-        color: white;
-        width: 200px;
-        margin: 0;
-        font-family: monospace;
-    }
-    .FName{
-        color: Blue;
-        font-family: Roboto;
-        font-weight: bold;
-        font-size: 30px;
-    }
-    .FB-Div {
-        display: flex;
-      flex-direction: row;
-        flex-direction: row;
-        column-gap: 10px;
-    }
-    .FB-Div button {
-        height: 50px;
-        width: 50px;
-        background-color: rgb(126, 139, 139);
-        border: 0;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        border-radius: 50%;
-    } 
-    .FDIV,.SDIV {
-        align-items: start;
-        display: flex;
-        flex-direction: column;
-        row-gap: 10px;
-    } 
-     .FB-Div button:hover {
-        opacity: 0.7;
-     }
-     .FB-Div button:active {
-        opacity: 0.6;
-     }
-    .FB-Div button img {
-        width: 50px;
-        height: 50px;
-        
-    }
-    .PreviewL {
-        color: rgb(250, 126, 147);
-          font-family: Roboto;
-        font-weight: bold;
-        font-size: 30px;
-    }
-    .last-div {
-        width: 100%;
-        border-top: 1px solid rgb(0, 68, 255);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-@media screen and (min-width:300px) and (max-width:500px) {
+     width: 100%;
+     display: flex;
+     row-gap: 20px;
+     margin-top: 10px;
+     height: 330px;
+     padding-bottom: 30px;
+     background-color: rgb(7, 7, 7);
+     align-items: center;
+     flex-direction: column;
+     padding: none;
+ }
+
+ .Footer {
+     width: 100%;
+
+     display: flex;
+
+     padding-top: 30px;
+     justify-content: space-evenly;
+     column-gap: 30px;
+     align-items: start;
+ }
+
+ .SDIV a {
+     text-decoration: none;
+     color: rgb(255, 255, 255);
+
+     margin: 0;
+ }
+
+ footer p {
+     color: white;
+     width: 200px;
+     margin: 0;
+     font-family: monospace;
+ }
+
+ .FName {
+     color: Blue;
+     font-family: Roboto;
+     font-weight: bold;
+     font-size: 30px;
+ }
+
+ .FB-Div {
+     display: flex;
+     flex-direction: row;
+     flex-direction: row;
+     column-gap: 10px;
+ }
+
+ .FB-Div button {
+     height: 50px;
+     width: 50px;
+     background-color: rgb(126, 139, 139);
+     border: 0;
+     overflow: hidden;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     cursor: pointer;
+     border-radius: 50%;
+ }
+
+ .FDIV,
+ .SDIV {
+     align-items: start;
+     display: flex;
+     flex-direction: column;
+     row-gap: 10px;
+ }
+
+ .FB-Div button:hover {
+     opacity: 0.7;
+ }
+
+ .FB-Div button:active {
+     opacity: 0.6;
+ }
+
+ .FB-Div button img {
+     width: 50px;
+     height: 50px;
+
+ }
+
+ .PreviewL {
+     color: rgb(250, 126, 147);
+     font-family: Roboto;
+     font-weight: bold;
+     font-size: 30px;
+ }
+
+ .last-div {
+     width: 100%;
+     border-top: 1px solid rgb(0, 68, 255);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+ }
+
+ @media screen and (min-width:300px) and (max-width:500px) {
      .Footer {
-        width: 100%;
-     
-        display: flex;
-      flex-direction: column;
-        padding-top: 30px;
-        justify-content: space-evenly;
-        row-gap: 20px;
-        margin-left: 10px;
-        align-items: start;
-    }
-    footer  {
-        height: fit-content;
-    }
-    .fdes {
-        width: 100%;
-    }
-}
+         width: 100%;
+
+         display: flex;
+         flex-direction: column;
+         padding-top: 30px;
+         justify-content: space-evenly;
+         row-gap: 20px;
+         margin-left: 10px;
+         align-items: start;
+     }
+
+     footer {
+         height: fit-content;
+     }
+
+     .fdes {
+         width: 100%;
+     }
+ }
