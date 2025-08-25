@@ -57,19 +57,22 @@ jobs:
           fi
 
       - name: Create Pull Request or Commit
-        if: steps.verify-changed-files.outputs.changed == 'true'
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            # For PRs, commit directly to the PR branch
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add .
-            git commit -m "Auto-format code with js-beautify"
-            git push origin ${{ github.event.pull_request.head.ref }}
-          else
-            # For pushes, create a new PR
-            echo "Creating PR for push event"
-          fi
+        if: steps.verify-changed-files.outputs.changed == 'true' && github.event_name == 'pull_request'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          commit-message: "Auto-format code with js-beautify"
+          title: "Auto-format code in PR #${{ github.event.pull_request.number }}"
+          body: |
+            This commit automatically formats code in PR #${{ github.event.pull_request.number }} using js-beautify.
+            
+            Files formatted:
+            - EJS files
+            - HTML files  
+            - CSS files
+            - JS files
+          branch: ${{ github.event.pull_request.head.ref }}
+          delete-branch: false
 
       - name: Create Pull Request for Push Events
         if: steps.verify-changed-files.outputs.changed == 'true' && github.event_name == 'push'
