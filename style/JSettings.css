@@ -92,7 +92,7 @@
         .container {
             display: flex;
             max-width: 1400px;
-            margin-top:10px;
+            margin-top: 10px;
             padding: 0 20px;
             gap: 25px;
         }
@@ -161,7 +161,8 @@
             transition: opacity 0.3s ease;
         }
 
-        .nav-item:hover, .nav-item.active {
+        .nav-item:hover,
+        .nav-item.active {
             background: rgba(138, 43, 226, 0.15);
         }
 
@@ -296,8 +297,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Form Elements */
@@ -385,7 +393,8 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .genre:hover, .genre.selected {
+        .genre:hover,
+        .genre.selected {
             background: var(--primary);
             border-color: var(--primary-light);
         }
@@ -513,7 +522,7 @@
             .container {
                 flex-direction: column;
             }
-            
+
             .sidebar {
                 width: 100%;
                 position: static;
@@ -525,24 +534,24 @@
             .header {
                 padding: 0 15px;
             }
-            
+
             .logo {
                 font-size: 20px;
             }
-            
+
             .welcome-banner {
                 padding: 20px;
             }
-            
+
             .settings-card {
                 padding: 20px;
             }
-            
+
             .pfp-grid {
                 grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
                 gap: 15px;
             }
-            
+
             .pfp-item img {
                 height: 90px;
             }
@@ -552,16 +561,16 @@
             .section-title {
                 font-size: 20px;
             }
-            
+
             .settings-card {
                 padding: 15px;
             }
-            
+
             .genre-tag {
                 padding: 8px 15px;
                 font-size: 13px;
             }
-            
+
             .btn {
                 padding: 12px 18px;
             }

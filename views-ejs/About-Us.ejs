@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <%- include('include/JHeader.ejs') %>
     <div class="hero-section">
@@ -93,18 +95,19 @@
         <p>&copy; 2025 AniPub. All Rights Reserved.</p>
     </div>
 
-    <script src="/navigator.js"></script> 
+    <script src="/navigator.js"></script>
     <script>
         const sections = document.querySelectorAll('.animate-section');
         window.addEventListener('scroll', () => {
             const triggerBottom = window.innerHeight / 1.2;
             sections.forEach(section => {
                 const sectionTop = section.getBoundingClientRect().top;
-                if(sectionTop < triggerBottom){
+                if (sectionTop < triggerBottom) {
                     section.classList.add('show');
                 }
             });
         });
     </script>
 </body>
+
 </html>

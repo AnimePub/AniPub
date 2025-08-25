@@ -35,9 +35,11 @@ body {
 
 .hero-overlay {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
     z-index: 0;
 }
 
@@ -64,8 +66,15 @@ body {
 
 /* Animations */
 @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(50px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .animate-section {
@@ -96,7 +105,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
     z-index: 0;
     border-radius: 15px;
 }
@@ -106,7 +115,7 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     transition: transform 0.5s ease, filter 0.5s ease;
     z-index: 1;
     position: relative;
@@ -123,10 +132,21 @@ body {
     z-index: 2;
 }
 
-.content-section.left-align.full-width .image-content { order: 1; }
-.content-section.left-align.full-width .text-content  { order: 2; }
-.content-section.right-align.full-width .image-content{ order: 2; }
-.content-section.right-align.full-width .text-content { order: 1; }
+.content-section.left-align.full-width .image-content {
+    order: 1;
+}
+
+.content-section.left-align.full-width .text-content {
+    order: 2;
+}
+
+.content-section.right-align.full-width .image-content {
+    order: 2;
+}
+
+.content-section.right-align.full-width .text-content {
+    order: 1;
+}
 
 .text-content h2 {
     font-family: 'Orbitron', sans-serif;
@@ -134,7 +154,7 @@ body {
     margin-bottom: 1.5rem;
     color: #00ffff;
     text-transform: uppercase;
- 
+
     background: linear-gradient(90deg, #ff00ff, #00ffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -170,16 +190,16 @@ body {
 }
 
 .team-member {
-    background: rgba(34,34,34,0.85);
+    background: rgba(34, 34, 34, 0.85);
     padding: 2rem;
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.team-member:hover { 
+.team-member:hover {
     transform: translateY(-15px) scale(1.05) rotate(-2deg);
-    box-shadow: 0 20px 60px rgba(0,255,255,0.5);
+    box-shadow: 0 20px 60px rgba(0, 255, 255, 0.5);
 }
 
 .team-member img {
@@ -219,9 +239,17 @@ body {
 }
 
 @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .cta-section.full-width h2 {
@@ -230,7 +258,7 @@ body {
     margin-bottom: 1rem;
     color: #fff;
     text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(0,0,0,0.5);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .cta-section.full-width p {
@@ -249,12 +277,12 @@ body {
     text-decoration: none;
     text-transform: uppercase;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 0 20px rgba(0,0,0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .cta-button:hover {
     transform: scale(1.1) rotate(-2deg);
-    box-shadow: 0 0 40px rgba(0,0,0, 0.8);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
 }
 
 .footer {
@@ -266,8 +294,13 @@ body {
 }
 
 @media (max-width: 1024px) {
-    .hero-content h1 { font-size: 4rem; }
-    .hero-content p { font-size: 1.5rem; }
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+
+    .hero-content p {
+        font-size: 1.5rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -275,9 +308,24 @@ body {
         grid-template-columns: 1fr;
         padding: 3rem 1rem;
     }
-    .text-content h2 { font-size: 2.5rem; }
-    .text-content p { font-size: 1.2rem; }
-    .hero-content h1 { font-size: 3rem; }
-    .hero-content p { font-size: 1.2rem; }
-    .team-members { gap: 2rem; }
+
+    .text-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .text-content p {
+        font-size: 1.2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .team-members {
+        gap: 2rem;
+    }
 }
