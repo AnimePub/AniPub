@@ -18,8 +18,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN }}
-          # For PRs, checkout the head ref
-          ref: ${{ github.event.pull_request.head.sha || github.ref }}
+          # For PRs, fetch the full history and checkout the PR branch
+          fetch-depth: 0
+
+      - name: Setup PR branch
+        if: github.event_name == 'pull_request'
+        run: |
+          git checkout -b ${{ github.event.pull_request.head.ref }}
+          git reset --hard ${{ github.event.pull_request.head.sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -59,7 +65,7 @@ jobs:
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add .
             git commit -m "Auto-format code with js-beautify"
-            git push
+            git push origin ${{ github.event.pull_request.head.ref }}
           else
             # For pushes, create a new PR
             echo "Creating PR for push event"
