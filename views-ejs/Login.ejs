@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AniPub-Login</title>
     <meta name="description" content="Login Page  - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
 
-    
-       <link rel="stylesheet" href="header.css">
+
+    <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <div class="header-div" >
+    <div class="header-div">
         <a href="/" target="_blank" class="first-section-a">
             <div class="first-section">
-                <div class="logo-div" >
+                <div class="logo-div">
                     <img class="logo" src="Logo-1.png" alt="">
                 </div>
                 <div class="details">
@@ -30,68 +32,69 @@
                 </div>
             </div>
 
-          
+
 
         </a>
         <div class="Second-Section">
             <a href="/about-us" style="text-decoration:none"><button class="about-us">About Us</button></a>
             <button class="help-button">
-              ?
+                ?
             </button>
         </div>
     </div>
 
-  
+
 
     <div class="box">
-        
+
         <div class="container">
             <div class="logo-section">
-                <div class="logo-divA" >
+                <div class="logo-divA">
                     <img class="logoA" src="Logo-1.png" alt="">
                 </div>
                 <div class="detailsA">
                     <p class="nameA">AniPub</p>
                     <p class="sloganA" style="margin-left: 1px; margin-top: -2px;">Yamate Kudasai</p>
                 </div>
-            </div> <% if(Auth=== false) { %> 
+            </div> <% if(Auth=== false) { %>
             <p class="warning"></p>
             <form>
-               
-            <div class="username-div">
-                <input name="Email" class="username" type="email" placeholder="Username or Email" id="mail">
-            </div>
-            <div class="pass-div">
-                <input class="pass" name="Password" type="password" placeholder="Password" id="pass-word" minlength="8" >
-            </div>
-            
-            <div class="Hulu">
-                <a target="_blank" style="text-decoration-color: rgba(245, 245, 245, 0.664); color:rgba(255, 255, 255, 0.808) ; font-size: 17px;" href="" style="display: block;">Forgot Passward</a>
-            </div>               
-                
-                 <button class="login-button">Login</button> 
-        
-                </form>
-                     <button onclick="window.location.href=`/Sign-up`" class="sign-up-button">Sign Up</button>
-                
-<script src="login.js"></script>
-        
-<% } else { %> 
-    <div class="logout-div" data-id="<%=Data %> ">
-        <div>
-            <img  src="logout-svgrepo-com.svg" alt="">
-        </div>
-        <p>Logout</p>
-    </div>
-<script src="logout.js"></script>
 
-
-    <% } %> 
+                <div class="username-div">
+                    <input name="Email" class="username" type="email" placeholder="Username or Email" id="mail">
                 </div>
-               
+                <div class="pass-div">
+                    <input class="pass" name="Password" type="password" placeholder="Password" id="pass-word" minlength="8">
+                </div>
+
+                <div class="Hulu">
+                    <a target="_blank" style="text-decoration-color: rgba(245, 245, 245, 0.664); color:rgba(255, 255, 255, 0.808) ; font-size: 17px;" href="" style="display: block;">Forgot Passward</a>
+                </div>
+
+                <button class="login-button">Login</button>
+
+            </form>
+            <button onclick="window.location.href=`/Sign-up`" class="sign-up-button">Sign Up</button>
+
+            <script src="login.js"></script>
+
+            <% } else { %>
+            <div class="logout-div" data-id="<%=Data %> ">
+                <div>
+                    <img src="logout-svgrepo-com.svg" alt="">
+                </div>
+                <p>Logout</p>
+            </div>
+            <script src="logout.js"></script>
+
+
+            <% } %>
         </div>
-        
-  
-   
+
+    </div>
+
+
+
 </body>
+
 </html>

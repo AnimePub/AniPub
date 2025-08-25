@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,35 +15,40 @@
             justify-content: center;
             padding-top: 100px;
         }
-        .alu {font-size: 40px; font-family: monospace; color: rgb(255, 255, 255)}
 
+        .alu {
+            font-size: 40px;
+            font-family: monospace;
+            color: rgb(255, 255, 255)
+        }
     </style>
 </head>
+
 <body style="background-color: rgb(0, 0, 0);">
-    
-        <% Msge.forEach(value => {%>
-            <p class="alu"><%= value %> </p>
-       <% }); %> 
-        <p class="alu time"></p>
-   
+
+    <% Msge.forEach(value => {%>
+    <p class="alu"><%= value %> </p>
+    <% }); %>
+    <p class="alu time"></p>
+
 
     <script>
         const time = document.querySelector(".time");
         let settime = 10;
-        
-        setInterval(()=>{
-            time.innerText = (settime +"s");
-           settime -- ;
-            
+
+        setInterval(() => {
+            time.innerText = (settime + "s");
+            settime--;
+
             if (settime === 0) {
-                 Reload()
+                Reload()
             }
-        },1000)
+        }, 1000)
+
         function Reload() {
-            window.location.href ="/Home"
+            window.location.href = "/Home"
         }
-
-
     </script>
 </body>
+
 </html>

@@ -1,50 +1,50 @@
 <nav class="nav">
     <div class="menu">
-         <% if (Auth === true) { %>
-              <button class="Profile-Button" data-account="<%= userInfo.ID %>">
-            <img class="img-logo"  src="/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+        <% if (Auth === true) { %>
+        <button class="Profile-Button" data-account="<%= userInfo.ID %>">
+            <img class="img-logo" src="/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
             <p>Profile</p>
         </button>
         <%  } else {%>
-            <button class="Profile-Button" data-account="guest">
-                <img class="img-logo"  src="/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-                <p>Profile</p>
-        <% } %>     
-        
-        <button class="Home-button">
-            <img class="img-logo"  src="/home_app_logo_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-            <p>Home</p>
-        </button>
+        <button class="Profile-Button" data-account="guest">
+            <img class="img-logo" src="/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+            <p>Profile</p>
+            <% } %>
 
-        <% if (Auth === true) { %>
-        <button class="PlayList-button" data-account="<%= userInfo.ID %>">
-            <img class="img-logo"  src="/video_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-            <p>Playlist</p>
-        </button>
-        <% }  else {%>
-            <button class="PlayList-button" data-account="guest">
-                <img class="img-logo"  src="/video_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+            <button class="Home-button">
+                <img class="img-logo" src="/home_app_logo_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                <p>Home</p>
+            </button>
+
+            <% if (Auth === true) { %>
+            <button class="PlayList-button" data-account="<%= userInfo.ID %>">
+                <img class="img-logo" src="/video_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
                 <p>Playlist</p>
             </button>
-        <% } %>     
+            <% }  else {%>
+            <button class="PlayList-button" data-account="guest">
+                <img class="img-logo" src="/video_library_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                <p>Playlist</p>
+            </button>
+            <% } %>
 
-        <button class="Security-button">
-            <img class="img-logo"   src="/security_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-            <p>Security</p>
-        </button>
-        <button class="Privacy-button">
-            <img class="img-logo"  src="/policy_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-            <p>Privacy</p>
-        </button>
-        <button class="About-us About-us-Button">
-            <img class="img-logo"  src="/info_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-            <p>About Us</p>
-        </button>
-        
-        <button class="help-button">
-            <img class="img-logo"  src="/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
-            <p>Help</p>
-        </button>
+            <button class="Security-button">
+                <img class="img-logo" src="/security_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                <p>Security</p>
+            </button>
+            <button class="Privacy-button">
+                <img class="img-logo" src="/policy_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                <p>Privacy</p>
+            </button>
+            <button class="About-us About-us-Button">
+                <img class="img-logo" src="/info_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                <p>About Us</p>
+            </button>
+
+            <button class="help-button">
+                <img class="img-logo" src="/help_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                <p>Help</p>
+            </button>
     </div>
-   
-</nav>  
+
+</nav>

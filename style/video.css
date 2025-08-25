@@ -1,10 +1,10 @@
-
 body {
     background-color: black;
     margin: 0;
     padding: 0;
     margin-bottom: 10px;
 }
+
 .Video-Section {
     margin-top: 10px;
     flex: 1;
@@ -17,30 +17,33 @@ body {
     flex-direction: row;
     margin-bottom: 10px;
 }
+
 .con-tainer {
-   margin-left: 10px;
+    margin-left: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 1;
     width: 100%;
-    height:390px;
+    height: 390px;
     border-top: 1px solid blue;
     border-radius: 10px;
     border-bottom: 1px solid blue;
     box-shadow: 1px 2px 4px rgba(0, 191, 255, 0.245);
 }
+
 .video-js2 {
     margin-left: 2px;
-     height: 97%;
+    height: 97%;
     width: 100%;
-   
+
 }
+
 .info {
     border-right: 1px solid blue;
     border-left: 1px solid blue;
     height: fit-content;
-    
+
     padding: 10px;
     position: relative;
     border-radius: 10px;
@@ -50,6 +53,7 @@ body {
     column-gap: 10px;
     align-items: start;
 }
+
 .info::before {
     content: '';
     position: absolute;
@@ -58,7 +62,7 @@ body {
     left: 0;
     bottom: 0;
     z-index: -1;
-    
+
     background-image: url(/Website/Logo/Logo-1.png);
     background-position: center;
     background-size: contain;
@@ -68,6 +72,7 @@ body {
     filter: contrast(1.2);
     filter: grayscale(-1.5);
 }
+
 .Fsection {
     width: 200px;
     height: 300px;
@@ -78,10 +83,12 @@ body {
     padding: 2px;
     border-radius: 10px;
 }
+
 .pic {
     width: 100%;
     height: 85%;
 }
+
 .a-pic {
     width: 100%;
     height: 100%;
@@ -92,13 +99,16 @@ body {
     border-bottom-right-radius: 7px;
 
 }
+
 .buttons {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     height: 100%;
-} 
-.watchlist-b , .Play-b {
+}
+
+.watchlist-b,
+.Play-b {
     height: 40px;
     width: 40px;
     border-radius: 50%;
@@ -110,7 +120,9 @@ body {
     align-items: center;
     transition: all 500ms;
 }
-.Text , .Text1 {
+
+.Text,
+.Text1 {
     margin-left: -6px;
     color: white;
     display: none;
@@ -120,8 +132,9 @@ body {
     font-family: monospace;
     letter-spacing: -1px;
     word-spacing: -4px;
-    
+
 }
+
 .watchlist-b:hover {
     background-color: blue;
     display: flex;
@@ -137,24 +150,28 @@ body {
     display: inline;
     font-weight: bold;
 }
+
 .Play-b:hover {
     width: 40%;
     border-radius: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  
+
     background-color: rgb(118, 255, 118);
 }
+
 .Play-b:hover .play-logo {
     margin-left: -6px;
-   
+
 }
+
 .watchlist-b:hover .Text {
     display: inline;
-    
+
 }
-.watchlist-b:hover .watchlist-logo  {
+
+.watchlist-b:hover .watchlist-logo {
     margin-left: -12px;
     filter: contrast(0);
     filter: brightness(-5);
@@ -162,14 +179,17 @@ body {
     width: 70%;
 }
 
-.watchlist-logo , .play-logo {
+.watchlist-logo,
+.play-logo {
     height: 98%;
-    width:98%;
-   border-radius: 50%; 
+    width: 98%;
+    border-radius: 50%;
 }
+
 .play-logo {
     margin-left: 4px;
 }
+
 .Play-b {
     background-color: rgb(111, 255, 111);
 }
@@ -177,34 +197,37 @@ body {
 .Ssection {
     height: 100%;
     width: 550px;
-    
+
     display: flex;
     flex-direction: column;
-    
+
 
 }
 
 .Ssection p {
-    
+
     margin: 0;
     margin-bottom: 7px;
     font-weight: bold;
 }
+
 .Name {
     font-size: 26px;
     color: white;
-    
+
 }
+
 .sn {
     font-weight: normal;
 }
+
 .s {
- font-weight: normal;
- color: rgb(255, 255, 255);
- font-size: 15px;
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
 
 }
+
 .sp {
     color: rgb(255, 255, 255);
 }
-

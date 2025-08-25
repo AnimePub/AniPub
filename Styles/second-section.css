@@ -4,20 +4,22 @@
     padding-bottom: 10px;
     width: 62%;
     border-bottom: 1px solid blue;
-    border-bottom-right-radius:10px ;
+    border-bottom-right-radius: 10px;
     background-color: rgba(74, 74, 74, 0.49);
     position: relative;
 }
+
 .profile-div {
     height: 250px;
     width: 180px;
     border-radius: 10px;
-    box-shadow: -1px 2px 4px black ;
+    box-shadow: -1px 2px 4px black;
     position: absolute;
     top: -200px;
     left: 10px;
-    
+
 }
+
 .profile-container {
     position: relative;
     height: 100%;
@@ -25,13 +27,15 @@
     display: flex;
     align-items: end;
 }
+
 .profile-div img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
-    
-} 
+
+}
+
 .buttons {
     position: absolute;
     top: 68%;
@@ -44,6 +48,7 @@
     flex-direction: row;
     align-items: center;
 }
+
 .Play-button {
     height: 100%;
     width: 50px;
@@ -52,22 +57,27 @@
     background-color: rgba(6, 7, 6, 0.877);
     border: 1px solid rgb(0, 255, 0);
 }
+
 .Play-button img {
     height: 100%;
     width: 100%;
     border-radius: 50%;
-   
+
 }
-.Play-button:hover{
+
+.Play-button:hover {
     opacity: 0.8;
     background-color: rgb(119, 199, 0);
 }
+
 .Play-button:hover img {
     filter: brightness(0);
 }
+
 .Play-button:active {
     opacity: 0.7;
 }
+
 .Add-to-watchlist-button {
     height: 100%;
     width: 50px;
@@ -80,19 +90,23 @@
     transition: all 0.20s;
     column-gap: 6px;
 }
-.Add-to-watchlist-button  img {
+
+.Add-to-watchlist-button img {
     width: 40px;
     height: 40px;
 }
+
 .Add-to-watchlist-button p {
     display: none;
     white-space: nowrap;
     font-family: monospace;
     color: white;
 }
+
 .Add-to-watchlist-button:hover p {
     display: block;
 }
+
 .Add-to-watchlist-button:hover {
     width: fit-content;
     padding-right: 6px;
@@ -111,28 +125,35 @@
     padding-left: 6px;
     cursor: pointer;
 }
+
 .Download-Button img {
     width: 40px;
     height: 35px;
 
 }
+
 .Download-Button p {
     color: white;
     font-family: monospace;
 }
+
 .button-div-download {
     height: 100%;
 }
+
 .button-div-download a {
     text-decoration: none;
 }
-.Download-Button:active{
+
+.Download-Button:active {
     opacity: 0.7;
 }
+
 .Download-Button:hover p {
     color: green;
 }
-.Download-Button:hover{
+
+.Download-Button:hover {
     background-color: white;
     color: green;
     border: 1px solid green;

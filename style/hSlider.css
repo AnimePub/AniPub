@@ -1,26 +1,30 @@
-*{
+* {
     padding: 0;
     margin: 0;
 }
+
 .Slider {
     height: 100vh;
     margin: auto;
     width: 100%;
     position: relative;
-   overflow: hidden;
-   
+    overflow: hidden;
+
 }
-.slide{
+
+.slide {
     height: 100%;
     width: 100%;
     position: absolute;
     transition: all 0.50s;
 }
-img{
+
+img {
     object-fit: cover;
     height: 100%;
     width: 100%;
 }
+
 .box {
     position: absolute;
     bottom: 0;
@@ -31,15 +35,16 @@ img{
     height: 100%;
     width: 30%;
     background-color: #000000f2;
-   box-shadow: 20px 0px 20px 9px #000000f2;
-   display: flex;
+    box-shadow: 20px 0px 20px 9px #000000f2;
+    display: flex;
     align-items: end;
 }
+
 .box::after {
     content: "";
     height: 100%;
     width: 100%;
- 
+
     position: absolute;
     transform: rotateZ(-60deg);
 
@@ -47,24 +52,29 @@ img{
     top: -230px;
     background: rgba(39, 39, 39, 0.103);
 }
+
 .Number-DIV {
     position: absolute;
     top: 100px;
 }
+
 .AniName {
     font-size: 40px;
     color: white;
     font-weight: bold;
     font-family: sans-serif;
-    margin-bottom:20px ;
+    margin-bottom: 20px;
 }
+
 .box p {
     color: white;
 }
+
 .Box_D {
     margin-bottom: 40px;
     margin-left: 10px;
 }
+
 .small-d {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.952);
@@ -74,20 +84,24 @@ img{
     background: rgb(0, 38, 255);
     padding: 6px;
     border-radius: 10px;
-   
+
 }
+
 .t {
     background-color: rgba(241, 15, 15, 0.884);
 }
+
 .det {
-     margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 .DesCrip {
     font-family: Roboto;
     margin-bottom: 20px;
     line-height: 25px;
     color: rgb(214, 214, 214);
 }
+
 .watch-button {
     height: 50px;
     width: 50px;
@@ -97,53 +111,64 @@ img{
     cursor: pointer;
     transition: all 0.30s;
 }
+
 .watch-button img {
     object-fit: cover;
 }
+
 .watch-button:hover {
-     opacity: 0.9;
+    opacity: 0.9;
 }
+
 .watch-button:active {
     opacity: 0.6;
 }
+
 .watch-list {
-     height: 50px;
+    height: 50px;
     width: 50px;
     background-color: rgba(23, 216, 142, 0.842);
-       border: 0;
+    border: 0;
     cursor: pointer;
     transition: all 0.15s;
     border-radius: 10px;
 }
+
 .but-divs {
     display: flex;
     column-gap: 20px;
 }
+
 .watch-list:hover {
     opacity: 0.8;
     background: rgba(12, 196, 125, 0.842);
-} 
+}
+
 .watch-list:active {
     opacity: 0.6;
 }
+
 .number-List {
     margin-bottom: 40px;
     font-size: 20px;
     color: rgba(245, 245, 245, 0.63);
     font-family: Roboto;
 }
+
 .ep {
     background: rgb(27, 88, 78);
     font-family: Roboto;
 }
+
 @media screen and (min-width:300px) and (max-width:900px) {
     .DesCrip {
         display: none;
     }
-  
+
 }
+
 @media screen and (min-width:300px) and (max-width:600px) {
-  .box {
-    width: 50%;
-   } 
+    .box {
+        width: 50%;
+    }
 }

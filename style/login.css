@@ -6,9 +6,11 @@ body {
     height: 100vh;
     background-repeat: no-repeat;
 }
+
 p {
     font-family: Gruppo;
 }
+
 .box {
     position: absolute;
     top: 0;
@@ -21,6 +23,7 @@ p {
     margin-right: 20px;
     margin-bottom: 25px;
 }
+
 .container {
     align-items: center;
     justify-content: center;
@@ -31,11 +34,12 @@ p {
     display: flex;
     max-width: 300px;
     height: 400px;
- background-color: rgba(30, 34, 38, 0.435);
+    background-color: rgba(30, 34, 38, 0.435);
     box-shadow: 2px 2px 6px rgba(0, 255, 242, 0.798);
 }
 
-.username , .pass {
+.username,
+.pass {
     color: white;
     font-weight: bold;
     background-color: rgba(0, 0, 0, 0.374);
@@ -48,22 +52,29 @@ p {
     padding-left: 10px;
     font-size: 16px;
     height: 24px;
-    
+
 }
-.username:focus , .pass:focus {
+
+.username:focus,
+.pass:focus {
     margin: 0;
     outline: 0;
 }
-.username-div , .pass-div { 
+
+.username-div,
+.pass-div {
     margin-bottom: 10px;
     width: fit-content;
 }
-.username::placeholder , .pass::placeholder {
+
+.username::placeholder,
+.pass::placeholder {
     color: white;
     font-family: Gruppo;
     font-weight: bolder;
     filter: brightness(10);
 }
+
 .logo-section {
     cursor: pointer;
     width: fit-content;
@@ -73,73 +84,87 @@ p {
     flex-shrink: 0;
     margin-bottom: 10px;
 }
+
 .logo-divA {
     width: 70px;
     margin-left: 5px;
 }
+
 .logoA {
     width: 100%;
     object-fit: cover;
 
 }
+
 .nameA {
-   
+
     color: white;
     margin: 0;
     font-size: 35px;
-    font-family: Gruppo  ;
+    font-family: Gruppo;
     font-weight: 600;
 }
+
 .sloganA {
     font-family: Tenali Ramakrishna;
     color: rgba(255, 255, 255, 0.856);
-   
+
     font-size: 18px;
     margin: 0;
- }
-    .Hulu {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-    }
-    .login-button , .sign-up-button {
-        padding: 4px 10px 4px 10px;
-        border-radius: 15px;
-        border-style: solid;
-        border-color: rgb(3, 38, 38);
-        background-color: rgb(0, 41, 41);
-        border-width: 1px ;
-        margin-top: 8px;
-        font-size: 17px;
-        font-family: Gruppo;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.15s , opacity 0.15s ;
-    }
-    .login-button:hover , .sign-up-button:hover {
-        background-color: rgba(0, 229, 255, 0.487);
-        border-color: rgba(0, 229, 255, 0.487);
-    } 
-    .login-button:active , .sign-up-button:active {
-        opacity: 0.8;
-    }
+}
+
+.Hulu {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-button,
+.sign-up-button {
+    padding: 4px 10px 4px 10px;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: rgb(3, 38, 38);
+    background-color: rgb(0, 41, 41);
+    border-width: 1px;
+    margin-top: 8px;
+    font-size: 17px;
+    font-family: Gruppo;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.15s, opacity 0.15s;
+}
+
+.login-button:hover,
+.sign-up-button:hover {
+    background-color: rgba(0, 229, 255, 0.487);
+    border-color: rgba(0, 229, 255, 0.487);
+}
+
+.login-button:active,
+.sign-up-button:active {
+    opacity: 0.8;
+}
+
 .warning {
     color: rgb(255, 0, 0);
     font-weight: bolder;
     font-size: 14px;
     background-color: rgb(0, 0, 0);
-    margin: 0 0 10px 0 ;
+    margin: 0 0 10px 0;
     text-decoration: underline;
-   
+
 
 }
-form{
+
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .logout-div {
     height: 50px;
     border-radius: 5px;
@@ -152,12 +177,14 @@ form{
 }
 
 .logout-div:hover {
-     background: rgba(102, 95, 95, 0.945);
+    background: rgba(102, 95, 95, 0.945);
 }
+
 .logout-div:active {
     opacity: 0.7;
 
 }
+
 .logout-div p {
     color: rgb(0, 0, 0);
     font-weight: bolder;
@@ -165,6 +192,7 @@ form{
     font-size: 18px;
     margin: 0;
 }
+
 .logout-div img {
     height: 40px;
 }

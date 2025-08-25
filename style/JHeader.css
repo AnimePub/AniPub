@@ -5,7 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
     position: relative;
     z-index: 10;
     overflow: hidden;
@@ -57,17 +57,34 @@
 
 .nav-link:hover {
     color: #ff3c3c;
-   
+
     transform: scale(1.1) rotate(-2deg);
 }
 
 @keyframes glitch {
-    0% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(2px, -2px); }
-    100% { transform: translate(0); }
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
 }
 
 .nav-link.glitch:hover {
@@ -96,40 +113,52 @@
 }
 
 @keyframes hueShift {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
 }
 
 @media (max-width: 768px) {
     .header-container {
-      
+
         gap: 20px;
     }
+
     .navbar {
-     
+
         gap: 15px;
     }
+
     .navbar a {
         font-size: 15px;
     }
-    .logo-div img  {
-    width: 50px;
+
+    .logo-div img {
+        width: 50px;
         height: 50px;
         object-fit: cover;
-}
+    }
+
     .page-title h1 {
         font-size: 2rem;
     }
+
     .page-title p {
         font-size: 1rem;
     }
 }
+
 @media screen and (min-width:300px) and (max-width:357px) {
-     .navbar a {
+    .navbar a {
         font-size: 12px;
     }
+
     .navbar {
-     
+
         gap: 5px;
     }
 }

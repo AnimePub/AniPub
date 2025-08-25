@@ -1,73 +1,74 @@
-import { getItem } from "./additional-st.js";
-import { Converter } from "./ad-st-converter.js";
-let finalAdSt = JSON.parse(localStorage.getItem("finalAdst"))||[];
+import {
+    getItem
+} from "./additional-st.js";
+import {
+    Converter
+} from "./ad-st-converter.js";
+let finalAdSt = JSON.parse(localStorage.getItem("finalAdst")) || [];
 const relation = document.querySelector(".ulala");
 const addr = document.querySelector(".addr");
 const bloodG = document.getElementById("bloodgroup");
 const atstSave = document.querySelector(".atst-save");
 
-const setAdSt = (r,a,b) => {
-    const Alu = Converter(Number(r),Number(b));
+const setAdSt = (r, a, b) => {
+    const Alu = Converter(Number(r), Number(b));
 
-    const rl =  Alu.r;
-   
+    const rl = Alu.r;
+
     const blood = Alu.b;
-    finalAdSt.push(
-     {
-       Relation: rl
-     },
-     {
+    finalAdSt.push({
+        Relation: rl
+    }, {
         address: a
-     },
-     {
-        bloodGroup : blood
-     },
-     {
+    }, {
+        bloodGroup: blood
+    }, {
         Genre: getItem(),
-     }     
-    )
-     localStorage.setItem("finalAdst",JSON.stringify(finalAdSt))
+    })
+    localStorage.setItem("finalAdst", JSON.stringify(finalAdSt))
 };
 
-const clearAdst = () =>{
-   finalAdSt.splice(0,finalAdSt.length);
-   localStorage.setItem("finalAdst",JSON.stringify(finalAdSt));
+const clearAdst = () => {
+    finalAdSt.splice(0, finalAdSt.length);
+    localStorage.setItem("finalAdst", JSON.stringify(finalAdSt));
 }
 
 
-atstSave.addEventListener('click',()=>{
-    const rlts = relation.value ;
+atstSave.addEventListener('click', () => {
+    const rlts = relation.value;
     const address = addr.value;
     const bloodGroup = bloodG.value;
     clearAdst();
-    setAdSt(rlts,address,bloodGroup);
-   
+    setAdSt(rlts, address, bloodGroup);
 
-   // now we will fetch it to the server
-   fetch("Settings/ad-st",{
-      method:"POST",
-      headers:{"content-type":"application/json"},
-      body:JSON.stringify({finalAdSt})
-   })
-   .then (info=>info.json())
-   .then(data =>{
-      redirect (data);
-   })
+
+    // now we will fetch it to the server
+    fetch("Settings/ad-st", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                finalAdSt
+            })
+        })
+        .then(info => info.json())
+        .then(data => {
+            redirect(data);
+        })
 })
 
-export function redirect (data) {
-   if(data.includes("/Info Saved")) {
-   const toast = document.getElementById('save-toast');
-          toast.classList.add('show');
-             setTimeout(() => {
-                toast.classList.remove('show');
-                }, 3000);
+export function redirect(data) {
+    if (data.includes("/Info Saved")) {
+        const toast = document.getElementById('save-toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
 
-   }
-   else if (data.includes("/Login")) {
-      window.location.href = "/Login"
-   }
-   else {
-      console.log("There is a error with internal server ");
-   }
+    } else if (data.includes("/Login")) {
+        window.location.href = "/Login"
+    } else {
+        console.log("There is a error with internal server ");
+    }
 }
