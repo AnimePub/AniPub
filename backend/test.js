@@ -38,75 +38,75 @@ div class = "episode-info" >
 <
 div class = "episode-number" > Episode 1 < /div> <
 div class = "episode-name" > < %= video.name % > < /div> < /
-    div > <
+div > <
     /div> < %
-    if (video.ep.length > 0) {
+if (video.ep.length > 0) {
+    %
+    >
+    <
+    %
+    video.ep.forEach((value, i) => {
         %
         >
         <
-        %
-        video.ep.forEach((value, i) => {
-            %
-            >
-            <
-            div class = "episode-card <%= Number(AniEP) === (i + 1) ? 'active' : '' %>"
-            data - ep = "<%=i+1%>"
-            data - anime = "<%=Number(AniId)+1%>" >
-                <
-                %
-                const IMAGE3 = video.ImagePath;
-            const IAGE3 = IMAGE3.split("https://"); %
-            >
+        div class = "episode-card <%= Number(AniEP) === (i + 1) ? 'active' : '' %>"
+        data - ep = "<%=i+1%>"
+        data - anime = "<%=Number(AniId)+1%>" >
             <
             %
-            if (IAGE3 && IAGE3[1]) {
-                %
-                >
-                <
-                img class = "episode-thumb"
-                src = "<%=video.ImagePath %> "
-                alt = "" >
-                    <
-                    %
-            } else {
-                %
-                >
-                <
-                img class = "episode-thumb"
-                src = "/<%=video.ImagePath %> "
-                alt = "" >
-                    <
-                    %
-            } % >
-            <
-            div class = "episode-info" >
-            <
-            div class = "episode-number" > Episode < %= i + 2 % > < /div> <
-            div class = "episode-name" >
-            <
-            %
-            if (video.ep[i].name) {
-                %
-                >
-                <
-                %= video.ep[i].name % >
-                    <
-                    %
-            } else {
-                %
-                >
-                Episode No. < %= i + 2 % >
-                    <
-                    %
-            } % >
-            <
-            /div> < /
-            div > <
-                /div> < %
-        }); % >
+            const IMAGE3 = video.ImagePath;
+        const IAGE3 = IMAGE3.split("https://"); %
+        >
         <
         %
-    }; % >
+        if (IAGE3 && IAGE3[1]) {
+            %
+            >
+            <
+            img class = "episode-thumb"
+            src = "<%=video.ImagePath %> "
+            alt = "" >
+                <
+                %
+        } else {
+            %
+            >
+            <
+            img class = "episode-thumb"
+            src = "/<%=video.ImagePath %> "
+            alt = "" >
+                <
+                %
+        } % >
+        <
+        div class = "episode-info" >
+        <
+        div class = "episode-number" > Episode < %= i + 2 % > < /div> <
+        div class = "episode-name" >
+        <
+        %
+        if (video.ep[i].name) {
+            %
+            >
+            <
+            %= video.ep[i].name % >
+                <
+                %
+        } else {
+            %
+            >
+            Episode No. < %= i + 2 % >
+                <
+                %
+        } % >
+        <
+        /div> < /
+        div > <
+            /div> < %
+    }); % >
+    <
+    %
+}; % >
 <
 /div> < /
 section >
@@ -167,75 +167,75 @@ div class = "episode-info" >
 <
 div class = "episode-number" > Episode 1 < /div> <
 div class = "episode-name" > < %= video.name % > < /div> < /
-    div > <
+div > <
     /div> < %
-    if (video.ep.length > 0) {
+if (video.ep.length > 0) {
+    %
+    >
+    <
+    %
+    video.ep.forEach((value, i) => {
         %
         >
         <
-        %
-        video.ep.forEach((value, i) => {
-            %
-            >
-            <
-            div class = "episode-card <%= Number(AniEP) === (i + 1) ? 'active' : '' %>"
-            data - ep = "<%=i+1%>"
-            data - anime = "<%=Number(AniId)+1%>" >
-                <
-                %
-                const IMAGE3 = video.ImagePath;
-            const IAGE3 = IMAGE3.split("https://"); %
-            >
+        div class = "episode-card <%= Number(AniEP) === (i + 1) ? 'active' : '' %>"
+        data - ep = "<%=i+1%>"
+        data - anime = "<%=Number(AniId)+1%>" >
             <
             %
-            if (IAGE3 && IAGE3[1]) {
-                %
-                >
-                <
-                img class = "episode-thumb"
-                src = "<%=video.ImagePath %> "
-                alt = "" >
-                    <
-                    %
-            } else {
-                %
-                >
-                <
-                img class = "episode-thumb"
-                src = "/<%=video.ImagePath %> "
-                alt = "" >
-                    <
-                    %
-            } % >
-            <
-            div class = "episode-info" >
-            <
-            div class = "episode-number" > Episode < %= i + 2 % > < /div> <
-            div class = "episode-name" >
-            <
-            %
-            if (video.ep[i].name) {
-                %
-                >
-                <
-                %= video.ep[i].name % >
-                    <
-                    %
-            } else {
-                %
-                >
-                Episode No. < %= i + 2 % >
-                    <
-                    %
-            } % >
-            <
-            /div> < /
-            div > <
-                /div> < %
-        }); % >
+            const IMAGE3 = video.ImagePath;
+        const IAGE3 = IMAGE3.split("https://"); %
+        >
         <
         %
-    }; % >
+        if (IAGE3 && IAGE3[1]) {
+            %
+            >
+            <
+            img class = "episode-thumb"
+            src = "<%=video.ImagePath %> "
+            alt = "" >
+                <
+                %
+        } else {
+            %
+            >
+            <
+            img class = "episode-thumb"
+            src = "/<%=video.ImagePath %> "
+            alt = "" >
+                <
+                %
+        } % >
+        <
+        div class = "episode-info" >
+        <
+        div class = "episode-number" > Episode < %= i + 2 % > < /div> <
+        div class = "episode-name" >
+        <
+        %
+        if (video.ep[i].name) {
+            %
+            >
+            <
+            %= video.ep[i].name % >
+                <
+                %
+        } else {
+            %
+            >
+            Episode No. < %= i + 2 % >
+                <
+                %
+        } % >
+        <
+        /div> < /
+        div > <
+            /div> < %
+    }); % >
+    <
+    %
+}; % >
 <
 /div> < /
 section >
