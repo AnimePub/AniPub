@@ -12,26 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header-div">
-        <a href="/Home" target="_blank" class="first-section-a">
-            <div class="first-section">
-                <div class="logo-div">
-                    <img class="logo" src="/Logo-1.png" alt="AniPub Logo">
-                </div>
-                <div class="details">
-                    <p class="name">AniPub</p>
-                    <p class="slogan" style="margin-left: 1px; margin-top: -10;">Yamate Kudasai</p>
-                </div>
-            </div>
-        </a>
-        
-        <nav class="nav-links">
-            <a href="/home">Home</a>
-            <a href="/home">Anime</a>
-            <a href="/about-us">About US</a>
-        </nav>
-        
-    </header>
+     <%- include("./include/nHeader") %>
 
     <div class="main-body">
         <i class="fas fa-shield-alt anime-character char-1"></i>
@@ -82,10 +63,7 @@
         <p>Thanks for being part of the AniPub crew! Let's set sail for adventure together!</p>
     </div>
         
-        <div class="copyright">
-            <p>© 2025 AniPub. All rights reserved. This site does not store any files on its server.</p>
-        </div>
-    </footer>
+      <%- include("./include/footer.ejs") %> 
 
     <script>
         document.querySelector(".date").innerText = `Effective Date: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`;
