@@ -584,10 +584,10 @@ app.get("/Privacy-Policy",(req,res)=>{
                 console.log(err)
             }
             const userInfo = {ID:data.id};
-             res.render("Privacy-Policy",{SectionName:"Privacy Policy Section", Auth:true,userInfo});
+             res.render("Privacy-Policy",{SectionName:"Privacy Policy Section", Auth:true,userInfo,alu:"pr"});
         })
     }else{
-    res.render("Privacy-Policy",{SectionName:"Privacy Policy Section",Auth:false});
+    res.render("Privacy-Policy",{Auth:false,alu:"pr"});
 }
    
 });
