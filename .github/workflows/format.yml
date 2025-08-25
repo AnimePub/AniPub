@@ -9,12 +9,17 @@ on:
 jobs:
   format:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -33,24 +38,29 @@ jobs:
       - name: Format JS files
         run: npx js-beautify -r "**/*.js" --type js
 
-      - name: Commit changes
+      - name: Check for changes
+        id: verify-changed-files
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout -b format/code || git checkout format/code
-          git add .
-          git diff --cached --quiet || git commit -m "Auto-Format code with js-beautify"
-
-      - name: Push branch
-        run: |
-          git push -u origin format/code --force
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create Pull Request
+        if: steps.verify-changed-files.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Auto-Format code with js-beautify"
-          branch: format/code
-          title: "Auto-Format code"
-          body: "This PR formats code using js-beautify."
-          base: ${{ github.ref_name }}
+          token: ${{ secrets.PAT_TOKEN }}
+          commit-message: "Auto-format code with js-beautify"
+          title: "Auto-format code"
+          body: |
+            This PR automatically formats code using js-beautify.
+            
+            Files formatted:
+            - EJS files
+            - HTML files  
+            - CSS files
+            - JS files
+          branch: format/auto-format-code
+          delete-branch: true
