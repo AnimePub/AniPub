@@ -29,7 +29,7 @@ const OP = require("./Data/data");
 //Anime DB init ..
 const AnimeDB = require("./models/AniDB.js");
 
-//using router makes it more easy to manage the code
+// router 
 const HomeRouter = require("./router/home.js");
 const Settings = require("./router/pvchng.js");
 const Notify = require("./router/notify.js");
@@ -57,8 +57,7 @@ const DataBaseId = process.env.mongoDB || process.env.mongoToken || MONGO_String
 
 // the token above is only for production !! 
 // please if you are using your own token before push make 
-// sure your env file is in gitignore - AdnanDLuffy
-
+// sure your env file is in gitignore - Adnan
 
 const port = process.env.PORT || 3000;
 
@@ -188,10 +187,6 @@ app.get("/verify/:code", (req, res) => {
                     }
                 })
 
-
-
-
-
             } else {
                 const Msge = ["This Link Won't Work ? the link only stays for 30min"]
                 res.render("Notify", {
@@ -316,7 +311,8 @@ app.get("/Profile/:id", (req, res) => {
                     })
                 })
                 .catch(err => {
-                    res.json("This user doesn't Exist, Why seeing this ? mail me :- abdullahal467bp@gmail.com")
+                     res.redirect("*")
+                    // res.json("This user doesn't Exist, Why seeing this ? mail me :- abdullahal467bp@gmail.com")
                 })
 
         })
@@ -361,14 +357,12 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
     const AniEP = Number(newArray[3]);
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if (Number(req.params.AniId) === NaN || Number(req.params.AniEP) === NaN) {
-        res.send("Hello")
+         res.redirect("*")
     } else {
         AniDB.findById(Number(req.params.AniId))
         .then(ANIMEIN=>{
-            const ALUVER = Number(req.params.AniEP)
-            console.log(ANIMEIN.ep.length+1,Number(req.params.AniEP))
             if(ANIMEIN.length === 0 ) {
-                res.json("Episode Or Aime Not Found")
+                 res.redirect("*")
             }
             else if (ANIMEIN.ep.length >=  ALUVER) {
                    if (Token) {
@@ -420,8 +414,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
         }
             }
             else {
-                console.log("Hey")
-                res.json("Episode Or Anime Not Found");
+                 res.redirect("*")
             }
         })
 
@@ -625,7 +618,7 @@ app.delete('/PlayList/Delete/:DeleteID', (req, res) => {
                                 console.log(error)
                             })
                     } else {
-                        res.json(["You are not Owner of this post !"])
+                         res.redirect("*")
                     }
                 })
         })
@@ -960,28 +953,6 @@ app.post("/Bulk/Add", validAdmin, async (req, res) => {
     }
 
 })
-
-
-// give myself Admin Permission 
-
-app.get("/AdminMake", (req, res) => {
-    Data.find({
-            "Email": "abdullahal467bp@gmail.com"
-        })
-        .then(info => {
-
-            Data.findOneAndUpdate({
-                    "Email": "abdullahal467bp@gmail.com"
-                }, {
-                    "AcStats": "Active"
-                })
-                .then(info => {
-                    res.redirect("/Home");
-                })
-
-        })
-
-})
 app.get("/verify-email-change/:id/:code", (req, res) => {
     const ID = req.params.id;
     const code = req.params.code;
@@ -1003,7 +974,11 @@ app.get("/verify-email-change/:id/:code", (req, res) => {
                         }
                     })
             } else {
-                res.json("Are You Sure ? ")
+                res.redirect("*")
             }
         })
+})
+// Redirect 404
+app.use("*",(req,res)=>{
+    res.status(404).render("404")
 })

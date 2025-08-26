@@ -10,7 +10,7 @@ const AuthAcc = (req, res, next) => {
             next();
         })
     } else {
-        res.redirect("/Login")
+        res.redirect("*")
     }
 }
 

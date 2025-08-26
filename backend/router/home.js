@@ -74,4 +74,3 @@ HomeRouter.get("/Home", async (req, res) => {
 
 module.exports = HomeRouter;
 
-// This is how we add router hehe ...

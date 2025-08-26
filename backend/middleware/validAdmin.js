@@ -12,12 +12,12 @@ const validAdmin = (req, res, next) => {
             if (status === "Admin" || status === "Moderator") {
                 next();
             } else {
-                res.redirect("/Login")
+               res.redirect("*")
             }
 
         })
     } else {
-        res.redirect("/Login")
+         res.redirect("*")
     }
 }
 
