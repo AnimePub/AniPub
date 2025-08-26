@@ -12,17 +12,25 @@
         <nav class="NaV">
             <ul>
                 <li class="isHome"><a href="/Home">Home</a></li>
-                <li><a href="/Playlist">PlayList</a></li>
+                
                 <% if (alu==="p") { %>
                 <li><a href="/Profile" class="active">Profile</a></li>
                 <li><a href="/Settings">Settings</a></li>
+                <li><a href="/Playlist">PlayList</a></li>
                 <% } else if (alu==="s") { %>
                 <li><a href="/Profile">Profile</a></li>
+                <li><a href="/Playlist">PlayList</a></li>
                 <li><a href="/Settings" class="active">Settings</a></li>
                 <% } else if(alu==="pr") {%>
                 <li><a href="/Profile">Profile</a></li>
                 <li><a href="/Settings">Settings</a></li>
-                <% } %>
+                <li><a href="/Playlist">PlayList</a></li>
+                <% } else if (alu === "pl") { %>
+                    <li><a href="/Playlist" class="active">PlayList</a></li>
+                    <li><a href="/Profile">Profile</a></li>
+                <li><a href="/Settings">Settings</a></li>
+                
+                <%}%>
             </ul>
         </nav>
     </div>

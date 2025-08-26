@@ -472,7 +472,8 @@ app.get("/PlayList/:id", (req, res) => {
                             AniDB: DBAnime,
                             Auth: true,
                             ID: accountID,
-                            Link: finalLink
+                            Link: finalLink,
+                            alu:"pl"
                         });
                     })
             } else {
