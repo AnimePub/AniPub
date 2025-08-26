@@ -495,3 +495,9 @@ body {
     margin-right: 10px;
     font-size: 20px;
 }
+@media screen and (min-width:300px) and (max-width:600px) {
+    .container {
+        padding: 0;
+        margin: 0;
+    }
+}
