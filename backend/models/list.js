@@ -41,9 +41,9 @@ const List = new Schema({
         type: String,
         required: true,
     },
-    Progress:{
-        required:false,
-        type:String,   
+    Progress: {
+        required: false,
+        type: String,
     }
 }, {
     timestamps: true
