@@ -233,7 +233,7 @@
 
   .poster {
       width: 100%;
-     
+
       object-fit: cover;
       transition: var(--transition);
   }

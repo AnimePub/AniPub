@@ -29,7 +29,7 @@ atwb.addEventListener('click', () => {
 })
 
 function Checking(data) {
-   const toast = document.getElementById('save-toast');
+    const toast = document.getElementById('save-toast');
     if (data.includes("PlayList Updated")) {
         toast.classList.add('show');
         setTimeout(() => {
@@ -37,13 +37,12 @@ function Checking(data) {
         }, 3000);
     } else if (data.includes("/Login")) {
         window.location.href = "/Login"
-    }
-    else if (data.includes("Already")) {
+    } else if (data.includes("Already")) {
         document.querySelector(".notify-span").innerHTML = `Already In The List`
         toast.classList.add('show');
         setTimeout(() => {
             toast.classList.remove('show');
         }, 3000);
-    } 
-    
+    }
+
 }
