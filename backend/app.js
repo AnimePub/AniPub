@@ -33,6 +33,7 @@ const AnimeDB = require("./models/AniDB.js");
 const HomeRouter = require("./router/home.js");
 const Settings = require("./router/pvchng.js");
 const Notify = require("./router/notify.js");
+const AniDB = require("./models/AniDB.js");
 
 
 
@@ -362,9 +363,15 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
     if (Number(req.params.AniId) === NaN || Number(req.params.AniEP) === NaN) {
         res.send("Hello")
     } else {
-
-
-        if (Token) {
+        AniDB.findById(Number(req.params.AniId))
+        .then(ANIMEIN=>{
+            const ALUVER = Number(req.params.AniEP)
+            console.log(ANIMEIN.ep.length+1,Number(req.params.AniEP))
+            if(ANIMEIN.length === 0 ) {
+                res.json("Episode Or Aime Not Found")
+            }
+            else if (ANIMEIN.ep.length >=  ALUVER) {
+                   if (Token) {
             jwt.verify(Token, "I Am Naruto", (err, data) => {
                 if (err) {
                     console.log(err)
@@ -400,7 +407,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
 
             })
         } else {
-
+            console.log("hey")
             res.render("AniPlayer", {
                 AniDB: animeDb,
                 video,
@@ -411,6 +418,14 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                 Link: linkI
             })
         }
+            }
+            else {
+                console.log("Hey")
+                res.json("Episode Or Anime Not Found");
+            }
+        })
+
+       
     }
 });
 app.get("/PlayList", AuthAcc, (req, res) => {
