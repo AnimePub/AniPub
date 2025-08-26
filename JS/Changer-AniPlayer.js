@@ -14,7 +14,7 @@ List.forEach(value => {
     })
 })
 Left.addEventListener('click', () => {
-        window.location.href = `/AniPlayer/${AniId}/${Math.abs(Number(AniEp)-1)}`
+    window.location.href = `/AniPlayer/${AniId}/${Math.abs(Number(AniEp)-1)}`
 })
 Right.addEventListener('click', () => {
     window.location.href = `/AniPlayer/${AniId}/${Number(AniEp)+1}`
