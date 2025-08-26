@@ -94,8 +94,9 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-
+app.set('trust proxy',true) //getting info for debug 
 app.use(morgan("common"));
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views-ejs"));
 
@@ -401,7 +402,6 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
 
             })
         } else {
-            console.log("hey")
             res.render("AniPlayer", {
                 AniDB: animeDb,
                 video,
