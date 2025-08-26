@@ -32,13 +32,11 @@ function checking(data) {
         }, 3000);
     } else if (data.includes("/Login")) {
         window.location.href = "/Login"
-    }
-    else if (data.includes("Already")) {
+    } else if (data.includes("Already")) {
         document.querySelector(".notify-span").innerHTML = `Already In The List`
         toast.classList.add('show');
         setTimeout(() => {
             toast.classList.remove('show');
         }, 3000);
-    } 
+    }
 }
-

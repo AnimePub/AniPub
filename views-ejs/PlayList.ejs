@@ -16,7 +16,7 @@
 </head>
 
 <body>
-       <%- include("./include/nHeader") %>
+    <%- include("./include/nHeader") %>
 
     <main class="container">
         <div class="page-header">
@@ -41,7 +41,7 @@
             </div>
             <% } else { %>
             <% List.forEach(item => { %>
-        <%     const anime = AniDB.find(a => a._id.toString() === item.AniID.toString());
+            <%     const anime = AniDB.find(a => a._id.toString() === item.AniID.toString());
              if (!anime) return;
              const totalEpisodes = anime.ep ? anime.ep.length +1 : 0;
              const ALU = Number(item.Progress)+1;
@@ -53,7 +53,7 @@
 
             <div class="anime-card" data-anime="<%=item.AniID%>" data-ep="<%=item.AniEP%>" data-status="<%=status.toLowerCase()%>">
                 <div class="card-header">
-                     <% const POSTER =  anime.ImagePath;
+                    <% const POSTER =  anime.ImagePath;
                             const POSTERARY = POSTER.split("https://");
                             let LINKU = "";
                             if(POSTERARY.length > 1){
@@ -79,7 +79,7 @@
                     <div class="progress-container">
                         <div class="progress-info">
                             <span>Episode <%= ALU %> of <%= totalEpisodes %></span>
-                            <% const finalP = Math.round(percent) %> 
+                            <% const finalP = Math.round(percent) %>
                             <span><%=finalP%>%</span>
                         </div>
                         <div class="progress-bar">
@@ -91,9 +91,9 @@
                         <a href="/AniPlayer/<%=item.AniID%>/<%=Number(item.Progress)%>" class="action-btn watch-btn" style="text-decoration: none;">
                             <i class="fas fa-play"></i> <%= finalP === 100 ? 'Rewatch' : 'Continue' %>
                         </a>
-                            <button type="submit" class="action-btn remove-btn remove-button"  data-del="<%=item.id%>">
-                                <i class="fas fa-trash"></i> Remove
-                            </button>
+                        <button type="submit" class="action-btn remove-btn remove-button" data-del="<%=item.id%>">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
                     </div>
                 </div>
             </div>
@@ -103,8 +103,8 @@
 
     </main>
 
-        
-    <%- include("./include/footer") %> 
+
+    <%- include("./include/footer") %>
     <script src="/deleteList.js"></script>
 </body>
 
