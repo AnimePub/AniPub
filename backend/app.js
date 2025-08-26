@@ -364,7 +364,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
             if(ANIMEIN.length === 0 ) {
                  res.redirect("*")
             }
-            else if (ANIMEIN.ep.length >=  ALUVER) {
+            else if (ANIMEIN.ep.length >=  Number(req.params.AniEP)) {
                    if (Token) {
             jwt.verify(Token, "I Am Naruto", (err, data) => {
                 if (err) {
