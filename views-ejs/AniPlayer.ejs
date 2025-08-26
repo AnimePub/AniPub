@@ -239,7 +239,17 @@
                     <% if (AniDB.length > 0) { %>
                     <% AniDB.forEach((value, i) => { %>
                     <div class="anime-card" data-anime="<%=value._id%>">
-                        <img class="anime-thumb" src="/<%= value.poster %>" alt="<%= value.Name %>">
+                        <% const POSTER = value.poster;
+                            const POSTERARY = POSTER.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                            }
+                        %>
+                        <img class="anime-thumb" src="<%=LINKU%>" alt="<%= value.Name %>">
                         <div class="anime-card-info">
                             <h3 class="anime-card-title"><%= value.Name %></h3>
                             <div style="display: flex; align-items: center; justify-content: right;"> <span style="font-size: 10px;"><%= value.ep.length +1 %> Episodes</span></div>
@@ -368,31 +378,7 @@
     <script src="/playList-Up.js"></script>
     <script src="/ANiPlayer-render.js"></script>
     <script src="/play.js"> </script>
-    <script>
-        if (window.location.protocol === "http:") {
-            const NEWL = document.querySelectorAll(".poster,.episode-thumb,.anime-poster,.anime-thumb");
-            NEWL.forEach(value => {
-                const SRC = value.src;
-                const hiluR = SRC.split("https://");
-                if (hiluR.length === 2) {
-                    const SEC = hiluR[1];
-                    const ILU = `https://` + SEC;
-                    value.src = ILU;
-                }
-            });
-        } else {
-            const NEWLS = document.querySelectorAll(".poster,.episode-thumb,.anime-poster,.anime-thumb");
-            NEWLS.forEach(value => {
-                const SRC = value.src;
-                const hiluR = SRC.split("https://");
-                if (hiluR.length >= 3) {
-                    const SEC = hiluR[2];
-                    const ILU = `https://` + SEC;
-                    value.src = ILU;
-                }
-            });
-        }
-    </script>
+   
     <script src="/update-Watch.js"></script>
 </body>
 
