@@ -500,11 +500,15 @@ app.post('/PlayList/Update', async (req, res) => {
             if (err) {
                 console.log(err)
             }
-            const ListID = await newList.create({
+            newList.find({"Owner":data.id,"AniID":req.body.AniID})
+            .then( async already=>{
+                if(already.length === 0) {
+                               const ListID = await newList.create({
                 AniID: req.body.AniID,
                 AniEP: req.body.EpID,
                 Date: Date(),
                 Owner: data.id,
+                Progress:req.body.EpID,
             })
             Data.findByIdAndUpdate(data.id, {
                     $push: {
@@ -516,6 +520,15 @@ app.post('/PlayList/Update', async (req, res) => {
                 .then(info => {
                     res.json(["PlayList Updated"])
                 })
+                    
+                    
+                }
+                else {
+            res.json(["Already"])
+                    console.log(already)
+                }
+            })             
+         
         })
 
 

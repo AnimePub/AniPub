@@ -40,6 +40,10 @@ const List = new Schema({
     Owner: {
         type: String,
         required: true,
+    },
+    Progress:{
+        required:false,
+        type:String,   
     }
 }, {
     timestamps: true

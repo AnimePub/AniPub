@@ -40,15 +40,15 @@
                 <a href="/browse" class="browse-btn">Browse Anime Library</a>
             </div>
             <% } else { %>
-            <% List.forEach(item => { 
-             const anime = AniDB.find(a => a._id.toString() === item.AniID.toString());
+            <% List.forEach(item => { %>
+        <%     const anime = AniDB.find(a => a._id.toString() === item.AniID.toString());
              if (!anime) return;
              const totalEpisodes = anime.ep ? anime.ep.length : 0;
              const progress = totalEpisodes > 0 ? ((Number(item.AniEP)+1)/totalEpisodes)*100 : 0;
              const status = progress === 0 ? 'Plan to Watch' : (progress < 100 ? 'Watching' : 'Completed');
         %>
 
-            <div class="anime-card" data-anime="<%= item.AniID %>" data-ep="<%= item.AniEP %>" data-status="<%= status.toLowerCase() %>">
+            <div class="anime-card" data-anime="<%=item.AniID%>" data-ep="<%=item.AniEP%>" data-status="<%=status.toLowerCase()%>">
                 <div class="card-header">
                     <img src="/<%= anime.ImagePath %>" alt="<%= anime.Name %>" class="poster">
 
@@ -69,27 +69,28 @@
                             <span><%= progress.toFixed(0) %>%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: <%= progress %>%"></div>
+                            <div class="progress-fill"></div>
                         </div>
                     </div>
                     <div class="card-footer">
                         <a href="/AniPlayer/<%= item.AniID %>/<%= item.AniEP %>" class="action-btn watch-btn">
                             <i class="fas fa-play"></i> <%= progress === 100 ? 'Rewatch' : 'Continue' %>
                         </a>
-                        <form action="/PlayList/Delete/<%= item.id %>" method="POST" class="remove-form">
-                            <button type="submit" class="action-btn remove-btn">
+                            <button type="submit" class="action-btn remove-btn remove-button"  data-del="<%=item.id%>">
                                 <i class="fas fa-trash"></i> Remove
                             </button>
-                        </form>
                     </div>
                 </div>
             </div>
             <% }) %>
             <% } %>
         </div>
+
     </main>
 
-    <%- include("./include/footer") %>
+        
+    <%- include("./include/footer") %> 
+    <script src="/deleteList.js"></script>
 </body>
 
 </html>
