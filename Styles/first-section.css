@@ -3,56 +3,10 @@
     padding: 0;
     border: 0;
 }
-
 body {
     background-color: black;
     padding-top: 71px;
 }
-
-.first-section {
-    height: 250px;
-    width: 1;
-    position: relative;
-
-}
-
-.cover-pic-div {
-    height: 100%;
-    width: 872px;
-
-}
-
-.cover-pic {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-
-}
-
-.Container-No1 {
-    height: fit-content;
-    width: 480px;
-    right: 0;
-    top: 0;
-    z-index: 200;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: black;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    row-gap: 10px;
-    background-color: black;
-    border-left: 1px solid blue;
-    border-right: 1px solid blue;
-    padding-bottom: 10px;
-    border-bottom: 1px solid blue;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
 .video-player-box {
     width: 100%;
     height: 338px;
@@ -67,183 +21,6 @@ body {
 .video-player {
     width: 100%;
 }
-
-.Ep-section {
-    background-color: black;
-    height: 400px;
-    position: relative;
-
-}
-
-.Ep-list-title {
-
-    height: 40px;
-    font-family: Gruppo;
-    font-size: 22px;
-    font-weight: bolder;
-    background-color: blue;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
-
-.list-div-container {
-    height: 357px;
-    display: flex;
-    width: 100%;
-    overflow-y: scroll;
-    flex-direction: column;
-    background-color: black;
-}
-
-.list {
-    cursor: pointer;
-    width: 1;
-    background-color: black;
-    border-right: 1px solid blue;
-    border-left: 1px solid blue;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    box-shadow: 2px 1px 4px rgba(244, 244, 255, 0.975);
-    border-radius: 10px;
-    height: 60px;
-    margin-top: 5px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    column-gap: 15px;
-}
-
-.list-div-container::-webkit-scrollbar {
-    width: 8px;
-    height: 10px;
-}
-
-.list-div-container::-webkit-scrollbar-corner {
-    height: none;
-    width: none;
-}
-
-.list-div-container::-webkit-scrollbar-thumb {
-    background-color: red;
-    border-radius: 10px;
-
-}
-
-.list-div-container::-webkit-scrollbar-track {
-    background-color: blue;
-    border-radius: 10px;
-}
-
-
-.list:hover {
-    box-shadow: none;
-    padding-right: 10px;
-    padding-left: 10px;
-}
-
-.list:hover p {
-    color: blue;
-}
-
-.img-div {
-    width: 85px;
-    height: 100%;
-    margin-left: 10px;
-}
-
-.img-div img {
-    height: 100%;
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: -1px 1px 3px rgba(18, 85, 255, 0.871);
-    object-fit: cover;
-    object-position: bottom;
-}
-
-.ep-title p {
-    color: white;
-    font-family: monospace;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-
-}
-
-.surer-div {
-    display: flex;
-    height: fit-content;
-    align-items: start;
-    justify-content: space-between;
-}
-
-.Marker {
-    border: 1px solid white;
-    width: 480px;
-    flex-shrink: 0;
-}
-
-.vjs-matrix .vjs-big-play-button {
-    background: rgba(255, 0, 0, 0.931);
-}
-
-.vjs-matrix .vjs-volume-level {
-    background: hsl(240, 100%, 51%);
-}
-
-.vjs-matrix .vjs-play-progress {
-    background-color: rgb(0, 0, 0);
-
-}
-
-.vjs-matrix .vjs-progress-holder {
-    background: rgb(0, 255, 238);
-    border-radius: 5px;
-}
-
-.vjs-matrix .vjs-load-progress {
-    background: red;
-}
-
-.vjs-matrix .vjs-slider-bar {
-    background-color: brown;
-}
-
-.vjs-matrix .vjs-play-control {
-
-    background-color: red;
-    box-shadow: 0;
-    border-radius: 5px;
-}
-
-.vjs-matrix .vjs-control-bar {
-    background-color: transparent;
-
-}
-
-.Alu {
-    background-color: blue;
-    opacity: 0.5;
-    font-weight: bold;
-
-}
-
-.Alu:hover p {
-    color: white;
-
-}
-
-.add-button-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
 .Add-button {
     color: white;
     background-color: green;
@@ -359,7 +136,6 @@ body {
 }
 
 .link-constainer {
-    height: 30px;
     width: 100%;
     border-radius: 10px;
     display: flex;
