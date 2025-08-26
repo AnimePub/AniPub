@@ -22,18 +22,28 @@ atwb.addEventListener('click', () => {
         })
         .then(response => response.json())
         .then(data => {
-            checking(data);
+            Checking(data);
         })
 
 
 })
 
-function checking(data) {
+function Checking(data) {
+   const toast = document.getElementById('save-toast');
     if (data.includes("PlayList Updated")) {
-        //This show a popup
-        //for now let's use alert 
-        alert("PlayList Updated");
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
     } else if (data.includes("/Login")) {
         window.location.href = "/Login"
     }
+    else if (data.includes("Already")) {
+        document.querySelector(".notify-span").innerHTML = `Already In The List`
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    } 
+    
 }
