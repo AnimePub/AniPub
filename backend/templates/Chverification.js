@@ -88,6 +88,7 @@ const MailBody = (name, id, code) => {
       p {
       color:white;
       }
+    
   </style>
 </head>
 <body>
