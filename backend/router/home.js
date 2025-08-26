@@ -73,4 +73,3 @@ HomeRouter.get("/Home", async (req, res) => {
 })
 
 module.exports = HomeRouter;
-

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error - 404 || AniPub</title>
     <style>
-        body{
+        body {
             background: url(/404\(1\).jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            color:wheat;
+            color: wheat;
             font-family: monospace;
             font-size: 26px;
             font-weight: bold;
@@ -24,21 +25,23 @@
         }
     </style>
 </head>
+
 <body>
     <div>
-         <p>Opps! The Link You are Trying to Visite isn't Valid</p>
+        <p>Opps! The Link You are Trying to Visite isn't Valid</p>
         <p>You Will be redirected To Home page within <span class="time">10</span>s</p>
-        </div>
-   <script>
-    let time = 10;
-    const timer = document.querySelector(".time");
-    setInterval(()=>{
-        time --;
-        timer.innerHTML = time ;
-        if(time === 0) {
-            window.location.href="/Home";
-        }
-    },1000)
-   </script>
+    </div>
+    <script>
+        let time = 10;
+        const timer = document.querySelector(".time");
+        setInterval(() => {
+            time--;
+            timer.innerHTML = time;
+            if (time === 0) {
+                window.location.href = "/Home";
+            }
+        }, 1000)
+    </script>
 </body>
+
 </html>
