@@ -53,7 +53,17 @@
 
             <div class="anime-card" data-anime="<%=item.AniID%>" data-ep="<%=item.AniEP%>" data-status="<%=status.toLowerCase()%>">
                 <div class="card-header">
-                    <img src="/<%= anime.ImagePath %>" alt="<%= anime.Name %>" class="poster">
+                     <% const POSTER =  anime.ImagePath;
+                            const POSTERARY = POSTER.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                            }
+                        %>
+                    <img src="<%=LINKU%>" alt="<%= anime.Name %>" class="poster">
 
                     <span class="anime-status"><%= status %></span>
                 </div>
@@ -78,7 +88,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="/AniPlayer/<%= item.AniID %>/<%= item.AniEP %>" class="action-btn watch-btn" style="text-decoration: none;">
+                        <a href="/AniPlayer/<%=item.AniID%>/<%=Number(item.Progress)%>" class="action-btn watch-btn" style="text-decoration: none;">
                             <i class="fas fa-play"></i> <%= finalP === 100 ? 'Rewatch' : 'Continue' %>
                         </a>
                             <button type="submit" class="action-btn remove-btn remove-button"  data-del="<%=item.id%>">
