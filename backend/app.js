@@ -364,68 +364,66 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
         res.send("Hello")
     } else {
         AniDB.findById(Number(req.params.AniId))
-        .then(ANIMEIN=>{
-            const ALUVER = Number(req.params.AniEP)
-            console.log(ANIMEIN.ep.length+1,Number(req.params.AniEP))
-            if(ANIMEIN.length === 0 ) {
-                res.json("Episode Or Aime Not Found")
-            }
-            else if (ANIMEIN.ep.length >=  ALUVER) {
-                   if (Token) {
-            jwt.verify(Token, "I Am Naruto", (err, data) => {
-                if (err) {
-                    console.log(err)
+            .then(ANIMEIN => {
+                const ALUVER = Number(req.params.AniEP)
+                console.log(ANIMEIN.ep.length + 1, Number(req.params.AniEP))
+                if (ANIMEIN.length === 0) {
+                    res.json("Episode Or Aime Not Found")
+                } else if (ANIMEIN.ep.length >= ALUVER) {
+                    if (Token) {
+                        jwt.verify(Token, "I Am Naruto", (err, data) => {
+                            if (err) {
+                                console.log(err)
+                            }
+
+                            Data.findById(`${data.id}`)
+                                .then(info => {
+                                    let link = info.Image;
+                                    const Gender = info.Gender;
+                                    if (Gender === "Male") {
+                                        const finalLink = `boys/` + link;
+                                        res.render("AniPlayer", {
+                                            AniDB: animeDb,
+                                            video,
+                                            AniId,
+                                            AniEP,
+                                            auth: true,
+                                            ID: data.id,
+                                            Link: finalLink
+                                        });
+                                    } else {
+                                        res.render("AniPlayer", {
+                                            AniDB: animeDb,
+                                            video,
+                                            AniId,
+                                            AniEP,
+                                            auth: true,
+                                            ID: data.id,
+                                            Link: link
+                                        })
+                                    }
+                                })
+
+                        })
+                    } else {
+                        console.log("hey")
+                        res.render("AniPlayer", {
+                            AniDB: animeDb,
+                            video,
+                            AniId,
+                            AniEP,
+                            auth: false,
+                            ID: "guest",
+                            Link: linkI
+                        })
+                    }
+                } else {
+                    console.log("Hey")
+                    res.json("Episode Or Anime Not Found");
                 }
-
-                Data.findById(`${data.id}`)
-                    .then(info => {
-                        let link = info.Image;
-                        const Gender = info.Gender;
-                        if (Gender === "Male") {
-                            const finalLink = `boys/` + link;
-                            res.render("AniPlayer", {
-                                AniDB: animeDb,
-                                video,
-                                AniId,
-                                AniEP,
-                                auth: true,
-                                ID: data.id,
-                                Link: finalLink
-                            });
-                        } else {
-                            res.render("AniPlayer", {
-                                AniDB: animeDb,
-                                video,
-                                AniId,
-                                AniEP,
-                                auth: true,
-                                ID: data.id,
-                                Link: link
-                            })
-                        }
-                    })
-
             })
-        } else {
-            console.log("hey")
-            res.render("AniPlayer", {
-                AniDB: animeDb,
-                video,
-                AniId,
-                AniEP,
-                auth: false,
-                ID: "guest",
-                Link: linkI
-            })
-        }
-            }
-            else {
-                console.log("Hey")
-                res.json("Episode Or Anime Not Found");
-            }
-        })
 
-       
+
     }
 });
 app.get("/PlayList", AuthAcc, (req, res) => {
@@ -488,7 +486,7 @@ app.get("/PlayList/:id", (req, res) => {
                             Auth: true,
                             ID: accountID,
                             Link: finalLink,
-                            alu:"pl"
+                            alu: "pl"
                         });
                     })
             } else {
@@ -507,44 +505,7 @@ app.get("/PlayList/:id", (req, res) => {
     // })
 
 })
-app.post("/WatchList/Updater",(req,res)=>{
-    const Token = req.cookies.anipub;
-
-     if (Token) {
-        jwt.verify(Token, "I Am Naruto", async (err, data) => {
-            if(err){
-                console.log(err)
-            }
-            // console.log(req.body)req.body.EpisodeID
-            newList.find({"Owner":data.id,"AniID":req.body.AnimeID})
-            .then(info=>{
-                if(info.length === 0) {
-                          console.log("Watched")
-                }
-                else {
-                    console.log(info[0].AniEP,req.body.AnimeID)
-                    if (Number(info[0].AniEP) < Number(req.body.AnimeID)) {
-                           newList.findOneAndUpdate({"Owner":data.id,"AniID":req.body.AnimeID},{
-                        $set:{
-                            "Progress":req.body.EpisodeID
-                        }
-                      })
-                      .then(()=>{
-                        res.json(["Watchlist Updated"])
-                      })
-                    }
-                    else {
-                         res.json(["Watched"])
-                    }
-                   
-                }
-            })
-
-        })
-    }
-
-})
-app.post('/PlayList/Update',async (req, res) => {
+app.post("/WatchList/Updater", (req, res) => {
     const Token = req.cookies.anipub;
 
     if (Token) {
@@ -552,35 +513,78 @@ app.post('/PlayList/Update',async (req, res) => {
             if (err) {
                 console.log(err)
             }
-            newList.find({"Owner":data.id,"AniID":req.body.AniID})
-            .then( async already=>{
-                if(already.length === 0) {
-                               const ListID = await newList.create({
-                AniID: req.body.AniID,
-                AniEP: req.body.EpID,
-                Date: Date(),
-                Owner: data.id,
-                Progress:req.body.EpID,
-            })
-            Data.findByIdAndUpdate(data.id, {
-                    $push: {
-                        List: {
-                            "id": ListID._id
-                        }
-                    }
+            // console.log(req.body)req.body.EpisodeID
+            newList.find({
+                    "Owner": data.id,
+                    "AniID": req.body.AnimeID
                 })
                 .then(info => {
-                    res.json(["PlayList Updated"])
+                    if (info.length === 0) {
+                        console.log("Watched")
+                    } else {
+                        console.log(info[0].AniEP, req.body.AnimeID)
+                        if (Number(info[0].AniEP) < Number(req.body.AnimeID)) {
+                            newList.findOneAndUpdate({
+                                    "Owner": data.id,
+                                    "AniID": req.body.AnimeID
+                                }, {
+                                    $set: {
+                                        "Progress": req.body.EpisodeID
+                                    }
+                                })
+                                .then(() => {
+                                    res.json(["Watchlist Updated"])
+                                })
+                        } else {
+                            res.json(["Watched"])
+                        }
+
+                    }
                 })
-                    
-                    
-                }
-                else {
-            res.json(["Already"])
-                    console.log(already)
-                }
-            })             
-         
+
+        })
+    }
+
+})
+app.post('/PlayList/Update', async (req, res) => {
+    const Token = req.cookies.anipub;
+
+    if (Token) {
+        jwt.verify(Token, "I Am Naruto", async (err, data) => {
+            if (err) {
+                console.log(err)
+            }
+            newList.find({
+                    "Owner": data.id,
+                    "AniID": req.body.AniID
+                })
+                .then(async already => {
+                    if (already.length === 0) {
+                        const ListID = await newList.create({
+                            AniID: req.body.AniID,
+                            AniEP: req.body.EpID,
+                            Date: Date(),
+                            Owner: data.id,
+                            Progress: req.body.EpID,
+                        })
+                        Data.findByIdAndUpdate(data.id, {
+                                $push: {
+                                    List: {
+                                        "id": ListID._id
+                                    }
+                                }
+                            })
+                            .then(info => {
+                                res.json(["PlayList Updated"])
+                            })
+
+
+                    } else {
+                        res.json(["Already"])
+                        console.log(already)
+                    }
+                })
+
         })
 
 
