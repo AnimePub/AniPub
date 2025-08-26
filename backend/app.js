@@ -473,7 +473,7 @@ app.get("/PlayList/:id", (req, res) => {
                             Auth: true,
                             ID: accountID,
                             Link: finalLink,
-                            alu:"pl"
+                            alu: "pl"
                         });
                     })
             } else {
@@ -501,35 +501,37 @@ app.post('/PlayList/Update', async (req, res) => {
             if (err) {
                 console.log(err)
             }
-            newList.find({"Owner":data.id,"AniID":req.body.AniID})
-            .then( async already=>{
-                if(already.length === 0) {
-                               const ListID = await newList.create({
-                AniID: req.body.AniID,
-                AniEP: req.body.EpID,
-                Date: Date(),
-                Owner: data.id,
-                Progress:req.body.EpID,
-            })
-            Data.findByIdAndUpdate(data.id, {
-                    $push: {
-                        List: {
-                            "id": ListID._id
-                        }
+            newList.find({
+                    "Owner": data.id,
+                    "AniID": req.body.AniID
+                })
+                .then(async already => {
+                    if (already.length === 0) {
+                        const ListID = await newList.create({
+                            AniID: req.body.AniID,
+                            AniEP: req.body.EpID,
+                            Date: Date(),
+                            Owner: data.id,
+                            Progress: req.body.EpID,
+                        })
+                        Data.findByIdAndUpdate(data.id, {
+                                $push: {
+                                    List: {
+                                        "id": ListID._id
+                                    }
+                                }
+                            })
+                            .then(info => {
+                                res.json(["PlayList Updated"])
+                            })
+
+
+                    } else {
+                        res.json(["Already"])
+                        console.log(already)
                     }
                 })
-                .then(info => {
-                    res.json(["PlayList Updated"])
-                })
-                    
-                    
-                }
-                else {
-            res.json(["Already"])
-                    console.log(already)
-                }
-            })             
-         
+
         })
 
 
