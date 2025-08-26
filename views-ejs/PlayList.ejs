@@ -37,14 +37,17 @@
                     It looks like you haven't added any anime to your playlist yet.
                     Start building your collection by browsing our library and adding your favorites.
                 </p>
-                <a href="/browse" class="browse-btn">Browse Anime Library</a>
+                <a href="/Home" class="browse-btn">Browse Anime Library</a>
             </div>
             <% } else { %>
             <% List.forEach(item => { %>
         <%     const anime = AniDB.find(a => a._id.toString() === item.AniID.toString());
              if (!anime) return;
-             const totalEpisodes = anime.ep ? anime.ep.length : 0;
-             const progress = totalEpisodes > 0 ? ((Number(item.AniEP)+1)/totalEpisodes)*100 : 0;
+             const totalEpisodes = anime.ep ? anime.ep.length +1 : 0;
+             const ALU = Number(item.Progress)+1;
+            const percent = (ALU/totalEpisodes)*100;
+             const progress = Math.round(percent);
+
              const status = progress === 0 ? 'Plan to Watch' : (progress < 100 ? 'Watching' : 'Completed');
         %>
 
@@ -65,16 +68,18 @@
                     </div>
                     <div class="progress-container">
                         <div class="progress-info">
-                            <span>Episode <%= Number(item.AniEP)+1 %> of <%= totalEpisodes %></span>
-                            <span><%= progress.toFixed(0) %>%</span>
+                            <span>Episode <%= ALU %> of <%= totalEpisodes %></span>
+                            <% const finalP = Math.round(percent) %> 
+                            <span><%=finalP%>%</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill"></div>
+                            <!-- The Error in this I have to fix it later -->
+                            <div class="progress-fill" style="width:<%=percent%>%;"></div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="/AniPlayer/<%= item.AniID %>/<%= item.AniEP %>" class="action-btn watch-btn">
-                            <i class="fas fa-play"></i> <%= progress === 100 ? 'Rewatch' : 'Continue' %>
+                        <a href="/AniPlayer/<%= item.AniID %>/<%= item.AniEP %>" class="action-btn watch-btn" style="text-decoration: none;">
+                            <i class="fas fa-play"></i> <%= finalP === 100 ? 'Rewatch' : 'Continue' %>
                         </a>
                             <button type="submit" class="action-btn remove-btn remove-button"  data-del="<%=item.id%>">
                                 <i class="fas fa-trash"></i> Remove

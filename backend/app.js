@@ -492,8 +492,44 @@ app.get("/PlayList/:id", (req, res) => {
     // })
 
 })
+app.post("/WatchList/Updater",(req,res)=>{
+    const Token = req.cookies.anipub;
 
-app.post('/PlayList/Update', async (req, res) => {
+     if (Token) {
+        jwt.verify(Token, "I Am Naruto", async (err, data) => {
+            if(err){
+                console.log(err)
+            }
+            // console.log(req.body)req.body.EpisodeID
+            newList.find({"Owner":data.id,"AniID":req.body.AnimeID})
+            .then(info=>{
+                if(info.length === 0) {
+                          console.log("Watched")
+                }
+                else {
+                    console.log(info[0].AniEP,req.body.AnimeID)
+                    if (Number(info[0].AniEP) < Number(req.body.AnimeID)) {
+                           newList.findOneAndUpdate({"Owner":data.id,"AniID":req.body.AnimeID},{
+                        $set:{
+                            "Progress":req.body.EpisodeID
+                        }
+                      })
+                      .then(()=>{
+                        res.json(["Watchlist Updated"])
+                      })
+                    }
+                    else {
+                         res.json(["Watched"])
+                    }
+                   
+                }
+            })
+
+        })
+    }
+
+})
+app.post('/PlayList/Update',async (req, res) => {
     const Token = req.cookies.anipub;
 
     if (Token) {
