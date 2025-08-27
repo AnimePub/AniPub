@@ -35,6 +35,7 @@ const Settings = require("./router/pvchng.js");
 const Notify = require("./router/notify.js");
 const AniDB = require("./models/AniDB.js");
 
+const JSONAUTH = process.env.jsonauth;
 
 
 const AUTHSMTP = process.env.auth;
@@ -116,7 +117,7 @@ app.get("/Sign-Up", (req, res) => {
 const TokenGen = (id) => {
     return jwt.sign({
         id
-    }, "I Am Naruto", {
+    }, JSONAUTH , {
         expiresIn: 60 * 24 * 60 * 3 * 60
     });
 }
@@ -241,7 +242,7 @@ app.post("/Login", async (req, res) => {
 app.get("/Login", (req, res) => {
     const Token = req.cookies.anipub;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", (err, data) => {
+        jwt.verify(Token, JSONAUTH , (err, data) => {
             if (err) {
                 console.log(err)
             }
@@ -272,7 +273,7 @@ app.get("/logout", (req, res) => {
 app.get("/Profile", (req, res) => {
     const Token = req.cookies.anipub;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", (err, data) => {
+        jwt.verify(Token, JSONAUTH , (err, data) => {
             if (err) {
                 console.log(err);
             };
@@ -286,7 +287,7 @@ app.get("/Profile/:id", (req, res) => {
     const profileID = req.params.id;
     const Token = req.cookies.anipub;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", (err, data) => {
+        jwt.verify(Token, JSONAUTH , (err, data) => {
             if (err) {
                 console.log(err);
             };
@@ -361,15 +362,16 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
         res.redirect("*")
     } else {
         AniDB.findById(Number(req.params.AniId))
-            .then(ANIMEIN => {
-                if (ANIMEIN.length === 0) {
-                    res.redirect("*")
-                } else if (ANIMEIN.ep.length >= Number(req.params.AniEP)) {
-                    if (Token) {
-                        jwt.verify(Token, "I Am Naruto", (err, data) => {
-                            if (err) {
-                                console.log(err)
-                            }
+        .then(ANIMEIN=>{
+            if(ANIMEIN.length === 0 ) {
+                 res.redirect("*")
+            }
+            else if (ANIMEIN.ep.length >=  Number(req.params.AniEP)) {
+                   if (Token) {
+            jwt.verify(Token, "I Am Naruto", (err, data) => {
+                if (err) {
+                    console.log(err)
+                }
 
                             Data.findById(`${data.id}`)
                                 .then(info => {
@@ -423,7 +425,7 @@ app.get("/PlayList", AuthAcc, (req, res) => {
     const Token = req.cookies.anipub;
     const PlayListID = req.params.id;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", async (err, data) => {
+        jwt.verify(Token, JSONAUTH , async (err, data) => {
             if (err) {
                 console.log(err)
             }
@@ -436,7 +438,7 @@ app.get("/PlayList/:id", (req, res) => {
     const Token = req.cookies.anipub;
     const PlayListID = req.params.id;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", async (err, data) => {
+        jwt.verify(Token, JSONAUTH , async (err, data) => {
             if (err) {
                 console.log(err)
             }
@@ -501,9 +503,9 @@ app.get("/PlayList/:id", (req, res) => {
 app.post("/WatchList/Updater", (req, res) => {
     const Token = req.cookies.anipub;
 
-    if (Token) {
+     if (Token) {
         jwt.verify(Token, "I Am Naruto", async (err, data) => {
-            if (err) {
+            if(err){
                 console.log(err)
             }
             // console.log(req.body)req.body.EpisodeID
@@ -543,7 +545,7 @@ app.post('/PlayList/Update', async (req, res) => {
     const Token = req.cookies.anipub;
 
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", async (err, data) => {
+        jwt.verify(Token, JSONAUTH , async (err, data) => {
             if (err) {
                 console.log(err)
             }
@@ -595,7 +597,7 @@ app.delete('/PlayList/Delete/:DeleteID', (req, res) => {
     const Token = req.cookies.anipub;
     const postId = req.params.DeleteID;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", (err, data) => {
+        jwt.verify(Token, JSONAUTH , (err, data) => {
             if (err) {
                 console.log(err)
             }
@@ -636,7 +638,7 @@ app.delete('/PlayList/Delete/:DeleteID', (req, res) => {
 app.get("/Settings", (req, res) => {
     const Token = req.cookies.anipub;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", async (err, data) => {
+        jwt.verify(Token, JSONAUTH , async (err, data) => {
             if (err) {
                 res.redirect("/Login");
             }
@@ -662,7 +664,7 @@ app.use(Settings);
 app.post("/Settings/ad-st", async (req, res) => {
     const Token = req.cookies.anipub;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", async (err, data) => {
+        jwt.verify(Token, JSONAUTH , async (err, data) => {
             if (err) {
                 res.status(501).send("You are not Authorized"); // will be focused on letter
             }
@@ -698,7 +700,7 @@ app.post("/Settings/ad-st", async (req, res) => {
 app.post("/settings/account-info", (req, res) => {
     const Token = req.cookies.anipub;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", async (err, data) => {
+        jwt.verify(Token, JSONAUTH , async (err, data) => {
             if (err) {
                 res.json(["You are not Authorized"]);
             }
@@ -745,7 +747,7 @@ app.get("/About-Us", (req, res) => {
 app.get("/Privacy-Policy", (req, res) => {
     const Token = req.cookies.anipub;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", (err, data) => {
+        jwt.verify(Token, JSONAUTH , (err, data) => {
             if (err) {
                 console.log(err)
             }

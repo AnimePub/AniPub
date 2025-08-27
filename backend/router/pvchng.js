@@ -3,6 +3,7 @@ const Settings = express.Router();
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const Data = require("../models/model");
+const JSONAUTH = process.env.jsonauth;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcrypt");
 const mailChanger = require("../models/VERIFY.js")
@@ -27,7 +28,7 @@ Settings.post("/data/change", (req, res) => {
     const data = req.body;
 
     if (token) {
-        jwt.verify(token, "I Am Naruto", async (err, Ddata) => {
+        jwt.verify(token, JSONAUTH , async (err, Ddata) => {
             if (err) {
                 console.log(err);
             }
