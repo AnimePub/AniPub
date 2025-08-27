@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const Data = require("../models/model");
 const AnimeDB = require("../models/AniDB.js");
+const JSONAUTH = process.env.jsonauth;
 
 HomeRouter.get("/", (req, res) => {
     res.render("index");
@@ -22,7 +23,7 @@ HomeRouter.get("/Home", async (req, res) => {
     const Token = req.cookies.anipub;
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if (Token) {
-        jwt.verify(Token, "I Am Naruto", (err, data) => {
+        jwt.verify(Token, JSONAUTH, (err, data) => {
             if (err) {
                 console.log(err);
             }
