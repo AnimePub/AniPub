@@ -41,6 +41,7 @@ const JSONAUTH = process.env.jsonauth;
 const AUTHSMTP = process.env.auth;
 
 const PASSWORD = process.env.pass;
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
     port: 465,
@@ -53,8 +54,7 @@ const transporter = nodemailer.createTransport({
 
 let accountId = "";
 
-const MONGO_String = 'mongodb+srv://NodeDB:asdf1234@cluster0.cbnst.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'; // your string here
-const DataBaseId = process.env.mongoDB || process.env.mongoToken || MONGO_String;
+const DataBaseId = process.env.mongoDB || process.env.mongoToken  ;
 
 // the token above is only for production !! 
 // please if you are using your own token before push make 
@@ -65,6 +65,12 @@ const port = process.env.PORT || 3000;
 mongoose.connect(DataBaseId)
     .then(() => {
         console.log(`Data Base Connected Successfully`);
+        console.log(`
+            Message from Dev:- 
+            If you are a dev Please Privide Your Own SMTP credentials .. 
+            check transporter and check the routers 
+            `);
+        console.log(`Or use smtp.gmail.com and your app password ! ~ not real password ! ThankYou`);
         app.listen(port, "0.0.0.0", (error) => {
             if (error) {
                 console.log(error);
@@ -73,7 +79,10 @@ mongoose.connect(DataBaseId)
         });
     })
     .catch(error => {
-        console.log(error);
+       console.log(`If you are a dev just remove the example from example.env .
+        just keep it as .env !
+        .. error connecting to the database`)
+       console.log("error");
     })
 
 
