@@ -104,7 +104,8 @@ function mailBody(name, code) {
       <p class="security-notice">If you didn’t request this code, please ignore this email or contact our support team at <a href="mailto:mail@adnandluffy.site">mail@adnandluffy.site</a>.</p>
     </div>
     <div class="footer">
-      <p>&copy; 2025 AniPub. All rights reserved.</p>
+       <p>&copy; 2025 AniPub. All rights reserved.</p>
+      <p>AniPub, 123 Anime Lane, Fictional City, FC 12345</p>
        <a href="https://animehub.adnandluffy.site/Privacy-policy">Privacy Policy</a></p>
     </div>
   </div>

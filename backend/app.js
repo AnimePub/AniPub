@@ -238,7 +238,8 @@ app.post("/Login", async (req, res) => {
                         }
                     })
 
-                } else if (info.AcStats === "Pending") {
+                } 
+                else if (info && info.AcStats === "Pending") {
                     res.json(`<p>This account is on Pending Stat Please Verify The Account first
                     The Link Only Stays for 30 min ! 
                     </p>`)
