@@ -43,6 +43,13 @@ function Fetch(data, type) {
         })
         .then(response => response.json())
         .then(info => {
+              const toast = document.getElementById('save-toast');
+             const notifys = document.querySelector(".notify-span");
+             notifys.innerText === "Wait ...Password Changing "
+              toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
             if (info === 1) {
                 NotifyS(1);
             } else if (info === 2) {
@@ -61,8 +68,11 @@ function NotifyS(v) {
         notifys.innerText = "Profile Name Changed"
     } else if (v === 2) {
         notifys.innerText = "Request Done"
-    } else {
+    } else if (v=== 3){
         notifys.innerText = "Password Changed"
+    }
+    else if (v===4) {
+        notifys.innerText = "Password Recently Changed"
     }
     toast.classList.add('show');
     setTimeout(() => {

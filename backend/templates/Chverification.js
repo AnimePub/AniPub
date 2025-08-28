@@ -106,7 +106,8 @@ const MailBody = (name, id, code) => {
     </div>
     <div class="footer">
       <p>&copy; 2025 AniPub. All rights reserved.</p>
-      <p><a href="https://animehub.adnandluffy.site/Privacy-policy">Privacy Policy</a></p>
+      <p>AniPub, 123 Anime Lane, Fictional City, FC 12345</p>
+       <a href="https://animehub.adnandluffy.site/Privacy-policy">Privacy Policy</a></p>
     </div>
   </div>
 </body>
