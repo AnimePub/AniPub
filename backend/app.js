@@ -800,7 +800,7 @@ app.post("/Upload", validAdmin, async (req, res) => {
             Aired: req.body.aired,
             Premiered: req.body.premiered,
             Duration: req.body.duration,
-            Status: req.body.staus,
+            Status: req.body.status,
             MALScore: req.body.malscore,
             RatingsNum: Number(req.body.ratings),
             Genres: req.body.genre,

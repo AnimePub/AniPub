@@ -193,7 +193,7 @@ form3.addEventListener('submit', (e) => {
         } else if (option.value === "cover") {
             VAlue = form3.title.value;
         } else if (option.value === "link") {
-            VAlue = form3.link.value;
+            VAlue = `src` = form3.link.value;
         } else if (option.value === "image") {
             VAlue = form3.image.value;
         }
@@ -268,7 +268,7 @@ form5.addEventListener('submit', (e) => {
     const ARY = [];
     for (let i = 0; i < ARD.length; i++) {
         ARY.push({
-            link: ARD[i]
+            link: `src` + ARD[i]
         })
     }
     const OBJ = {
