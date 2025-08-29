@@ -52,7 +52,7 @@ form.addEventListener('submit', (e) => {
             ip: form.ip.value,
             cover: form.cover.value,
             syn: form.syn.value,
-            link: form.link.value,
+            link: `src=`+form.link.value,
             title: form.title.value,
             aired: form.aired.value,
             premiered: form.Premiered.value,
@@ -95,7 +95,7 @@ form1.addEventListener('submit', (e) => {
     const INfo = {
         id: form1.ID.value,
         epName: form1.name.value,
-        link: form1.link.value,
+        link:  `src=`+form1.link.value,
         title: form1.title.value,
     }
     fetch("/update/info", {
@@ -193,7 +193,7 @@ form3.addEventListener('submit', (e) => {
         } else if (option.value === "cover") {
             VAlue = form3.title.value;
         } else if (option.value === "link") {
-            VAlue = `src` = form3.link.value;
+            VAlue =  `src=`+ form3.link.value;
         } else if (option.value === "image") {
             VAlue = form3.image.value;
         }
@@ -268,7 +268,7 @@ form5.addEventListener('submit', (e) => {
     const ARY = [];
     for (let i = 0; i < ARD.length; i++) {
         ARY.push({
-            link: `src` + ARD[i]
+            link:  `src=`+ ARD[i]
         })
     }
     const OBJ = {
