@@ -13,6 +13,7 @@ const AUTHSMTP = process.env.auth;
 const mailBody = require("../templates/Chverification.js");
 const nodemailer = require("nodemailer")
 const PASSWORD = process.env.pass;
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
     port: 465,
@@ -48,10 +49,17 @@ Settings.post("/data/change", (req, res) => {
                     })
 
             } else if (data.type === "mail") {
-
-                const ran = Math.round(Math.random() * 10000);
-
-                mailChanger.create({
+                Data.find({"Email":data.info})
+                .then(sFound=>{
+                         if(sFound.length > 0 || sFound !== null) {
+                          const ran = Math.round(Math.random() * 10000);
+                            mailChanger.find({"id":AccID})
+                            .then(isNewMail=>{
+                                if(isNewMail.length >0 || isNewMail !== null) {
+                                    res.json(8)
+                                }
+                                else {
+                                       mailChanger.create({
                         _id: AccID,
                         CODEV: ran,
                         newmail: data.info
@@ -64,9 +72,11 @@ Settings.post("/data/change", (req, res) => {
                             html: mailBody("Buddy", info._id, info.CODEV),
                         }
                         transporter.sendMail(mailOptions, (err, DATAINFO) => {
-                            if (err) {
+                            if (err || err !== null || err.length > 0) {
                                 console.log(err)
+                                 res.json(6);
                             }
+                            else {
                             Data.findByIdAndUpdate(AccID, {
                                     AcStats: "Pending"
                                 })
@@ -78,8 +88,18 @@ Settings.post("/data/change", (req, res) => {
                                         res.json(2);
                                     }
                                 })
+                            }
                         })
                     })
+                                }
+                            })
+             
+                    }
+                    else {
+                        res.json(5);
+                    }
+                })
+              
 
 
                 // Data.findByIdAndUpdate(AccID,{Email:data.info})
@@ -91,9 +111,12 @@ Settings.post("/data/change", (req, res) => {
                 const pass = data.info
                 const Salt = await bcrypt.genSalt();
                 const HashedPass = await bcrypt.hash(pass, Salt);
+                const ip = req.ip;
                 PASSRECOVER.findById(AccID)
                 .then(isPresent=>{
-                    if(isPresent){
+                
+                    if(isPresent){   
+                        
                         res.json(4)
                     }
                     else {
@@ -102,12 +125,13 @@ Settings.post("/data/change", (req, res) => {
                     })
                     .then(async info => {
                         if(info) {
+                            console.log(`${info.id} requested a password change`)
                             const KEY = generateKey(info.id);
                             const mailOptions = {
                             from: `mail@adnandluffy.site`,
                             to: info.Email,
                             subject: `Your AniPub Account Pass Have Been Changed`,
-                            html: passwordMsge(info.Name,info.Email,KEY),
+                            html: passwordMsge(info.Name,info.Email,KEY,ip),
                             }
                            await PASSRECOVER.create({
                                 _id:info.id,
@@ -117,9 +141,13 @@ Settings.post("/data/change", (req, res) => {
                                 if(err) {
                                     console.log(err)
                                 }
+                               
                                  res.json(3)
                              })
 
+                        }
+                        else {
+                            res.json(4)
                         }
                        
 

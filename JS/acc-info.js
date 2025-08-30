@@ -28,7 +28,7 @@ AIsB.addEventListener('click', () => {
         }
 
     } else {
-        alert("Hey There Please make sure your bio is under 50 words")
+        alert("Hey There Please make sure your bio is under 200 words")
     }
 })
 

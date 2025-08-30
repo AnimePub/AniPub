@@ -1,4 +1,4 @@
-function passwordMsge (name,email, key ) {
+function passwordMsge (name,email, key,ip) {
     const temp =`
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +100,7 @@ function passwordMsge (name,email, key ) {
     <div class="content">
       <h2>Password Updated!</h2>
       <p>Hey ${name},</p>
-      <p>Your AniPub account (${email}) password has been successfully updated. You're all set now!</p>
+      <p>Your AniPub account (${email}) password has been successfully updated (req:ip :${ip}). You're all set now!</p>
       <p>Didn't make this change? Act fast and click the button below within 3-4 days to report it:</p>
       <a href="https://animehub.adnandluffy.site/password/change/?key=${key}" class="button">Report Unauthorized Change</a>
       <p>If the link has expired, reach out to our admin at <a href="mailto:mail@adnandluffy.site">mail@adnandluffy.site</a>.</p>
