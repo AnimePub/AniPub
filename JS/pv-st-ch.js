@@ -130,7 +130,7 @@ function NotifyS(v) {
         notifys.innerText = "Email Account Is Not Valid"
     }
      else if (Number(v)===7) {
-        notifys.innerText = "Name lenght is small"
+        notifys.innerText = "Name length is small"
     }
      else if (Number(v)===8) {
         notifys.innerText = "Req already made recently"

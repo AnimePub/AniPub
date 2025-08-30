@@ -40,6 +40,7 @@ Settings.post("/data/change", (req, res) => {
             }
             const AccID = Ddata.id;
             if (data.type === "name") {
+                console.log(data.info.length)
                 if(data.info.length < 5){
                     res.json(7);
                 }
