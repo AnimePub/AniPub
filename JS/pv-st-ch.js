@@ -100,6 +100,9 @@ function Fetch(data, type) {
              else if (info === 6) {
                  NotifyS(6);
             }
+             else if (info === 7) {
+                 NotifyS(7);
+            }
             else if (info === 8) {
                  NotifyS(8);
             }
@@ -125,6 +128,9 @@ function NotifyS(v) {
     }
     else if (Number(v)===6) {
         notifys.innerText = "Email Account Is Not Valid"
+    }
+     else if (Number(v)===7) {
+        notifys.innerText = "Name lenght is small"
     }
      else if (Number(v)===8) {
         notifys.innerText = "Req already made recently"

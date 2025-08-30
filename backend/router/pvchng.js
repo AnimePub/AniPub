@@ -40,6 +40,10 @@ Settings.post("/data/change", (req, res) => {
             }
             const AccID = Ddata.id;
             if (data.type === "name") {
+                if(data.info.length < 5){
+                    res.json(7);
+                }
+                else {
                 Data.findByIdAndUpdate(AccID, {
                         Name: data.info
                     })
@@ -47,7 +51,7 @@ Settings.post("/data/change", (req, res) => {
                         res.json(1);
 
                     })
-
+                }
             } else if (data.type === "mail") {
                 Data.find({"Email":data.info})
                 .then(sFound=>{
