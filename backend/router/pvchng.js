@@ -51,15 +51,21 @@ Settings.post("/data/change", (req, res) => {
             } else if (data.type === "mail") {
                 Data.find({"Email":data.info})
                 .then(sFound=>{
-                         if(sFound.length > 0 || sFound !== null) {
-                          const ran = Math.round(Math.random() * 10000);
-                            mailChanger.find({"id":AccID})
-                            .then(isNewMail=>{
-                                if(isNewMail.length >0 || isNewMail !== null) {
+                         if(sFound.length > 0 ) {
+                            res.json(5);
+                         }
+                else {
+                        
+                        const ran = Math.round(Math.random() * 10000);
+                    mailChanger.findById(AccID)
+                            .then(DATAFOUND=>{
+                        
+                        if(DATAFOUND) {
                                     res.json(8)
-                                }
-                                else {
-                                       mailChanger.create({
+                            }
+                            
+                        else {
+                                mailChanger.create({
                         _id: AccID,
                         CODEV: ran,
                         newmail: data.info
@@ -91,13 +97,19 @@ Settings.post("/data/change", (req, res) => {
                             }
                         })
                     })
-                                }
+                            
+
+                        }
+
+
+
                             })
              
-                    }
-                    else {
-                        res.json(5);
-                    }
+                   
+                   //second condition ending
+            }
+                    
+                     
                 })
               
 
