@@ -8,15 +8,49 @@ const change3 = document.querySelector(".change3");
 
 change1.addEventListener("click", () => {
     const value = input1.value;
-    pvChange(value, "name");
+     if(value.length < 3) {
+        alert("Min Length Is 3")
+     }
+     else {
+        pvChange(value, "name");
+     }
+    
 })
+function mailValidetor (mail) {
+    if(mail.length >= 10) {
+        return true;
+    }
+    else {
+        return false ;
+    }
+}
 change2.addEventListener("click", () => {
     const value = input2.value;
-    pvChange(value, "mail");
+    const mailChecker = value.split("www.");
+    let finalMail = "";
+    if (mailChecker.length > 1) {
+        finalMail = mailChecker[1];
+    } 
+    else {
+        finalMail = mailChecker[0];
+    }
+    if(mailValidetor(finalMail) === false) {
+        alert("Max Length is 10 bruh")
+    }
+    else {
+       pvChange(finalMail, "mail");
+    }
+    
 })
+
 change3.addEventListener("click", () => {
     const value = input3.value;
+    if(value.length < 8) {
+        alert("Min Length Is 8")
+    }
+    else {
     pvChange(value, "pass");
+    }
 })
 const endpoint = "/data/change/"
 const pvChange = (value, data) => {
@@ -57,6 +91,18 @@ function Fetch(data, type) {
             } else if (info === 3) {
                 NotifyS(3);
             }
+            else if (info === 4) {
+                 NotifyS(4);
+            }
+             else if (info === 5) {
+                 NotifyS(5);
+            }
+             else if (info === 6) {
+                 NotifyS(6);
+            }
+            else if (info === 8) {
+                 NotifyS(8);
+            }
         })
 }
 
@@ -71,8 +117,17 @@ function NotifyS(v) {
     } else if (v=== 3){
         notifys.innerText = "Password Changed"
     }
-    else if (v===4) {
+    else if (Number(v)===4) {
         notifys.innerText = "Password Recently Changed"
+    }
+    else if (Number(v)===5) {
+        notifys.innerText = "Email Address Already in Use"
+    }
+    else if (Number(v)===6) {
+        notifys.innerText = "Email Account Is Not Valid"
+    }
+     else if (Number(v)===8) {
+        notifys.innerText = "Req already made recently"
     }
     toast.classList.add('show');
     setTimeout(() => {
