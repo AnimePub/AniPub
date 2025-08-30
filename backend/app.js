@@ -19,6 +19,17 @@ const {
 } = require("./middleware/valideAcc.js");
 const bcrypt = require("bcrypt");
 require('dotenv').config();
+const session = require('express-session');
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'supersecretkey', // add SESSION_SECRET to .env
+    resave: false,
+    saveUninitialized: false,
+}));
+const passport = require('passport');
+require('./passport-setup'); // path to the file we just created
+app.use(passport.initialize());
+app.use(passport.session());
+
 const mailChanger = require("./models/VERIFY.js")
 const nodemailer = require("nodemailer");
 const Vcode = require("./models/auth.js")
@@ -994,6 +1005,18 @@ app.get("/verify-email-change/:id/:code", (req, res) => {
             }
         })
 })
+// Google OAuth routes
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/Login' }),
+  (req, res) => {
+    // Successful login
+    res.redirect('/Home'); // redirect to home or dashboard
+  }
+);
 // Redirect 404
 app.use("*", (req, res) => {
     res.status(404).render("404")
