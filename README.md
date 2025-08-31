@@ -27,8 +27,9 @@
 - **Epic Playlists:** Curate and share your ultimate anime playlists.
 - **Community Vibes:** Rate and connect with fellow anime legends (commenting coming soon!).
 - **Sleek UI:** Powered by EJS, custom CSS, and JavaScript for a futuristic feel.
-- **Fortress-Level Security:** JWT authentication, hashed passwords, and session controls (OAuth coming soon!).
-- **Cloud Hosted:** Always online, always fast, powered by Render.com.
+- **Fortress-Level Security:** JWT authentication, hashed passwords, and session controls 
+- **Cloud Hosted:** Always online, always fast ! Hosted By Railway/Render .
+- **Comment Section** Share your thoughts or go on in epic battle in the comment section
 
 ---
 
