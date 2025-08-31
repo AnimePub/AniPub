@@ -1082,7 +1082,8 @@ app.get("/verify-email-change/:id/:code", (req, res) => {
                     .then(ishq => {
                         if (ishq) {
                             Data.findByIdAndUpdate(ID, {
-                                    "Email": info.newmail
+                                    "Email": info.newmail,
+                                    "googleId":"",
                                 })
                                 .then(hein => {
                                     console.log("Email Changed")
