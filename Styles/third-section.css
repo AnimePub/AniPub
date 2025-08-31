@@ -58,9 +58,9 @@
     height: 300px;
     padding-bottom: 10px;
     width: 200px;
-    background-color: black;
+    background:linear-gradient(145deg, #46464675, #0b0b0b2b);
     display: flex;
-    box-shadow: 0px 0px 7px 1px rgba(107, 107, 107, 0.637);
+    box-shadow: 0px 0px 7px 1px rgba(10, 0, 104, 0.096);
     border-radius: 10px;
     flex-direction: column;
     justify-content: start;

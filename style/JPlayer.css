@@ -8,7 +8,7 @@
     --primary: #7537af;
     --primary-dark: #440088;
     --dark: #000000;
-    --dark-light: #0e0e0e;
+    --dark-light: linear-gradient(160grad, #1a1a1a00, #151515);;
     --gray: #1313139d;
     --text: #f5f5f5;
     --text-secondary: #b3b3b3;
@@ -16,7 +16,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--dark);
+    background: var(--dark);
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
@@ -42,7 +42,7 @@ body {
 }
 
 .video-section {
-    background-color: var(--dark-light);
+    background: var(--dark-light);
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 30px;
@@ -104,25 +104,25 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--primary);
+    background: var(--primary);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-dark);
+    background: var(--primary-dark);
 }
 
 .btn-secondary {
-    background-color: var(--gray);
+    background: var(--gray);
     color: var(--text);
 }
 
 .btn-secondary:hover {
-    background-color: #3d3d3d;
+    background: #3d3d3d;
 }
 
 .episodes-section {
-    background-color: var(--dark-light);
+    background: var(--dark-light);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 30px;
@@ -152,7 +152,7 @@ body {
 }
 
 .episode-card {
-    background-color: var(--gray);
+    background: var(--gray);
     border-radius: 8px;
 
     transition: transform 0.3s ease;
@@ -192,7 +192,7 @@ body {
 }
 
 .anime-info-sidebar {
-    background-color: var(--dark-light);
+    background: var(--dark-light);
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -231,7 +231,7 @@ body {
 }
 
 .genre-tag {
-    background-color: var(--primary);
+    background: var(--primary);
     color: white;
     padding: 4px 10px;
     border-radius: 20px;
@@ -263,10 +263,10 @@ body {
 }
 
 .anime-card {
-    background-color: #000000;
+    background: linear-gradient(145deg, #46464675, #0b0b0b2b);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0px 0px 7px 1px rgb(28, 20, 148);
+    border: 1px solid rgba(110, 110, 110, 0.438);
     transition: transform 0.3s ease;
     cursor: pointer;
 }
@@ -306,7 +306,7 @@ body {
 
 .comments-section {
     margin-top: 40px;
-    background-color: var(--dark-light);
+    background: var(--dark-light);
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -342,12 +342,12 @@ body {
 
 .divider {
     height: 1px;
-    background-color: var(--gray);
+    background: var(--gray);
     margin: 25px 0;
 }
 
 .header {
-    background-color: var(--dark-light);
+    background: var(--dark-light);
     padding: 15px 0;
     position: sticky;
     top: 0;
@@ -403,7 +403,7 @@ body {
 }
 
 .footer {
-    background-color: var(--dark-light);
+    background: var(--dark-light);
     padding: 40px 0;
     margin-top: 60px;
 }
