@@ -138,90 +138,9 @@ app.use(HomeRouter);
 const authRouter = require('./router/auth');
 app.use('/auth', authRouter);
 
-app.get('/update-google-users', async (req, res) => {
-    try {
-        // Find all users with Google-style profile picture names
-        const googleUsers = await Data.find({ 
-            $or: [
-                { googleId: { $exists: true, $ne: null } },
-                { Image: { $regex: /^google_/ } }
-            ]
-        });
-        
-        let updatedCount = 0;
-        
-        for (const user of googleUsers) {
-            if (user.Image && user.Image.includes('google_')) {
-                await Data.findByIdAndUpdate(user._id, { Image: 'default.jpg' });
-                updatedCount++;
-                console.log(`✅ Updated user ${user.Name} (${user._id}) with default profile picture`);
-            }
-        }
-        
-        res.json({ 
-            message: `Updated ${updatedCount} Google OAuth users with default profile picture`,
-            totalGoogleUsers: googleUsers.length,
-            updatedUsers: updatedCount
-        });
-    } catch (error) {
-        console.error('❌ Error updating Google users:', error);
-        res.status(500).json({ error: error.message });
-    }
-});
-
-app.get('/debug-users', async (req, res) => {
-    try {
-        const allUsers = await Data.find({}).select('Name Email Image googleId AcStats');
-        res.json({ 
-            totalUsers: allUsers.length,
-            users: allUsers
-        });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-app.get('/download-google-pfp/:userId', async (req, res) => {
-    try {
-        const userId = req.params.userId;
-        const user = await Data.findById(userId);
-        
-        if (!user || !user.googleId) {
-            return res.status(404).json({ error: 'User not found or not a Google OAuth user' });
-        }
-        
-        // For now, we can't get the original Google profile picture URL back
-        // But we can set a unique profile picture name
-        const newImageName = `google_${user.googleId}_${Date.now()}.jpg`;
-        
-        // Copy default.jpg to the new name
-        const fs = require('fs');
-        const path = require('path');
-        const defaultPath = path.join(__dirname, '../profilePic/default.jpg');
-        const newPath = path.join(__dirname, '../profilePic', newImageName);
-        
-        if (fs.existsSync(defaultPath)) {
-            fs.copyFileSync(defaultPath, newPath);
-            await Data.findByIdAndUpdate(userId, { Image: newImageName });
-            
-            res.json({ 
-                message: 'Profile picture updated',
-                newImageName: newImageName,
-                user: user.Name
-            });
-        } else {
-            res.status(500).json({ error: 'Default profile picture not found' });
-        }
-    } catch (error) {
-        console.error('Error updating profile picture:', error);
-        res.status(500).json({ error: error.message });
-    }
-});
 app.get("/Sign-Up", (req, res) => {
     res.render("Sign-Up")
 })
-
-
 const TokenGen = (id) => {
     return jwt.sign({
         id
@@ -652,7 +571,7 @@ app.post("/WatchList/Updater", (req, res) => {
     }
 
 })
-app.post('/PlayList/Update', async (req, res) => {
+app.post('/PlayList/Update', AuthAcc ,async (req, res) => {
     const Token = req.cookies.anipub;
 
     if (Token) {
