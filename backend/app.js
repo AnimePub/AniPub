@@ -217,24 +217,6 @@ app.get('/download-google-pfp/:userId', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
-// Test route to verify profile picture download
-app.get('/test-download', async (req, res) => {
-    try {
-        const { configureGoogleAuth } = require('./config/google');
-        const testUrl = 'https://lh3.googleusercontent.com/a/default-user=s96-c';
-        
-        res.json({ 
-            message: 'Test route ready',
-            testUrl: testUrl,
-            note: 'Try logging in with Google to test profile picture download'
-        });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
-
-
 app.get("/Sign-Up", (req, res) => {
     res.render("Sign-Up")
 })

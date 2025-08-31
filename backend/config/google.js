@@ -63,7 +63,8 @@ const configureGoogleAuth = () => {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: process.env.GOOGLE_CALLBACK_URL ,// "http://localhost:3000/auth/google/callback"
-    }, async (accessToken, refreshToken, profile, done) => {
+    }, 
+    async (accessToken, refreshToken, profile, done) => {
         try {
             const existingUser = await Data.findOne({ Email: profile.emails[0].value });
             
@@ -83,6 +84,7 @@ const configureGoogleAuth = () => {
                         await Data.findByIdAndUpdate(existingUser._id, { 
                             googleId: profile.id // Ensure googleId is set
                         });
+                        //gonna remove the downloaded picture ! hehe
                         console.log(`✅ Updated existing user ${existingUser.Name} with new Google profile picture: ${profilePictureName}`);
                     } catch (error) {
                         console.log(`⚠️  Failed to update profile picture for existing user: ${error.message}`);
