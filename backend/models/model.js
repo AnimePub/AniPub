@@ -19,8 +19,18 @@ const Data = new Schema({
     },
     Password: {
         type: String,
-        required: true,
+        required: false,
         minlength: [8, "please use a pass 8 cher long"]
+    },
+    googleId: {
+        type: String,
+        required: false,
+        unique: true,
+        sparse: true
+    },
+    profilePicture: {
+        type: String,
+        required: false,
     },
     GenreList: {
         type: Array,
@@ -71,12 +81,13 @@ const Data = new Schema({
 })
 
 Data.pre("save", async function(next) {
-    const salt = await bcrypt.genSalt();
-    const hashedpass = await bcrypt.hash(this.Password, salt);
-    this.Password = hashedpass;
+    if (this.Password && this.Password.length > 0) {
+        const salt = await bcrypt.genSalt();
+        const hashedpass = await bcrypt.hash(this.Password, salt);
+        this.Password = hashedpass;
+    }
     next();
 });
-
 
 const RegistrationData = mongoose.model("Data", Data);
 module.exports = RegistrationData;

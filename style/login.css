@@ -196,3 +196,76 @@ form {
 .logout-div img {
     height: 40px;
 }
+
+.oauth-divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.oauth-divider::before,
+.oauth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.5);
+}
+
+.oauth-divider span {
+    padding: 0 10px;
+    color: rgba(0, 229, 255, 0.8);
+    font-family: Gruppo;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.google-login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 250px;
+    padding: 4px 10px 4px 10px;
+    background-color: rgb(0, 41, 41);
+    color: white;
+    border: 1px solid rgb(3, 38, 38);
+    border-radius: 15px;
+    font-family: Gruppo;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.15s, opacity 0.15s, border-color 0.15s;
+    box-shadow: 2px 2px 6px rgba(0, 255, 242, 0.3);
+    margin-top: 8px;
+}
+
+.google-login-btn:hover {
+    background-color: rgba(0, 229, 255, 0.487);
+    border-color: rgba(0, 229, 255, 0.487);
+    box-shadow: 2px 2px 6px rgba(0, 229, 255, 0.5);
+}
+
+.google-login-btn:active {
+    opacity: 0.8;
+}
+
+.oauth-info {
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    border-radius: 15px;
+    box-shadow: 2px 2px 6px rgba(0, 229, 255, 0.2);
+}
+
+.oauth-info p {
+    margin: 0;
+    color: rgba(0, 229, 255, 0.9);
+    font-size: 12px;
+    font-family: Gruppo;
+    font-weight: bold;
+}

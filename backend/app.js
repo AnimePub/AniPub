@@ -90,6 +90,8 @@ mongoose.connect(DataBaseId)
 app.use(express.static(path.join(__dirname, "../style")));
 
 app.use(express.static(path.join(__dirname, "../profilePic")));
+
+app.use('/ProfilePic', express.static(path.join(__dirname, "../profilePic")));
 app.use(express.static(path.join(__dirname, "../ratings")));
 app.use(express.static(path.join(__dirname, "../Video")));
 app.use(express.static(path.join(__dirname, "../Cover")));
@@ -104,7 +106,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.set('trust proxy', true) //getting info for debug 
+app.set('trust proxy', true) 
 app.use(morgan("common"));
 
 app.set("view engine", "ejs");
@@ -113,15 +115,130 @@ app.set("views", path.join(__dirname, "../views-ejs"));
 app.use(express.json());
 app.use(cookieParser())
 
+const session = require('express-session');
+const passport = require('passport');
+const { configureGoogleAuth } = require('./config/google');
+
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'your-secret-key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+configureGoogleAuth();
+
 //Home router
 app.use(HomeRouter);
+
+// Auth router
+const authRouter = require('./router/auth');
+app.use('/auth', authRouter);
+
+app.get('/update-google-users', async (req, res) => {
+    try {
+        // Find all users with Google-style profile picture names
+        const googleUsers = await Data.find({ 
+            $or: [
+                { googleId: { $exists: true, $ne: null } },
+                { Image: { $regex: /^google_/ } }
+            ]
+        });
+        
+        let updatedCount = 0;
+        
+        for (const user of googleUsers) {
+            if (user.Image && user.Image.includes('google_')) {
+                await Data.findByIdAndUpdate(user._id, { Image: 'default.jpg' });
+                updatedCount++;
+                console.log(`✅ Updated user ${user.Name} (${user._id}) with default profile picture`);
+            }
+        }
+        
+        res.json({ 
+            message: `Updated ${updatedCount} Google OAuth users with default profile picture`,
+            totalGoogleUsers: googleUsers.length,
+            updatedUsers: updatedCount
+        });
+    } catch (error) {
+        console.error('❌ Error updating Google users:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/debug-users', async (req, res) => {
+    try {
+        const allUsers = await Data.find({}).select('Name Email Image googleId AcStats');
+        res.json({ 
+            totalUsers: allUsers.length,
+            users: allUsers
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.get('/download-google-pfp/:userId', async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const user = await Data.findById(userId);
+        
+        if (!user || !user.googleId) {
+            return res.status(404).json({ error: 'User not found or not a Google OAuth user' });
+        }
+        
+        // For now, we can't get the original Google profile picture URL back
+        // But we can set a unique profile picture name
+        const newImageName = `google_${user.googleId}_${Date.now()}.jpg`;
+        
+        // Copy default.jpg to the new name
+        const fs = require('fs');
+        const path = require('path');
+        const defaultPath = path.join(__dirname, '../profilePic/default.jpg');
+        const newPath = path.join(__dirname, '../profilePic', newImageName);
+        
+        if (fs.existsSync(defaultPath)) {
+            fs.copyFileSync(defaultPath, newPath);
+            await Data.findByIdAndUpdate(userId, { Image: newImageName });
+            
+            res.json({ 
+                message: 'Profile picture updated',
+                newImageName: newImageName,
+                user: user.Name
+            });
+        } else {
+            res.status(500).json({ error: 'Default profile picture not found' });
+        }
+    } catch (error) {
+        console.error('Error updating profile picture:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Test route to verify profile picture download
+app.get('/test-download', async (req, res) => {
+    try {
+        const { configureGoogleAuth } = require('./config/google');
+        const testUrl = 'https://lh3.googleusercontent.com/a/default-user=s96-c';
+        
+        res.json({ 
+            message: 'Test route ready',
+            testUrl: testUrl,
+            note: 'Try logging in with Google to test profile picture download'
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
 
 
 app.get("/Sign-Up", (req, res) => {
     res.render("Sign-Up")
 })
 
-// cookie
 
 const TokenGen = (id) => {
     return jwt.sign({
@@ -260,14 +377,16 @@ app.get("/Login", (req, res) => {
             if (data.id) {
                 res.render("Login", {
                     Auth: true,
-                    Data: data.id
+                    Data: data.id,
+                    oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
                 });
             }
         })
     } else {
         res.render("Login", {
             Auth: false,
-            Data: ""
+            Data: "",
+            oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
         });
     }
 
