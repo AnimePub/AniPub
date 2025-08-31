@@ -62,7 +62,7 @@ const configureGoogleAuth = () => {
     passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: process.env.GOOGLE_CALLBACK_URL || "http://localhost:3000/auth/google/callback"
+        callbackURL: process.env.GOOGLE_CALLBACK_URL ,// "http://localhost:3000/auth/google/callback"
     }, async (accessToken, refreshToken, profile, done) => {
         try {
             const existingUser = await Data.findOne({ Email: profile.emails[0].value });
@@ -81,7 +81,6 @@ const configureGoogleAuth = () => {
                     try {
                         const profilePictureName = await downloadProfilePicture(profile.photos[0].value, profile.id);
                         await Data.findByIdAndUpdate(existingUser._id, { 
-                            Image: profilePictureName,
                             googleId: profile.id // Ensure googleId is set
                         });
                         console.log(`✅ Updated existing user ${existingUser.Name} with new Google profile picture: ${profilePictureName}`);
