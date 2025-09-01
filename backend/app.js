@@ -799,6 +799,32 @@ app.get("/Privacy-Policy", (req, res) => {
     }
 
 });
+
+app.get("/Terms", (req, res) => {
+    const Token = req.cookies.anipub;
+    if (Token) {
+        jwt.verify(Token, JSONAUTH , (err, data) => {
+            if (err) {
+                console.log(err)
+            }
+            const userInfo = {
+                ID: data.id
+            };
+            res.render("terms", {
+                SectionName: "Terms and Conditions",
+                Auth: true,
+                userInfo,
+                alu: "tr"
+            });
+        })
+    } else {
+        res.render("terms", {
+            Auth: false,
+            alu: "tr"
+        });
+    }
+
+});
 app.get("/Uploader", validAdmin, (req, res) => {
     res.render("Uploader", {
         SectionName: "Uploader Section"
