@@ -113,7 +113,6 @@ const configureGoogleAuth = () => {
             const newUser = await Data.create({
                 Name: profile.displayName,
                 Email: profile.emails[0].value,
-                Password: '',
                 AcStats: "Active",
                 userType: "Member",
                 googleId: profile.id,
