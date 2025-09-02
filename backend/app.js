@@ -34,6 +34,7 @@ const HomeRouter = require("./router/home.js");
 const Settings = require("./router/pvchng.js");
 const Notify = require("./router/notify.js");
 const AniDB = require("./models/AniDB.js");
+const SearchGenre = require("./router/searchGenre.js")
 
 const JSONAUTH = process.env.jsonauth;
 
@@ -775,56 +776,25 @@ app.get("/About-Us", (req, res) => {
 })
 
 app.get("/Privacy-Policy", (req, res) => {
-    const Token = req.cookies.anipub;
-    if (Token) {
-        jwt.verify(Token, JSONAUTH , (err, data) => {
-            if (err) {
-                console.log(err)
-            }
-            const userInfo = {
-                ID: data.id
-            };
-            res.render("Privacy-Policy", {
-                SectionName: "Privacy Policy Section",
-                Auth: true,
-                userInfo,
-                alu: "pr"
-            });
-        })
-    } else {
+  
         res.render("Privacy-Policy", {
             Auth: false,
             alu: "pr"
         });
-    }
 
 });
 
 app.get("/Terms", (req, res) => {
-    const Token = req.cookies.anipub;
-    if (Token) {
-        jwt.verify(Token, JSONAUTH , (err, data) => {
-            if (err) {
-                console.log(err)
-            }
-            const userInfo = {
-                ID: data.id
-            };
-            res.render("terms", {
-                SectionName: "Terms and Conditions",
-                Auth: true,
-                userInfo,
-                alu: "tr"
-            });
-        })
-    } else {
         res.render("terms", {
             Auth: false,
             alu: "tr"
         });
-    }
 
 });
+
+//Search By Genre
+app.use(SearchGenre);
+
 app.get("/Uploader", validAdmin, (req, res) => {
     res.render("Uploader", {
         SectionName: "Uploader Section"

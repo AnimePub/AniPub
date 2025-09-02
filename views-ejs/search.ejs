@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniPub</title>
+    <meta name="description" content="Watch all <%= query %> related anime on anipub ">
+    <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="/third-section.css">
+    <link rel="stylesheet" href="/home-main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Footer.css">
+
+</head>
+
+<body style="padding-top: 70px; height: 100%;"> <!--onload="CheckAuth();"-->
+
+    <%- include("./include/haHeader.ejs") %>
+    <div class="secoNd-Section" >
+
+        <div class="aniLists">
+
+            <div class="recents">
+                <div class="ntg"></div>
+                <p>
+                    Search Result for query {<%=query%>}:-
+                </p>
+            </div>
+            <% if(Anime.length>0) { %> 
+            <% Anime.forEach(value => {%>
+            <div class="Profile-div">
+                <div class="Profile" data-anime="<%=value._id%>">
+                    <div class="Image-div">
+                        <img class="poster" src="<%=value.poster%>" alt="<%=value.Name%> Anime Poster">
+                    </div>
+                    <div class="Title-div">
+                        <p class="Title"><%=value.Name%></p>
+                    </div>
+                    <div class="ratings-div">
+                        <p class="mal-score"><%=value.MALScore%></p>
+                        <img style="width: 90px;" src="rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
+                    </div>
+                    <div class="des-div">
+                        <p class="des">
+                            <%=value.DescripTion%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+            <% } else { %> 
+                <h1>There is No Genre Result Found in the DataBase</h1>
+                <% } %> 
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+    <%- include("./include/footer.ejs") %>
+
+    <!--
+    <script type="module" src="animeInfo.js"></script>
+     <script type="module" src="/Home.js"></script>
+-->
+    <script src="/home.js"></script>
+    <script type="module" src="/ANiPlayer-render.js"></script>
+
+</body>
+
+</html>
