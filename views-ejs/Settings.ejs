@@ -22,11 +22,11 @@
     <div class="container">
         <div class="sidebar">
             <div class="sidebar-header">
-                <% if (userData.Gender === "Female"){%>
-                <img src="/ProfilePic/<%=userData.Image%>" alt="User Profile">
-                <% } else if (userData.Gender=== "Male") { %>
-                <img src="/ProfilePic/boys/<%=userData.Image%>" alt="User Profile">
-                <% } %>
+               <% if (userData.Gender=== "Male") { %>
+                <img class="pfp-s" src="/ProfilePic/boys/<%=userData.Image%>" alt="<%=userData.Name%>'s Profile Pic" data-ALREADYPIC="<%=userData.Image%>">
+                <% } else { %>
+                    <img class="pfp-s" src="/ProfilePic/<%=userData.Image%>" alt="<%=userData.Name%>'s Profile Pic" data-ALREADYPIC="<%=userData.Image%>">
+               <% } %>
                 <div>
                     <h3><%= userData.Name %></h3>
                     <p><%= userData.userType %> </p>
@@ -208,8 +208,11 @@
                             <% } else if (userData.Gender=== "Male") { %>
                             <option selected>Male</option>
                             <option>Female</option>
-                            <% } %>
+                            <% } else { %>
+                             <option selected>Male</option>
+                            <option>Female</option>
 
+                                <%}%>
                         </select>
                     </div>
 

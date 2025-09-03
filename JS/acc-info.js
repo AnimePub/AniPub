@@ -2,8 +2,16 @@ import {
     redirect
 } from "./ad-st-s.js";
 const AIsB = document.querySelector(".ac-info-save");
-AIsB.addEventListener('click', () => {
+const IMAGEBS = document.querySelector(".pfp-s");
+let FIMAGE ="";
 
+AIsB.addEventListener('click', () => {
+    if (image.length === 0) {
+    FIMAGE = IMAGEBS.dataset.alreadypic;
+    }
+    else {
+     FIMAGE = image
+        }
     const bio = document.querySelector("textarea").value;
 
     if (bio.length <= 200) {
@@ -15,7 +23,7 @@ AIsB.addEventListener('click', () => {
                         "content-type": "application/json"
                     },
                     body: JSON.stringify({
-                        image,
+                        image:FIMAGE,
                         Gender,
                         bio
                     })

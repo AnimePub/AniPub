@@ -13,10 +13,15 @@ if (!Gender) {
     boys_pic.style.display = "flex";
     girls_pic.style.display = "none";
     select.value = "Male"
-} else {
+} else if(Gender) {
     boys_pic.style.display = "none";
     girls_pic.style.display = "flex";
     select.value = "Female"
+}
+else {
+    boys_pic.style.display = "flex";
+    girls_pic.style.display = "flex";
+    select.value = "Male"
 }
 
 function GenderStatus() {
