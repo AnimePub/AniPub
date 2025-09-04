@@ -1016,6 +1016,11 @@ app.get("/verify-email-change/:id/:code", (req, res) => {
             }
         })
 })
+//Sitemap
+app.get("/sitemap",(req,res)=>{
+    res.sendFile(path.join(__dirname,"sitemap.xml"))
+})
+
 // Redirect 404
 app.use("*", (req, res) => {
     res.status(404).render("404")
