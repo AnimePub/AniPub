@@ -14,7 +14,7 @@ HomeRouter.get("/Home", async (req, res) => {
     const animeDb = await AnimeDB.find().sort({
         updatedAt: -1
     }).limit(20);
-    const DBarray = [11, 10, 6, 9]
+    const DBarray = [11, 10, 6, 9,16,17]
     const DBAnime = await AnimeDB.find({
         _id: {
             $in: DBarray
