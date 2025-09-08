@@ -8,7 +8,8 @@ const AnimeDB = require("../models/AniDB.js");
 const JSONAUTH = process.env.jsonauth;
 
 SearchGenre.get("/Search",async(req,res)=>{
-    const Token = req.cookies.anipub
+    const Token = req.cookies.anipub;
+    res.send("Hey? Working ...")
     const query = req.query.genre;
      let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     AnimeDB.find({"Genres":query})
