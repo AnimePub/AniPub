@@ -9,7 +9,6 @@ const JSONAUTH = process.env.jsonauth;
 
 SearchGenre.get("/Search",async(req,res)=>{
     const Token = req.cookies.anipub;
-    res.send("Hey? Working ...")
     const query = req.query.genre;
      let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     AnimeDB.find({"Genres":query})
@@ -20,7 +19,6 @@ SearchGenre.get("/Search",async(req,res)=>{
                 if (err) {
                     console.log(err);
                 }
-    
                 Data.findById(`${data.id}`)
                     .then((INFO) => {
                         let link = INFO.Image;
@@ -29,7 +27,7 @@ SearchGenre.get("/Search",async(req,res)=>{
                         if (Gender === "Male") {
                             const finalLink = `boys/` + link;
     
-                            res.render("Home", {
+                            res.render("search", {
                                 Anime: AniData, 
                                 query,
                                 auth: true,
@@ -39,8 +37,8 @@ SearchGenre.get("/Search",async(req,res)=>{
     
                         } else {
     
-                            res.render("Home", {
-                                  Anime: AniData, 
+                            res.render("search", {
+                                Anime: AniData, 
                                 query,
                                 auth: true,
                                 ID: data.id,
