@@ -66,7 +66,19 @@
 
                 </div>
             </div>
-            <img style="object-position:top;" src="/<%= value.Cover %> " alt="">
+             <% const POSTER = value.Cover;
+                            const POSTERARY = POSTER.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                            }
+                        %>
+
+            <img style="object-position:top;" src="<%=LINKU%>" alt="<%=value.Name%>'s' Cover Pic">
+        
         </div>
         <% }); %>
     </div>
