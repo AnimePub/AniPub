@@ -835,7 +835,7 @@ app.post("/Upload", validAdmin, async (req, res) => {
             Aired: req.body.aired,
             Premiered: req.body.premiered,
             Duration: req.body.duration,
-            Status: req.body.status,
+            Status : req.body.Status,
             MALScore: req.body.malscore,
             RatingsNum: Number(req.body.ratings),
             Genres: req.body.genre,
@@ -862,7 +862,6 @@ app.post("/update/info", validAdmin, (req, res) => {
                             ep: {
                                 name: req.body.epName,
                                 link: req.body.link,
-                                title: req.body.title,
                             }
                         }
                     })
