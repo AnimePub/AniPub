@@ -1,6 +1,6 @@
 {
   "name": "anipub",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A simple Anime Watching Site using Nodejs",
   "keywords": [
     "anime",
@@ -40,5 +40,6 @@
     "nodemon": "^3.1.10",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0"
-  }
+  },
+  "devDependencies": {}
 }
