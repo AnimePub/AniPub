@@ -33,8 +33,7 @@
 .logo {
     width: 100%;
     object-fit: cover;
-    filter: brightness(3);
-
+    height: 100%;
 }
 
 .logoName {
@@ -196,3 +195,17 @@
         width: 40px;
     }
 }
+@media screen and (min-width:300px) and (max-width:545px) {
+    .random {
+        display: none;
+    }
+    .ss {
+        width: fit-content;
+    }
+    .logoName {
+        font-size: 20px;
+    } 
+    .slogan {
+        font-size: 10px;
+    }
+} 

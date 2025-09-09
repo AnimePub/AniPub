@@ -1,5 +1,4 @@
 @media screen and (min-width:400px) and (max-width:499px) {
-
     .con-tainer2,
     .con-tainer {
         width: 410px;
@@ -104,4 +103,9 @@
         font-weight: bold;
     }
 
+}
+@media screen and (min-width:300px) and (max-width:565px) {
+    body {
+        overflow-x:hidden ;
+    }
 }

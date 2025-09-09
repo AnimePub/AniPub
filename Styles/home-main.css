@@ -91,27 +91,10 @@
 }
 
 @media screen and (min-width:300px) and (max-width:500px) {
-    .name {
-        font-size: 16px;
-    }
-
-    .slogan {
-        font-size: 10px;
-    }
-
-    .logo {
-        width: 90%;
-    }
-
-    .random {
-        display: none;
-    }
-
     .Second-Section {
         justify-content: right;
         width: fit-content;
     }
-
 }
 
 .recents {
@@ -135,3 +118,20 @@
     border-radius: 10px;
     background-color: blue;
 }
+@media screen and (min-width:300px) and (max-width:545px) {
+    .random {
+        display: none;
+    }
+    .Second-Section {
+        width: fit-content;
+    }
+    .logoName {
+        font-size: 20px;
+    } 
+    .slogan {
+        font-size: 10px;
+    }
+    body {
+    overflow-x: hidden;
+}
+} 

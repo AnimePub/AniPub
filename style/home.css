@@ -45,8 +45,6 @@ p {
 .logo {
     width: 100%;
     object-fit: cover;
-    filter: brightness(3);
-
 }
 
 .name {
