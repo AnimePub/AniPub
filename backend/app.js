@@ -33,6 +33,7 @@ const AnimeDB = require("./models/AniDB.js");
 const HomeRouter = require("./router/home.js");
 const Settings = require("./router/pvchng.js");
 const Notify = require("./router/notify.js");
+const Random = require ("./router/random.js");
 const AniDB = require("./models/AniDB.js");
 const SearchGenre = require("./router/searchGenre.js")
 
@@ -134,9 +135,11 @@ configureGoogleAuth();
 
 //Home router
 app.use(HomeRouter);
-
+//Random 
+app.use(Random);
 // Auth router
 const authRouter = require('./router/auth');
+const { isNumberObject, isStringObject } = require("util/types");
 app.use('/auth', authRouter);
 
 app.get("/Sign-Up", (req, res) => {
@@ -383,24 +386,34 @@ app.get("/Profile/:id", (req, res) => {
 
 
 app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
-    const Token = req.cookies.anipub;
-    const Array = req.url;
+    const Token = req.cookies.anipub;  
+    const AniId = req.params.AniId;
+    const AniEP = req.params.AniEP;
+    let video = "";
     const animeDb = await AnimeDB.find().sort({
         createdAt: -1
     }).limit(20)
-    const video = await AnimeDB.findById(Number(req.params.AniId))
-
-    const newArray = Array.split("/")
-    const AniId = Number(newArray[2]) - 1;
-    const AniEP = Number(newArray[3]);
+    if(!isNumberObject( new Number(AniId)) ) {
+        res.redirect("/*")  
+    }
+    else {
+       video = await AnimeDB.findById(Number(req.params.AniId))
+    }
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-    if (Number(req.params.AniId) === NaN || Number(req.params.AniEP) === NaN) {
-        res.redirect("*")
-    } else {
-        AniDB.findById(Number(req.params.AniId))
+    if (!isNumberObject(new Number(AniId))) {
+        res.redirect("/*")
+    } 
+    if (isNaN(AniEP)) {
+      res.redirect("/*")
+    }
+    else {
+         AniDB.findById(Number(AniId))
         .then(ANIMEIN=>{
-            if(ANIMEIN.length === 0 ) {
-                 res.redirect("*")
+            if (ANIMEIN === null) {
+                  res.redirect("/*")
+            }
+            else if(ANIMEIN.length === 0 ) {
+                 res.redirect("/*")
             }
             else if (ANIMEIN.ep.length >=  Number(req.params.AniEP)) {
                    if (Token) {
@@ -409,7 +422,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                     console.log(err)
                 }
 
-                            Data.findById(`${data.id}`)
+              Data.findById(`${data.id}`)
                                 .then(info => {
                                     let link = info.Image;
                                     const Gender = info.Gender;
@@ -450,7 +463,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                         })
                     }
                 } else {
-                    res.redirect("*")
+                    res.redirect("/*")
                 }
             })
 
