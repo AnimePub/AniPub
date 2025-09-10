@@ -12,7 +12,7 @@ Your code, ideas, and energy are what drive this project forward. Whether you're
 
 2. **Clone your fork**
    ```bash
-   git clone https://github.com/your-username/AniPub.git
+   git clone https://github.com/AnimePub/AniPub.git
    cd AniPub
    ```
 
