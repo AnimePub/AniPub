@@ -19,7 +19,7 @@ We’ll get back to you ASAP! Responsible disclosure helps keep the whole commun
 ## 🔐 How We Protect You
 
 - **Password Security:** All passwords are securely hashed before storage—never stored in plain text.
-- **Authentication:** JWT-based authentication for user sessions. OAuth support coming soon.
+- **Authentication:** JWT-based authentication for user sessions and OAuth supported !
 - **Session Management:** Only you can access your account. Inactivity triggers session expiration.
 - **Data Transmission:** All data is encrypted using HTTPS.
 - **Access Control:** Strict permission checks on all user actions.
@@ -39,7 +39,7 @@ We’ll get back to you ASAP! Responsible disclosure helps keep the whole commun
 
 ## 🛠️ Our Commitment
 
-AniPub is under active development, and new features are being added all the time.
+AniPub is Now Active, and new features are being added all the time.
 - Security patches are our top priority.
 - We will credit responsible reporters (if desired).
 - For major vulnerabilities, we may roll out hotfixes and notify users if necessary.
