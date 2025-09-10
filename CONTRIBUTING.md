@@ -64,7 +64,6 @@ All skill levels are welcome! If you're not sure where to start, check the [issu
 ## 🌟 Contribution Guidelines
 
 - Describe your changes clearly in commits and PRs.
-- Follow existing code style (EJS, CSS, JS, Node.js/Express).
 - If you add a new feature, update the documentation/wiki if needed.
 - Be respectful and constructive in all interactions.
 - Test your code before submitting a PR.
