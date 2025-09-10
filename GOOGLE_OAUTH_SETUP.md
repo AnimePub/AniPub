@@ -39,7 +39,10 @@ The required dependencies are already installed:
 - `passport`
 - `passport-google-oauth20`
 - `express-session`
-
+if not than just type 
+```bash
+npm install
+```
 ## Step 4: Database Schema Update
 
 The user model has been updated to support OAuth:
