@@ -57,7 +57,7 @@ Your code, ideas, and energy are what drive this project forward. Whether you're
 - Code optimization and refactoring ⚡
 - Security improvements 🔒
 
-All skill levels are welcome! If you're not sure where to start, check the [issues](https://github.com/AdnanDLuffy/AniPub/issues).
+All skill levels are welcome! If you're not sure where to start, check the [issues](https://github.com/Animepub/AniPub/issues).
 
 ---
 
@@ -73,7 +73,7 @@ All skill levels are welcome! If you're not sure where to start, check the [issu
 
 ## 💬 Need Help?
 
-- Open an [issue](https://github.com/AdnanDLuffy/AniPub/issues) for questions and bug reports.
+- Open an [issue](https://github.com/Animepub/AniPub/issues) for questions and bug reports.
 - Suggest ideas or improvements in Discussions (coming soon).
 - For security issues, please see [SECURITY.md](./SECURITY.md).
 
@@ -82,7 +82,7 @@ All skill levels are welcome! If you're not sure where to start, check the [issu
 ## 💸 Support AniPub
 
 AniPub is powered by open source and community support.  
-If you’d like to help with hosting and development costs, see donation links on the [main site](https://anipub.onrender.com) or repo.
+If you’d like to help with hosting and development costs, see donation links on the [main site](https://anipub.adnandluffy.site) or repo.
 
 ---
 
