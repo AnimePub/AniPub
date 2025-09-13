@@ -45,7 +45,7 @@ const shower = (info) =>{
     else {
       let fl = JSON.parse(info);
       MSGEBOX = `
-       <a style="text-decoration:none" href="/AniPlayer/${fl.Id}/0"> <div class="fdivS" data-anime="${fl.Id}">
+       <a style="text-decoration:none; width:100%" href="/AniPlayer/${fl.Id}/0"> <div class="fdivS" data-anime="${fl.Id}">
                 <img class="sdivImg" src="${fl.Image}" alt="">
                 <div>
                     <p class="sName">${fl.Name}</p>
