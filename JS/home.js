@@ -45,7 +45,7 @@ const shower = (info) =>{
     else {
       let fl = JSON.parse(info);
       MSGEBOX = `
-        <div class="fdivS" data-anime="${fl.Id}">
+       <a style="text-decoration:none" href="/AniPlayer/${fl.Id}/0"> <div class="fdivS" data-anime="${fl.Id}">
                 <img class="sdivImg" src="${fl.Image}" alt="">
                 <div>
                     <p class="sName">${fl.Name}</p>
@@ -53,7 +53,7 @@ const shower = (info) =>{
                         <span>ID: ${fl.Id} </span>
                     </p>
                 </div>
-            </div>
+            </div> </a>
       `
        bOXS.innerHTML = MSGEBOX;
         bOXS.style.display = "flex"
