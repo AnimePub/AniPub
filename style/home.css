@@ -176,10 +176,12 @@ p {
     position: absolute;
       right: 0;
     left: 0;
+    
     display: flex;
    justify-content: center;
 }
 .sbf {
+    overflow: hidden;
     margin-top: 30px;
     width: 100%;
     min-width: 300px;
@@ -188,6 +190,10 @@ p {
     padding-top:10px ;
     border-radius: 10px;
     padding-bottom: 10px;
+}
+.sbf a {
+    text-decoration:none; 
+    width:100%;
 }
 .sName {
     margin-left: 10px;
