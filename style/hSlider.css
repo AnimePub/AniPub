@@ -93,6 +93,8 @@ img {
 
 .det {
     margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
 }
 
 .DesCrip {
@@ -164,9 +166,32 @@ img {
     .DesCrip {
         display: none;
     }
-
+    .AniName {
+        font-size: 20px;
+    }
+    .box {
+        width: 40%;
+    } 
+    .Box_D {
+        margin-bottom: 10px;
+    }
+    .watch-list , .watch-button {
+        width: 30px;
+        height: 30px;
+    }
+    .det span {
+        font-size: 10px;
+        padding: 3px;
+    }
+    .number-List {
+        font-size: 15px;
+    }
 }
-
+@media screen and (min-width:300px) and (max-width:830px) {
+    .Slider {
+        height: 400px;
+    }
+}
 @media screen and (min-width:300px) and (max-width:600px) {
     .box {
         width: 50%;
