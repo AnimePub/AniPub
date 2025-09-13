@@ -36,6 +36,7 @@ const Notify = require("./router/notify.js");
 const Random = require ("./router/random.js");
 const AniDB = require("./models/AniDB.js");
 const SearchGenre = require("./router/searchGenre.js")
+const SearchQ = require("./router/query.js");
 
 const JSONAUTH = process.env.jsonauth;
 
@@ -812,7 +813,8 @@ app.get("/Terms", (req, res) => {
 
 //Search By Genre
 app.use(SearchGenre);
-
+//search By Query
+app.use(SearchQ);
 app.get("/Uploader", validAdmin, (req, res) => {
     res.render("Uploader", {
         SectionName: "Uploader Section"

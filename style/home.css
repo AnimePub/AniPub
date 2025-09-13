@@ -130,6 +130,7 @@ p {
 .Search-Box-Area {
     display: flex;
     flex: 1;
+    position: relative;
     align-items: center;
     max-width: 500px;
 }
@@ -170,4 +171,45 @@ p {
 
 .searchbox::placeholder {
     color: rgba(255, 255, 255, 0.801);
+}
+.SBOX {
+    position: absolute;
+      right: 0;
+    left: 0;
+    display: flex;
+   justify-content: center;
+}
+.sbf {
+    margin-top: 30px;
+    width: 100%;
+    min-width: 300px;
+    background-color: rgb(24, 24, 24);
+    position: absolute;
+    padding-top:10px ;
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+.sName {
+    margin-left: 10px;
+}
+.fdivS {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    align-items: center;
+    padding-bottom: 5px;
+    cursor: pointer;
+    width: 100%;
+    border-bottom: 1px solid rgba(197, 197, 197, 0.253);
+}
+.fdivS:hover {
+    background-color: #292929;
+} 
+.sdivImg {
+    width: 40px;
+    height: 50px;
+}
+.detS {
+    font-size: 10px;
+    margin-left: 10px;
 }
