@@ -33,7 +33,29 @@ function   searchDB (){
 }
 
 const shower = (info) =>{
-    if(info === 0) {
+      let fl = JSON.parse(info);
+     if (fl.length > 1 ) {
+        fl.forEach((value,i) => {
+            MSGEBOX += `
+              <a href="/AniPlayer/${value.Id}/0" target="_blank" data-value="${i}"> <div class="fdivS" data-anime="${value.Id}">
+                <img class="sdivImg" src="${value.Image}" alt="">
+                <div>
+                    <p class="sName">${value.Name}</p>
+                    <p class="detS">
+                        <span>ID: ${value.Id} </span>
+                    </p>
+                </div>
+            </div> </a>
+            `
+            
+        });
+        bOXS.innerHTML = MSGEBOX;
+             
+        bOXS.style.display = "flex"
+        MSGEBOX = "";
+    }
+    else {
+      if(info === 0) {
         MSGEBOX = `
         <div class="fdivS">
             <p>Can't Find Any Account With That Info</p>
@@ -41,9 +63,10 @@ const shower = (info) =>{
         `
         bOXS.innerHTML = MSGEBOX;
         bOXS.style.display = "flex"
+         MSGEBOX = "";
     }
+   
     else {
-      let fl = JSON.parse(info);
       MSGEBOX = `
        <a href="/AniPlayer/${fl.Id}/0" target="_blank"> <div class="fdivS" data-anime="${fl.Id}">
                 <img class="sdivImg" src="${fl.Image}" alt="">
@@ -57,8 +80,9 @@ const shower = (info) =>{
       `
        bOXS.innerHTML = MSGEBOX;
         bOXS.style.display = "flex"
-
+         MSGEBOX = "";
     }
+}
 }
 
 

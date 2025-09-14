@@ -181,6 +181,7 @@ p {
    justify-content: center;
 }
 .sbf {
+    flex-direction: column;
     overflow: hidden;
     margin-top: 30px;
     width: 100%;
