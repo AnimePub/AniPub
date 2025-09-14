@@ -141,7 +141,6 @@
     margin: 0;
     outline: 0;
 }
-
 .search-button {
     height: 32px;
     width: 35px;
@@ -149,15 +148,23 @@
     background-size: 20px;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: rgb(121, 104, 104);
+     background-color: rgb(141, 141, 141);
     cursor: pointer;
     border: 2px solid rgba(0, 255, 234, 0.568);
-    margin-left: -2px;
+    margin-left: -2px; 
+    border-left: none;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-
+    transition: all 0.20s;
 }
-
+.search-button:hover {
+    opacity: 0.8;
+     background-color: rgba(141, 141, 141, 0.589);
+}
+.search-button:active {
+    opacity: 0.6;
+     background-color: rgba(141, 141, 141, 0.432);
+}
 .searchbox::placeholder {
     color: rgba(255, 255, 255, 0.801);
 }
