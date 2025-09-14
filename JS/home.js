@@ -1,6 +1,7 @@
 const profileButton = document.querySelector(".profile-icon");
 const searchInput = document.querySelector('.searchbox');
 const bOXS = document.querySelector('.sbf');
+const searchButton = document.querySelector('.search-button');
 let MSGEBOX = "";
 profileButton.addEventListener('click', () => {
     window.location.href = `/Profile`
@@ -86,8 +87,25 @@ const shower = (info) =>{
 }
 
 
+searchButton.addEventListener('click',()=>{
+    if (searchInput.value.length > 2) {
+        const searchString = searchInput.value ;
+        window.location.href = `/search/q?query=${searchString}`
+    }
+    else {
+        alert("Please Enter A Query")
+    }
+})
+
+document.body.addEventListener("keyup",(e)=>{
+    if(e.key === "Enter" && searchInput.value.length > 2) {
+         const searchString = searchInput.value ;
+        window.location.href = `/search/q?query=${searchString}`
+    }
+})
+
 // document.addEventListener('DOMContentLoaded', function() {
-//     const searchButton = document.querySelector('.search-button');
+//     
    
     
 //     if (searchButton && searchInput) {

@@ -37,5 +37,59 @@ SearchQ.post("/search/q",async (req,res)=>{
       
     })
 })
+SearchQ.get("/search/q",(req,res)=>{
+    const query = req.query.query ;
+    const regex = new RegExp(query);
+      const Token = req.cookies.anipub;
+         let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
+           AnimeDB.find({Name:{$regex:regex,$options:"i"}})
+        .then(info=>{
+            const AniData = info;
+                if (Token) {
+                jwt.verify(Token, JSONAUTH, (err, data) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    Data.findById(`${data.id}`)
+                        .then((INFO) => {
+                            let link = INFO.Image;
+                            const Gender = INFO.Gender;
+        
+                            if (Gender === "Male") {
+                                const finalLink = `boys/` + link;
+        
+                                res.render("search", {
+                                    Anime: AniData, 
+                                    query,
+                                    auth: true,
+                                    ID: data.id,
+                                    Link: finalLink
+                                });
+        
+                            } else {
+        
+                                res.render("search", {
+                                    Anime: AniData, 
+                                    query,
+                                    auth: true,
+                                    ID: data.id,
+                                    Link: link
+                                });
+                            }
+                        })
+        
+                })
+            } 
+            else {
+                res.render("search", {
+                Anime: AniData, 
+                query,
+                auth: false,
+                ID: "guest",
+                Link: linkI,
+            });
+        }
+         })
+})
 
 module.exports = SearchQ;
