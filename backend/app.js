@@ -123,7 +123,7 @@ const passport = require('passport');
 const { configureGoogleAuth } = require('./config/google');
 
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'your-secret-key',
+    secret: process.env.SESSION_SECRET ,
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false }
@@ -554,7 +554,7 @@ app.post("/WatchList/Updater", (req, res) => {
     const Token = req.cookies.anipub;
 
      if (Token) {
-        jwt.verify(Token, "I Am Naruto", async (err, data) => {
+        jwt.verify(Token,JSONAUTH , async (err, data) => {
             if(err){
                 console.log(err)
             }
