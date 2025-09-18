@@ -21,16 +21,27 @@
         align-items: center;
     }
 
-    .logo {
-        font-family: 'Gruppo', cursive;
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--light);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-    }
+   .fs {
+    cursor: pointer;
+    width: 200px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
 
+.logo-div {
+    width: 50px;
+    margin-left: 5px;
+}
+
+.logo {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
     .logo i {
         color: var(--secondary);
         margin-right: 0.5rem;

@@ -1040,6 +1040,15 @@ app.get("/sitemaps",(req,res)=>{
 app.get("robots.txt",(req,res)=>{
      res.sendFile(path.join(__dirname,"../sitemaps/robots.txt"))
 })
+app.get("/premium",(req,res)=>{
+    res.render("premium",{
+          Auth: false,
+            alu: "tr"
+    })
+})
+app.post("/premium",(req,res)=>{
+    const body = req.body.alu ;
+})
 // Redirect 404
 app.use("*", (req, res) => {
     res.status(404).render("404")
