@@ -23,7 +23,7 @@ const mailChanger = require("./models/VERIFY.js")
 const nodemailer = require("nodemailer");
 const Vcode = require("./models/auth.js")
 const mailBody = require("./templates/verification.js");
-
+const PerChase = require("./templates/perchase.js");
 const OP = require("./Data/data");
 
 //Anime DB init ..
@@ -1046,8 +1046,72 @@ app.get("/premium",(req,res)=>{
             alu: "tr"
     })
 })
+
+// number: '8801328566886',
+//   name: 'Anime Lovers',
+//   country: 'BD',
+//   sim_provider: 'Grameen Phone',
+//   email: 'abdullahal467bp@gmail.com',
 app.post("/premium",(req,res)=>{
-    const body = req.body.alu ;
+    const number = req.body.Number ;
+     const Token = req.cookies.anipub;
+    if (Token) {
+        jwt.verify(Token, JSONAUTH , async (err, data) => {
+            if(err) {
+                
+                console.log(err)
+                res.json(0)
+            }
+            else {
+    if(number.length === 11) {
+    fetch(`https://truecaller-api-five.vercel.app/api/lookup?number=${number}&key=${process.env.TrueCaller}`)
+    .then(resp=>resp.json())
+    .then(info=>{
+        let name = ""
+        let country = ""
+        let email = ""
+        if(info.name) {
+            name = info.name
+        }
+        if(info.country){
+            country = info.country
+        }
+        if(info.email) {
+            email = info.email
+        }
+        const BODY = {name,country,email}
+        Data.findById(data.id)
+        .then(INFO=>{
+            const EMAIL = INFO.Email;
+            const Name = INFO.Name;
+              const mailOptions = {
+                            from: `mail@adnandluffy.site`,
+                            to: EMAIL,
+                            subject: `-- AniPub Premium --`,
+                            html: PerChase(Name,BODY),
+                        }
+                        transporter.sendMail(mailOptions, (err, DATAINFO) => {
+                            if (err || err !== null || err.length > 0) {
+                                console.log(err)
+                                 res.json(6);
+                            }
+                            else {
+                                res.json("Email Sent")
+                            }
+                        
+                        })
+        })
+      
+
+    })
+    }
+    else {
+        res.json(0)
+    }
+
+}
+})
+    }
 })
 // Redirect 404
 app.use("*", (req, res) => {

@@ -1,4 +1,4 @@
-const MailBody = (name, info) => {
+const PerChase = (name, info) => {
     const temp = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,3 +61,4 @@ const MailBody = (name, info) => {
 </html>`
  return temp;
 }
+module.exports = PerChase;
