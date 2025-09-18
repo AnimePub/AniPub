@@ -1079,6 +1079,7 @@ app.post("/premium",(req,res)=>{
         if(info.email) {
             email = info.email
         }
+        console.log(info)
         const BODY = {name,country,email}
         Data.findById(data.id)
         .then(INFO=>{

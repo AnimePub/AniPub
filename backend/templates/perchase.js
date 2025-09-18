@@ -14,7 +14,7 @@ const PerChase = (name, info) => {
           <!-- Header -->
           <tr>
             <td style="background: linear-gradient(90deg, #ff4b5c, #4b0082); padding: 20px; text-align: center;">
-              <img src="https://via.placeholder.com/150x50?text=AniPub+Logo" alt="AniPub Logo" style="max-width: 150px;">
+              <img src="https://anipub.adnandluffy.site/luffy5.png" alt="AniPub Logo" style="max-width: 150px;">
               <h1 style="color: #ffffff; font-size: 28px; margin: 10px 0; text-transform: uppercase; letter-spacing: 2px;">Welcome to AniPub Premium!</h1>
             </td>
           </tr>
@@ -36,7 +36,9 @@ const PerChase = (name, info) => {
               <p style="margin-bottom: 20px;">You’ll receive a confirmation email once your subscription is fully active, so keep an eye on your inbox!</p>
 
               <p>Info We Found All Over the Internet and Saved About You:- (This can be used to appeal incase you lost your account)</p>
-                <code>${info}</code>
+                <p>Name:- ${info.name}</p>
+                <p>Country : ${info.country} </p>
+                <p>Email fount with the Number : ${info.email}</p>
               <h3 style="color: #4b0082; font-size: 18px; margin-bottom: 15px;">Need Help?</h3>
               <p style="margin-bottom: 20px;">If you have any questions or need assistance during the activation process, our support team is here for you. Reach out at <a href="mailto:support@anipub.adnandluffy.site" style="color: #ff4b5c; text-decoration: none;">support@anipub.adnandluffy.site</a> or reply to this email.</p>
 
