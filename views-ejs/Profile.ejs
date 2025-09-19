@@ -45,11 +45,11 @@
                     </div>
 
                     <div class="profile-actions">
-                        <button class="btn">
+                        <button class="btn btn-outline" data-value="share">
                             <i class="fas fa-share-alt"></i> Share
                         </button>
                          <% if (Auth === true) { %>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" data-value="edit">
                             <i class="fas fa-edit"></i> Edit Profile
                         </button>
                         <%   } else {%>
@@ -76,16 +76,22 @@
                         <div class="detail-value"><%= userInfo.Name %></div>
                     </div>
                 </div>
-
+<% const Hide = userInfo.Hide %> 
                 <div class="detail-item">
                     <div class="detail-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="detail-content">
                         <div class="detail-label">Email Address</div>
-                        <a href="mailto: <%=userInfo.Email%>" class="detail-value">
-                            <%=userInfo.Email%>
+                        <% if(Hide.includes(1)) { %> 
+                        <a href="#" class="detail-value">
+                            <em>It's Hidden</em> 
                         </a>
+                        <% } else {%> 
+                        <a href="mailto: <%=userInfo.Email%>" class="detail-value">
+                            <%=userInfo.Email%> 
+                        </a>
+                            <% } %> 
                     </div>
                 </div>
 
@@ -126,7 +132,11 @@
                     </div>
                     <div class="detail-content">
                         <div class="detail-label">Address</div>
-                        <div class="detail-value"><%= userInfo.Address %></div>
+                        <% if(Hide.includes(2)) { %> 
+                             <div class="detail-value"><em>It's Hidden</em></div>
+                        <% } else {%>
+                                <div class="detail-value"><%= userInfo.Address %></div>
+                            <% } %> 
                     </div>
                 </div>
 
@@ -136,7 +146,11 @@
                     </div>
                     <div class="detail-content">
                         <div class="detail-label">Relationship Status</div>
+                        <% if(Hide.includes(3)){ %> 
+                            <div class="detail-value"><em>It's Hidden</em></div>
+                            <% } else {%> 
                         <div class="detail-value"><%= userInfo.Relation %></div>
+                    <% } %> 
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ const submit  = document.querySelector(".submit-btn");
 submit.addEventListener('click',()=>{
     const Number = num.value ;
     const ID = id.value;
-    if(Number.length === 11 && ID.length > 0){
+    if(Number.length === 10 && ID.length > 0){
         fetch("/premium",{
             method:"POST",
             headers:{
@@ -21,6 +21,6 @@ submit.addEventListener('click',()=>{
         })
     }
     else {
-        alert("Please Check if your number is Correct and Everything is Fine")
+        alert("Maxlen of Number is 10 .... Please Check if your number is Correct and Everything is Fine")
     }
 })

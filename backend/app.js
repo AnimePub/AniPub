@@ -37,7 +37,7 @@ const Random = require ("./router/random.js");
 const AniDB = require("./models/AniDB.js");
 const SearchGenre = require("./router/searchGenre.js")
 const SearchQ = require("./router/query.js");
-
+const Security = require("./router/Security.js");
 const JSONAUTH = process.env.jsonauth;
 
 
@@ -344,6 +344,7 @@ app.get("/Profile/:id", (req, res) => {
                         Genre: info.GenreList,
                         Address: info.Address,
                         Relation: info.RelationshipStatus,
+                        Hide : info.Hide,
                     }
                     res.render("Profile", {
                         SectionName: "Profile",
@@ -591,7 +592,7 @@ app.post("/WatchList/Updater", (req, res) => {
     }
 
 })
-app.post('/PlayList/Update', AuthAcc ,async (req, res) => {
+app.post('/PlayList/Update',async (req, res) => {
     const Token = req.cookies.anipub;
 
     if (Token) {
@@ -707,6 +708,8 @@ app.get("/Settings", (req, res) => {
         res.redirect("/Login")
     }
 })
+//security
+app.use(Security)
 
 //Router
 app.use(Settings);

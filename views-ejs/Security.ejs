@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>privacy Settings | AniPub</title>
+    <meta name="description" content="Settings Page - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Tenali+Ramakrishna&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/JSettings.css">
+</head>
+
+<body>
+    <%- include("./include/nHeader") %>
+
+    <div class="container">
+           <%- include("./include/cardS") %>
+
+        <div class="main-content">
+            <div class="welcome-banner">
+                <h2>Welcome to Your Settings, Nakama!</h2>
+                <p>Customize your AniPub experience and make it truly yours. Update your profile, preferences, and security settings here.</p>
+            </div>
+
+            <h1 class="section-title">
+                <i class="fas fa-cogs"></i> Privacy Settings
+            </h1>
+            <% const Hide = userData.Hide %> 
+            <div class="settings-card">
+                <div class="card-header active">
+                    <h3><i class="fas fa-lock"></i> Privacy Settings</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="card-content active">
+                    <div class="form-group">
+                        <label for="username">Hide And Show Information</label>
+                         <label for="username">Email</label>
+                         <%if(Hide.includes(1)){%>
+                       <button class="btn btn-primary btn-sm change1" data-value="0" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i> 
+                            Make Email Public
+                        </button>
+                        <% } else {%> 
+                              <button class="btn btn-primary btn-sm change1" data-value="1" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i> 
+                            Hide Your Email from Public
+                        </button>
+                            <% } %> 
+                    </div>
+
+                    <div class="form-group">
+                         <label for="username">Address</label>
+                          <%if(Hide.includes(2)){%>
+<button class="btn btn-primary btn-sm change2" data-value="0" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i> Make Address Public
+                        </button>
+                            <% } else { %>
+                                <button class="btn btn-primary btn-sm change2" data-value="1" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i> Hide Your Address from Public
+                        </button>
+                                <% } %>  
+                        
+                    </div>
+
+                    <div class="form-group">
+                         <label for="username">Relationship</label>
+                          <%if(Hide.includes(3)){%>
+                        <button class="btn btn-primary btn-sm change3" data-value="0" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i>Make Relationship Status Public
+                        </button>
+                            <% } else { %>
+                           <button class="btn btn-primary btn-sm change3" data-value="1" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i>Hide Your Relationship Status From Public
+                        </button>
+                                <% } %>  
+                      
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="toast" id="save-toast">
+        <i class="fas fa-check-circle"></i>
+        <span class="notify-span">Info Saved</span>
+    </div>
+
+    <script src="/JSettings.js"></script>
+    <script src="/status.js"></script>
+</body>
+
+</html>

@@ -64,6 +64,14 @@ const Data = new Schema({
         type: String,
         required: false,
     },
+    Hide: {
+        type:Array,
+        required:false
+    },
+    Premium:{
+        type:String,
+        required:false,
+    },
     userType: {
         type: String,
         required: true,
