@@ -1047,11 +1047,6 @@ app.get("/premium",(req,res)=>{
     })
 })
 
-// number: '8801328566886',
-//   name: 'Anime Lovers',
-//   country: 'BD',
-//   sim_provider: 'Grameen Phone',
-//   email: 'abdullahal467bp@gmail.com',
 app.post("/premium",(req,res)=>{
     const number = req.body.Number ;
      const Token = req.cookies.anipub;
@@ -1063,7 +1058,7 @@ app.post("/premium",(req,res)=>{
                 res.json(0)
             }
             else {
-    if(number.length === 11) {
+    if(number.length === 10 && data) {
     fetch(`https://truecaller-api-five.vercel.app/api/lookup?number=${number}&key=${process.env.TrueCaller}`)
     .then(resp=>resp.json())
     .then(info=>{
@@ -1079,7 +1074,6 @@ app.post("/premium",(req,res)=>{
         if(info.email) {
             email = info.email
         }
-        console.log(info)
         const BODY = {name,country,email}
         Data.findById(data.id)
         .then(INFO=>{
@@ -1094,10 +1088,10 @@ app.post("/premium",(req,res)=>{
                         transporter.sendMail(mailOptions, (err, DATAINFO) => {
                             if (err || err !== null || err.length > 0) {
                                 console.log(err)
-                                 res.json(6);
+                                 res.json(0);
                             }
                             else {
-                                res.json("Email Sent")
+                                res.json(2)
                             }
                         
                         })
@@ -1112,6 +1106,9 @@ app.post("/premium",(req,res)=>{
 
 }
 })
+    }
+    else {
+        res.json(1)
     }
 })
 // Redirect 404

@@ -13,9 +13,11 @@ submit.addEventListener('click',()=>{
             },
             body:JSON.stringify({Number,ID})
         })
-        .then(res=>res.json())
+        .then(response=>response.json())
         .then(info=>{
-            console.log(info)
+            if(info === 0) {alert("An Error While Submiting the form.. Contact the Admin")}  
+                else if (info === 1) {window.location.href = "/Login"}
+                    else {alert("Request Submitted Successfully")}
         })
     }
     else {
