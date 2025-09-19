@@ -696,7 +696,22 @@ app.get("/Settings", (req, res) => {
             const userInfo = {
                 ID: data.id
             }
-            const userData = await Data.findById(data.id)
+            const userDATA = await Data.findById(data.id)
+             const userData = {
+                    id: userDATA._id,
+                        Name: userDATA.Name,
+                        Email: userDATA.Email,
+                        Bio: userDATA.Bio,
+                        BloodGroup: userDATA.BloodGroup,
+                        Image: userDATA.Image,
+                        Gender: userDATA.Gender,
+                        GenreList: userDATA.GenreList,
+                        Address: userDATA.Address,
+                        RelationshipStatus: userDATA.RelationshipStatus,
+                        Hide : userDATA.Hide,
+                        userType : userDATA.userType,
+               
+            } 
             res.render("Settings", {
                 Auth: true,
                 userInfo,
