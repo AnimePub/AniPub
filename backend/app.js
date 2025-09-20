@@ -40,6 +40,7 @@ const AniDB = require("./models/AniDB.js");
 const SearchGenre = require("./router/searchGenre.js")
 const SearchQ = require("./router/query.js");
 const Security = require("./router/Security.js");
+const PremiumR = require("./router/premium.js");
 const JSONAUTH = process.env.jsonauth;
 
 
@@ -1107,7 +1108,7 @@ app.post("/premium",(req,res)=>{
              
           const findPr = await Premium.findById(data.id)
             if(findPr === null ||findPr.length === 0 ) {
-                res.json(10)
+                res.json(2)
             }
             else {
                 Premium.create(BODY)

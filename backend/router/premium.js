@@ -14,3 +14,5 @@ PremiumR.get("/Admin/Premium",async (req,res)=>{
         userData
     })
 })
+
+module.exports = PremiumR ;
