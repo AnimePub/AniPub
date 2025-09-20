@@ -1104,11 +1104,8 @@ app.post("/premium",(req,res)=>{
             const Name = INFO.Name;
              
           const findPr = await Premium.findById(data.id)
-            if(findPr === null || findPr === undefined ) {
-                res.json(0)
-            }
-            else {
-                Premium.create(BODY)
+           try {
+ Premium.create(BODY)
                 .then(()=>{
                       const mailOptions = {
                             from: `mail@adnandluffy.site`,
@@ -1127,7 +1124,13 @@ app.post("/premium",(req,res)=>{
                         
                         })
                 })
-            }            
+           }
+           catch (err){
+            console.log(err)
+            res.json(0)
+           }
+               
+                        
         
         })
       
