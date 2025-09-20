@@ -32,20 +32,23 @@
         </div>
     </div>
             <%  }); %> 
-            <% } else if (userData) { %>
+            <% } else if (userData.number === "") { %>
                  <div class="Profile">
-        <div><img src="../image/Shinbou.jpg" alt=""></div>
+        <div><img src="/Shinbou.jpg" alt=""></div>
         <div>
              <h3><%=userData.name%></h3>
              <p>
                 <span>Phone:<%=userData.number%></span>
-                <a href="/Profile/<%=userData._id%>"><span>ID:<%=element._id%></span></a>
+                <a href="/Profile/<%=userData._id%>"><span>ID:<%=userData._id%></span></a>
                 <span>Trx:<%=userData.trxID%></span>
                 <span>Email:<%=userData.email%> </span>
                 <span>Codes:
-                  <% userData.codes.forEach(value=>{ %>
+                  <% if (userData.codes) {%>
+                      <% userData.codes.forEach(value=>{ %>
                      <%=value%> 
                  <% }) %> 
+                  <%} %> 
+                 
                 </span>
              </p>
              <button class="grant">Grant</button>

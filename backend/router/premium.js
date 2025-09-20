@@ -10,6 +10,7 @@ const JSONAUTH = process.env.jsonauth;
 
 PremiumR.get("/Admin/Premium",async (req,res)=>{
     const userData = await Pr.find();
+    console.log(userData)
     res.render("grant",{
         userData
     })
