@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant Premium</title>
+    <link rel="stylesheet" href="../style/grant.css">
+</head>
+<body>
+  
+   <main>
+      <input type="text" placeholder="Profile ID">
+      <div class="Container">
+         <% if (userData.length > 0) { %>
+              <% userData.forEach(element => { %>
+                <div class="Profile">
+        <div><img src="../image/Shinbou.jpg" alt=""></div>
+        <div>
+             <h3><%=element.name%></h3>
+             <p>
+                <span>Phone:<%=element.number%></span>
+                <a href="/Profile/<%=element._id%>"><span>ID:<%=element._id%></span></a>
+                <span>Trx:<%=element.trxID%></span>
+                <span>Email:<%=element.email%> </span>
+                <span>Codes:
+                  <% element.codes.forEach(value=>{ %>
+                     <%=value%> 
+                 <% }) %> 
+                </span>
+             </p>
+             <button class="grant">Grant</button>
+        </div>
+    </div>
+            <%  }); %> 
+            <% } %>  
+         
+
+
+      </div>
+   
+   </main>
+</body>
+</html>

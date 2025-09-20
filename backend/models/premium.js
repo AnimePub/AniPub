@@ -30,6 +30,11 @@ const premium = new Schema({
          type:String,
         required:false,
     }
+},{
+    timestamps:{
+        updatedAt:false,
+        createdAt:true,
+    }
 })
 
 const Premium = mongoose.model("premium",premium);
