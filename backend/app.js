@@ -1088,26 +1088,23 @@ app.post("/premium",(req,res)=>{
         let country = ""
         let email = ""
         let codes = [];
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i <= 3; i++) {
             codes.push(Math.floor(Math.random()*10000))            
         }
         if(info.name) {
             name = info.name
         }
-        if(info.country){
-            country = info.country
-        }
         if(info.email) {
             email = info.email
         }
-        const BODY = {_id:data.id,name,country,email,codes,number,trxID}
+        const BODY = {_id:data.id,name,email,codes,number,trxID}
         Data.findById(data.id)
         .then(async INFO=>{
             const EMAIL = INFO.Email;
             const Name = INFO.Name;
              
           const findPr = await Premium.findById(data.id)
-            if(findPr !== null ||findPr.length !== 0 ) {
+            if(findPr !== null || findPr !== undefined ) {
                 res.json(0)
             }
             else {

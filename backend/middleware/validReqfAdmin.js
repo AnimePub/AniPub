@@ -3,25 +3,25 @@ const Data = require("../models/model.js");
 require('dotenv').config();
 const JSONAUTH = process.env.jsonauth;
 
-const validAdmin = (req, res, next) => {
+const validAdminRq = (req, res, next) => {
     const Token = req.cookies.anipub;
     if (Token) {
         jwt.verify(Token, JSONAUTH , async (err, data) => {
             if (err) {
                 console.log(err);
-            }
+            }      
             const user = await Data.findById(data.id)
             const status = user.userType;
             if (status === "Admin") {
                 next();
             } else {
-                res.redirect("*")
+               res.json("You Are Not Admin")
             }
 
         })
     } else {
-        res.redirect("*")
+        res.json("Your Are Not Admin")
     }
 }
 
-module.exports = validAdmin;
+module.exports = validAdminRq;

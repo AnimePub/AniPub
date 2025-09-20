@@ -22,14 +22,15 @@ const premium = new Schema({
         type:String,
         required:false,
     },
-    country:{
+    grant:{
           type:String,
         required:false,
     },
     trxID:{
          type:String,
         required:false,
-    }
+    },
+
 },{
     timestamps:{
         updatedAt:false,

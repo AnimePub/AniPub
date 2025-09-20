@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 const JSONAUTH = process.env.jsonauth;
+
 const AuthAcc = (req, res, next) => {
     const Token = req.cookies.anipub;
     if (Token) {

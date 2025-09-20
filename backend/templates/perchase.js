@@ -38,7 +38,6 @@ const PerChase = (name, info) => {
               <p>Info We Found All Over the Internet and Saved About You:- (This can be used to appeal incase you lost your account) </p>
               
                 <p>Name:- ${info.name}</p>
-                <p>Country :- ${info.country} </p>
                 <p>Email found with the Number :- ${info.email}</p>
                 <p>Security Code:- ${info.codes[0]} , ${info.codes[1]} , ${info.codes[2]} , ${info.codes[3]} </p>
                 <p> trxID :- ${info.trxID} </p>

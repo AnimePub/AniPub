@@ -13,12 +13,12 @@
       <div class="Container">
          <% if (userData.length > 0) { %>
               <% userData.forEach(element => { %>
-                <div class="Profile">
-        <div><img src="../image/Shinbou.jpg" alt=""></div>
+                <div class="Profile" data-value="<%=element._id%>">
+        <div><img data-image="<%=element._id%>" src="/Shinbou.jpg" alt=""></div>
         <div>
              <h3><%=element.name%></h3>
              <p>
-                <span>Phone:<%=element.number%></span>
+                <span>Phone:0<%=element.number%></span>
                 <a href="/Profile/<%=element._id%>"><span>ID:<%=element._id%></span></a>
                 <span>Trx:<%=element.trxID%></span>
                 <span>Email:<%=element.email%> </span>
@@ -28,17 +28,21 @@
                  <% }) %> 
                 </span>
              </p>
-             <button class="grant">Grant</button>
-        </div>
+             <% if(element.grant === "Yes") { %>
+                 <button class="grant revoke" data-type="revoke" data-value="<%=element._id%>">Revoke</button>
+               <% } else { %>  
+             <button class="grant" data-type="grant" data-value="<%=element._id%>">Grant</button>
+                  <% } %> 
+            </div>
     </div>
             <%  }); %> 
             <% } else if (userData.number === "") { %>
-                 <div class="Profile">
-        <div><img src="/Shinbou.jpg" alt=""></div>
+                 <div class="Profile" data-value="<%=userData._id%>">
+        <div><img data-image="<%=userData._id%>" src="/Shinbou.jpg" alt=""></div>
         <div>
              <h3><%=userData.name%></h3>
              <p>
-                <span>Phone:<%=userData.number%></span>
+                <span>Phone:0<%=userData.number%></span>
                 <a href="/Profile/<%=userData._id%>"><span>ID:<%=userData._id%></span></a>
                 <span>Trx:<%=userData.trxID%></span>
                 <span>Email:<%=userData.email%> </span>
@@ -51,8 +55,12 @@
                  
                 </span>
              </p>
-             <button class="grant">Grant</button>
-        </div>
+                <% if(element.grant === "Yes") { %>
+                 <button class="grant revoke" data-type="revoke" data-value="<%=userData._id%>">Revoke</button>
+               <% } else { %>  
+             <button class="grant" data-type="grant" data-value="<%=userData._id%>">Grant</button>
+                  <% } %> 
+            </div>
     </div>
            <%  }  else {%>
             <h1>You don't have any subscriber yet</h1>
@@ -63,5 +71,27 @@
       </div>
    
    </main>
+   <script>
+      const profile = document.querySelectorAll(".Profile")
+      const img =  document.querySelectorAll(`img`);
+      if(profile) {
+         profile.forEach((value,i)=>{
+            const id = value.dataset.value ;
+            fetch(`/Pr/Photo/${id}`)
+            .then(response=>response.json())
+            .then(info=>{
+               const Info = JSON.parse(info)
+               if(Info.gender === "Male") {
+                  img[i].src = `/ProfilePic/boys/${Info.Image}`
+               }else {
+                   img[i].src = `/ProfilePic/${Info.Image}`
+               }
+            })
+
+
+         })
+      }
+   </script>
+   <script src="/Grant.js"></script>
 </body>
 </html>
