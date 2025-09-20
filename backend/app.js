@@ -28,6 +28,8 @@ const OP = require("./Data/data");
 
 //Anime DB init ..
 const AnimeDB = require("./models/AniDB.js");
+//premium init
+const Premium = require("./models/premium.js");
 
 // router 
 const HomeRouter = require("./router/home.js");
@@ -1067,6 +1069,7 @@ app.get("/premium",(req,res)=>{
 
 app.post("/premium",(req,res)=>{
     const number = req.body.Number ;
+    const trxID = req.body.ID;
      const Token = req.cookies.anipub;
     if (Token) {
         jwt.verify(Token, JSONAUTH , async (err, data) => {
@@ -1083,6 +1086,10 @@ app.post("/premium",(req,res)=>{
         let name = ""
         let country = ""
         let email = ""
+        let codes = [];
+        for (let i = 0; i < 3; i++) {
+            codes.push(Math.floor(Math.random()*10000))            
+        }
         if(info.name) {
             name = info.name
         }
@@ -1092,12 +1099,20 @@ app.post("/premium",(req,res)=>{
         if(info.email) {
             email = info.email
         }
-        const BODY = {name,country,email}
+        const BODY = {_id:data.id,name,country,email,codes,number,trxID}
         Data.findById(data.id)
-        .then(INFO=>{
+        .then(async INFO=>{
             const EMAIL = INFO.Email;
             const Name = INFO.Name;
-              const mailOptions = {
+             
+          const findPr = await Premium.findById(data.id)
+            if(findPr.length === 0) {
+                res.json(10)
+            }
+            else {
+                Premium.create(BODY)
+                .then(()=>{
+                      const mailOptions = {
                             from: `mail@adnandluffy.site`,
                             to: EMAIL,
                             subject: `-- AniPub Premium --`,
@@ -1113,6 +1128,9 @@ app.post("/premium",(req,res)=>{
                             }
                         
                         })
+                })
+            }            
+        
         })
       
 

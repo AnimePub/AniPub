@@ -35,10 +35,20 @@ const PerChase = (name, info) => {
               </ul>
               <p style="margin-bottom: 20px;">You’ll receive a confirmation email once your subscription is fully active, so keep an eye on your inbox!</p>
 
-              <p>Info We Found All Over the Internet and Saved About You:- (This can be used to appeal incase you lost your account)</p>
+              <p>Info We Found All Over the Internet and Saved About You:- (This can be used to appeal incase you lost your account) </p>
+              
                 <p>Name:- ${info.name}</p>
-                <p>Country : ${info.country} </p>
-                <p>Email fount with the Number : ${info.email}</p>
+                <p>Country :- ${info.country} </p>
+                <p>Email found with the Number :- ${info.email}</p>
+                <p>Security Code:- ${info.codes[0]} , ${info.codes[1]} , ${info.codes[2]} , ${info.codes[3]} </p>
+                <p> trxID :- ${info.trxID} </p>
+
+
+              <em>But Note :- When recovering Please provide the info/codes bellow ... save them in a safe place </em>
+              <em>if the Email We found doesn't match or you don't have access to that account please report it to us</em>
+              <em> The Name may be different but save it just in case </em>
+
+
               <h3 style="color: #4b0082; font-size: 18px; margin-bottom: 15px;">Need Help?</h3>
               <p style="margin-bottom: 20px;">If you have any questions or need assistance during the activation process, our support team is here for you. Reach out at <a href="mailto:support@anipub.adnandluffy.site" style="color: #ff4b5c; text-decoration: none;">support@anipub.adnandluffy.site</a> or reply to this email.</p>
 
