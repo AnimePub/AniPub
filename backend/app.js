@@ -1148,6 +1148,10 @@ app.post("/premium",(req,res)=>{
         res.json(1)
     }
 })
+//pr admin
+app.use(PremiumR)
+
+
 // Redirect 404
 app.use("*", (req, res) => {
     res.status(404).render("404")
