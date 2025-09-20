@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grant Premium</title>
-    <link rel="stylesheet" href="../style/grant.css">
+    <link rel="stylesheet" href="/grant.css">
 </head>
 <body>
   
@@ -32,7 +32,28 @@
         </div>
     </div>
             <%  }); %> 
-            <% } %>  
+            <% } else if (userData) { %>
+                 <div class="Profile">
+        <div><img src="../image/Shinbou.jpg" alt=""></div>
+        <div>
+             <h3><%=userData.name%></h3>
+             <p>
+                <span>Phone:<%=userData.number%></span>
+                <a href="/Profile/<%=userData._id%>"><span>ID:<%=element._id%></span></a>
+                <span>Trx:<%=userData.trxID%></span>
+                <span>Email:<%=userData.email%> </span>
+                <span>Codes:
+                  <% userData.codes.forEach(value=>{ %>
+                     <%=value%> 
+                 <% }) %> 
+                </span>
+             </p>
+             <button class="grant">Grant</button>
+        </div>
+    </div>
+           <%  }  else {%>
+            <h1>You don't have any subscriber yet</h1>
+            <% } %> 
          
 
 
