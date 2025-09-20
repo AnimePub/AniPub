@@ -1085,7 +1085,6 @@ app.post("/premium",(req,res)=>{
     .then(resp=>resp.json())
     .then(info=>{
         let name = ""
-        let country = ""
         let email = ""
         let codes = [];
         for (let i = 0; i <= 3; i++) {
@@ -1121,10 +1120,7 @@ app.post("/premium",(req,res)=>{
                                 console.log(err)
                                  res.json(0);
                             }
-                            else {
                                 res.json(2)
-                            }
-                        
                         })
                 })
           }
