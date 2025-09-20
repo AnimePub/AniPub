@@ -1104,7 +1104,7 @@ app.post("/premium",(req,res)=>{
             const Name = INFO.Name;
              
           const findPr = await Premium.findById(data.id)
-            if(findPr !== null || findPr !== undefined ) {
+            if(findPr === null || findPr === undefined ) {
                 res.json(0)
             }
             else {
