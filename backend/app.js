@@ -665,7 +665,7 @@ app.delete('/PlayList/Delete/:DeleteID', (req, res) => {
                                     Data.findByIdAndUpdate(data.id, {
                                         $pull: {
                                             List: {
-                                                id: POSTID
+                                                "id":POSTID
                                             }
                                         }
                                     }); // pulling info
