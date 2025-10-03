@@ -1,1 +1,1 @@
-User-agent: * Allow: / Disallow: /Login Disallow: /Sign-Up Sitemap: https://animehub.adnandluffy.site/sitemap
+User-agent: * Allow: / Disallow: /Login Disallow: /Sign-Up Sitemap: https://anipub.adnandluffy.site/sitemap
