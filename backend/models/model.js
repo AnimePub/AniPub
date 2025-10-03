@@ -75,17 +75,7 @@ const Data = new Schema({
     userType: {
         type: String,
         required: true,
-    },
-    List: [{
-        _id: {
-            type: String,
-            required: false,
-        },
-        id: {
-            type: String,
-            required: false,
-        }
-    }]
+    }
 })
 
 Data.pre("save", async function(next) {

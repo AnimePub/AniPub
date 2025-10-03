@@ -500,20 +500,15 @@ app.get("/PlayList/:id", (req, res) => {
             const accountID = data.id;
 
             if (accountID === PlayListID) {
+                let Aarray ;
+               await newList.find({"Owner":accountID})
+                .then(re=>{
+                    Aarray = re;
+                })
                 Data.findById(accountID)
                     .then(async (info) => {
-                        const PlayList = info.List;
-                        let PlayListArray = [];
-                        PlayList.forEach(value => {
-                            PlayListArray.push(value.id);
-                        })
-                        const PlayListDB = await newList.find({
-                            _id: {
-                                $in: PlayListArray
-                            }
-                        })
                         const DBarray = [];
-                        PlayListDB.forEach(value => {
+                        Aarray.forEach(value => {
                             DBarray.push(value.AniID)
                         })
                         let link = info.Image;
@@ -530,8 +525,8 @@ app.get("/PlayList/:id", (req, res) => {
                         })
                         res.render("PlayList", {
                             SectionName: "PlayList Section",
-                            List: PlayListDB,
                             AniDB: DBAnime,
+                            AniArray:Aarray,
                             Auth: true,
                             ID: accountID,
                             Link: finalLink,
@@ -616,14 +611,7 @@ app.post('/PlayList/Update',async (req, res) => {
                             Owner: data.id,
                             Progress: req.body.EpID,
                         })
-                        Data.findByIdAndUpdate(data.id, {
-                                $push: {
-                                    List: {
-                                        "id": ListID._id
-                                    }
-                                }
-                            })
-                            .then(info => {
+                        .then(info => {
                                 res.json(["PlayList Updated"])
                             })
 
@@ -662,13 +650,6 @@ app.delete('/PlayList/Delete/:DeleteID', (req, res) => {
                         newList.findByIdAndDelete(req.params.DeleteID)
                             .then(info => {
                                 if (info) {
-                                    Data.findByIdAndUpdate(data.id, {
-                                        $pull: {
-                                            List: {
-                                                "id":POSTID
-                                            }
-                                        }
-                                    }); // pulling info
                                     res.json(["Delete Done"])
                                 } else {
                                     res.json(["Can't find the list"])
