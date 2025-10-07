@@ -82,9 +82,42 @@
         </div>
         <% }); %>
     </div>
+
     <div class="secoNd-Section">
 
         <div class="aniLists">
+
+            <div class="recents">
+                <div class="ntg"></div>
+                <p>
+                   Airing
+                </p>
+            </div>
+            <% Airing.forEach(value => {%>
+            <div class="Profile-div">
+                <div class="Profile" data-anime="<%=value._id%>">
+                    <div class="Image-div">
+                        <img class="poster" src="<%=value.poster%>" alt="<%=value.Name%> Anime Poster">
+                    </div>
+                    <div class="Title-div">
+                        <p class="Title"><%=value.Name%></p>
+                    </div>
+                    <div class="ratings-div">
+                        <p class="mal-score"><%=value.MALScore%></p>
+                        <img style="width: 90px;" src="rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
+                    </div>
+                    <div class="des-div">
+                        <p class="des">
+                            <%=value.DescripTion%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+
+
+          <div class="aniLists">
 
             <div class="recents">
                 <div class="ntg"></div>

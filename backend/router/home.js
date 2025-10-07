@@ -22,6 +22,8 @@ HomeRouter.get("/Home", async (req, res) => {
     })
     const Token = req.cookies.anipub;
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
+    AnimeDB.find({"Status":"Ongoing"})
+    .then(Airing=>{
     if (Token) {
         jwt.verify(Token, JSONAUTH, (err, data) => {
             if (err) {
@@ -39,6 +41,7 @@ HomeRouter.get("/Home", async (req, res) => {
                         res.render("Home", {
                             Anime: animeDb,
                             DBAnime,
+                            Airing,
                             auth: true,
                             ID: data.id,
                             Link: finalLink
@@ -48,6 +51,7 @@ HomeRouter.get("/Home", async (req, res) => {
 
                         res.render("Home", {
                             Anime: animeDb,
+                            Airing,
                             DBAnime,
                             auth: true,
                             ID: data.id,
@@ -64,6 +68,7 @@ HomeRouter.get("/Home", async (req, res) => {
         res.render("Home", {
             Anime: animeDb,
             DBAnime,
+            Airing,
             auth: false,
             ID: "guest",
             Link: linkI
@@ -71,6 +76,7 @@ HomeRouter.get("/Home", async (req, res) => {
     }
 
 
+    })
 })
 
 module.exports = HomeRouter;
