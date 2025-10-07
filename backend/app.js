@@ -393,27 +393,16 @@ app.get("/Profile/:id", (req, res) => {
 app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
     const Token = req.cookies.anipub;  
     const AniId = req.params.AniId;
-    const AniEP = req.params.AniEP;
+    const AniEP = req.params.AniEP; 
+    let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     let video = "";
     const animeDb = await AnimeDB.find().sort({
         createdAt: -1
     }).limit(20)
-    if(!isNumberObject( new Number(AniId)) ) {
-        res.redirect("/*")  
-    }
-    else {
-       video = await AnimeDB.findById(Number(req.params.AniId))
-    }
-    let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-    if (!isNumberObject(new Number(AniId))) {
-        res.redirect("/*")
-    } 
-    if (isNaN(AniEP)) {
-      res.redirect("/*")
-    }
-    else {
+        
+    if(!isNaN(AniId) && !isNaN(AniEP)) {
          AniDB.findById(Number(AniId))
-        .then(ANIMEIN=>{
+        .then( ANIMEIN=>{
             if (ANIMEIN === null) {
                   res.redirect("/*")
             }
@@ -421,17 +410,20 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                  res.redirect("/*")
             }
             else if (ANIMEIN.ep.length >=  Number(req.params.AniEP)) {
-                   if (Token) {
-            jwt.verify(Token,JSONAUTH , (err, data) => {
+         AnimeDB.findById(Number(AniId))
+         .then(video=>{         
+                if (Token) {
+            jwt.verify(Token,JSONAUTH ,async (err, data) => {
                 if (err) {
                     console.log(err)
                 }
 
               Data.findById(`${data.id}`)
-                                .then(info => {
+                                .then(async info => {
+                                   
                                     let link = info.Image;
                                     const Gender = info.Gender;
-                                    if (Gender === "Male") {
+                                  if (Gender === "Male") {
                                         const finalLink = `boys/` + link;
                                         res.render("AniPlayer", {
                                             AniDB: animeDb,
@@ -467,12 +459,17 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                             Link: linkI
                         })
                     }
+}) 
+
                 } else {
                     res.redirect("/*")
                 }
+
+
             })
-
-
+    }
+    else {
+        res.redirect("/*")
     }
 });
 app.get("/PlayList", AuthAcc, (req, res) => {
