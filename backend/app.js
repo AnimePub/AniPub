@@ -1003,6 +1003,32 @@ app.post("/Bulk/Add", validAdmin, async (req, res) => {
     }
 
 })
+app.post("/Status-Change",validAdmin , (req,res)=>{
+    AnimeDB.findById(req.body.id)
+    .then(info=>{
+        if(info){
+            if(Number(req.body.value) === 2) {
+                AnimeDB.findByIdAndUpdate(req.body.id,{
+                    "Status":"Finished"
+                })
+                .then(()=>{
+                    res.json(0)
+                })
+            }
+            else if (Number(req.body.value) === 1){
+                AnimeDB.findByIdAndUpdate(req.body.id,{
+                    "Status":"Ongoing"
+                })
+                .then(()=>{
+                    res.json(0)
+                })
+            }
+        }
+        else {
+            res.json(1);
+        }
+    })
+})
 app.get("/verify-email-change/:id/:code", (req, res) => {
     const ID = req.params.id;
     const code = req.params.code;

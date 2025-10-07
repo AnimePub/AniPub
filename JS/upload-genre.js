@@ -1,10 +1,13 @@
+
 const SELECT = document.querySelector(".BULK");
 const genreList = [];
 const form5 = document.querySelector(".form5");
+const form6 = document.querySelector(".form6");
 const updateExisting = document.querySelector(".update-existing")
 const form3 = document.querySelector(".container3");
 const BulkADDB = document.querySelector(".BulkAdd");
-
+const StatusUp = document.querySelector(".StatusUp");
+const onSlct = document.querySelector(".onSlct");
 const genre = document.querySelectorAll(".genre");
 genre.forEach(value => {
     value.addEventListener('click', () => {
@@ -124,6 +127,7 @@ const upLoad = document.querySelector(".upLoad");
 const upDate = document.querySelector(".upDate");
 
 upLoad.addEventListener("click", () => {
+    form6.style.display = "none";
     form.style.display = "flex";
     form1.style.display = "none";
     form3.style.display = "none";
@@ -137,6 +141,7 @@ upDate.addEventListener('click', () => {
     SELECT.style.display = "none"
     form3.style.display = "none"
     form5.style.display = "none"
+    form6.style.display = "none";
 })
 
 const option = document.querySelector(".Slct");
@@ -152,6 +157,15 @@ updateExisting.addEventListener('click', () => {
     SELECT.style.display = "none"
     form3.style.display = "flex"
     form5.style.display = "none";
+    form6.style.display = "none";
+})
+StatusUp.addEventListener('click',()=>{
+     form1.style.display = "none"
+    form.style.display = "none";
+    SELECT.style.display = "none"
+    form3.style.display = "none"
+    form5.style.display = "none"
+    form6.style.display = "flex";
 })
 
 option.addEventListener("change", () => {
@@ -238,6 +252,7 @@ SELECT.addEventListener('change', () => {
     form.style.display = "none"
     form3.style.display = "none"
     form5.style.display = "flex";
+    form6.style.display = "none";
     generate(Number(SELECT.value))
 })
 
@@ -294,4 +309,27 @@ form5.addEventListener('submit', (e) => {
             }
         })
 
+})
+
+form6.addEventListener("submit",(e)=>{
+    e.preventDefault();
+fetch("/Status-Change",{
+    method:"POST",
+    'headers':{
+        'Content-Type': 'application/json'
+    },
+    body:JSON.stringify({
+        id : form6.ID.value,
+        value :onSlct.value,
+    })
+})
+.then(response=>response.json())
+.then(info=>{
+    if(info === 1) {
+        alert("Sorry, There was something wrong !")
+    }
+    else {
+        alert("Updated");
+    }
+})
 })

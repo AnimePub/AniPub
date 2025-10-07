@@ -22,7 +22,7 @@ HomeRouter.get("/Home", async (req, res) => {
     })
     const Token = req.cookies.anipub;
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-    AnimeDB.find({"Status":"Ongoing"})
+    AnimeDB.find({"Status":"Ongoing"}).sort({createdAt:-1}).limit(10)
     .then(Airing=>{
     if (Token) {
         jwt.verify(Token, JSONAUTH, (err, data) => {
