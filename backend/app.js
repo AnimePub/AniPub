@@ -396,10 +396,6 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
     const AniEP = req.params.AniEP; 
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     let video = "";
-    const animeDb = await AnimeDB.find().sort({
-        createdAt: -1
-    }).limit(20)
-        
     if(!isNaN(AniId) && !isNaN(AniEP)) {
          AniDB.findById(Number(AniId))
         .then( ANIMEIN=>{
@@ -411,7 +407,11 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
             }
             else if (ANIMEIN.ep.length >=  Number(req.params.AniEP)) {
          AnimeDB.findById(Number(AniId))
-         .then(video=>{         
+         .then(video=>{   
+            console.log(video.Genres)      
+            AnimeDB.find({"Genres":{$in:video.Genres}}).sort({createdAt:-1}).limit(20)
+            .then(animeDb=>{
+           
                 if (Token) {
             jwt.verify(Token,JSONAUTH ,async (err, data) => {
                 if (err) {
@@ -460,7 +460,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                         })
                     }
 }) 
-
+ })
                 } else {
                     res.redirect("/*")
                 }
