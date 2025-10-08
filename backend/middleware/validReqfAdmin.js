@@ -23,5 +23,5 @@ const validAdminRq = (req, res, next) => {
         res.json("Your Are Not Admin")
     }
 }
-
+//checks if the user is Admin Or Not 
 module.exports = validAdminRq;

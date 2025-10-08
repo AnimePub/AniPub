@@ -1065,10 +1065,6 @@ app.get("/sitemaps",(req,res)=>{
          res.render("sitemap",{i})
         })
     })
-
-app.get("/sitemaps",(req,res)=>{
-    res.sendFile(path.join(__dirname,"../sitemaps/sitemap1.xml"))
-})
 app.get("robots.txt",(req,res)=>{
      res.sendFile(path.join(__dirname,"../sitemaps/robots.txt"))
 })

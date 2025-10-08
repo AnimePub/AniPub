@@ -1,20 +1,28 @@
 const express = require("express");
 const HomeRouter = express.Router();
 const jwt = require("jsonwebtoken");
-
+const slider = require("../models/slider.js");
 const mongoose = require("mongoose");
 const Data = require("../models/model");
 const AnimeDB = require("../models/AniDB.js");
 const JSONAUTH = process.env.jsonauth;
-
+const validAdminReqJs = require("../middleware/validReqfAdmin.js");
 HomeRouter.get("/", (req, res) => {
     res.render("index");
 })
+
 HomeRouter.get("/Home", async (req, res) => {
     const animeDb = await AnimeDB.find().sort({
         updatedAt: -1
     }).limit(20);
-    const DBarray = [9,10,13,6]
+    let ArrayList =[];
+    slider.findById(1)
+    .then(async ar=>{
+        const b = ar.slArray;
+        b.forEach(c=>{
+            ArrayList.push(c);
+        })
+    const DBarray = ArrayList;
     const DBAnime = await AnimeDB.find({
         _id: {
             $in: DBarray
@@ -75,8 +83,38 @@ HomeRouter.get("/Home", async (req, res) => {
         });
     }
 
-
+ })
     })
 })
 
+HomeRouter.get("/Slider/:id1/:id2/:id3/:id4",validAdminReqJs,(req,res)=>{
+    const id1 = Number(req.params.id1);
+     const id2 = Number(req.params.id2);
+      const id3 = Number(req.params.id3);
+       const id4 = Number(req.params.id4);
+    slider.findOne({"_id":1})
+    .then(info=>{
+        if(info) {
+            slider.findByIdAndUpdate(1,{
+                slArray:[id1,id2,id3,id4]
+            })
+            .then(u=>{
+                console.log("Slider Cover update");
+                res.json(0);
+            })
+        }
+        else {
+              slider.create({
+        _id:1,
+        slArray:[id1,id2,id3,id4]
+         })
+          .then(u=>{
+                console.log("Slider Cover update");
+                res.json(0)
+            })
+        }
+    })
+     
+
+})
 module.exports = HomeRouter;

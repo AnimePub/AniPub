@@ -23,5 +23,5 @@ const validAdmin = (req, res, next) => {
         res.redirect("*")
     }
 }
-
+//checks if the user is Admin Or Not 
 module.exports = validAdmin;
