@@ -1065,6 +1065,15 @@ app.get("/sitemaps",(req,res)=>{
          res.render("sitemap",{i})
         })
     })
+app.get("/sitemap.xml",(req,res)=>{
+    // res.sendFile(path.join(__dirname,"../sitemaps/sitemap.xml"))
+    AnimeDB.find()
+    .then(async info=>{
+        const i =  info.length;
+         res.contentType(".xml")
+         res.render("sitemap",{i})
+        })
+    })    
 app.get("robots.txt",(req,res)=>{
      res.sendFile(path.join(__dirname,"../sitemaps/robots.txt"))
 })

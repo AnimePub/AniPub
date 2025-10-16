@@ -14,7 +14,7 @@ const PerChase = (name, info) => {
           <!-- Header -->
           <tr>
             <td style="background: linear-gradient(90deg, #ff4b5c, #4b0082); padding: 20px; text-align: center;">
-              <img src="https://anipub.adnandluffy.site/luffy5.png" alt="AniPub Logo" style="max-width: 150px;">
+              <img src="https://anipub.xyz/luffy5.png" alt="AniPub Logo" style="max-width: 150px;">
               <h1 style="color: #ffffff; font-size: 28px; margin: 10px 0; text-transform: uppercase; letter-spacing: 2px;">Welcome to AniPub Premium!</h1>
             </td>
           </tr>
@@ -22,7 +22,7 @@ const PerChase = (name, info) => {
           <tr>
             <td style="padding: 30px; color: #333333; font-size: 16px; line-height: 1.6;">
               <h2 style="color: #ff4b5c; font-size: 22px; margin-bottom: 20px;">Thank You, ${name}!</h2>
-              <p style="margin-bottom: 20px;">We’re absolutely thrilled to welcome you to the <strong>AniPub.AdnanDLuffy.site Premium</strong> community! Your subscription is being processed, and we’re grateful for your patronage. Get ready to dive into an epic anime adventure!</p>
+              <p style="margin-bottom: 20px;">We’re absolutely thrilled to welcome you to the <strong>anipub.xyz Premium</strong> community! Your subscription is being processed, and we’re grateful for your patronage. Get ready to dive into an epic anime adventure!</p>
               
               <h3 style="color: #4b0082; font-size: 18px; margin-bottom: 15px;">What’s Next?</h3>
               <p style="margin-bottom: 20px;">Your Premium Subscription will be fully activated within the next <strong>24 hours</strong>. Once activated, you’ll unlock:</p>
@@ -49,18 +49,18 @@ const PerChase = (name, info) => {
 
 
               <h3 style="color: #4b0082; font-size: 18px; margin-bottom: 15px;">Need Help?</h3>
-              <p style="margin-bottom: 20px;">If you have any questions or need assistance during the activation process, our support team is here for you. Reach out at <a href="mailto:support@anipub.adnandluffy.site" style="color: #ff4b5c; text-decoration: none;">support@anipub.adnandluffy.site</a> or reply to this email.</p>
+              <p style="margin-bottom: 20px;">If you have any questions or need assistance during the activation process, our support team is here for you. Reach out at <a href="mailto:support@anipub.xyz" style="color: #ff4b5c; text-decoration: none;">support@anipub.xyz</a> or reply to this email.</p>
 
-              <p style="margin-bottom: 20px;">Thank you again for choosing AniPub.AdnanDLuffy.site. We can’t wait for you to immerse yourself in the world of anime!</p>
+              <p style="margin-bottom: 20px;">Thank you again for choosing anipub.xyz. We can’t wait for you to immerse yourself in the world of anime!</p>
 
-              <a href="https://anipub.adnandluffy.site/premium" style="display: inline-block; background-color: #ff4b5c; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px;">Explore AniPub Now</a>
+              <a href="https://anipub.xyz/premium" style="display: inline-block; background-color: #ff4b5c; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px;">Explore AniPub Now</a>
             </td>
           </tr>
           <!-- Footer -->
           <tr>
             <td style="background-color: #4b0082; color: #ffffff; text-align: center; padding: 20px; font-size: 14px;">
               <p style="margin: 0 0 10px;">Follow us on <a href="https://github.com/AnimePub" style="color: #ff4b5c; text-decoration: none;">X</a> for the latest anime updates, exclusive content, and giveaways!</p>
-              <p style="margin: 0;">Happy Watching, <br>The AniPub.AdnanDLuffy.site Team</p>
+              <p style="margin: 0;">Happy Watching, <br>The anipub.xyz Team</p>
             </td>
           </tr>
         

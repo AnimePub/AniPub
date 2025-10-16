@@ -100,14 +100,14 @@ const MailBody = (name, id, code) => {
     <div class="content">
       <h2>Hello, ${name}</h2>
       <p>You’ve requested to change the email address associated with your <strong>AniPub</strong> account. Please use the link below to verify your new email address.</p>
-      <div class="verification-code">https://anipub.adnandluffy.site/verify-email-change/${id}/${code}</div>
+      <div class="verification-code">https://anipub.xyz/verify-email-change/${id}/${code}</div>
       <p class="instructions">Click the link above to confirm your new email address. For security, this link will <strong>expire in 30 minutes</strong>.</p>
       <p class="security-notice">If you didn’t request this email change, please ignore this email or contact our support team at <a href="mailto:mail@adnandluffy.site">mail@adnandluffy.site</a>.</p>
     </div>
     <div class="footer">
       <p>&copy; 2025 AniPub. All rights reserved.</p>
       <p>AniPub, 123 Anime Lane, Fictional City, FC 12345</p>
-       <a href="https://anipub.adnandluffy.site/Privacy-policy">Privacy Policy</a></p>
+       <a href="https://anipub.xyz/Privacy-policy">Privacy Policy</a></p>
     </div>
   </div>
 </body>
