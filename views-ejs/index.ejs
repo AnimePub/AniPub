@@ -3,13 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="A Free Anime Watching Site built by Anime Loves for Anime Lovers">
+   <meta name="description" content="Watch free anime online at AniPub! Stream Naruto, One Piece, Attack on Titan, and more. Join our anime community today!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="anime,naruto,attack on titan,one piece">
+ <meta name="keywords" content="anime,Hianime,gogoanime,anilab,9anime.gogoanime,zoro,free anime streaming, anime online, Naruto episodes, One Piece streaming, AniPub">
     <title>Anipub</title>
+<meta property="og:title" content="Watch Free Anime Online | AniPub">
+<meta property="og:description" content="Stream Naruto, One Piece, Attack on Titan, and more for free on AniPub. Join our anime community!">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://anipub.xyz">
+<meta property="og:image" content="https://www.anipub.xyz/luffy5.png">
+<meta property="og:site_name" content="AniPub">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!-- FavicoAdded -->
-    <link rel="icon" href="Logo/dfd.jpg" type="image">
     <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="anipub.css">
@@ -303,6 +308,19 @@
     </div><%- include("./include/footer.ejs") %>
     <script src="modal.js"></script>
     <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "AniPub",
+  "url": "https://anipub.xyz",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://anipub.xyz/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 </body>
 
 </html>
