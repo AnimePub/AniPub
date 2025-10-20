@@ -86,7 +86,32 @@ HomeRouter.get("/Home", async (req, res) => {
  })
     })
 })
-
+HomeRouter.get("/api/getHome",async(req,res)=>{
+    const animeDb = await AnimeDB.find().sort({
+        updatedAt: -1
+    }).limit(20);
+    let ArrayList =[];
+    slider.findById(1)
+    .then(async ar=>{
+        const b = ar.slArray;
+        b.forEach(c=>{
+            ArrayList.push(c);
+        })
+    const DBarray = ArrayList;
+    const DBAnime = await AnimeDB.find({
+        _id: {
+            $in: DBarray
+        }
+    })
+     AnimeDB.find({"Status":"Ongoing"}).sort({createdAt:-1}).limit(10)
+    .then(Airing=>{
+    res.json({
+            Anime: animeDb,
+            DBAnime,
+            Airing})
+    })
+})
+})
 HomeRouter.get("/Slider/:id1/:id2/:id3/:id4",validAdminReqJs,(req,res)=>{
     const id1 = Number(req.params.id1);
      const id2 = Number(req.params.id2);
