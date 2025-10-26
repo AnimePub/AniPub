@@ -363,11 +363,13 @@ app.get("/Profile/:id", (req, res) => {
 
         })
     } else {
-        Data.findById(profileID)
+    
+  Data.findById(profileID)
             .then(info => {
                 const userInfo = {
                     ID: info._id,
                     Name: info.Name,
+                     Hide : info.Hide,
                     Email: info.Email,
                     Bio: info.Bio,
                     BloodGroup: info.BloodGroup,
@@ -383,6 +385,9 @@ app.get("/Profile/:id", (req, res) => {
                     userInfo,
                     alu: "p"
                 })
+            })
+            .catch(err=>{
+                res.redirect("/*")
             })
     }
 
@@ -1060,21 +1065,14 @@ app.get("/verify-email-change/:id/:code", (req, res) => {
 //Sitemap
 app.get("/sitemaps",(req,res)=>{
     // res.sendFile(path.join(__dirname,"../sitemaps/sitemap.xml"))
-    AnimeDB.find()
-    .then(async info=>{
-        const i =  info.length;
          res.contentType(".xml")
-         res.render("sitemap",{i})
-        })
+         res.render("sitemap")
+     
     })
 app.get("/sitemap.xml",(req,res)=>{
     // res.sendFile(path.join(__dirname,"../sitemaps/sitemap.xml"))
-    AnimeDB.find()
-    .then(async info=>{
-        const i =  info.length;
          res.contentType(".xml")
-         res.render("sitemap",{i})
-        })
+         res.render("sitemap")
     })    
 app.get("robots.txt",(req,res)=>{
      res.sendFile(path.join(__dirname,"../sitemaps/robots.txt"))
