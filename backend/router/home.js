@@ -12,7 +12,7 @@ HomeRouter.get("/", (req, res) => {
 })
 
 HomeRouter.get("/Home", async (req, res) => {
-    const animeDb = await AnimeDB.find().sort({
+    const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
         updatedAt: -1
     }).limit(20);
     let ArrayList =[];
@@ -30,7 +30,7 @@ HomeRouter.get("/Home", async (req, res) => {
     })
     const Token = req.cookies.anipub;
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-    AnimeDB.find({"Status":"Ongoing"}).sort({createdAt:-1}).limit(10)
+    AnimeDB.find({"Status":"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
     .then(Airing=>{
     if (Token) {
         jwt.verify(Token, JSONAUTH, (err, data) => {
@@ -87,7 +87,7 @@ HomeRouter.get("/Home", async (req, res) => {
     })
 })
 HomeRouter.get("/api/getHome",async(req,res)=>{
-    const animeDb = await AnimeDB.find().sort({
+    const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
         updatedAt: -1
     }).limit(20);
     let ArrayList =[];
@@ -103,7 +103,7 @@ HomeRouter.get("/api/getHome",async(req,res)=>{
             $in: DBarray
         }
     })
-     AnimeDB.find({"Status":"Ongoing"}).sort({createdAt:-1}).limit(10)
+     AnimeDB.find({"Status":"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
     .then(Airing=>{
     res.json({
             Anime: animeDb,

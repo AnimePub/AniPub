@@ -95,9 +95,20 @@
             </div>
             <% Airing.forEach(value => {%>
             <div class="Profile-div">
+                 <a href="/AniPlayer/<%=value._id%>/0" target="_blank" style="text-decoration: none;">
                 <div class="Profile" data-anime="<%=value._id%>">
                     <div class="Image-div">
-                        <img class="poster" src="<%=value.poster%>" alt="<%=value.Name%> Anime Poster">
+                        <% const POSTER = value.ImagePath;
+                            const POSTERARY = POSTER.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                            }
+                        %>
+                        <img class="poster" src="<%=LINKU%>" alt="<%=value.Name%> Anime Poster">
                     </div>
                     <div class="Title-div">
                         <p class="Title"><%=value.Name%></p>
@@ -112,6 +123,7 @@
                         </p>
                     </div>
                 </div>
+                 </a>
             </div>
             <% }); %>
         </div>
@@ -127,9 +139,20 @@
             </div>
             <% Anime.forEach(value => {%>
             <div class="Profile-div">
+                <a href="/AniPlayer/<%=value._id%>/0" target="_blank" style="text-decoration: none;">
                 <div class="Profile" data-anime="<%=value._id%>">
                     <div class="Image-div">
-                        <img class="poster" src="<%=value.poster%>" alt="<%=value.Name%> Anime Poster">
+                        <% const POSTER = value.ImagePath;
+                            const POSTERARY = POSTER.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                            }
+                        %>
+                        <img class="poster" src="<%=LINKU%>" alt="<%=value.Name%> Anime Poster">
                     </div>
                     <div class="Title-div">
                         <p class="Title"><%=value.Name%></p>
@@ -144,6 +167,7 @@
                         </p>
                     </div>
                 </div>
+</a>
             </div>
             <% }); %>
         </div>
