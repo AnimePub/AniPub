@@ -143,3 +143,13 @@
             display: none;
         }
     }
+    .logoName{
+        font-size: 28px;
+    font-family: Gruppo;
+    font-weight: 600;
+    }
+    .slogan {
+        font-family: Tenali Ramakrishna;
+    color: rgba(240, 232, 232, 0.911);
+    font-size: 14px;
+    }
