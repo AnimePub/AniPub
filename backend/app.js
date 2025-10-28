@@ -1071,7 +1071,6 @@ app.get("/sitemaps",(req,res)=>{
          res.contentType(".xml")
          res.render("sitemap",{i})
         })
-         res.render("sitemap")
     })
 
 app.get("/sitemap.xml",(req,res)=>{
@@ -1082,8 +1081,6 @@ app.get("/sitemap.xml",(req,res)=>{
          res.contentType(".xml")
          res.render("sitemap",{i})
         })
-         res.render("sitemap")
-
     })      
 app.get("robots.txt",(req,res)=>{
      res.sendFile(path.join(__dirname,"../sitemaps/robots.txt"))
