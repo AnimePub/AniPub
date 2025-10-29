@@ -95,20 +95,20 @@ function passwordMsge (name,email, key,ip) {
 <body>
   <div class="container">
     <div class="header">
-      <img src="https://anipub.xyz/luffy5.png" alt="AniPub Logo">
+      <img src="https://www.anipub.xyz/luffy5.png" alt="AniPub Logo">
     </div>
     <div class="content">
       <h2>Password Updated!</h2>
       <p>Hey ${name},</p>
       <p>Your AniPub account (${email}) password has been successfully updated (req:ip :${ip}). You're all set now!</p>
       <p>Didn't make this change? Act fast and click the button below within 3-4 days to report it:</p>
-      <a href="https://anipub.xyz/password/change/?key=${key}" class="button">Report Unauthorized Change</a>
+      <a href="https://www.anipub.xyz/password/change/?key=${key}" class="button">Report Unauthorized Change</a>
       <p>If the link has expired, reach out to our admin at <a href="mailto:mail@adnandluffy.site">mail@adnandluffy.site</a>.</p>
     </div>
     <div class="footer">
       <p>&copy; 2025 AniPub. All rights reserved.</p>
       <p>AniPub, 123 Anime Lane, Fictional City, FC 12345</p>
-       <a href="https://anipub.xyz/Privacy-policy">Privacy Policy</a></p>
+       <a href="https://www.anipub.xyz/Privacy-policy">Privacy Policy</a></p>
     </div>
   </div>
 </body>

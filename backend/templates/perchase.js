@@ -14,7 +14,7 @@ const PerChase = (name, info) => {
           <!-- Header -->
           <tr>
             <td style="background: linear-gradient(90deg, #ff4b5c, #4b0082); padding: 20px; text-align: center;">
-              <img src="https://anipub.xyz/luffy5.png" alt="AniPub Logo" style="max-width: 150px;">
+              <img src="https://www.anipub.xyz/luffy5.png" alt="AniPub Logo" style="max-width: 150px;">
               <h1 style="color: #ffffff; font-size: 28px; margin: 10px 0; text-transform: uppercase; letter-spacing: 2px;">Welcome to AniPub Premium!</h1>
             </td>
           </tr>
@@ -53,7 +53,7 @@ const PerChase = (name, info) => {
 
               <p style="margin-bottom: 20px;">Thank you again for choosing anipub.xyz. We can’t wait for you to immerse yourself in the world of anime!</p>
 
-              <a href="https://anipub.xyz/premium" style="display: inline-block; background-color: #ff4b5c; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px;">Explore AniPub Now</a>
+              <a href="https://www.anipub.xyz/premium" style="display: inline-block; background-color: #ff4b5c; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px;">Explore AniPub Now</a>
             </td>
           </tr>
           <!-- Footer -->

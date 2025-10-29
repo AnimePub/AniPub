@@ -838,8 +838,6 @@ app.post("/Upload", validAdmin, async (req, res) => {
             Cover: req.body.cover,
             Synonyms: req.body.syn,
             link: req.body.link,
-            title: req.body.title,
-            poster: req.body.ip,
             Aired: req.body.aired,
             Premiered: req.body.premiered,
             Duration: req.body.duration,

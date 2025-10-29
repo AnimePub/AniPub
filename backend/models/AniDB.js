@@ -41,6 +41,7 @@ const AnimeDB = new Schema({
     },
     ImagePath: {
         type: String,
+          required: false,
         trim: true
     },
     Cover: {
