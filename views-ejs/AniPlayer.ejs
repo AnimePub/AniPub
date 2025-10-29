@@ -4,13 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Watch <%=video.Name%> online for free on AniPub. <%=video.DescripTion%>. Stream now!">
-    <meta name="description" content="<%=video.DescripTion %> ">
+    <meta name="description" content="Watch <%=video.Name%> online for free on AniPub. <%=video.DescripTion%>. Watch now!">
     <meta name="keywords" content="<%=video.Name%> , anime ,<%=video.Genres %> , anime streaming, watch anime online, hianime,anilab,gogoanime,9anime,zoro,aniplex,AniPub">
     <title><%=video.Name %> | AniPub</title>
     <meta property="og:title" content="Watch <%=video.Name%> Online Free | AniPub">
-<meta property="og:description" content="Stream <%=video.Name%> on AniPub. <%=video.DescripTion%>. Watch free anime now!">
+<meta property="og:description" content="Watch <%=video.Name%> on AniPub. <%=video.DescripTion%>. Watch Ad free anime now!">
 <meta property="og:site_name" content="AniPub">
+ <% const POSTER = video.Cover;
+                            const POSTERARY = POSTER.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                            }
+                        %>
+<meta property="og:image" content="<%=LINKU%>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
