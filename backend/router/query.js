@@ -37,13 +37,27 @@ SearchQ.post("/search/q",async (req,res)=>{
       
     })
 })
-SearchQ.get("/search/q",(req,res)=>{
+SearchQ.get("/search/q",async(req,res)=>{
     const query = req.query.query ;
     const type = (req.query.type).toLowerCase();
+    let page = 1;
+    if(req.query.page === undefined) {
+        page = 1;
+    }
+    else {
+          const page = (req.query.page).toLowerCase();
+    }
      const Token = req.cookies.anipub;
+    //  const dlenght = await AnimeDB.countDocuments();
+     let alus = 0;
+     if (page > 1) {
+        alus = page * 10;
+     }
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if(type == "airing") {
-          AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1})
+          AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
+        updatedAt: -1
+    }).limit(5)
             .then(info=>{
             const AniData = info;
                 if (Token) {
@@ -93,7 +107,9 @@ SearchQ.get("/search/q",(req,res)=>{
          })
     }
     else if (type == "all") {
-        AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1})
+        AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
+        updatedAt: -1
+    }).limit(20).skip(alus)
             .then(info=>{
             const AniData = info;
                 if (Token) {
