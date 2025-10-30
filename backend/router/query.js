@@ -45,14 +45,22 @@ SearchQ.get("/search/q",async(req,res)=>{
         page = 1;
     }
     else {
-          const page = (req.query.page).toLowerCase();
+        if( isNaN(req.query.page))
+        {
+              page = Number((req.query.page));
+        }
+        else {
+            page =1 
+        }
+        
     }
      const Token = req.cookies.anipub;
     //  const dlenght = await AnimeDB.countDocuments();
      let alus = 0;
-     if (page > 1) {
+     if (page > 1 && page < 1) {
         alus = page * 10;
      }
+     console.log(alus)
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if(type == "airing") {
           AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
