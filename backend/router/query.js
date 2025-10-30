@@ -56,7 +56,7 @@ SearchQ.get("/search/q",async(req,res)=>{
     }
      const Token = req.cookies.anipub;
     //  const dlenght = await AnimeDB.countDocuments();
-     let alus = 20*(Math.abs(page)-1);
+     let alus = 20*(page-1);
      console.log(alus)
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if(type == "airing") {
@@ -110,7 +110,9 @@ SearchQ.get("/search/q",async(req,res)=>{
          })
     }
     else if (type == "all") {
-        AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).limit(20).skip(alus)
+        AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
+        updatedAt: -1
+    }).limit(20).skip(alus)
             .then(info=>{
             const AniData = info;
                 if (Token) {
