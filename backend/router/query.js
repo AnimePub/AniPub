@@ -39,9 +39,111 @@ SearchQ.post("/search/q",async (req,res)=>{
 })
 SearchQ.get("/search/q",(req,res)=>{
     const query = req.query.query ;
+    const type = (req.query.type).toLowerCase();
+     const Token = req.cookies.anipub;
+    let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
+    if(type == "airing") {
+          AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1})
+            .then(info=>{
+            const AniData = info;
+                if (Token) {
+                jwt.verify(Token, JSONAUTH, (err, data) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    Data.findById(`${data.id}`)
+                        .then((INFO) => {
+                            let link = INFO.Image;
+                            const Gender = INFO.Gender;
+        
+                            if (Gender === "Male") {
+                                const finalLink = `boys/` + link;
+        
+                                res.render("search", {
+                                    Anime: AniData, 
+                                    query:"Airing",
+                                    auth: true,
+                                    ID: data.id,
+                                    Link: finalLink
+                                });
+        
+                            } else {
+        
+                                res.render("search", {
+                                    Anime: AniData, 
+                                    query:"Airing",
+                                    auth: true,
+                                    ID: data.id,
+                                    Link: link
+                                });
+                            }
+                        })
+        
+                })
+            } 
+            else {
+                res.render("search", {
+                Anime: AniData, 
+                query:"Airing",
+                auth: false,
+                ID: "guest",
+                Link: linkI,
+            });
+        }
+         })
+    }
+    else if (type == "all") {
+        AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1})
+            .then(info=>{
+            const AniData = info;
+                if (Token) {
+                jwt.verify(Token, JSONAUTH, (err, data) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    Data.findById(`${data.id}`)
+                        .then((INFO) => {
+                            let link = INFO.Image;
+                            const Gender = INFO.Gender;
+        
+                            if (Gender === "Male") {
+                                const finalLink = `boys/` + link;
+        
+                                res.render("search", {
+                                    Anime: AniData, 
+                                    query:"All",
+                                    auth: true,
+                                    ID: data.id,
+                                    Link: finalLink
+                                });
+        
+                            } else {
+        
+                                res.render("search", {
+                                    Anime: AniData, 
+                                    query:"All",
+                                    auth: true,
+                                    ID: data.id,
+                                    Link: link
+                                });
+                            }
+                        })
+        
+                })
+            } 
+            else {
+                res.render("search", {
+                Anime: AniData, 
+                 query:"All",
+                auth: false,
+                ID: "guest",
+                Link: linkI,
+            });
+        }
+         })
+    }
+    else {
     const regex = new RegExp(query);
-      const Token = req.cookies.anipub;
-         let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
            AnimeDB.find({Name:{$regex:regex,$options:"i"}})
         .then(info=>{
             const AniData = info;
@@ -90,6 +192,7 @@ SearchQ.get("/search/q",(req,res)=>{
             });
         }
          })
+           }
 })
 
 module.exports = SearchQ;
