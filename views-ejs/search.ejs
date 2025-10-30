@@ -55,7 +55,11 @@
                     </div>
                     <div class="des-div">
                         <p class="des">
-                            <%=value.DescripTion%>
+                             <% const desc = value.DescripTion;
+                            const descr = desc.slice(0,60);
+                            %>
+
+                            <%=descr%>...
                         </p>
                     </div>
                 </div>

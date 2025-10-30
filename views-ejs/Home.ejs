@@ -55,7 +55,7 @@
                             TEXT += desCA[i];
                         }
                         %>
-                        <p class="DesCrip"><%= TEXT %> </p>
+                        <p class="DesCrip"><%= TEXT %>...</p>
                     </div>
                     <div class="but-divs">
                         <button class="watch-button" data-ANIMEID="<%=value.id%>">
@@ -120,7 +120,11 @@
                     </div>
                     <div class="des-div">
                         <p class="des">
-                            <%=value.DescripTion%>
+                            <% const desc = value.DescripTion;
+                            const descr = desc.slice(0,60);
+                            %>
+
+                            <%=descr%>...
                         </p>
                     </div>
                 </div>
@@ -162,7 +166,11 @@
                     </div>
                     <div class="des-div">
                         <p class="des">
-                            <%=value.DescripTion%>
+                           <% const desc = value.DescripTion;
+                            const descr = desc.slice(0,60);
+                            %>
+
+                            <%=descr%>...
                         </p>
                     </div>
                 </div>
