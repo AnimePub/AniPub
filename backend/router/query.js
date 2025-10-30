@@ -63,9 +63,7 @@ SearchQ.get("/search/q",async(req,res)=>{
      console.log(alus)
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if(type == "airing") {
-          AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
-        updatedAt: -1
-    }).limit(5)
+          AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).limit(20).skip(alus)
             .then(info=>{
             const AniData = info;
                 if (Token) {
@@ -115,9 +113,7 @@ SearchQ.get("/search/q",async(req,res)=>{
          })
     }
     else if (type == "all") {
-        AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
-        updatedAt: -1
-    }).limit(20).skip(alus)
+        AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).limit(20).skip(alus)
             .then(info=>{
             const AniData = info;
                 if (Token) {
