@@ -56,10 +56,7 @@ SearchQ.get("/search/q",async(req,res)=>{
     }
      const Token = req.cookies.anipub;
     //  const dlenght = await AnimeDB.countDocuments();
-     let alus = 0;
-     if (page > 1 && page < 1) {
-        alus = page * 10;
-     }
+     let alus = 20*(Math.abs(page)-1);
      console.log(alus)
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if(type == "airing") {
