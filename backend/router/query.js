@@ -39,7 +39,7 @@ SearchQ.post("/search/q",async (req,res)=>{
 })
 SearchQ.get("/search/q",async(req,res)=>{
     const query = req.query.query ;
-    const type = (req.query.type).toLowerCase();
+    const type = req.query.type.toLowerCase()
     let page = 1;
     if(req.query.page === undefined) {
         page = 1;
