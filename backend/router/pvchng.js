@@ -16,7 +16,7 @@ const PASSWORD = process.env.pass;
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.resend.com',
-    port: 465,
+    port: 2525,
     secure: true,
     auth: {
         user: AUTHSMTP,
