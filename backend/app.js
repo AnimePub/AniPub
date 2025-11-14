@@ -49,15 +49,14 @@ const AUTHSMTP = process.env.auth;
 const PASSWORD = process.env.pass;
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.zoho.com',
+    host: 'smtp.resend.com',
     port: 465,
     secure:true,
     auth: {
         user: AUTHSMTP,
         pass: PASSWORD,
     },
-    debug:true,
-    logger:true
+   
 })
 
 let accountId = "";
@@ -183,7 +182,7 @@ app.post("/Sign-Up", async (req, res) => {
         })
         const code = await aluV.id;
         const mailOptions = {
-            from: `mail@adnandluffy.site`,
+            from: `onboarding@resend.dev`,
             to: `${newacc.Email}`,
             subject: `Verify Your AniPub Account`,
             html: mailBody(newacc.Name, aluV.vCode),
@@ -1135,7 +1134,7 @@ app.post("/premium",(req,res)=>{
  Premium.create(BODY)
                 .then(()=>{
                       const mailOptions = {
-                            from: `mail@adnandluffy.site`,
+                            from: `onboarding@resend.dev`,
                             to: EMAIL,
                             subject: `-- AniPub Premium --`,
                             html: PerChase(Name,BODY),
