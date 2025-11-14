@@ -50,8 +50,7 @@ const PASSWORD = process.env.pass;
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
-    port: 465,
-    secure: true,
+    port: 587,
     auth: {
         user: AUTHSMTP,
         pass: PASSWORD,
@@ -187,7 +186,7 @@ app.post("/Sign-Up", async (req, res) => {
             html: mailBody(newacc.Name, aluV.vCode),
         }
         transporter.sendMail(mailOptions, (err, DATAINFO) => {
-            console.log(DATAINFO);
+            console.log(DATAINFO,err);
             res.json(['/Home'])
         })
 
