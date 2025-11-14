@@ -8,9 +8,6 @@ Notify.get("/Notify/", (req, res) => {
         res.render("Notify", {
             Msge
         })
-        res.render("Notify", {
-            Msge
-        })
     } else if (query === "true") {
         const Msge = ["The Account is Already Active!"]
         res.render("Notify", {

@@ -187,6 +187,7 @@ app.post("/Sign-Up", async (req, res) => {
             html: mailBody(newacc.Name, aluV.vCode),
         }
         transporter.sendMail(mailOptions, (err, DATAINFO) => {
+            console.log(DATAINFO);
             res.json(['/Home'])
         })
 
