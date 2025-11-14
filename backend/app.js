@@ -25,6 +25,7 @@ const Vcode = require("./models/auth.js")
 const mailBody = require("./templates/verification.js");
 const PerChase = require("./templates/perchase.js");
 const OP = require("./Data/data");
+const PASSRECOVER = require("./models/PassChanger.js");
 
 //Anime DB init ..
 const AnimeDB = require("./models/AniDB.js");
@@ -1169,7 +1170,33 @@ app.post("/premium",(req,res)=>{
 })
 //pr admin
 app.use(PremiumR)
+app.get("/password/change/",(req,res)=>{
+    const key = req.query.key;
+    if(key) {
+        jwt.verify(key,"This is pass",(err,data)=>{
+            if(err) {
+                res.redirect("/*")
+            }
+            const alu = data.key;
+            PASSRECOVER.findOne({"_id":alu})
+            .then(info=>{
+                if(info && info.KEY === alu) {
 
+                    Data.findByIdAndUpdate(alu,{"AcStats":"Pending"})
+                    .then(a=>{
+                                             res.cookie("anipub", "", {
+        maxAge: 1,
+    })
+    res.json("ID Blocked")
+                    })
+                }
+                else {
+                    res.json("Invalid Req");
+                }
+            })
+        })
+    }
+})
 
 // Redirect 404
 app.use("*", (req, res) => {
