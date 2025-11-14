@@ -182,7 +182,7 @@ app.post("/Sign-Up", async (req, res) => {
         })
         const code = await aluV.id;
         const mailOptions = {
-            from: `onboarding@resend.dev`,
+            from: `anipub@resend.dev`,
             to: `${newacc.Email}`,
             subject: `Verify Your AniPub Account`,
             html: mailBody(newacc.Name, aluV.vCode),
@@ -1134,7 +1134,7 @@ app.post("/premium",(req,res)=>{
  Premium.create(BODY)
                 .then(()=>{
                       const mailOptions = {
-                            from: `onboarding@resend.dev`,
+                            from: `anipub@resend.dev`,
                             to: EMAIL,
                             subject: `-- AniPub Premium --`,
                             html: PerChase(Name,BODY),

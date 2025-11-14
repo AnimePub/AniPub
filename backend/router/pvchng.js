@@ -15,7 +15,7 @@ const nodemailer = require("nodemailer")
 const PASSWORD = process.env.pass;
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.zoho.com',
+    host: 'smtp.resend.com',
     port: 465,
     secure: true,
     auth: {
@@ -77,7 +77,7 @@ Settings.post("/data/change", (req, res) => {
                     })
                     .then((info) => {
                         const mailOptions = {
-                            from: `onboarding@resend.dev`,
+                            from: `anipub-newmail@resend.dev`,
                             to: data.info,
                             subject: `Confirm Your New Mail`,
                             html: mailBody("Buddy", info._id, info.CODEV),
@@ -145,7 +145,7 @@ Settings.post("/data/change", (req, res) => {
                             console.log(`${info.id} requested a password change`)
                             const KEY = generateKey(info.id);
                             const mailOptions = {
-                            from: `onboarding@resend.dev`,
+                            from: `anipub-pass@resend.dev`,
                             to: info.Email,
                             subject: `Your AniPub Account Pass Have Been Changed`,
                             html: passwordMsge(info.Name,info.Email,KEY,ip),
