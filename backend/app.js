@@ -1171,30 +1171,39 @@ app.post("/premium",(req,res)=>{
 //pr admin
 app.use(PremiumR)
 app.get("/password/change/",(req,res)=>{
-    const key = req.query.key;
+    const key = req.query.key; 
     if(key) {
         jwt.verify(key,"This is pass",(err,data)=>{
             if(err) {
                 res.redirect("/*")
             }
             const alu = data.key;
+            console.log(alu)
             PASSRECOVER.findOne({"_id":alu})
             .then(info=>{
-                if(info && info.KEY === alu) {
-
-                    Data.findByIdAndUpdate(alu,{"AcStats":"Pending"})
+                if(info) {
+                    if(info.KEY === alu) {
+                          Data.findByIdAndUpdate(alu,{"AcStats":"Pending"})
                     .then(a=>{
                                              res.cookie("anipub", "", {
         maxAge: 1,
     })
     res.json("ID Blocked")
                     })
+                    }
+                    else {
+                       res.json("Key MissMatch") ;
+                    }
+                  
                 }
                 else {
                     res.json("Invalid Req");
                 }
             })
         })
+    }
+    else {
+        res.json("Invalid Key");
     }
 })
 
