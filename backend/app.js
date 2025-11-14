@@ -50,11 +50,14 @@ const PASSWORD = process.env.pass;
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.zoho.com',
-    port: 587,
+    port: 465,
+    secure:true,
     auth: {
         user: AUTHSMTP,
         pass: PASSWORD,
-    }
+    },
+    debug:true,
+    logger:true
 })
 
 let accountId = "";
