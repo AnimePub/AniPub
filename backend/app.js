@@ -1182,7 +1182,7 @@ app.get("/password/change/",(req,res)=>{
             PASSRECOVER.findOne({"_id":alu})
             .then(info=>{
                 if(info) {
-                    if(info.KEY === alu) {
+                    if(info.KEY === key) {
                           Data.findByIdAndUpdate(alu,{"AcStats":"Pending"})
                     .then(a=>{
                                              res.cookie("anipub", "", {
