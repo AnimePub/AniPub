@@ -8,6 +8,17 @@ const Pr = require("../models/premium.js");
 const JSONAUTH = process.env.jsonauth;
 const validAdmin = require("../middleware/validAdmin.js");
 const validAdminReq = require("../middleware/validReqfAdmin.js");
+const mailBody = require("../templates/preconf.js");
+const nodemailer = require("nodemailer")
+const transporter = nodemailer.createTransport({
+    host: 'smtp.resend.com',
+    port: 2465,
+    secure: true,
+    auth: {
+        user: AUTHSMTP,
+        pass: PASSWORD,
+    }
+})
 
 PremiumR.get("/Admin/Premium",validAdmin,async (req,res)=>{
     const userData = await Pr.find();
@@ -24,7 +35,22 @@ PremiumR.get("/Admin/:type/Premium/:id",validAdminReq,async (req,res)=>{
             if(type === "Grant") {
                   await Data.findByIdAndUpdate(ID,{"Premium":"Yes"})
           await Pr.findByIdAndUpdate(ID,{"grant":"Yes"})
-           res.json(0)
+          const mailOptions = {
+                            from: `premium@anipub.xyz`,
+                            to:info.Email,
+                            subject: `Premium Account Activated!`,
+                            html: mailBody(info.Name),
+                        }
+                         transporter.sendMail(mailOptions, (err, DATAINFO) => { 
+                            if(err) {
+                                console.log("Error")
+                                res.json(1)
+                            }
+                            console.log(DATAINFO)
+                                      res.json(0)
+                         })
+
+     
             }
             else if (type === "Revoke") {
                  await Data.findByIdAndUpdate(ID,{"Premium":""})

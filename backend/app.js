@@ -183,7 +183,7 @@ app.post("/Sign-Up", async (req, res) => {
         })
         const code = await aluV.id;
         const mailOptions = {
-            from: `anipub@resend.dev`,
+            from: `verify@anipub.xyz`,
             to: `${newacc.Email}`,
             subject: `Verify Your AniPub Account`,
             html: mailBody(newacc.Name, aluV.vCode),
@@ -1106,22 +1106,11 @@ app.post("/premium",(req,res)=>{
             }
             else {
     if(number.length === 10 && data) {
-    fetch(`https://truecaller-api-five.vercel.app/api/lookup?number=${number}&key=${process.env.TrueCaller}`)
-    .then(resp=>resp.json())
-    .then(info=>{
-        let name = ""
-        let email = ""
         let codes = [];
         for (let i = 0; i <= 3; i++) {
             codes.push(Math.floor(Math.random()*10000))            
         }
-        if(info.name) {
-            name = info.name
-        }
-        if(info.email) {
-            email = info.email
-        }
-        const BODY = {_id:data.id,name,email,codes,number,trxID}
+        const BODY = {_id:data.id,codes,number,trxID}
         Data.findById(data.id)
         .then(async INFO=>{
             const EMAIL = INFO.Email;
@@ -1135,13 +1124,13 @@ app.post("/premium",(req,res)=>{
  Premium.create(BODY)
                 .then(()=>{
                       const mailOptions = {
-                            from: `anipub@resend.dev`,
+                            from: `anipub@anipub.xyz`,
                             to: EMAIL,
                             subject: `-- AniPub Premium --`,
                             html: PerChase(Name,BODY),
                         }
                         transporter.sendMail(mailOptions, (err, DATAINFO) => {
-                            if (err || err !== null || err.length > 0) {
+                            if (err) {
                                 console.log(err)
                                  res.json(0);
                             }
@@ -1153,9 +1142,6 @@ app.post("/premium",(req,res)=>{
                         
         
         })
-      
-
-    })
     }
     else {
         res.json(0)

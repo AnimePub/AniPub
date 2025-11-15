@@ -77,7 +77,7 @@ Settings.post("/data/change", (req, res) => {
                     })
                     .then((info) => {
                         const mailOptions = {
-                            from: `anipub-newmail@resend.dev`,
+                            from: `anipub-newmail@anipub.xyz`,
                             to: data.info,
                             subject: `Confirm Your New Mail`,
                             html: mailBody("Buddy", info._id, info.CODEV),
@@ -145,7 +145,7 @@ Settings.post("/data/change", (req, res) => {
                             console.log(`${info.id} requested a password change`)
                             const KEY = generateKey(info.id);
                             const mailOptions = {
-                            from: `anipub-pass@resend.dev`,
+                            from: `anipub-pass@anipub.xyz`,
                             to: info.Email,
                             subject: `Your AniPub Account Pass Have Been Changed`,
                             html: passwordMsge(info.Name,info.Email,KEY,ip),
