@@ -1,4 +1,4 @@
-const PerChaseC = (name) => {
+const PerChaseC = (name,info) => {
     const temp = `<!DOCTYPE html>
 <html lang="en">
 <head>
