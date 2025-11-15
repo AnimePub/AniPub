@@ -64,6 +64,8 @@ const PerChaseC = (name) => {
     </tr>
   </table>
 </body>
-</html>`}
+</html>`
+return temp;
+}
 
 module.exports = PerChaseC;
