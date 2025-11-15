@@ -10,6 +10,8 @@ const validAdmin = require("../middleware/validAdmin.js");
 const validAdminReq = require("../middleware/validReqfAdmin.js");
 const mailBody = require("../templates/preconf.js");
 const nodemailer = require("nodemailer")
+const AUTHSMTP = process.env.auth;
+const PASSWORD = process.env.pass;
 const transporter = nodemailer.createTransport({
     host: 'smtp.resend.com',
     port: 2465,
