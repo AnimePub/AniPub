@@ -31,7 +31,7 @@ PremiumR.get("/Admin/Premium",validAdmin,async (req,res)=>{
 PremiumR.get("/Admin/:type/Premium/:id",validAdminReq,async (req,res)=>{
     const ID = req.params.id;
     const type = req.params.type;
-    Data.findById(ID)
+    Data.findOne({"_id":ID})
     .then(async info=>{
         if(info) {
             if(type === "Grant") {
@@ -48,8 +48,11 @@ PremiumR.get("/Admin/:type/Premium/:id",validAdminReq,async (req,res)=>{
                                 console.log("Error")
                                 res.json(1)
                             }
-                            console.log(DATAINFO)
+                            else {
+                                 console.log(DATAINFO)
                                       res.json(0)
+                            }
+                           
                          })
 
      
