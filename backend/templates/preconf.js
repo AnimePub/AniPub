@@ -1,4 +1,4 @@
-const PerChaseC = (name,info) => {
+const PerChaseC = (name) => {
     const temp = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,8 +30,7 @@ const PerChaseC = (name,info) => {
               </p>
 
               <div style="background-color: #f9f9fb; border-left: 5px solid #ff4b5c; padding: 20px; margin: 25px 0; text-align: left; border-radius: 0 8px 8px 0;">
-                <p style="margin: 0; font-size: 16px;"><strong>Activated On:</strong> November 15, 2025</p>
-                <p style="margin: 8px 0 0; font-size: 16px;"><strong>Transaction ID:</strong> ${info.trxID}</p>
+                <p style="margin: 0; font-size: 16px;"><strong>Activated On:</strong> From Now</p>
               </div>
 
               <h3 style="color: #4b0082; font-size: 20px; margin: 30px 0 15px;">Your Premium Perks Are LIVE!</h3>
