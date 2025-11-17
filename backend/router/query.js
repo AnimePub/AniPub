@@ -49,7 +49,7 @@ SearchQ.get("/search/q",async(req,res)=>{
         page = 1;
     }
     else {
-        if( isNaN(req.query.page))
+        if( !isNaN(req.query.page))
         {
               page = Number((req.query.page));
         }
@@ -63,8 +63,8 @@ SearchQ.get("/search/q",async(req,res)=>{
      let alus = 20*(page-1);
      console.log(alus)
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-    if(type === true && type == "airing") {
-          AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).limit(20).skip(alus)
+    if( type === "airing") {
+          AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).skip(alus).limit(20)
             .then(info=>{
             const AniData = info;
                 if (Token) {
@@ -113,10 +113,11 @@ SearchQ.get("/search/q",async(req,res)=>{
         }
          })
     }
-    else if (type === true && type == "all") {
+    else if (type === "all") {
         AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
         updatedAt: -1
-    }).limit(20).skip(alus)
+    }).skip(alus).limit(20)
+    
             .then(info=>{
             const AniData = info;
                 if (Token) {
@@ -167,7 +168,7 @@ SearchQ.get("/search/q",async(req,res)=>{
     }
     else {
     const regex = new RegExp(query);
-           AnimeDB.find({Name:{$regex:regex,$options:"i"}})
+           AnimeDB.find({Name:{$regex:regex,$options:"i"}}).limit(20)
         .then(info=>{
             const AniData = info;
                 if (Token) {
