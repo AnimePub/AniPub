@@ -652,7 +652,7 @@ app.delete('/PlayList/Delete/:DeleteID', (req, res) => {
             }
             newList.findById(postId)
                 .then(info => {
-                    const POSTID = info._id;
+                    const POSTID = info.id;
                     if (info.Owner === data.id) {
                         newList.findByIdAndDelete(req.params.DeleteID)
                             .then(info => {
