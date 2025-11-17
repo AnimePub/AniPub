@@ -81,14 +81,14 @@ img {
     margin-left: 10px;
     font-weight: bolder;
     font-family: Gruppo;
-    background: rgb(0, 38, 255);
+    background: rgb(0, 20, 136);
     padding: 6px;
-    border-radius: 10px;
+    border-radius: 2px;
 
 }
 
 .t {
-    background-color: rgba(241, 15, 15, 0.884);
+    background-color: rgb(182, 0, 0);
 }
 
 .det {
@@ -129,7 +129,7 @@ img {
 .watch-list {
     height: 50px;
     width: 50px;
-    background-color: rgba(23, 216, 142, 0.842);
+    background-color: rgba(0, 102, 63, 0.842);
     border: 0;
     cursor: pointer;
     transition: all 0.15s;

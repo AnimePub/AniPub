@@ -416,7 +416,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
             else if (ANIMEIN.ep.length >=  Number(req.params.AniEP)) {
          AnimeDB.findById(Number(AniId))
          .then(video=>{     
-            AnimeDB.find({"Genres":{$in:video.Genres}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(20)
+            AnimeDB.find({"Genres":{$in:video.Genres}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
             .then(animeDb=>{
            
                 if (Token) {

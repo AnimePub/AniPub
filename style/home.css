@@ -22,7 +22,7 @@ p {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-bottom-color: rgba(236, 230, 230, 0.575);
+    border-bottom-color: rgba(0, 89, 255, 0.575);
     border-bottom-style: solid;
     background-color: black;
 }

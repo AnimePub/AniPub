@@ -1,4 +1,41 @@
-<svg width="106" height="102" viewBox="0 0 106 102" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M53 0.5C82.0133 0.5 105.5 23.1276 105.5 51C105.5 78.8724 82.0133 101.5 53 101.5C23.9867 101.5 0.5 78.8724 0.5 51C0.5 23.1276 23.9867 0.5 53 0.5Z" fill="#45CE89" fill-opacity="0.25" stroke="#45CE89"/>
-<path d="M35.875 33.125L69.125 51.5L35.875 69.875V33.125Z" stroke="#45CE89" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 width="800px" height="800px" viewBox="0 0 32 32" xml:space="preserve">
+<style type="text/css">
+	.pictogram_een{fill:#F4D6B0;}
+	.pictogram_twee{fill:#F8AD89;}
+	.pictogram_vijf{fill:#01A59C;}
+	.pictogram_zes{fill:#0C6667;}
+	.st0{fill:#E54D2E;}
+	.st1{fill:#F27261;}
+	.st2{fill:none;}
+	.st3{clip-path:url(#SVGID_2_);fill:#F27261;}
+	.st4{clip-path:url(#SVGID_2_);fill:none;}
+	.st5{clip-path:url(#SVGID_6_);fill:#F4D6B0;}
+	.st6{clip-path:url(#SVGID_8_);fill:#F27261;}
+	.st7{clip-path:url(#SVGID_8_);fill:none;}
+	.st8{clip-path:url(#SVGID_10_);fill:#F27261;}
+	.st9{clip-path:url(#SVGID_10_);fill:none;}
+	.st10{fill:#F4D6B0;}
+</style>
+<g>
+	<path class="pictogram_twee" d="M16,28C9.373,28,4,22.627,4,16S9.373,4,16,4V28z"/>
+	<path class="pictogram_een" d="M16,28c6.627,0,12-5.373,12-12S22.627,4,16,4V28z"/>
+	<path class="pictogram_zes" d="M4,16C4,9.373,9.373,4,16,4V0C7.163,0,0,7.163,0,16s7.163,16,16,16v-4C9.373,28,4,22.627,4,16z"/>
+	<path class="pictogram_vijf" d="M28,16c0-6.627-5.373-12-12-12V0c8.837,0,16,7.163,16,16s-7.163,16-16,16v-4
+		C22.627,28,28,22.627,28,16z"/>
+	<g>
+		<g>
+			<path class="pictogram_zes" d="M14.232,21c-0.384,0-0.768-0.146-1.061-0.439c-0.586-0.586-0.586-1.535,0-2.121l2.476-2.476
+				l-2.476-2.476c-0.586-0.586-0.586-1.535,0-2.121s1.535-0.586,2.121,0l4.597,4.597l-4.597,4.597C15,20.854,14.616,21,14.232,21z"
+				/>
+		</g>
+		<g>
+			<path class="pictogram_zes" d="M14.232,21c-0.384,0-0.768-0.146-1.061-0.439c-0.586-0.586-0.586-1.535,0-2.121l2.476-2.476
+				l-2.476-2.476c-0.586-0.586-0.586-1.535,0-2.121s1.535-0.586,2.121,0l4.597,4.597l-4.597,4.597C15,20.854,14.616,21,14.232,21z"
+				/>
+		</g>
+	</g>
+</g>
 </svg>
