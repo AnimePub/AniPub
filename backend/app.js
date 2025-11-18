@@ -1192,7 +1192,31 @@ app.get("/password/change/",(req,res)=>{
         res.json("Invalid Key");
     }
 })
-
+app.get("/Video/:id/:lang",(req,res)=>{
+    const id = req.params.id;
+    const lang = req.params.lang;
+    if(id && lang) {
+        if(!isNaN(id)) {
+            const sID = Number(id);
+           let sLang = "sub";
+           if(lang.toLowerCase() === "dub") {
+            sLang = "dub"
+           }
+           else {
+            sLang = "sub"
+           } 
+              const alu = `https://megaplay.buzz/stream/s-2/${sID}/${sLang}`;
+              res.render("videoPlayer.ejs",{alu});
+        }
+        else {
+              res.redirect("/*")
+        }
+    }
+    else {
+        res.redirect("/*")
+    }
+  
+})
 // Redirect 404
 app.use("*", (req, res) => {
     res.status(404).render("404")
