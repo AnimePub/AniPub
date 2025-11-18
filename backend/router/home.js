@@ -156,7 +156,10 @@ app.get(`/api/info/:AniId`, async (req, res) => {
             }
          AnimeDB.findById(Number(AniId))
          .then(video=>{     
-            AnimeDB.findOne({"_id":AniId},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"ep"}})
+            AnimeDB.findOne({"_id":AniId},{Genres:1,Synonyms:1,Producers:1,Premiered:1,Aired:1,Duration:1,Status:1,Studios:1,Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"ep"}})
+            .then(info=>{
+                res.json(info)
+            })
          
         })
    
