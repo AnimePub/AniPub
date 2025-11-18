@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Player | AniPub </title>
+    <style>
+        iframe {
+            border: 0;
+        }
+        body {
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+    </style>
 </head>
-<body style="background-color: black; height: 100vh; width: 100%; padding: 0; margin: 0;">
+<body style="background-color: black; height: 98vh; width: 100%; padding: 0; margin: 0;">
     <iframe src=<%=alu%> sandbox="allow-same-origin allow-scripts" gyroscope picture-in-picture autoplay scrolling="no" frameborder="1" marginheight="0px" marginwidth="0px" allowfullscreen geolocation style="height:100%;width: 100%;"></iframe>
 </body>
 </html>
