@@ -142,4 +142,29 @@ HomeRouter.get("/Slider/:id1/:id2/:id3/:id4",validAdminReqJs,(req,res)=>{
      
 
 })
+
+app.get(`/api/info/:AniId`, async (req, res) => {
+  
+    const AniId = req.params.AniId; 
+    let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
+    let video = "";
+    if(!isNaN(AniId)) {
+         AnimeDB.findById(Number(AniId))
+        .then( ANIMEIN=>{
+            if (ANIMEIN === null) {
+                  res.json("err")
+            }
+         AnimeDB.findById(Number(AniId))
+         .then(video=>{     
+            AnimeDB.findOne({"_id":AniId},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"ep"}})
+         
+        })
+   
+})
+    }   
+              
+});
+
+
+
 module.exports = HomeRouter;
