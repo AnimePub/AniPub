@@ -402,17 +402,9 @@ formapi.addEventListener("submit",(e)=>{
             const endvalue = Number(formapi.to.value) ;
             if(endvalue > initialValue) {
                 for (let i = initialValue; initialValue <= endvalue; i++) {
-                     if(!isNaN(value)) {
                          APIArray.push({
             link:  `src=`+ `https://www.anipub.xyz/video/${i}/sub`
         })
-               }
-               else {
-                    APIArray = [];
-                    window.location.reload();
-                    alert("Ep id can't be string ! Please Try Again");
-               }
-
                 }
                  const OBJ = {
             ID:animeID,
@@ -453,17 +445,9 @@ formapi.addEventListener("submit",(e)=>{
             const endvalue = Number(formapi.to.value) ;
             if(endvalue > initialValue) {
                 for (let i = initialValue; initialValue <= endvalue; i++) {
-                     if(!isNaN(value)) {
                          APIArray.push({
             link:  `src=`+ `https://www.anipub.xyz/video/${i}/dub`
         })
-               }
-               else {
-                    APIArray = [];
-                    window.location.reload();
-                    alert("Ep id can't be string ! Please Try Again");
-               }
-
                 }
                  const OBJ = {
             ID:animeID,
