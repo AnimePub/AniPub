@@ -7,7 +7,7 @@ body {
 .container,
 .container2,
 .container3,
-.form5 {
+.form5 ,.formapi {
     padding: 20px;
     background: rgba(0, 0, 0, 0.76);
     display: flex;
@@ -24,7 +24,7 @@ p {
 .container div,
 .container2 div,
 .container3 div,
-.form5 div {
+.form5 div ,.formapi div{
     width: 80%;
     min-width: 280px;
 }
@@ -91,7 +91,7 @@ textarea {
 .upLoad,
 .upDate,
 .update-existing,
-.BulkAdd {
+.BulkAdd , .BulkAPI{
     background-color: rgb(0, 255, 0);
     border: 0;
     height: 30px;

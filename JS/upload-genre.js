@@ -1,4 +1,6 @@
-
+const BulkAPI = document.querySelector(".BulkAPI");
+const AutoChecker = document.querySelector(".AutoChecker");
+const formapi = document.querySelector(".formapi");
 const SELECT = document.querySelector(".BULK");
 const genreList = [];
 const form5 = document.querySelector(".form5");
@@ -132,12 +134,26 @@ upLoad.addEventListener("click", () => {
     form1.style.display = "none";
     form3.style.display = "none";
     form5.style.display = "none";
+       formapi.style.display = "none"
+     AutoChecker.style.display = "none"
     SELECT.style.display = "none"
 
+})
+BulkAPI.addEventListener('click',()=>{
+      form6.style.display = "none";
+    form.style.display = "none";
+    form1.style.display = "none";
+    form3.style.display = "none";
+    form5.style.display = "none";
+       formapi.style.display = "none"
+     AutoChecker.style.display = "flex"
+    SELECT.style.display = "none"
 })
 upDate.addEventListener('click', () => {
     form1.style.display = "flex"
     form.style.display = "none";
+       formapi.style.display = "none"
+     AutoChecker.style.display = "none"
     SELECT.style.display = "none"
     form3.style.display = "none"
     form5.style.display = "none"
@@ -158,11 +174,15 @@ updateExisting.addEventListener('click', () => {
     form3.style.display = "flex"
     form5.style.display = "none";
     form6.style.display = "none";
+       formapi.style.display = "none"
+     AutoChecker.style.display = "none"
 })
 StatusUp.addEventListener('click',()=>{
      form1.style.display = "none"
     form.style.display = "none";
     SELECT.style.display = "none"
+       formapi.style.display = "none"
+     AutoChecker.style.display = "none"
     form3.style.display = "none"
     form5.style.display = "none"
     form6.style.display = "flex";
@@ -243,7 +263,15 @@ form3.addEventListener('submit', (e) => {
 })
 
 BulkADDB.addEventListener('click', () => {
-    SELECT.style.display = "flex"
+    SELECT.style.display = "flex",
+      form6.style.display = "none";
+    form.style.display = "none";
+    form1.style.display = "none";
+    form3.style.display = "none";
+    form5.style.display = "none";
+       formapi.style.display = "none"
+     AutoChecker.style.display = "none"
+    
 })
 let HTMLTOADD = "";
 SELECT.addEventListener('change', () => {
@@ -253,9 +281,57 @@ SELECT.addEventListener('change', () => {
     form3.style.display = "none"
     form5.style.display = "flex";
     form6.style.display = "none";
+     formapi.style.display = "none"
+     AutoChecker.style.display = "none"
     generate(Number(SELECT.value))
 })
+AutoChecker.addEventListener('change',()=>{
+     form1.style.display = "none"
+    HTMLTOADD = `
+    <div>
+    <p>Anime ID</p>
+    <input required    type="number" class="ID" name="ID" placeholder="ID">
+</div>
+<div>
+    <p>Type</p>
+    <input required  type="text" class="lang" name="lang" placeholder="Sub Or Dub ?">
+</div>
+    `;
+    form.style.display = "none"
+    form3.style.display = "none"
+    form5.style.display = "none";
+    form6.style.display = "none";
+    formapi.style.display = "flex"
+    generateAPI(Number(AutoChecker.value));
+})
+const generateAPI = (a) => { 
+    if(a === 1) {
+        HTMLTOADD += `
+        <div>
+    <p>Episode ID</p>
+    <input required  type="text" class="ep" name="ep" placeholder="use comma to separate them (123,3421)">
+</div>
+        `
+    }
+    else if (a === 0 ) {
+        HTMLTOADD += `
+        <div>
+    <p>From</p>
+    <input required  type="number" class="from" name="from" placeholder="initial point">
+</div>
+<div>
+    <p>To</p>
+    <input required  type="number" class="to" name="to" placeholder="ending point">
+</div>
+        `
+    }
+     HTMLTOADD += `<div class="button-div">
+    <button>Submit</button>
+</div>`
 
+formapi.innerHTML = HTMLTOADD;
+
+}
 const generate = (a) => {
 
     HTMLTOADD += `<div>
@@ -304,12 +380,163 @@ form5.addEventListener('submit', (e) => {
                 alert("Bulk Added Successfully");
                 window.location.reload();
             } else {
-                alert("There was an Error");
+              
                 window.location.reload();
             }
         })
 
 })
+let APIArray = []
+formapi.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const animeID = formapi.ID.value ;
+    const lang = formapi.lang.value;
+    const langValue = lang.toLowerCase();
+    const wanOut = Number(AutoChecker.value);
+    if(langValue === "sub") {
+        if (wanOut === 1) {
+          fetchingAPI ("sub",formapi,animeID);
+        }
+        else if (wanOut === 0) {
+            const initialValue = Number(formapi.from.value);
+            const endvalue = Number(formapi.to.value) ;
+            if(endvalue > initialValue) {
+                for (let i = initialValue; initialValue <= endvalue; i++) {
+                     if(!isNaN(value)) {
+                         APIArray.push({
+            link:  `src=`+ `https://www.anipub.xyz/video/${i}/sub`
+        })
+               }
+               else {
+                    APIArray = [];
+                    window.location.reload();
+                    alert("Ep id can't be string ! Please Try Again");
+               }
+
+                }
+                 const OBJ = {
+            ID:animeID,
+            ARY:APIArray
+            }
+              fetch('/Bulk/Add', {
+            'method': 'POST',
+            'headers': {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(OBJ)
+        })
+        .then(res => res.json())
+        .then(info => {
+            if (Number(info) === 1) {
+                alert("Bulk Added Successfully");
+                window.location.reload();
+            } else {
+              
+                window.location.reload();
+            }
+        })
+            }
+            else {
+                  alert("Please give correct input");
+             window.location.reload();
+            }
+
+            
+        }
+    }
+    else if (langValue === "dub") {
+         if (wanOut === 1) {
+          fetchingAPI ("dub",formapi,animeID);
+        }
+  else if (wanOut === 0) {
+            const initialValue = Number(formapi.from.value);
+            const endvalue = Number(formapi.to.value) ;
+            if(endvalue > initialValue) {
+                for (let i = initialValue; initialValue <= endvalue; i++) {
+                     if(!isNaN(value)) {
+                         APIArray.push({
+            link:  `src=`+ `https://www.anipub.xyz/video/${i}/dub`
+        })
+               }
+               else {
+                    APIArray = [];
+                    window.location.reload();
+                    alert("Ep id can't be string ! Please Try Again");
+               }
+
+                }
+                 const OBJ = {
+            ID:animeID,
+            ARY:APIArray
+            }
+              fetch('/Bulk/Add', {
+            'method': 'POST',
+            'headers': {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(OBJ)
+        })
+        .then(res => res.json())
+        .then(info => {
+            if (Number(info) === 1) {
+                alert("Bulk Added Successfully");
+                window.location.reload();
+            } else {
+              
+                window.location.reload();
+            }
+        })
+            }
+            else {
+                  alert("Please give correct input");
+             window.location.reload();
+            }
+
+            
+        }
+    }
+    else {
+          alert("Please give correct input");
+             window.location.reload();
+    }
+})
+const fetchingAPI = (lang,formapi,animeID)  =>{
+      const whole = formapi.ep.value;
+            const wholeArray = whole.split(",");
+            wholeArray.forEach((value,i)=>{
+               if(!isNaN(value)) {
+                         APIArray.push({
+            link:  `src=`+ `https://www.anipub.xyz/video/${value}/${lang}`
+        })
+               }
+               else {
+                    APIArray = [];
+                    window.location.reload();
+                    alert("Ep id can't be string ! Please Try Again");
+               }
+            })
+            const OBJ = {
+            ID:animeID,
+            ARY:APIArray
+            }
+              fetch('/Bulk/Add', {
+            'method': 'POST',
+            'headers': {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(OBJ)
+        })
+        .then(res => res.json())
+        .then(info => {
+            if (Number(info) === 1) {
+                alert("Bulk Added Successfully");
+                window.location.reload();
+            } else {
+              
+                window.location.reload();
+            }
+        })
+}
 
 form6.addEventListener("submit",(e)=>{
     e.preventDefault();
