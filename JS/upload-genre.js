@@ -488,7 +488,7 @@ formapi.addEventListener("submit",(e)=>{
 })
 const fetchingAPI = (lang,formapi,animeID)  =>{
       const whole = formapi.ep.value;
-            const wholeArray = whole.split(",");
+            const wholeArray = whole.split(",").map(a=>a.trim());
             wholeArray.forEach((value,i)=>{
                if(!isNaN(value)) {
                          APIArray.push({
