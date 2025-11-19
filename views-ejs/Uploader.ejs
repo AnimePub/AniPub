@@ -8,7 +8,7 @@
     <!-- <link rel="stylesheet" href="hc.css">
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="main-body.css"> -->
-    <link rel="stylesheet" href="/uploader.css">
+    <link rel="stylesheet" href="uploader.css">
 </head>
 
 <body>
@@ -19,9 +19,17 @@
             <div> <button class="upLoad">Upload New</button>
                 <button class="upDate">Add Episode</button>
                 <button class="update-existing">Edit Ep</button>
-                <button class="BulkAdd">Bulk Add EP</button>
-                <button class="BulkAPI">---Bulk Add EP (API)</button>
+              <button class="BulkAPI">---Bulk Add EP (API)</button>     
+              <button class="BulkAdd">Bulk Add EP</button>
+             
                  <button class="StatusUp">Status Update</button>
+            </div>
+             <div class="Many_DIV">
+                <select class="AutoChecker" style="display: none;">
+                    <option selected value="100">Which One ?</option>
+                    <option value="0">Manual</option>
+                    <option value="1">Auto</option>
+                </select>
             </div>
             <div class="Many_DIV">
                 <select class="BULK" style="display: none;">
@@ -34,13 +42,7 @@
                     <option value="50">50</option>
                 </select>
             </div>
-             <div class="Many_DIV">
-                <select class="AutoChecker" style="display: none;">
-                    <option selected value="100">Which One ?</option>
-                    <option value="0">Manual</option>
-                    <option value="1">Auto</option>
-                </select>
-            </div>
+            
         </div>
 
 
@@ -251,7 +253,7 @@
 
     </div>
 
-    <script src="/upload-genre.js"></script>
+    <script src="upload-genre.js"></script>
 </body>
 
 </html>
