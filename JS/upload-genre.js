@@ -401,9 +401,10 @@ formapi.addEventListener("submit",(e)=>{
             const initialValue = Number(formapi.from.value);
             const endvalue = Number(formapi.to.value) ;
             if(endvalue > initialValue) {
-                for (let i = initialValue; initialValue <= endvalue; i++) {
+                 const minus = endvalue - initialValue ;
+                for (let i = 0; i <= minus; i++) {
                          APIArray.push({
-            link:  `src=`+ `https://www.anipub.xyz/video/${i}/sub`
+            link:  `src=`+ `https://www.anipub.xyz/video/${initialValue+i}/dub`
         })
                 }
                  const OBJ = {
@@ -444,9 +445,10 @@ formapi.addEventListener("submit",(e)=>{
             const initialValue = Number(formapi.from.value);
             const endvalue = Number(formapi.to.value) ;
             if(endvalue > initialValue) {
-                for (let i = initialValue; initialValue <= endvalue; i++) {
+                const minus = endvalue - initialValue ;
+                for (let i = 0; i <= minus; i++) {
                          APIArray.push({
-            link:  `src=`+ `https://www.anipub.xyz/video/${i}/dub`
+            link:  `src=`+ `https://www.anipub.xyz/video/${initialValue+i}/dub`
         })
                 }
                  const OBJ = {
@@ -490,7 +492,7 @@ const fetchingAPI = (lang,formapi,animeID)  =>{
             wholeArray.forEach((value,i)=>{
                if(!isNaN(value)) {
                          APIArray.push({
-            link:  `src=`+ `https://www.anipub.xyz/video/${value}/${lang}`
+            link:  `src=`+ `https://www.anipub.xyz/video/` + value + '/' + lang
         })
                }
                else {
