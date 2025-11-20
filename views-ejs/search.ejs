@@ -31,7 +31,7 @@
             </div>
             <% if(Anime.length>0) { %> 
             <% Anime.forEach(value => {%>
-            <div class="Profile-div">
+                  <a href="/AniPlayer/<%=value._id%>/0" style="text-decoration: none;">    <div class="Profile-div">
                 <div class="Profile" data-anime="<%=value._id%>">
                     <div class="Image-div">
                           <% const POSTER = value.ImagePath;
@@ -63,7 +63,7 @@
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> </a>
             <% }); %>
             <% } else { %> 
                 <h1>There is No Genre Result Found in the DataBase</h1>
