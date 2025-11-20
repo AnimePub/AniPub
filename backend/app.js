@@ -1107,7 +1107,7 @@ app.get("/sitemap.xml",(req,res)=>{
          res.render("sitemap",{i})
         })
     })      
-app.get("robots.txt",(req,res)=>{
+app.get("/robots.txt",(req,res)=>{
      res.sendFile(path.join(__dirname,"../sitemaps/robots.txt"))
 })
 app.get("/premium",(req,res)=>{
