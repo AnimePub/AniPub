@@ -1057,6 +1057,16 @@ app.get("/Bulk/Edit", validAdmin, async (req, res) => {
     }
 
 })
+
+app.get("/DeleteMany", validAdmin, async (req, res) => {
+    const ID = req.query.id;
+    const last = Number(req.query.number)
+    AnimeDB.updateOne(
+  { _id: ID },   
+  { $set: { ep: { $slice: ["$ep", last] } } }
+)
+})
+
 app.post("/Bulk/Edit", validAdmin, async (req, res) => {
     const ID = req.body.ID;
     const start = Number(req.body.start);
