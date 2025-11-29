@@ -1036,7 +1036,7 @@ app.post("/Bulk/Add", validAdmin, async (req, res) => {
 
 })
 app.get("/Bulk/Edit", validAdmin, async (req, res) => {
-    const ID = req.body.ID;
+    const ID = req.query.ID;
     const start = Number(req.query.start);
     const end = Number(req.query.end);
     const lang = req.query.lang;
