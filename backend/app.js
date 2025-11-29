@@ -1035,6 +1035,28 @@ app.post("/Bulk/Add", validAdmin, async (req, res) => {
     }
 
 })
+app.post("/Bulk/Edit", validAdmin, async (req, res) => {
+    const ID = req.body.ID;
+    const start = Number(req.body.start);
+    const end = Number(req.body.end);
+    const lang = req.body.lang;
+    const min = end - start;
+    let ARY = {};
+    for (let i = 0; i <= min; i++) {
+        ARY[`ep.${start+i}.link`] = `https://www.anipub.xyz/Video/${start+i}/${lang}`
+    }
+    const Yo = await AnimeDB.updateOne({"_id":Number(ID)},{
+        $set:ARY
+    })
+    if (Yo) {
+        ARY = {}
+        res.json(1)
+    } else {
+          ARY = {}
+        res.json(2)
+    }
+
+})
 app.post("/Status-Change",validAdmin , (req,res)=>{
     AnimeDB.findById(req.body.id)
     .then(info=>{
