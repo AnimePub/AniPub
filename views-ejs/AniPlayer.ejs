@@ -139,7 +139,7 @@
                                 <div class="episode-info">
                                     <div class="episode-number">Episode <%= i+2 %></div>
                                     <div class="episode-name">
-                                        <% if(video.ep[i].name) {%>
+                                        <% if(video.ep[i].name && video.ep[i].name!== null) {%>
                                         <%= video.ep[i].name%>
                                         <% } else { %>
                                         Episode No.<%= i+2 %>
