@@ -1062,11 +1062,11 @@ app.get("/DeleteMany", validAdmin, async (req, res) => {
   
     AnimeDB.updateOne(
   { _id: 10 },   
-  { $set: { ep: { $slice: ["$ep", 942] } } }
+  { $set: { ep: { $slice: ["$ep", 942] } } })
   .then(info=>{
-    res.json(info)
+    res.json(1)
   })
-)
+
 })
 
 app.post("/Bulk/Edit", validAdmin, async (req, res) => {
