@@ -174,7 +174,8 @@ app.post("/Sign-Up", async (req, res) => {
             Email: finalMail,
             Password: req.body.pass,
             AcStats: "Pending",
-            userType: "Member"
+            userType: "Member",
+            Image:"https://anipub.github.io/AniPub/Logo/luffy5.png"
         })
         const id = newacc._id;
         const aluV = await Vcode.create({
@@ -885,7 +886,12 @@ app.post("/Upload", validAdmin, async (req, res) => {
         console.log(err);
     }
 })
-
+app.get("/update/picAll",validAdmin,(req,res)=>{
+    Data.updateMany({"Image":"https://anipub.github.io/AniPub/Logo/luffy5.png"})
+    .then(()=>{
+        res.json("Update Done")
+    })
+})
 app.post("/update/info", validAdmin, (req, res) => {
     AnimeDB.findById(Number(req.body.id))
         .then(info => {
