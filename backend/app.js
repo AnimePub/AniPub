@@ -887,7 +887,7 @@ app.post("/Upload", validAdmin, async (req, res) => {
     }
 })
 app.get("/update/picAll",validAdmin,(req,res)=>{
-    Data.updateMany({"Image":"https://anipub.github.io/AniPub/Logo/luffy5.png"})
+    Data.updateMany({},{"Image":"https://anipub.github.io/AniPub/Logo/luffy5.png"})
     .then(()=>{
         res.json("Update Done")
     })
