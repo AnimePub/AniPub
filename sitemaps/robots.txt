@@ -1,8 +1,4 @@
 User-agent: *
-Disallow: /Login
-Disallow: /Sign-Up
-Disallow: /login
-Disallow: /sign-up
 Allow: /
 
 # Block AI training crawlers (optional but recommended)
