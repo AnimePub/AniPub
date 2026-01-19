@@ -404,7 +404,7 @@ formapi.addEventListener("submit",(e)=>{
                  const minus = endvalue - initialValue ;
                 for (let i = 0; i <= minus; i++) {
                          APIArray.push({
-            link:  `src=`+ `https://www.anipub.xyz/video/${initialValue+i}/dub`
+            link:  `src=`+ `https://www.anipub.xyz/video/${initialValue+i}/sub`
         })
                 }
                  const OBJ = {
