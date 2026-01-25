@@ -133,6 +133,7 @@ const upDate = document.querySelector(".upDate");
 upLoad.addEventListener("click", () => {
     form6.style.display = "none";
     form.style.display = "flex";
+      FetchFROM.style.display = "none"
     form1.style.display = "none";
     form3.style.display = "none";
     form5.style.display = "none";
@@ -144,6 +145,7 @@ upLoad.addEventListener("click", () => {
 BulkAPI.addEventListener('click',()=>{
       form6.style.display = "none";
     form.style.display = "none";
+      FetchFROM.style.display = "none"
     form1.style.display = "none";
     form3.style.display = "none";
     form5.style.display = "none";
@@ -157,6 +159,7 @@ upDate.addEventListener('click', () => {
        formapi.style.display = "none"
      AutoChecker.style.display = "none"
     SELECT.style.display = "none"
+      FetchFROM.style.display = "none"
     form3.style.display = "none"
     form5.style.display = "none"
     form6.style.display = "none";
@@ -176,11 +179,13 @@ updateExisting.addEventListener('click', () => {
     form3.style.display = "flex"
     form5.style.display = "none";
     form6.style.display = "none";
+      FetchFROM.style.display = "none"
        formapi.style.display = "none"
      AutoChecker.style.display = "none"
 })
 StatusUp.addEventListener('click',()=>{
      form1.style.display = "none"
+       FetchFROM.style.display = "none"
     form.style.display = "none";
     SELECT.style.display = "none"
        formapi.style.display = "none"
@@ -268,6 +273,7 @@ BulkADDB.addEventListener('click', () => {
     SELECT.style.display = "flex",
       form6.style.display = "none";
     form.style.display = "none";
+      FetchFROM.style.display = "none"
     form1.style.display = "none";
     form3.style.display = "none";
     form5.style.display = "none";
@@ -283,6 +289,7 @@ SELECT.addEventListener('change', () => {
     form3.style.display = "none"
     form5.style.display = "flex";
     form6.style.display = "none";
+      FetchFROM.style.display = "none"
      formapi.style.display = "none"
      AutoChecker.style.display = "none"
     generate(Number(SELECT.value))
@@ -303,6 +310,7 @@ AutoChecker.addEventListener('change',()=>{
     form3.style.display = "none"
     form5.style.display = "none";
     form6.style.display = "none";
+      FetchFROM.style.display = "none"
     formapi.style.display = "flex"
     generateAPI(Number(AutoChecker.value));
 })
@@ -550,18 +558,67 @@ fetch("/Status-Change",{
 })
 // 
 FetchB.addEventListener('click',()=>{
- console.log("HAHAH")
+ form1.style.display = "none"
+    form.style.display = "none"
+    SELECT.style.display = "none"
+    form3.style.display = "none"
+    FetchFROM.style.display = "flex"
+    form5.style.display = "none";
+    form6.style.display = "none";
+       formapi.style.display = "none"
+     AutoChecker.style.display = "none"
 })
   FetchFROM.addEventListener('submit',(e)=>{
     e.preventDefault();
+    let aRray = [];
+    let APIArray = [];
+    const lang = FetchFROM.lang.toLowerCase();
+    const ID = FetchB.ID;
     const getReq = `https://gogoanime.com.by/get_episodes?id=`
     const reqID = FetchFROM.IDFEP;
     const totalReqID = getReq + reqID;
+    let idEp = 0;
+    fetch(`https://www.anipub.xyz/api/info/${ID}`)
+    .then(response=>response.json())
+    .then(info=>{
+        idEp = Number(info.epCount) + 1 
+    })
     console.log(totalReqID)
     fetch(totalReqID)
     .then(response=>{response.json()})
     .then(info=>{
-        console.log(info);
-    })
+        if (info.success === true){
+             const episodes = info.episodes;
+            episodes.forEach(value=>{
+                if(Number(value.chapter_number)>idEp){
+                    aRray.push(value.s_id);
+                }
+            })
+        }
+       
+
+    }
+)
+.then(()=>{
+
+    if(lang === 'sub' ){
+        aRray.forEach(value=>{
+            APIArray.push({
+                 link:  `src=`+ `https://www.anipub.xyz/video/` + value + '/' + "sub"
+            })  
+           
+        })
+    }
+    else {
+        aRray.forEach(value=>{
+            APIArray.push({
+                 link:  `src=`+ `https://www.anipub.xyz/video/` + value + '/' + "dub"
+            })  
+           
+        })
+    }
+    console.log(aRray)
+})
+    
 })
 
