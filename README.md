@@ -4,7 +4,7 @@
 [![Status](https://img.shields.io/badge/Status-Live-green?style=for-the-badge)](#)
 [![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)](./CONTRIBUTING.md)
 [![License](https://img.shields.io/badge/License-GNU%20GPLv3-blue?style=for-the-badge)](./LICENSE)
-[![Node.js CI](https://github.com/AnimePub/AniPub/actions/workflows/test-site.yml/badge.svg?branch=main)](https://github.com/AnimePub/AniPub/actions/workflows/test-site.yml)
+[![AniPub](https://github.com/AnimePub/AniPub/actions/workflows/npm-publish-github-packages.yml/badge.svg)](https://github.com/AnimePub/AniPub/actions/workflows/npm-publish-github-packages.yml)
 ---
 
 > **AniPub** isn't just an anime platform—it's a cosmic adventure! Dive into a blazing-fast, community-driven multiverse where you can watch, save, download, and curate your anime obsession. **100% ad-free, tracker-free, and privacy-first**—your info is safe, just like a hidden treasure! 🏴‍☠️ Created by anime lovers, for anime lovers.
