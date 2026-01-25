@@ -587,13 +587,16 @@ FetchB.addEventListener('click',()=>{
     fetch(totalReqID)
     .then(response=>response.json())
     .then(info=>{
-        console.log(info)
+        if (info.success === true){
              const episodes = info.episodes;
             episodes.forEach(value=>{
                 if(Number(value.chapter_number)>idEp){
                     aRray.push(value.s_id);
                 }
             })
+        }
+       
+
     }
 )
 .then(()=>{
@@ -605,7 +608,6 @@ FetchB.addEventListener('click',()=>{
             })  
            
         })
-        
     }
     else {
         aRray.forEach(value=>{
@@ -615,7 +617,27 @@ FetchB.addEventListener('click',()=>{
            
         })
     }
-    console.log(aRray)
+        const OBJ = {
+            ID:ID,
+            ARY:APIArray
+            }
+              fetch('/Bulk/Add', {
+            'method': 'POST',
+            'headers': {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(OBJ)
+        })
+        .then(res => res.json())
+        .then(info => {
+            if (Number(info) === 1) {
+                alert("Bulk Added Successfully");
+                window.location.reload();
+            } else {
+              
+                window.location.reload();
+            }
+        })
 })
     
 })
