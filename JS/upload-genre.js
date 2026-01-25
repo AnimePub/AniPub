@@ -587,16 +587,12 @@ FetchB.addEventListener('click',()=>{
     fetch(totalReqID)
     .then(response=>{response.json()})
     .then(info=>{
-        if (info.success === true){
              const episodes = info.episodes;
             episodes.forEach(value=>{
                 if(Number(value.chapter_number)>idEp){
                     aRray.push(value.s_id);
                 }
             })
-        }
-       
-
     }
 )
 .then(()=>{
