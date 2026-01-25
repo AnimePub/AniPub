@@ -5,6 +5,7 @@ const ejs = require("ejs");
 const path = require("path");
 const mongoose = require("mongoose");
 const Data = require("./models/model");
+const cors = require("cors")
 const {
     newList
 } = require("./models/list");
@@ -147,6 +148,10 @@ app.use(Random);
 const authRouter = require('./router/auth');
 const { isNumberObject, isStringObject } = require("util/types");
 app.use('/auth', authRouter);
+// cors 
+
+app.use(cors({ origin: "https://www.anipub.xyz/Uploader" }));
+
 
 app.get("/Sign-Up", (req, res) => {
     res.render("Sign-Up")
