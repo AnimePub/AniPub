@@ -3,6 +3,8 @@ const AutoChecker = document.querySelector(".AutoChecker");
 const formapi = document.querySelector(".formapi");
 const SELECT = document.querySelector(".BULK");
 const genreList = [];
+const FetchB = document.querySelector(".Fetch");
+const FetchFROM = document.querySelector(".FetchF");
 const form5 = document.querySelector(".form5");
 const form6 = document.querySelector(".form6");
 const updateExisting = document.querySelector(".update-existing")
@@ -546,4 +548,20 @@ fetch("/Status-Change",{
     }
 })
 })
-console.log("HAHAH")
+// 
+FetchB.addEventListener('click',()=>{
+ console.log("HAHAH")
+})
+  FetchFROM.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const getReq = `https://gogoanime.com.by/get_episodes?id=`
+    const reqID = FetchFROM.IDFEP;
+    const totalReqID = getReq + reqID;
+    console.log(totalReqID)
+    fetch(totalReqID)
+    .then(response=>{response.json()})
+    .then(info=>{
+        console.log(info);
+    })
+})
+

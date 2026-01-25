@@ -11,9 +11,11 @@ else
     then 
         sudo apt update && upgrade -y
         sudo apt install npm
+        npm run dev
     else 
         sudo pacman -Syu -y
         sudo pacman -S npm
+        npm run dev
 
     fi
 fi    

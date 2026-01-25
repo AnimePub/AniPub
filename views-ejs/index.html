@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uploader</title>
-    <link rel="stylesheet" href="uploader.css">
+    <link rel="stylesheet" href="/style/uploader.css">
     <!-- <link rel="stylesheet" href="hc.css">
     <link rel="stylesheet" href="profile.css">
     <link rel="stylesheet" href="main-body.css"> -->
@@ -243,6 +243,27 @@
 
 
         </form>
+        
+        <form class="FetchF">
+              <div>
+                <p>ID</p>
+                <input required type="number" name="ID" placeholder="ID">
+            </div>
+               <div>
+                <p>Lang</p>
+                <input required type="text" name="lang" placeholder="Sub/Dub">
+            </div>
+            
+                <div>
+                <p>ID From Ep</p>
+                <input required type="text" name="IDFEP" placeholder="ID FROM EP TO FETCH">
+            </div>
+            <div class="button-div">
+                <button>Submit</button>
+            </div>
+            
+
+        </form>
 
         <form class="formapi" style="display: none;">
 
@@ -251,19 +272,14 @@
 
         </form>
         
-         <form class="FetchF">
-
-
-
-
-        </form>
+     
         
 
        
 
     </div>
 
-    <script src="upload-genre.js"></script>
+    <script src="/JS/upload-genre.js"></script>
 </body>
 
 </html>

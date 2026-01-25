@@ -7,6 +7,7 @@ body {
 .container,
 .container2,
 .container3,
+.FetchF,
 .form5 ,.formapi {
     padding: 20px;
     background: rgba(0, 0, 0, 0.76);
@@ -21,10 +22,10 @@ p {
     color: white;
 }
 
-.container div,
+.container div, 
 .container2 div,
 .container3 div,
-.form5 div ,.formapi div{
+.form5 div ,.formapi div,.FetchF div{
     width: 80%;
     min-width: 280px;
 }
@@ -89,7 +90,7 @@ textarea {
 }
 
 .upLoad,
-.upDate,
+.upDate,.Fetch,
 .update-existing,
 .BulkAdd , .BulkAPI
 {
