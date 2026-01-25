@@ -572,10 +572,10 @@ FetchB.addEventListener('click',()=>{
     e.preventDefault();
     let aRray = [];
     let APIArray = [];
-    const lang = FetchFROM.lang.toLowerCase();
-    const ID = FetchB.ID;
+    const lang = FetchFROM.lanG.value.toLowerCase()
+    const ID = FetchFROM.ID.value;
     const getReq = `https://gogoanime.com.by/get_episodes?id=`
-    const reqID = FetchFROM.IDFEP;
+    const reqID = FetchFROM.IDFEP.value;
     const totalReqID = getReq + reqID;
     let idEp = 0;
     fetch(`https://www.anipub.xyz/api/info/${ID}`)
