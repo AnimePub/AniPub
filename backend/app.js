@@ -5,7 +5,7 @@ const ejs = require("ejs");
 const path = require("path");
 const mongoose = require("mongoose");
 const Data = require("./models/model");
-const cors = require("cors")
+
 const {
     newList
 } = require("./models/list");
@@ -148,10 +148,6 @@ app.use(Random);
 const authRouter = require('./router/auth');
 const { isNumberObject, isStringObject } = require("util/types");
 app.use('/auth', authRouter);
-// cors 
-
-app.use(cors({ origin: "https://www.anipub.xyz/Uploader" }));
-
 
 app.get("/Sign-Up", (req, res) => {
     res.render("Sign-Up")
@@ -1098,7 +1094,15 @@ app.get("/verify-email-change/:id/:code", (req, res) => {
             }
         })
 })
-//Sitemap
+//Sitemap --- bellow it 
+app.get("/getCors",validAdmin,(req,res)=>{
+    const im = req.query.IM;
+    fetch(im)
+    .then(response=>response.json())
+    .then(info=>{
+        res.json(info)
+    })
+})
 app.get("/sitemaps",(req,res)=>{
     // res.sendFile(path.join(__dirname,"../sitemaps/sitemap.xml"))
     AnimeDB.find()
