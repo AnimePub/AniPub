@@ -574,7 +574,7 @@ FetchB.addEventListener('click',()=>{
     let APIArray = [];
     const lang = FetchFROM.lanG.value.toLowerCase()
     const ID = FetchFROM.ID.value;
-    const getReq = `/getCors/IM?=https://gogoanime.com.by/get_episodes?id=`
+    const getReq = `/getCors?IM=https://gogoanime.com.by/get_episodes?id=`
     const reqID = FetchFROM.IDFEP.value;
     const totalReqID = getReq + reqID;
     let idEp = 0;
