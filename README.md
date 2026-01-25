@@ -1,6 +1,6 @@
 # 🌌 AniPub — The Ultimate Anime Multiverse 🚀
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-animehub.adnandluffy.site-blueviolet?style=for-the-badge)](https://animehub.adnandluffy.site)
+[![Live Site](https://img.shields.io/badge/Live%20Site-anipub.xyz-blueviolet?style=for-the-badge)](https://anipub.xyz)
 [![Status](https://img.shields.io/badge/Status-Live-green?style=for-the-badge)](#)
 [![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)](./CONTRIBUTING.md)
 [![License](https://img.shields.io/badge/License-GNU%20GPLv3-blue?style=for-the-badge)](./LICENSE)
