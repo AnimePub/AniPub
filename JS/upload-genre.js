@@ -585,8 +585,9 @@ FetchB.addEventListener('click',()=>{
     })
     console.log(totalReqID)
     fetch(totalReqID)
-    .then(response=>{response.json()})
+    .then(response=>response.json())
     .then(info=>{
+        console.log(info)
              const episodes = info.episodes;
             episodes.forEach(value=>{
                 if(Number(value.chapter_number)>idEp){
@@ -604,6 +605,7 @@ FetchB.addEventListener('click',()=>{
             })  
            
         })
+        
     }
     else {
         aRray.forEach(value=>{
