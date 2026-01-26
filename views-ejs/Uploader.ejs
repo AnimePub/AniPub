@@ -201,6 +201,7 @@
                     <option value="name">name</option>
                     <option value="image">image</option>
                     <option value="cover">cover</option>
+                    <option value="malid">cover</option>
                 </select>
             </div>
             <div class="name-div" style="display: none;">
@@ -292,7 +293,7 @@
         fetch("https://www.anipub.xyz/api/getALl")
         .then(info=>info.json())
         .then(number=>{
-            document.querySelector(".numberIDUp").value = Number(number)
+            document.querySelector(".numberIDUp").value = Number(number) +1
         })
 
     </script>
