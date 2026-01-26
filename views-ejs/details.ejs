@@ -60,11 +60,9 @@
                     <div class="meta-item">
                         <span class="meta-label">Episodes:</span>
                         <span class="meta-value">
-                            <% if(anime.ep.length > 0) { %>
-                                <%= anime.ep.length %>
-                            <% } else { %>
-                                <%= anime.jikanData?.episodes || 'Unknown' %>
-                            <% } %>
+                        
+                                <%= anime.epCount %>
+                           
                         </span>
                     </div>
                     <div class="meta-item">
