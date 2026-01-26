@@ -33,7 +33,7 @@ const AnimeDB = require("./models/AniDB.js");
 //premium init
 const Premium = require("./models/premium.js");
 
-// router
+// router 
 const HomeRouter = require("./router/home.js");
 const Settings = require("./router/pvchng.js");
 const Notify = require("./router/notify.js");
@@ -43,7 +43,6 @@ const SearchGenre = require("./router/searchGenre.js")
 const SearchQ = require("./router/query.js");
 const Security = require("./router/Security.js");
 const PremiumR = require("./router/premium.js");
-const DetailsRouter = require("./router/details.js");
 const JSONAUTH = process.env.jsonauth;
 
 
@@ -143,9 +142,7 @@ configureGoogleAuth();
 
 //Home router
 app.use(HomeRouter);
-//Details router
-app.use(DetailsRouter);
-//Random
+//Random 
 app.use(Random);
 // Auth router
 const authRouter = require('./router/auth');
