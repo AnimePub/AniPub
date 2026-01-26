@@ -71,9 +71,11 @@ DetailsRouter.get("/details/:id", async (req, res) => {
         // Assuming the _id field is the MAL ID or we can store it separately
         if(localAnime.MALID) {
               malId = localAnime.MALID;
+              console.log(malId)
         }
         else {
            malId = localAnime._id;
+            console.log(malId)  
         }
        
 
