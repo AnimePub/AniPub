@@ -7,14 +7,21 @@
     <title><%= anime.Name %> | Details - AniPub</title>
     <meta name="description" content="Detailed information about <%= anime.Name %>">
     <link rel="stylesheet" href="/details.css">
+     <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="/third-section.css">
     <link rel="stylesheet" href="/FinalMedia.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-
+<style>
+    body{
+        padding-top: 60px;
+    }
+</style>
 <body>
-    <%- include("./include/haHeader.ejs") %>
+    
+      <%- include("./include/haHeader.ejs") %>
 
     <div class="details-container">
         <div class="details-header">
@@ -173,11 +180,11 @@
         </div>
 
         <!-- Characters Section -->
-        <% if(characters && characters.length > 0) { %>
+        <% if(anime.characters && anime.characters.length > 0) { %>
         <div class="details-characters">
             <h2>Characters</h2>
             <div class="characters-grid">
-                <% characters.forEach(item => { %>
+                <% anime.characters.forEach(item => { %>
                 <div class="character-card">
                     <% if(item.character?.images?.jpg?.image_url) { %>
                     <img src="<%= item.character.images.jpg.image_url %>" alt="<%= item.character.name %>" class="character-image">

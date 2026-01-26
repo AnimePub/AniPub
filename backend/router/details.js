@@ -88,7 +88,7 @@ DetailsRouter.get("/details/:id", async (req, res) => {
             anime: animeDetails,
             auth: userAuth,
             userId: userId,
-            userLink: userLink
+            Link: userLink
         });
 
     } catch (error) {
@@ -98,7 +98,7 @@ DetailsRouter.get("/details/:id", async (req, res) => {
 });
 
 // GET /api/details/:id - JSON endpoint for details data
-DetailsRouter.get("/api/details/:id", async (req, res) => {
+DetailsRouter.get("/anime/api/details/:id", async (req, res) => {
     try {
         const animeId = req.params.id;
 
