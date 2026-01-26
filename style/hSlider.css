@@ -150,29 +150,6 @@ img {
     opacity: 0.6;
 }
 
-.details-button {
-    height: 50px;
-    width: 50px;
-    background-color: rgba(59, 130, 246, 0.842);
-    border: 0;
-    cursor: pointer;
-    transition: all 0.15s;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-}
-
-.details-button:hover {
-    opacity: 0.8;
-    background: rgba(96, 165, 250, 0.842);
-}
-
-.details-button:active {
-    opacity: 0.6;
-}
-
 .number-List {
     margin-bottom: 40px;
     font-size: 20px;
@@ -198,7 +175,7 @@ img {
     .Box_D {
         margin-bottom: 10px;
     }
-    .watch-list , .watch-button, .details-button {
+    .watch-list , .watch-button {
         width: 30px;
         height: 30px;
     }
