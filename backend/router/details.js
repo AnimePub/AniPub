@@ -67,9 +67,16 @@ DetailsRouter.get("/details/:id", async (req, res) => {
             }
         }
 
+        let malId ;
         // Extract MAL ID from local anime data (if available)
         // Assuming the _id field is the MAL ID or we can store it separately
-        const malId = localAnime._id;
+        if(localAnime.MALID === undefined ) {
+             malId = localAnime._id;
+        }
+        else {
+             malId = localAnime.MALID;
+        }
+       
 
         // Fetch detailed info from Jikan API in parallel
         const [jikanDetails, jikanCharacters] = await Promise.all([

@@ -51,7 +51,7 @@
         <form class="container" style="display: none;">
             <div>
                 <p>ID</p>
-                <input required type="number" class="ID" name="ID" placeholder="ID">
+                <input required type="number" class="ID numberIDUp" name="ID" placeholder="ID">
             </div>
             <div>
                 <p>Ep:- name</p>
@@ -108,6 +108,10 @@
             <div>
                 <p>Producers</p>
                 <input required type="text" class="Producers" name="Producers" placeholder="Producers">
+            </div>
+            <div>
+                <p>MALID</p>
+                <input required type="text" class="MALID" name="MALID" placeholder="MALID">
             </div>
             <div>
                 <p>Genre</p>
@@ -188,7 +192,7 @@
             </div>
             <div>
                 <p>Ep Number</p>
-                <input required type="text" name="EP">
+                <input required type="text" name="EP" value="0">
             </div>
             <div>
                 <select class="Slct">
@@ -214,6 +218,10 @@
             <div class="img-div" style="display: none;">
                 <p>Image</p>
                 <input type="text" class="image" name="image" placeholder="image">
+            </div>
+            <div class="mal-div" style="display: none;">
+                <p>mal-id</p>
+                <input type="text" class="malid" name="malid" placeholder="malid">
             </div>
 
             <div class="button-div">
@@ -280,6 +288,14 @@
     </div>
 
     <script src="upload-genre.js"></script>
+    <script>
+        fetch("https://www.anipub.xyz/api/getALl")
+        .then(info=>info.json())
+        .then(number=>{
+            document.querySelector(".numberIDUp").value = Number(number)
+        })
+
+    </script>
 </body>
 
 </html>

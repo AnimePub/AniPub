@@ -69,6 +69,7 @@ form.addEventListener('submit', (e) => {
             ratings: form.ratings.value,
             studios: form.Studios.value,
             producers: form.Producers.value,
+            MALID: form.MALID.value,
             genre: genreList,
             des: form.Description.value,
             type: "iframe"
@@ -170,7 +171,7 @@ const title = document.querySelector(".title-div");
 const Name = document.querySelector(".name-div");
 const link = document.querySelector(".link-div");
 const img = document.querySelector(".img-div");
-
+const malid = document.querySelector(".mal-div")
 
 updateExisting.addEventListener('click', () => {
     form1.style.display = "none"
@@ -198,6 +199,7 @@ StatusUp.addEventListener('click',()=>{
 option.addEventListener("change", () => {
     if (option.value === "name") {
         Name.style.display = "flex";
+         malid.style.display = "none";
         title.style.display = "none"
         link.style.display = "none";
         img.style.display = "none";
@@ -205,23 +207,34 @@ option.addEventListener("change", () => {
     } else if (option.value === "cover") {
         Name.style.display = "none";
         title.style.display = "flex"
+          malid.style.display = "none";
         link.style.display = "none";
         img.style.display = "none";
     } else if (option.value === "link") {
         Name.style.display = "none";
+          malid.style.display = "none";
         title.style.display = "none"
         link.style.display = "flex";
         img.style.display = "none";
     } else if (option.value === "image") {
         Name.style.display = "none";
+          malid.style.display = "none";
         title.style.display = "none"
         link.style.display = "none";
         img.style.display = "flex";
+    }
+    else if (option.value === "malid"){
+          Name.style.display = "none";
+        title.style.display = "none"
+          malid.style.display = "flex";
+        link.style.display = "none";
+        img.style.display = "none";
     } else {
         Name.style.display = "none";
         title.style.display = "none"
         link.style.display = "none";
         img.style.display = "none";
+          malid.style.display = "none";
     }
 })
 
@@ -237,6 +250,9 @@ form3.addEventListener('submit', (e) => {
             VAlue =  `src=`+ form3.link.value;
         } else if (option.value === "image") {
             VAlue = form3.image.value;
+        }
+         else if (option.value === "malid") {
+            VAlue = form3.malid.value;
         }
         const BODY = {
             ID: form3.ID.value,

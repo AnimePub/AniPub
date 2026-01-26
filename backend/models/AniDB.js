@@ -65,6 +65,10 @@ const AnimeDB = new Schema({
         type: String,
         trim: true
     },
+    MALID: {
+        type: String,
+        trim: true
+    },
     Aired: {
         type: String,
         trim: true

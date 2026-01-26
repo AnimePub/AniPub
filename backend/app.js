@@ -879,6 +879,7 @@ app.post("/Upload", validAdmin, async (req, res) => {
             Genres: req.body.genre,
             Studios: req.body.studios,
             Producers: req.body.producers,
+            MALID: req.body.MALID,
             DescripTion: req.body.des,
             type: req.body.type,
         })
@@ -1015,7 +1016,20 @@ app.post("/update/ext", validAdmin, async (req, res) => {
                     res.json(2)
                 }
             })
-    } else {
+    }
+     else if (Type === "malid") {
+        AnimeDB.findByIdAndUpdate(ID, {
+                MALID: Value
+            })
+            .then(info => {
+                if (info) {
+                    res.json(1);
+                } else {
+                    res.json(2)
+                }
+            })
+    } 
+    else {
         res.json(2);
     }
 
