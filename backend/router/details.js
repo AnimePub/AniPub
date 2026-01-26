@@ -42,7 +42,7 @@ DetailsRouter.get("/details/:id", async (req, res) => {
         const token = req.cookies.anipub;
 
         // Fetch anime from local database
-        const localAnime = await  AnimeDB.findOne({"_id":Number(animeId)},{Genres:1,Cover:1,Synonyms:1,Producers:1,Premiered:1,Aired:1,Duration:1,Status:1,Studios:1,Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"$ep"}})
+        const localAnime = await  AnimeDB.findOne({"_id":Number(animeId)},{Genres:1,Cover:1,ImagePath:1,Synonyms:1,Producers:1,Premiered:1,Aired:1,Duration:1,Status:1,Studios:1,Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"$ep"}})
         if (!localAnime) {
             return res.status(404).render("404", { message: "Anime not found" });
         }
