@@ -23,7 +23,7 @@
 
     <%- include("./include/haHeader.ejs") %>
 
-    <div class="Slider">
+    <div class="Slider" aria-label="Featured anime slider">
         <% DBAnime.forEach((value,i) => { %>
 
 
@@ -82,15 +82,37 @@
                             }
                         %>
 
-            <img style="object-position:top;" src="<%=LINKU%>" alt="<%=value.Name%>'s' Cover Pic">
+            <img style="object-position:top;" src="<%=LINKU%>" alt="<%=value.Name%> Cover">
         
         </div>
         <% }); %>
+        <div class="slider-ui" aria-hidden="false">
+            <button class="slider-nav prev" type="button" aria-label="Previous slide">‹</button>
+            <div class="slider-dots" aria-label="Slider pagination"></div>
+            <button class="slider-nav next" type="button" aria-label="Next slide">›</button>
+        </div>
     </div>
 
-    <div class="secoNd-Section">
+    <div class="home-shell">
+        <section class="genre-shortcuts" aria-label="Genre shortcuts">
+            <div class="genre-head">
+                <div class="ntg"></div>
+                <p>Browse by Genre</p>
+            </div>
+            <div class="genre-row">
+                <% const GENRES = [
+                    "Action","Adventure","Comedy","Drama","Fantasy","Horror","Mystery","Romance","Sci-Fi","Slice of Life",
+                    "Sports","Supernatural","Thriller","Psychological","Isekai","Mecha","Music","School","Shounen","Seinen"
+                ]; %>
+                <% GENRES.forEach((g)=>{ %>
+                    <a class="genre-chip" href="/Search?genre=<%=encodeURIComponent(g)%>" title="Search <%=g%>"><%=g%></a>
+                <% }) %>
+            </div>
+        </section>
 
-        <div class="aniLists">
+        <div class="secoNd-Section">
+
+        <section class="aniLists" aria-label="Ongoing anime">
 
             <div class="recents">
                 <div class="ntg"></div>
@@ -134,10 +156,10 @@
                 </div>
             </div></a>
             <% }); %>
-        </div>
+        </section>
 
 
-          <div class="aniLists">
+          <section class="aniLists" aria-label="Recent anime">
 
             <div class="recents">
                 <div class="ntg"></div>
@@ -181,14 +203,15 @@
                 </div>
             </div></a>   
             <% }); %>
+        </section>
+
+
+
+
+
+
+
         </div>
-
-
-
-
-
-
-
     </div>
 
 
