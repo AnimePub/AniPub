@@ -19,8 +19,7 @@
     transition: all 0.50s;
 }
 
-/* scope image sizing to slider only (avoid global img override) */
-.Slider > .slide > img {
+img {
     object-fit: cover;
     height: 100%;
     width: 100%;
@@ -53,64 +52,6 @@
     top: -230px;
     background: rgba(39, 39, 39, 0.103);
 }
-
-.Slider::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.75) 100%);
-}
-
-.slider-ui {
-    position: absolute;
-    inset: auto 0 18px 0;
-    display: grid;
-    grid-template-columns: 52px 1fr 52px;
-    align-items: center;
-    gap: 14px;
-    padding: 0 18px;
-    z-index: 5;
-    pointer-events: none;
-}
-
-.slider-nav {
-    pointer-events: auto;
-    height: 44px;
-    width: 44px;
-    border-radius: 999px;
-    border: 1px solid rgba(59, 130, 246, 0.55);
-    background: rgba(0, 0, 0, 0.55);
-    color: rgba(255,255,255,0.92);
-    font-size: 28px;
-    line-height: 1;
-    cursor: pointer;
-    transition: transform 0.15s, background-color 0.15s, border-color 0.15s;
-    display: grid;
-    place-items: center;
-    justify-self: center;
-}
-.slider-nav:hover { background: rgba(0,0,0,0.72); border-color: rgba(59,130,246,0.9); transform: translateY(-1px); }
-.slider-nav:active { transform: translateY(0); opacity: 0.85; }
-
-.slider-dots {
-    pointer-events: auto;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-}
-
-.slider-dot {
-    height: 9px;
-    width: 9px;
-    border-radius: 999px;
-    border: 1px solid rgba(59, 130, 246, 0.55);
-    background: rgba(255,255,255,0.18);
-    cursor: pointer;
-    transition: transform 0.15s, background-color 0.15s, border-color 0.15s;
-}
-.slider-dot:hover { transform: scale(1.08); border-color: rgba(59,130,246,0.95); }
-.slider-dot.is-active { background: rgba(59, 130, 246, 0.9); border-color: rgba(59,130,246,1); }
 
 .Number-DIV {
     position: absolute;
@@ -272,16 +213,6 @@
 @media screen and (min-width:300px) and (max-width:830px) {
     .Slider {
         height: 400px;
-    }
-    .slider-ui {
-        grid-template-columns: 42px 1fr 42px;
-        padding: 0 10px;
-        inset: auto 0 10px 0;
-    }
-    .slider-nav {
-        height: 38px;
-        width: 38px;
-        font-size: 24px;
     }
 }
 @media screen and (min-width:300px) and (max-width:600px) {
