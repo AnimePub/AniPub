@@ -18,7 +18,7 @@ HomeRouter.get("/Home", async (req, res) => {
     let ArrayList =[];
     slider.findById(1)
     .then(async ar=>{
-        const b = (ar && Array.isArray(ar.slArray)) ? ar.slArray : [];
+        const b = ar.slArray;
         b.forEach(c=>{
             ArrayList.push(c);
         })
@@ -93,7 +93,7 @@ HomeRouter.get("/api/getHome",async(req,res)=>{
     let ArrayList =[];
     slider.findById(1)
     .then(async ar=>{
-        const b = (ar && Array.isArray(ar.slArray)) ? ar.slArray : [];
+        const b = ar.slArray;
         b.forEach(c=>{
             ArrayList.push(c);
         })
