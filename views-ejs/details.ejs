@@ -17,6 +17,10 @@
 <style>
     body{
         padding-top: 60px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
     }
 </style>
 <body>
@@ -61,7 +65,7 @@
                         <span class="meta-label">Episodes:</span>
                         <span class="meta-value">
                         
-                                <%= anime.epCount %>
+                                <%= anime.epCount +1 %>
                            
                         </span>
                     </div>
@@ -94,7 +98,7 @@
                 </div>
 
                 <div class="details-buttons">
-                    <button class="watch-btn" data-anime-id="<%= anime._id %>">
+                    <button class="watch-btn" data-anime-id="<%= anime._id %>" id="lsl">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
                         </svg>
@@ -222,6 +226,25 @@
 
     <script src="/details.js"></script>
      <script src="/home.js"></script>
+     <script>
+        const lsl = document.getElementById("lsl")
+        let LSL = lsl.dataset.animeId 
+        fetch(`https://www.anipub.xyz/api/info/${LSL}`)
+        .then(info=>info.json())
+        .then(res=>{
+             const POSTER = res.Cover;
+                   const POSTERARY = POSTER.split("https://");
+                   let LINKU = "";
+                   if(POSTERARY.length > 1){
+                       LINKU = "https://" + POSTERARY[1];
+                   }
+                   else {
+                       LINKU = "https://www.anipub.xyz/" + POSTERARY[0];
+                   }
+                
+            ocument.body.style.backgroundImage = `url("${LINKU}")`;
+        })
+     </script>
 </body>
 
 </html>

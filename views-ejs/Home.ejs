@@ -64,7 +64,8 @@
                         <button class="watch-list" data-ANIMEID="<%=value.id%>">
                             <img src="/plus-large-svgrepo-com.svg" alt="">
                         </button>
-                        <a href="/details/<%=value._id%>" class="details-button" title="View Details">
+                        <% let DName = value.Name ; DName = DName.split(" "); DName = DName.join("-") %> 
+                        <a href="/details/<%=DName%>" class="details-button" title="View Details">
                             <img src="/info_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Details" style="width: 24px; height: 24px;">
                         </a>
                     </div>
