@@ -16,12 +16,31 @@
 </head>
 <style>
     body{
-        padding-top: 60px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        
+      margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
     }
+    body::before {
+    content: "";
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+ 
+     background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    
+  
+    filter: blur(8px) brightness(40%); 
+    
+    z-index: -1;
+    transform: scale(1.1); 
+}
 </style>
 <body>
     
@@ -242,7 +261,7 @@
                        LINKU = "https://www.anipub.xyz/" + POSTERARY[0];
                    }
                 
-            document.body.style.backgroundImage = `url("${LINKU}")`;
+           document.body.style.setProperty('--bg-image', `url('${LINKU}')`);
         })
      </script>
 </body>
