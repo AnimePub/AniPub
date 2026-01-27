@@ -37,9 +37,18 @@ const shower = (info) =>{
       let fl = JSON.parse(info);
      if (fl.length > 1 ) {
         fl.forEach((value,i) => {
+              const POSTER = value.Image;
+                   const POSTERARY = POSTER.split("https://");
+                   let LINKU = "";
+                   if(POSTERARY.length > 1){
+                       LINKU = "https://" + POSTERARY[1];
+                   }
+                   else {
+                       LINKU = "https://www.anipub.xyz/" + POSTERARY[0];
+                   }
             MSGEBOX += `
               <a href="/AniPlayer/${value.Id}/0" target="_blank" data-value="${i}"> <div class="fdivS" data-anime="${value.Id}">
-                <img class="sdivImg" src="${value.Image}" alt="">
+                <img class="sdivImg" src="${LINKU}" alt="">
                 <div>
                     <p class="sName">${value.Name}</p>
                     <p class="detS">

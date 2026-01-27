@@ -38,11 +38,12 @@ async function fetchJikanCharacters(malId) {
 // GET /details/:id - Display anime details page
 DetailsRouter.get("/details/:id", async (req, res) => {
     try {
-        const animeId = req.params.id;
+        const anime = req.params.id;
         const token = req.cookies.anipub;
-
+        let  animeidPr = anime.split("-");
+          const regex = new RegExp(`^${animeidPr.join(" ")}$`)
         // Fetch anime from local database
-        const localAnime = await  AnimeDB.findOne({"_id":Number(animeId)},{Genres:1,MALID:1,Cover:1,ImagePath:1,Synonyms:1,Producers:1,Premiered:1,Aired:1,Duration:1,Status:1,Studios:1,Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"$ep"}})
+        const localAnime = await  AnimeDB.findOne({Name:{$regex:regex,$options:"i"}},{Genres:1,MALID:1,Cover:1,ImagePath:1,Synonyms:1,Producers:1,Premiered:1,Aired:1,Duration:1,Status:1,Studios:1,Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"$ep"}})
         if (!localAnime) {
             return res.status(404).render("404", { message: "Anime not found" });
         }

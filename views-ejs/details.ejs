@@ -17,7 +17,31 @@
 <style>
     body{
         padding-top: 60px;
+      margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
     }
+    body::before {
+    content: "";
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+ 
+     background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    
+  
+    filter: blur(8px) brightness(40%); 
+    
+    z-index: -1;
+    transform: scale(1.1); 
+}
 </style>
 <body>
     
@@ -61,7 +85,7 @@
                         <span class="meta-label">Episodes:</span>
                         <span class="meta-value">
                         
-                                <%= anime.epCount %>
+                                <%= anime.epCount +1 %>
                            
                         </span>
                     </div>
@@ -94,7 +118,7 @@
                 </div>
 
                 <div class="details-buttons">
-                    <button class="watch-btn" data-anime-id="<%= anime._id %>">
+                    <button class="watch-btn" data-anime-id="<%= anime._id %>" id="lsl">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
                         </svg>
@@ -222,6 +246,25 @@
 
     <script src="/details.js"></script>
      <script src="/home.js"></script>
+     <script>
+        const lsl = document.getElementById("lsl")
+        let LSL = lsl.dataset.animeId 
+        fetch(`https://www.anipub.xyz/api/info/${LSL}`)
+        .then(info=>info.json())
+        .then(res=>{
+             const POSTER = res.Cover;
+                   const POSTERARY = POSTER.split("https://");
+                   let LINKU = "";
+                   if(POSTERARY.length > 1){
+                       LINKU = "https://" + POSTERARY[1];
+                   }
+                   else {
+                       LINKU = "https://www.anipub.xyz/" + POSTERARY[0];
+                   }
+                
+           document.body.style.setProperty('--bg-image', `url('${LINKU}')`);
+        })
+     </script>
 </body>
 
 </html>
