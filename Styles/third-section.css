@@ -1,5 +1,5 @@
 .third-section {
-    width: 1;
+    width: 100%;
     height: fit-content;
     display: flex;
     flex-direction: row;
@@ -35,7 +35,7 @@
 
     margin-left: 10px;
     height: 100%;
-    width: 1;
+    width: 100%;
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -58,17 +58,21 @@
     height: 300px;
     padding-bottom: 10px;
     width: 200px;
-    background:linear-gradient(145deg, #46464675, #0b0b0b2b);
+    background: linear-gradient(145deg, rgba(20,20,20,0.75), rgba(0,0,0,0.35));
     display: flex;
-    box-shadow: 0px 0px 7px 1px rgba(10, 0, 104, 0.096);
+    box-shadow: 0px 10px 26px rgba(0,0,0,0.55);
     border-radius: 10px;
     flex-direction: column;
     justify-content: start;
     cursor: pointer;
+    border: 1px solid rgba(59,130,246,0.18);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
 .Profile:hover {
-    box-shadow: none;
+    transform: translateY(-3px);
+    box-shadow: 0px 14px 34px rgba(0,0,0,0.7);
+    border-color: rgba(59,130,246,0.45);
 }
 
 .Profile:active {
@@ -77,6 +81,9 @@
 
 .Image-div {
     height: 70%;
+    overflow: hidden;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .poster {
@@ -84,6 +91,12 @@
     height: 100%;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: transform 0.25s ease;
+}
+.Profile:hover .poster{
+    transform: scale(1.06);
 }
 
 .Title-div {
@@ -132,12 +145,43 @@
 .des-div {
     overflow: hidden;
     height: 32px;
-    width: 1;
-    color: white;
+    width: 100%;
+    color: rgba(235,235,235,0.88);
     margin-top: 5px;
     display: flex;
     margin-left: 5px;
     margin-right: 5px;
+}
+
+/* Responsive cards + grid density */
+@media screen and (max-width: 1024px) {
+    .Profile {
+        width: 180px;
+        height: 290px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Profile-div {
+        min-height: 230px;
+    }
+    .Profile {
+        width: 170px;
+        height: 270px;
+    }
+    .Title-div {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .Profile {
+        width: 160px;
+        height: 260px;
+    }
+    .ratings-div p {
+        font-size: 13px;
+    }
 }
 
 .des-div p {
