@@ -2,6 +2,61 @@
     padding-top: 70px;
 }
 
+.home-shell{
+    padding-top: 10px;
+}
+
+.genre-shortcuts{
+    padding-top: 92px; /* clears fixed header + gives breathing room under slider */
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 10px;
+    background: radial-gradient(1200px 260px at 20% 0%, rgba(0, 89, 255, 0.16) 0%, rgba(0,0,0,0) 60%);
+}
+
+.genre-head{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.genre-head p{
+    font-size: 22px;
+    font-family: Roboto;
+    font-weight: 800;
+}
+
+.genre-row{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.genre-chip{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: rgba(255,255,255,0.92);
+    font-family: Roboto;
+    font-size: 13px;
+    border: 1px solid rgba(59,130,246,0.45);
+    background: rgba(0,0,0,0.45);
+    transition: transform 0.15s, background-color 0.15s, border-color 0.15s;
+}
+.genre-chip:hover{
+    transform: translateY(-1px);
+    background: rgba(0,0,0,0.6);
+    border-color: rgba(59,130,246,0.9);
+}
+.genre-chip:active{
+    transform: translateY(0);
+    opacity: 0.85;
+}
+
 .aniLists {
     padding-top: 40px;
     padding-bottom: 20px;
@@ -15,6 +70,38 @@
     row-gap: 15px;
     column-gap: 15px;
     position: relative;
+}
+
+@media screen and (max-width: 830px) {
+    .genre-shortcuts{
+        padding-top: 14px; /* slider becomes shorter; remove huge gap on mobile */
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .genre-head p{
+        font-size: 18px;
+    }
+    .genre-row{
+        gap: 8px;
+    }
+    .genre-chip{
+        padding: 7px 10px;
+        font-size: 12px;
+    }
+    .aniLists {
+        padding-top: 34px;
+        column-gap: 10px;
+        row-gap: 12px;
+    }
+    .recents {
+        left: 12px;
+    }
+    .recents p {
+        font-size: 22px;
+    }
+    .ntg {
+        height: 24px;
+    }
 }
 
 @media screen and (min-width:953px) and (max-width:1078px) {
