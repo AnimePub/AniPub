@@ -9,14 +9,16 @@
     width: 100%;
     position: relative;
     overflow: hidden;
-
+    background: #000;
 }
 
 .slide {
     height: 100%;
     width: 100%;
     position: absolute;
-    transition: all 0.50s;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
 }
 
 /* scope image sizing to slider only (avoid global img override) */
@@ -210,15 +212,108 @@ img {
     .number-List {
         font-size: 15px;
     }
+    .slider-prev,
+    .slider-next {
+        width: 40px;
+        height: 40px;
+    }
 }
 @media screen and (min-width:300px) and (max-width:830px) {
     .Slider {
         height: 400px;
     }
-
+    .slider-prev,
+    .slider-next {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
 }
 @media screen and (min-width:300px) and (max-width:600px) {
     .box {
         width: 50%;
+
+    }
+    .slider-prev,
+    .slider-next {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+     
+    }
+}
+
+
+/* Slider Navigation Buttons */
+.slider-controls {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+    align-items: center;
+}
+
+.slider-prev,
+.slider-next {
+    width: 55px;
+    height: 55px;
+    border: none;
+    background: rgba(234, 7, 7, 0.78);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-weight: bold;
+}
+
+.slider-prev:hover,
+.slider-next:hover {
+    background: rgba(19, 252, 229, 0.3);
+    transform: scale(1.1);
+   
+}
+
+.slider-prev:active,
+.slider-next:active {
+    transform: scale(0.95);
+    background: rgba(60, 20, 220, 0.4);
+}
+
+.slide-indicators {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.slide-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(10, 226, 255, 0.946);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.slide-indicator.active {
+    background: rgba(255, 5, 5, 0.972);
+    transform: scale(1.3);
+    
+}
+
+.slide-indicator:hover {
+    background: rgba(234, 5, 255, 0.837);
+}
+@media screen and (min-width:300px) and (max-width:600px) { 
+    .slider-controls {
+        display: none;
     }
 }

@@ -87,6 +87,17 @@
         
         </div>
         <% }); %>
+
+        <!-- Slider Navigation Controls -->
+        <div class="slider-controls">
+            <button class="slider-prev" title="Previous anime" aria-label="Previous anime">❮</button>
+            <div class="slide-indicators">
+                <% DBAnime.forEach((value, i) => { %>
+                    <div class="slide-indicator <%= i === 0 ? 'active' : '' %>" data-slide="<%=i%>" title="Go to anime <%=i+1%>"></div>
+                <% }); %>
+            </div>
+            <button class="slider-next" title="Next anime" aria-label="Next anime">❯</button>
+        </div>
      
     </div>
 
