@@ -33,8 +33,7 @@ chatRouter.get("/chat", AuthAcc, async (req, res) => {
         res.render("chat", {
             user: user,
             rooms: rooms,
-            selectedRoomName: "",
-            selectedRoomId: "",
+            selectedRoomName: null,
         });
     } catch (err) {
         console.log(err);

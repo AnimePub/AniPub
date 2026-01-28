@@ -51,23 +51,8 @@
                     <div class="welcome-icon">
                         <i class="fas fa-comments"></i>
                     </div>
-                    <h2>🚀 Welcome to AniChat</h2>
-                    <p>Real-time messaging powered by Socket.IO</p>
-                    <div class="welcome-features">
-                        <div class="feature">
-                            <i class="fas fa-bolt"></i>
-                            <span>Instant Messages</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-users"></i>
-                            <span>Group Rooms</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-history"></i>
-                            <span>Message History</span>
-                        </div>
-                    </div>
-                    <p class="welcome-hint">👈 Select a room from the left to start chatting!</p>
+                    <h2>Welcome to AniChat</h2>
+                    <p>Select a room or create a new one to start chatting with anime fans!</p>
                 </div>
             </div>
         </main>
@@ -138,9 +123,9 @@
     <!-- Scripts -->
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script>
-        // Pass room name from URL to frontend (safely handle undefined)
-        const selectedRoomName = '<%= typeof selectedRoomName !== "undefined" ? selectedRoomName : "" %>';
-        const selectedRoomId = '<%= typeof selectedRoomId !== "undefined" ? selectedRoomId : "" %>';
+        // Pass room name from URL to frontend
+        const selectedRoomName = '<%= selectedRoomName || "" %>';
+        const selectedRoomId = '<%= selectedRoomId || "" %>';
     </script>
     <script src="/chat.js"></script>
 </body>
