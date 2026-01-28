@@ -44,6 +44,7 @@ const SearchQ = require("./router/query.js");
 const Security = require("./router/Security.js");
 const PremiumR = require("./router/premium.js");
 const DetailsRouter = require("./router/details.js");
+const ChatRouter = require("./router/chat.js");
 const JSONAUTH = process.env.jsonauth;
 
 
@@ -147,6 +148,8 @@ app.use(HomeRouter);
 app.use(DetailsRouter);
 //Random
 app.use(Random);
+//Chat router
+app.use(ChatRouter);
 // Auth router
 const authRouter = require('./router/auth');
 const { isNumberObject, isStringObject } = require("util/types");

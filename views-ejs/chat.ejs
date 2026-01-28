@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniPub Chat - Connect with Anime Fans</title>
+    <link rel="stylesheet" href="/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Sidebar -->
+        <aside class="chat-sidebar">
+            <div class="sidebar-header">
+                <h1><i class="fas fa-comments"></i> AniChat</h1>
+                <button id="createRoomBtn" class="btn-create-room">
+                    <i class="fas fa-plus"></i> New Room
+                </button>
+            </div>
+
+            <div class="sidebar-search">
+                <input type="text" id="roomSearch" placeholder="Search rooms...">
+            </div>
+
+            <div class="rooms-list">
+                <h3>Chat Rooms</h3>
+                <ul id="roomsList">
+                    <!-- Rooms will be populated here -->
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <img src="<%= user.Image %>" alt="<%= user.Name %>">
+                    <div class="user-details">
+                        <p><%= user.Name %></p>
+                        <small>Member</small>
+                    </div>
+                </div>
+                <a href="/logout" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="chat-main">
+            <div id="chatContent" class="chat-content">
+                <div class="welcome-screen">
+                    <div class="welcome-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h2>Welcome to AniChat</h2>
+                    <p>Select a room or create a new one to start chatting with anime fans!</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Video Call Container (Hidden by default) -->
+        <div id="videoCallContainer" class="video-call-container" style="display:none;">
+            <div class="video-header">
+                <span id="callStatus">Initializing call...</span>
+                <button id="endCallBtn" class="btn-end-call">
+                    <i class="fas fa-phone-slash"></i> End Call
+                </button>
+            </div>
+            <div class="video-content">
+                <video id="localVideo" autoplay muted playsinline></video>
+                <video id="remoteVideo" autoplay playsinline></video>
+            </div>
+            <div class="video-controls">
+                <button id="toggleAudioBtn" class="btn-video-control active">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button id="toggleVideoBtn" class="btn-video-control active">
+                    <i class="fas fa-video"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Room Modal -->
+    <div id="createRoomModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Room</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="createRoomForm">
+                    <div class="form-group">
+                        <label for="roomName">Room Name</label>
+                        <input type="text" id="roomName" name="roomName" required placeholder="e.g., One Piece Fans">
+                    </div>
+                    <div class="form-group">
+                        <label for="roomDescription">Description (Optional)</label>
+                        <textarea id="roomDescription" name="roomDescription" placeholder="Room description..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Create Room</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Call Modal -->
+    <div id="videoCallModal" class="modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>Start Video Call</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Invite someone to video call</p>
+                <div id="onlineUsers" class="online-users">
+                    <!-- Users will be populated here -->
+                </div>
+                <button id="cancelCallBtn" class="btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="/chat.js"></script>
+</body>
+</html>
