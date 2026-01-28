@@ -81,7 +81,7 @@ mongoose.connect(DataBaseId)
             check transporter and check the routers 
             `);
         console.log(`Or use smtp.gmail.com and your app password ! ~ not real password ! ThankYou`);
-        server.listen(port, "0.0.0.0", (error) => {
+        app.listen(port, "0.0.0.0", (error) => {
             if (error) {
                 console.log(error);
             }
