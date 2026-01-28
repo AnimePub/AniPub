@@ -92,7 +92,7 @@ mongoose.connect(DataBaseId)
        console.log(`If you are a dev just remove the example from example.env .
         just keep it as .env !
         .. error connecting to the database`)
-       console.log("error");
+       console.log(error);
     })
 
 
