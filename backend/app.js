@@ -1,10 +1,21 @@
 const express = require("express");
 const app = express();
+const http = require("http");
+const socketIO = require("socket.io");
 const morgan = require("morgan");
 const ejs = require("ejs");
 const path = require("path");
 const mongoose = require("mongoose");
 const Data = require("./models/model");
+
+// Create HTTP server for Socket.IO
+const server = http.createServer(app);
+const io = socketIO(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
 
 const {
     newList
@@ -82,7 +93,7 @@ mongoose.connect(DataBaseId)
             check transporter and check the routers 
             `);
         console.log(`Or use smtp.gmail.com and your app password ! ~ not real password ! ThankYou`);
-        app.listen(port, "0.0.0.0", (error) => {
+        server.listen(port, "0.0.0.0", (error) => {
             if (error) {
                 console.log(error);
             }
@@ -1251,6 +1262,96 @@ app.get("/password/change/",(req,res)=>{
         res.json("Invalid Key");
     }
 })
+
+// ============ SOCKET.IO REAL-TIME CHAT ============
+// Store active rooms and their users
+const activeRooms = {};
+const userSockets = {}; // Maps userId to socket IDs for a room
+
+io.on("connection", (socket) => {
+    console.log("New user connected:", socket.id);
+
+    // User joins a chat room
+    socket.on("join_room", (data) => {
+        const { roomId, userId, userName } = data;
+        socket.join(roomId);
+        
+        // Track user in the room
+        if (!activeRooms[roomId]) {
+            activeRooms[roomId] = [];
+        }
+        activeRooms[roomId].push({ userId, userName, socketId: socket.id });
+        
+        // Notify others that user joined
+        socket.to(roomId).emit("user_joined", { userId, userName });
+        console.log(`User ${userName} joined room ${roomId}`);
+    });
+
+    // User sends a message
+    socket.on("send_message", (data) => {
+        const { roomId, userId, senderName, senderImage, content, timestamp } = data;
+        
+        // Emit message to all users in the room (including sender for confirmation)
+        io.to(roomId).emit("receive_message", {
+            sender: userId,
+            senderName,
+            senderImage,
+            content,
+            timestamp,
+        });
+        
+        console.log(`Message sent in room ${roomId} by ${senderName}`);
+    });
+
+    // User leaves a room
+    socket.on("leave_room", (data) => {
+        const { roomId, userId, userName } = data;
+        socket.leave(roomId);
+        
+        // Remove user from active rooms
+        if (activeRooms[roomId]) {
+            activeRooms[roomId] = activeRooms[roomId].filter(
+                user => user.socketId !== socket.id
+            );
+            if (activeRooms[roomId].length === 0) {
+                delete activeRooms[roomId];
+            }
+        }
+        
+        // Notify others that user left
+        socket.to(roomId).emit("user_left", { userId, userName });
+        console.log(`User ${userName} left room ${roomId}`);
+    });
+
+    // Handle disconnection
+    socket.on("disconnect", () => {
+        // Find and remove user from all rooms
+        Object.keys(activeRooms).forEach(roomId => {
+            const userIndex = activeRooms[roomId].findIndex(
+                user => user.socketId === socket.id
+            );
+            if (userIndex !== -1) {
+                const user = activeRooms[roomId][userIndex];
+                activeRooms[roomId].splice(userIndex, 1);
+                socket.to(roomId).emit("user_left", { 
+                    userId: user.userId, 
+                    userName: user.userName 
+                });
+                
+                if (activeRooms[roomId].length === 0) {
+                    delete activeRooms[roomId];
+                }
+            }
+        });
+        console.log("User disconnected:", socket.id);
+    });
+
+    // Get active users in a room
+    socket.on("get_active_users", (roomId) => {
+        const users = activeRooms[roomId] || [];
+        socket.emit("active_users", users);
+    });
+});
 
 // Redirect 404
 app.use("*", (req, res) => {
