@@ -1,22 +1,10 @@
 const express = require("express");
 const app = express();
-const http = require("http");
-const socketIO = require("socket.io");
 const morgan = require("morgan");
 const ejs = require("ejs");
 const path = require("path");
 const mongoose = require("mongoose");
 const Data = require("./models/model");
-
-// Create HTTP server for Socket.IO
-const server = http.createServer(app);
-const io = socketIO(server, {
-    cors: {
-        origin: "*",
-        methods: ["GET", "POST"]
-    }
-});
-
 const {
     newList
 } = require("./models/list");
@@ -55,7 +43,7 @@ const SearchQ = require("./router/query.js");
 const Security = require("./router/Security.js");
 const PremiumR = require("./router/premium.js");
 const DetailsRouter = require("./router/details.js");
-const ChatRouter = require("./router/chat.js");
+
 const JSONAUTH = process.env.jsonauth;
 
 
@@ -159,8 +147,7 @@ app.use(HomeRouter);
 app.use(DetailsRouter);
 //Random
 app.use(Random);
-//Chat router
-app.use(ChatRouter);
+
 // Auth router
 const authRouter = require('./router/auth');
 const { isNumberObject, isStringObject } = require("util/types");
@@ -1263,192 +1250,6 @@ app.get("/password/change/",(req,res)=>{
     }
 })
 
-// ============ SOCKET.IO REAL-TIME CHAT ============
-// Store active rooms and their users
-const activeRooms = {};
-const userSockets = {}; // Maps userId to socket IDs for a room
-
-io.on("connection", (socket) => {
-    console.log("New user connected:", socket.id);
-
-    // User joins a chat room
-    socket.on("join_room", (data) => {
-        const { roomId, userId, userName } = data;
-        socket.join(roomId);
-        
-        // Track user in the room
-        if (!activeRooms[roomId]) {
-            activeRooms[roomId] = [];
-        }
-        activeRooms[roomId].push({ userId, userName, socketId: socket.id });
-        
-        // Notify others that user joined
-        socket.to(roomId).emit("user_joined", { userId, userName });
-        console.log(`User ${userName} joined room ${roomId}`);
-    });
-
-    // User sends a message (pure Socket.IO with full validation & DB persistence)
-    socket.on("user-message", async (data) => {
-        try {
-            const { roomId, userId, name, msge } = data;
-            
-            // ✅ VALIDATION 1: Check required fields
-            if (!roomId || !userId || !name || !msge) {
-                socket.emit("message-error", { 
-                    error: "Missing required fields",
-                    details: { roomId, userId, name, msge }
-                });
-                console.warn("[Validation] Missing fields in user-message");
-                return;
-            }
-            
-            // ✅ VALIDATION 2: Message not empty or just whitespace
-            if (typeof msge !== 'string' || msge.trim().length === 0) {
-                socket.emit("message-error", { error: "Message cannot be empty" });
-                return;
-            }
-            
-            // ✅ VALIDATION 3: Message length limit (e.g., 5000 chars)
-            if (msge.length > 5000) {
-                socket.emit("message-error", { error: "Message too long (max 5000 chars)" });
-                return;
-            }
-            
-            // ✅ VALIDATION 4: Find room and verify it exists
-            const { Room } = require("./models/chat");
-            const room = await Room.findById(roomId);
-            
-            if (!room) {
-                socket.emit("message-error", { error: "Room not found" });
-                console.warn(`[DB] Room not found: ${roomId}`);
-                return;
-            }
-            
-            // ✅ VALIDATION 5: Verify user exists
-            const user = await Data.findById(userId);
-            if (!user) {
-                socket.emit("message-error", { error: "User not found" });
-                console.warn(`[DB] User not found: ${userId}`);
-                return;
-            }
-            
-            const userImage = user.Image || "";
-            
-            // ✅ CREATE message object with all required fields
-            const message = {
-                sender: userId,
-                senderName: name,
-                senderImage: userImage,
-                content: msge.trim(), // Remove extra whitespace
-                timestamp: new Date()
-            };
-            
-            // ✅ SAVE to database
-            room.messages.push(message);
-            room.updatedAt = new Date();
-            const savedRoom = await room.save();
-            
-            // Get the last saved message (with MongoDB _id)
-            const savedMessage = savedRoom.messages[savedRoom.messages.length - 1];
-            
-            console.log(`✅ [DB-SAVED] Message saved in room ${roomId} by ${name}`);
-            console.log(`   Message ID: ${savedMessage._id}`);
-            console.log(`   Content: "${msge.substring(0, 50)}..."`);
-            
-            // ✅ BROADCAST to all users in the room (real-time via WebSocket)
-            io.to(roomId).emit("receive_message", {
-                _id: savedMessage._id,
-                sender: userId,
-                senderName: name,
-                senderImage: userImage,
-                content: msge.trim(),
-                timestamp: message.timestamp
-            });
-            
-            // ✅ SEND confirmation to sender
-            socket.emit("message-sent", {
-                success: true,
-                messageId: savedMessage._id,
-                timestamp: message.timestamp,
-                message: "Message delivered and saved ✅"
-            });
-            
-            console.log(`✅ [Socket.IO] Message delivered to room ${roomId}`);
-            
-        } catch (err) {
-            console.error("❌ [ERROR] In user-message handler:", err);
-            socket.emit("message-error", { 
-                error: "Failed to send message",
-                details: err.message
-            });
-        }
-    });
-
-    // Legacy: User sends a message (kept for backward compatibility)
-    socket.on("send_message", (data) => {
-        const { roomId, userId, senderName, senderImage, content, timestamp } = data;
-        
-        // Emit message to all users in the room (including sender for confirmation)
-        io.to(roomId).emit("receive_message", {
-            sender: userId,
-            senderName,
-            senderImage,
-            content,
-            timestamp,
-        });
-        
-        console.log(`[Socket.IO] Message sent in room ${roomId} by ${senderName}`);
-    });
-
-    // User leaves a room
-    socket.on("leave_room", (data) => {
-        const { roomId, userId, userName } = data;
-        socket.leave(roomId);
-        
-        // Remove user from active rooms
-        if (activeRooms[roomId]) {
-            activeRooms[roomId] = activeRooms[roomId].filter(
-                user => user.socketId !== socket.id
-            );
-            if (activeRooms[roomId].length === 0) {
-                delete activeRooms[roomId];
-            }
-        }
-        
-        // Notify others that user left
-        socket.to(roomId).emit("user_left", { userId, userName });
-        console.log(`User ${userName} left room ${roomId}`);
-    });
-
-    // Handle disconnection
-    socket.on("disconnect", () => {
-        // Find and remove user from all rooms
-        Object.keys(activeRooms).forEach(roomId => {
-            const userIndex = activeRooms[roomId].findIndex(
-                user => user.socketId === socket.id
-            );
-            if (userIndex !== -1) {
-                const user = activeRooms[roomId][userIndex];
-                activeRooms[roomId].splice(userIndex, 1);
-                socket.to(roomId).emit("user_left", { 
-                    userId: user.userId, 
-                    userName: user.userName 
-                });
-                
-                if (activeRooms[roomId].length === 0) {
-                    delete activeRooms[roomId];
-                }
-            }
-        });
-        console.log("User disconnected:", socket.id);
-    });
-
-    // Get active users in a room
-    socket.on("get_active_users", (roomId) => {
-        const users = activeRooms[roomId] || [];
-        socket.emit("active_users", users);
-    });
-});
 
 // Redirect 404
 app.use("*", (req, res) => {
