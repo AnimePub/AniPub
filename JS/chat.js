@@ -19,20 +19,35 @@ class AniChat {
         this.attachEventListeners();
         await this.loadRooms();
         await this.setupWebRTC();
+        
+        // Auto-select room if URL has room name
+        if (typeof selectedRoomName !== 'undefined' && selectedRoomName) {
+            setTimeout(() => {
+                const room = this.rooms.find(r => r.name === selectedRoomName);
+                if (room) {
+                    this.selectRoom(room);
+                    // Change URL to use room name
+                    window.history.replaceState({ roomName: selectedRoomName }, '', `/chat/${selectedRoomName}`);
+                }
+            }, 500);
+        }
     }
 
     setupSocketListeners() {
         // Socket connection events
         this.socket.on("connect", () => {
-            console.log("Connected to chat server");
+            console.log("✅ Connected to chat server");
+            this.showNotification("Connected to chat server ✅");
         });
 
         this.socket.on("disconnect", () => {
-            console.log("Disconnected from chat server");
+            console.log("❌ Disconnected from chat server");
+            this.showNotification("Disconnected from server ⚠️");
         });
 
         // Receive messages in real-time
         this.socket.on("receive_message", (data) => {
+            console.log(`📨 Message received from ${data.senderName}`);
             this.messages.push(data);
             this.renderMessages();
             // Auto-scroll to bottom
@@ -42,16 +57,35 @@ class AniChat {
             }
         });
 
+        // Message sent confirmation (DB saved)
+        this.socket.on("message-sent", (data) => {
+            console.log(`✅ Message saved to DB:`, data);
+            this.showNotification("Message saved ✅", 2000);
+        });
+
+        // Message error handling
+        this.socket.on("message-error", (data) => {
+            console.error("❌ Message error:", data);
+            this.showNotification(`Error: ${data.error} ❌`, 3000);
+            alert(`Error sending message: ${data.error}`);
+        });
+
+        // Generic error handling
+        this.socket.on("error", (data) => {
+            console.error("❌ Socket error:", data);
+            this.showNotification(`Error: ${data.message || 'Unknown error'} ❌`, 3000);
+        });
+
         // User joined room notification
         this.socket.on("user_joined", (data) => {
-            console.log(`${data.userName} joined the room`);
-            this.showNotification(`${data.userName} joined the chat`);
+            console.log(`👤 ${data.userName} joined the room`);
+            this.showNotification(`${data.userName} joined the chat 👋`);
         });
 
         // User left room notification
         this.socket.on("user_left", (data) => {
-            console.log(`${data.userName} left the room`);
-            this.showNotification(`${data.userName} left the chat`);
+            console.log(`👤 ${data.userName} left the room`);
+            this.showNotification(`${data.userName} left the chat 👋`);
         });
 
         // Get active users
@@ -216,7 +250,7 @@ class AniChat {
                 if (createRoomModal) createRoomModal.style.display = "none";
                 const createRoomForm = document.getElementById("createRoomForm");
                 if (createRoomForm) createRoomForm.reset();
-                this.showNotification("Room created successfully!");
+                this.showNotification(`✨ Room "${name}" created! URL: /chat/${name}`);
             } else {
                 const error = await response.json();
                 alert(error.error || "Error creating room");
@@ -238,6 +272,9 @@ class AniChat {
         }
 
         this.currentRoom = room;
+        
+        // Update URL to room-based URL
+        window.history.pushState({ roomName: room.name }, '', `/chat/${room.name}`);
         
         // Join room on server
         try {
@@ -393,37 +430,60 @@ class AniChat {
         
         const content = input.value.trim();
 
-        if (!content || !this.currentRoom || !this.currentUser) return;
+        // ✅ Validation 1: Check if message is empty
+        if (!content || content.length === 0) {
+            console.warn("⚠️ Message is empty");
+            return;
+        }
+
+        // ✅ Validation 2: Check if room is selected
+        if (!this.currentRoom) {
+            alert("Please select a room first");
+            return;
+        }
+
+        // ✅ Validation 3: Check if user is loaded
+        if (!this.currentUser) {
+            alert("User information not loaded");
+            return;
+        }
+
+        // ✅ Validation 4: Message length limit
+        if (content.length > 5000) {
+            alert("Message is too long (max 5000 characters)");
+            return;
+        }
 
         try {
-            // First, save to database via HTTP
-            const response = await fetch(`/api/chat/rooms/${this.currentRoom._id}/messages`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ content }),
+            console.log(`📤 Sending message: "${content.substring(0, 50)}..."`);
+            
+            // Disable send button while sending (optional UX improvement)
+            const sendBtn = document.querySelector("button[id*='Send'], .btn-send");
+            if (sendBtn) sendBtn.disabled = true;
+
+            // ✅ Emit message directly via Socket.IO
+            this.socket.emit("user-message", {
+                roomId: this.currentRoom._id,
+                userId: this.currentUser._id,
+                name: this.currentUser.Name,
+                msge: content
             });
 
-            if (response.ok) {
-                const newMessage = await response.json();
-                
-                // Emit message via Socket.IO for real-time delivery
-                this.socket.emit("send_message", {
-                    roomId: this.currentRoom._id,
-                    userId: this.currentUser._id,
-                    senderName: this.currentUser.Name,
-                    senderImage: this.currentUser.Image,
-                    content: content,
-                    timestamp: newMessage.timestamp || new Date()
-                });
-
-                input.value = "";
-                input.focus();
-            }
+            // Clear input immediately for better UX
+            input.value = "";
+            input.focus();
+            
+            console.log(`✅ Message emitted to server`);
+            
+            // Re-enable send button
+            if (sendBtn) setTimeout(() => { sendBtn.disabled = false; }, 500);
+            
         } catch (err) {
-            console.error("Error sending message:", err);
-            alert("Error sending message");
+            console.error("❌ Error sending message:", err);
+            alert("Error sending message: " + err.message);
+            // Re-enable send button on error
+            const sendBtn = document.querySelector("button[id*='Send'], .btn-send");
+            if (sendBtn) sendBtn.disabled = false;
         }
     }
 

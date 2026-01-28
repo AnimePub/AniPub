@@ -122,6 +122,11 @@
 
     <!-- Scripts -->
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script>
+        // Pass room name from URL to frontend
+        const selectedRoomName = '<%= selectedRoomName || "" %>';
+        const selectedRoomId = '<%= selectedRoomId || "" %>';
+    </script>
     <script src="/chat.js"></script>
 </body>
 </html>

@@ -1287,7 +1287,104 @@ io.on("connection", (socket) => {
         console.log(`User ${userName} joined room ${roomId}`);
     });
 
-    // User sends a message
+    // User sends a message (pure Socket.IO with full validation & DB persistence)
+    socket.on("user-message", async (data) => {
+        try {
+            const { roomId, userId, name, msge } = data;
+            
+            // ✅ VALIDATION 1: Check required fields
+            if (!roomId || !userId || !name || !msge) {
+                socket.emit("message-error", { 
+                    error: "Missing required fields",
+                    details: { roomId, userId, name, msge }
+                });
+                console.warn("[Validation] Missing fields in user-message");
+                return;
+            }
+            
+            // ✅ VALIDATION 2: Message not empty or just whitespace
+            if (typeof msge !== 'string' || msge.trim().length === 0) {
+                socket.emit("message-error", { error: "Message cannot be empty" });
+                return;
+            }
+            
+            // ✅ VALIDATION 3: Message length limit (e.g., 5000 chars)
+            if (msge.length > 5000) {
+                socket.emit("message-error", { error: "Message too long (max 5000 chars)" });
+                return;
+            }
+            
+            // ✅ VALIDATION 4: Find room and verify it exists
+            const { Room } = require("./models/chat");
+            const room = await Room.findById(roomId);
+            
+            if (!room) {
+                socket.emit("message-error", { error: "Room not found" });
+                console.warn(`[DB] Room not found: ${roomId}`);
+                return;
+            }
+            
+            // ✅ VALIDATION 5: Verify user exists
+            const user = await Data.findById(userId);
+            if (!user) {
+                socket.emit("message-error", { error: "User not found" });
+                console.warn(`[DB] User not found: ${userId}`);
+                return;
+            }
+            
+            const userImage = user.Image || "";
+            
+            // ✅ CREATE message object with all required fields
+            const message = {
+                sender: userId,
+                senderName: name,
+                senderImage: userImage,
+                content: msge.trim(), // Remove extra whitespace
+                timestamp: new Date()
+            };
+            
+            // ✅ SAVE to database
+            room.messages.push(message);
+            room.updatedAt = new Date();
+            const savedRoom = await room.save();
+            
+            // Get the last saved message (with MongoDB _id)
+            const savedMessage = savedRoom.messages[savedRoom.messages.length - 1];
+            
+            console.log(`✅ [DB-SAVED] Message saved in room ${roomId} by ${name}`);
+            console.log(`   Message ID: ${savedMessage._id}`);
+            console.log(`   Content: "${msge.substring(0, 50)}..."`);
+            
+            // ✅ BROADCAST to all users in the room (real-time via WebSocket)
+            io.to(roomId).emit("receive_message", {
+                _id: savedMessage._id,
+                sender: userId,
+                senderName: name,
+                senderImage: userImage,
+                content: msge.trim(),
+                timestamp: message.timestamp
+            });
+            
+            // ✅ SEND confirmation to sender
+            socket.emit("message-sent", {
+                success: true,
+                messageId: savedMessage._id,
+                timestamp: message.timestamp,
+                message: "Message delivered and saved ✅"
+            });
+            
+            console.log(`✅ [Socket.IO] Message delivered to room ${roomId}`);
+            
+        } catch (err) {
+            console.error("❌ [ERROR] In user-message handler:", err);
+            socket.emit("message-error", { 
+                error: "Failed to send message",
+                details: err.message
+            });
+        }
+    });
+
+    // Legacy: User sends a message (kept for backward compatibility)
     socket.on("send_message", (data) => {
         const { roomId, userId, senderName, senderImage, content, timestamp } = data;
         
@@ -1300,7 +1397,7 @@ io.on("connection", (socket) => {
             timestamp,
         });
         
-        console.log(`Message sent in room ${roomId} by ${senderName}`);
+        console.log(`[Socket.IO] Message sent in room ${roomId} by ${senderName}`);
     });
 
     // User leaves a room

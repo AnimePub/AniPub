@@ -17,7 +17,7 @@ const getUserFromToken = (token) => {
     }
 };
 
-// GET - Main chat page
+// GET - Main chat page (list all rooms)
 chatRouter.get("/chat", AuthAcc, async (req, res) => {
     const Token = req.cookies.anipub;
     const userId = getUserFromToken(Token);
@@ -33,10 +33,44 @@ chatRouter.get("/chat", AuthAcc, async (req, res) => {
         res.render("chat", {
             user: user,
             rooms: rooms,
+            selectedRoomName: null,
         });
     } catch (err) {
         console.log(err);
         res.status(500).send("Error loading chat");
+    }
+});
+
+// GET - Chat room by name
+chatRouter.get("/chat/:roomname", AuthAcc, async (req, res) => {
+    const Token = req.cookies.anipub;
+    const userId = getUserFromToken(Token);
+
+    if (!userId) {
+        return res.redirect("/Login");
+    }
+
+    try {
+        const { roomname } = req.params;
+        const user = await Data.findById(userId);
+        const rooms = await Room.find({}).sort({ updatedAt: -1 });
+        
+        // Find the specific room by name
+        const selectedRoom = await Room.findOne({ name: roomname });
+        
+        if (!selectedRoom) {
+            return res.status(404).render("404");
+        }
+
+        res.render("chat", {
+            user: user,
+            rooms: rooms,
+            selectedRoomName: roomname,
+            selectedRoomId: selectedRoom._id,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Error loading chat room");
     }
 });
 
