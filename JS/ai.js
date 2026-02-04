@@ -150,7 +150,7 @@ async function sendMessage() {
 
     } catch (err) {
         removeTyping();
-        addMessage('assistant', "Sorry Darling... my horns are acting up. Try again? 💕");
+        addMessage('assistant', "Sorry Darling... my horns are acting up. Create Account , Check Network or Try again? 💕");
     }
 
     isTyping = false;
