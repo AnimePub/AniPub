@@ -1,346 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
     <title>AniPub – Watch Anime Online Free | HD Streaming | No Ads</title>
-    <meta name="description" content="Watch the latest anime episodes in HD for free on AniPub! Stream Naruto, One Piece, Jujutsu Kaisen, Demon Slayer, Attack on Titan, Solo Leveling, and thousands more with English subs & dub. Fast, no ads, no sign-up required!">
+    <meta
+      name="description"
+      content="Watch the latest anime episodes in HD for free on AniPub! Stream Naruto, One Piece, Jujutsu Kaisen, Demon Slayer, Attack on Titan, Solo Leveling, and thousands more with English subs & dub. Fast, no ads, no sign-up required!"
+    />
+    <meta
+      name="keywords"
+      content="anipub, free anime streaming, watch anime online, anime hd, english sub anime, english dub anime, naruto shippuden, one piece, jujutsu kaisen, demon slayer, attack on titan, my hero academia, solo leveling, chainsaw man, bleach tybw, dragon ball, hianime alternative, 9anime, zoro to, gogoanime, aniwatch, animepahe, 2025 anime, latest anime episodes"
+    />
 
-    <meta name="keywords" content="anipub, free anime streaming, watch anime online, anime hd, english sub anime, english dub anime, naruto shippuden, one piece, jujutsu kaisen, demon slayer, attack on titan, my hero academia, solo leveling, chainsaw man, bleach tybw, dragon ball, hianime alternative, 9anime, zoro to, gogoanime, aniwatch, animepahe, 2025 anime, latest anime episodes">
+    <meta name="theme-color" content="#ff2e63" />
 
-    <meta name="robots" content="index, follow">
-    <meta name="rating" content="general">
-    <meta name="theme-color" content="#ff2e63">
+    <!-- Open Graph / Social Meta Tags -->
+    <meta
+      property="og:title"
+      content="AniPub – Best Place to Watch Free Anime in HD"
+    />
+    <meta
+      property="og:description"
+      content="Stream thousands of anime series & movies in HD – Naruto, One Piece, Jujutsu Kaisen, Demon Slayer & more. Zero ads, fast servers, sub & dub. Start watching now! 🔥"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.anipub.xyz" />
+    <meta property="og:image" content="/luffy5.png" />
 
-    <!-- Open Graph / Social Meta Tags (makes sharing look fire) -->
-    <meta property="og:title" content="AniPub – Best Place to Watch Free Anime in HD">
-    <meta property="og:description" content="Stream thousands of anime series & movies in HD – Naruto, One Piece, Jujutsu Kaisen, Demon Slayer & more. Zero ads, fast servers, sub & dub. Start watching now! 🔥">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.anipub.xyz"> <!-- change to your real domain -->
-    <meta property="og:image" content="https://www.anipub.xyz/luffy5.png"> <!-- recommended 1200x630 -->
-    <meta property="og:site_name" content="AniPub">
-    <meta property="og:locale" content="en_US">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Gruppo&family=Tenali+Ramakrishna&display=swap"
+      rel="stylesheet"
+    />
 
+    <!-- Styles -->
+    <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="modern-index.css" />
+    <link rel="stylesheet" href="modal.css" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AniPub – Watch Anime Free in HD (No Ads)">
-    <meta name="twitter:description" content="Latest episodes of One Piece, Jujutsu Kaisen, Demon Slayer & more – streaming instantly!">
-    <meta name="twitter:image" content="https://www.anipub.xyz/og-image.jpg">
-    <meta name="twitter:site" content="@AniPubOfficial">
+    <style>
+      /* Inline overrides if needed for existing modal styles */
+      .dialog {
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid var(--glass-border);
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        color: white;
+        padding: 30px;
+      }
+      .leave,
+      .stay {
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        margin: 5px;
+      }
+      .leave {
+        background: var(--primary-color);
+        color: white;
+      }
+      .stay {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+    </style>
+  </head>
 
-    <!-- Other useful tags -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <!-- FavicoAdded -->
-    <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="anipub.css">
-    <link rel="stylesheet" href="f-section.css">
-    <link rel="stylesheet" href="siteInfo.css">
-    <link rel="stylesheet" href="Footer.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gruppo&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="meAni.css">
-    <link rel="stylesheet" href="modal.css">
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="media-anipub.css">
-    <link rel="stylesheet" href="FinalMedia.css">
-    <link rel="stylesheet" href="/changehomeb.css">
+  <body>
+    <header class="nav-header">
+      <a href="/" class="nav-logo">
+        <img src="Logo-1.png" alt="AniPub Logo" />
+        <span class="logo-text">AniPub</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/Home" class="nav-link">Catalog</a>
+        <a href="/About-US" class="nav-link">About</a>
+        <a href="https://github.com/AnimePub/" target="_blank" class="nav-link"
+          >Github</a
+        >
+      </nav>
+      <a href="/Home" class="nav-cta">Start Watching</a>
+    </header>
 
-</head>
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <img
+          src="monkey-d-luffy-adventure-digital_bmdna2WUmZqaraWkpJRmbmdsrWZlbWU-4162485200.jpg"
+          class="hero-video-bg"
+          alt="Hero Background"
+        />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-badge">AD-FREE STREAMING</span>
+          <h1 class="hero-title">Your Ultimate<br />Anime Destination</h1>
+          <p class="hero-subtitle">
+            Stream thousand of anime episodes in HD without any interruptions.
+            Fast, secure, and completely free.
+          </p>
 
-<body>
+          <div class="search-container">
+            <form action="/search/q" method="GET" class="search-wrapper">
+              <input
+                type="text"
+                name="query"
+                class="search-input"
+                placeholder="Search anime (e.g. One Piece, Solo Leveling...)"
+                required
+              />
+              <button type="submit" class="search-btn">Search</button>
+            </form>
+          </div>
+        </div>
+      </section>
 
-    <div class="header-div">
-        <a href="/Home" target="_blank" class="first-section-a">
-            <div class="first-section">
-                <div class="logo-div">
-                    <img class="logo" src="Logo-1.png" alt="">
-                </div>
-                <div class="details">
-                    <p class="name">AniPub</p>
-                    <p class="slogan" style="margin-left: 1px; margin-top: -2px;">Yamate Kudasai</p>
-                </div>
+      <!-- Stats/Features -->
+      <section class="features">
+        <div style="text-align: center; margin-bottom: 60px">
+          <h2 style="font-size: 36px; margin-bottom: 10px">
+            Why Choose AniPub?
+          </h2>
+          <p style="color: var(--text-dim)">
+            The best experience for every Otaku.
+          </p>
+        </div>
+        <div class="section-grid">
+          <div class="feature-card">
+            <span class="feature-icon">🚀</span>
+            <h3>Lightning Fast</h3>
+            <p>
+              Optimized servers ensure buffer-free streaming even at high
+              resolutions. Your journey never stops.
+            </p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🛡️</span>
+            <h3>Secure & Private</h3>
+            <p>
+              We don't track your data. Your watchlist and profile are protected
+              with state-of-the-art encryption.
+            </p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🚫</span>
+            <h3>Zero Ads</h3>
+            <p>
+              No popups, no redirects. Just pure anime content from start to
+              finish. Completely free forever.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Announcement / Dev Message -->
+      <section style="padding: 100px 5%; background: rgba(255, 46, 99, 0.03)">
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+          "
+        >
+          <div style="flex: 1; min-width: 300px">
+            <img
+              src="luffy5.png"
+              alt="Luffy"
+              style="
+                max-width: 100%;
+                border-radius: 30px;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+              "
+            />
+          </div>
+          <div style="flex: 1.5; min-width: 300px">
+            <h2 style="font-size: 48px; margin-bottom: 20px">
+              Ahoy, Nakama! 🏴‍☠️
+            </h2>
+            <p
+              style="
+                font-size: 20px;
+                color: var(--text-dim);
+                margin-bottom: 30px;
+              "
+            >
+              I am Your Captain <strong>Monkey D. Adnan</strong>. I am very glad
+              to let you guys know that AniPub is fully functioning! You can
+              create an account to track your watchlist or surf anonymously.
+              Everything is Ad-Free.
+            </p>
+            <div style="display: flex; gap: 20px">
+              <button
+                class="nav-cta d-m-button"
+                style="border: none; cursor: pointer"
+              >
+                Captain's Message
+              </button>
+              <a
+                href="https://github.com/AnimePub/"
+                target="_blank"
+                style="
+                  text-decoration: none;
+                  color: white;
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  background: rgba(255, 255, 255, 0.05);
+                  padding: 10px 20px;
+                  border-radius: 12px;
+                  border: 1px solid var(--glass-border);
+                "
+              >
+                <img src="github.svg" alt="Github" style="width: 20px" /> Github
+              </a>
             </div>
+          </div>
+        </div>
+      </section>
 
+      <!-- Reviews -->
+      <section class="reviews-section">
+        <div style="text-align: center; margin-bottom: 60px">
+          <h2 style="font-size: 36px">What Nakamas Say</h2>
+        </div>
+        <div class="reviews-container">
+          <div class="review-card">
+            <div class="user-info">
+              <img src="Zoro.png" class="user-avatar" alt="Zoro" />
+              <div>
+                <h4 style="margin: 0">Roronoa Zoro</h4>
+                <span style="font-size: 12px; color: var(--primary-color)"
+                  >Swordsman</span
+                >
+              </div>
+            </div>
+            <p class="review-text">
+              "I lost my way while searching for the best anime, and stumbled
+              upon this site. It's as solid as my swords!"
+            </p>
+          </div>
+          <div class="review-card">
+            <div class="user-info">
+              <img src="Naruto.png" class="user-avatar" alt="Naruto" />
+              <div>
+                <h4 style="margin: 0">Naruto Uzumaki</h4>
+                <span style="font-size: 12px; color: var(--primary-color)"
+                  >Hokage</span
+                >
+              </div>
+            </div>
+            <p class="review-text">
+              "This website is awesome! It's like a gathering of all my ninja
+              friends. Dattebayo!"
+            </p>
+          </div>
+          <div class="review-card">
+            <div class="user-info">
+              <img src="Eren.jpg" class="user-avatar" alt="Eren" />
+              <div>
+                <h4 style="margin: 0">Eren Yeager</h4>
+                <span style="font-size: 12px; color: var(--primary-color)"
+                  >Freedom Seeker</span
+                >
+              </div>
+            </div>
+            <p class="review-text">
+              "This site captures the essence of what it means to be a true
+              anime fan. Tatakae!"
+            </p>
+          </div>
+          <div class="review-card">
+            <div class="user-info">
+              <img src="Bell.jpg" class="user-avatar" alt="Bell" />
+              <div>
+                <h4 style="margin: 0">Bell Cranell</h4>
+                <span style="font-size: 12px; color: var(--primary-color)"
+                  >Adventurer</span
+                >
+              </div>
+            </div>
+            <p class="review-text">
+              "This site feels like a new dungeon waiting to be explored! The
+              heroism stories here inspire me."
+            </p>
+          </div>
+        </div>
+      </section>
 
+      <!-- Trailer Section -->
+      <section style="padding: 100px 5%; text-align: center">
+        <h2 style="margin-bottom: 40px">Epic Final Saga Trailer</h2>
+        <div
+          style="
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--glass-border);
+          "
+        >
+          <video
+            id="my-video"
+            class="video-js vjs-big-play-centered"
+            controls
+            poster="Thumbnail/thumbnail1.jpg"
+            preload="auto"
+            width="900"
+            height="500"
+            data-setup="{}"
+            style="width: 100%; height: auto"
+          >
+            <source
+              src="https://anipub.github.io/AniPub/Video/%20ONE%20PIECE%20-%20UNLEASHED%20%20Final%20Saga%20Trailer%20AMV.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </section>
+    </main>
 
+    <!-- Modal remains for logic compatibility -->
+    <dialog class="dialog">
+      <p class="salam">Assalamualaikum</p>
+      <p class="intro">
+        Hope you like this Site AniPub. We don't host any video in our server!
+        All hosted from third party's source! Stay tuned for more features!
+      </p>
+      <p class="info">Info:-</p>
+      <p class="nameM">Name: Adnan D. Luffy</p>
+      <div class="b-m-div" style="margin-top: 20px">
+        <a
+          target="_blank"
+          href="https://github.com/AnimePub/"
+          style="text-decoration: none"
+        >
+          <button class="nav-cta" style="font-size: 14px; padding: 8px 15px">
+            Github
+          </button>
         </a>
-        <div class="Second-Section">
-            <a href="/Home">
-                <button class="home-button">Home</button>
-            </a>
-            <a href="/About-US"><button class="about-us">About Us</button>
-            </a>
-            <!-- <a href="Help">
-                <button class="help-button">
-                    ?
-                </button>
-            </a> -->
-        </div>
-    </div>
+      </div>
+      <div class="wmdiv" style="margin-top: 20px">
+        <p class="Wm">Do you want to leave this?</p>
+      </div>
+      <div class="lbm">
+        <button class="leave">Yes</button><button class="stay">No</button>
+      </div>
+    </dialog>
+
+    <%- include("./include/footer.ejs") %>
 
-    <!---🚨 -->
-
-    <div class="f-section">
-
-        <div class="An-div">
-            <div class="First-section">
-                <div class="header"><span>🚨</span>
-                    <p class="hp"> <span> New Announcement:</span> Welcome to AniPub!</p><span>🚨</span>
-                </div>
-                <div class="im-div">
-                    <img class="logo-l" src="luffy5.png" alt="">
-                </div>
-            </div>
-            <div class="second-section">
-                <div class="img-div">
-                    <img class="logo2" src="luffy3.png" alt="">
-                    <a target="_blank" href="https://github.com/AnimePub/"> <button class="Git-button">
-                            <img class="git-im" src="github.svg" alt="">
-                            Githhub
-                        </button></a>
-                    <a target="_blank" href="https://www.facebook.com/ceoofanipub"> <button class="fb-b">
-                            <img class="f-p" src="fb.svg" alt="">Facebook
-                        </button></a>
-                    <div class="construction">
-                        <img class="ci" src="construction.png" alt="">
-
-                    </div>
-                    <a href="/Home">
-                        <div class="an-d">
-                            <button class="">Home</button>
-                        </div>
-                    </a>
-                </div>
-                <div class="ann-div">
-                    <div>
-                        <p class="start">Ahoy, Nakama!! 🏴‍☠️</p>
-                    </div>
-                    <div class="s">
-                        <p class="s2">
-                            I am Your Captain Monkey D. Adnan<span class="s6"> I am very glad to let you guys know that our anipub in full functioning</span>
-                        </p>
-                    </div>
-                    <div class="s">
-                        <p class="s3"> <span class="s6">You can create an account and keep track your daily anime watchlist or surf anon ! We don't track neither do we show you any <b>ads</b>.</span>
-                       <strong>Everything is Ad Free</strong>  .. and your Data is locked with hashing and a little bit of salt mixed in...
-                        </p>
-                    </div>
-                    <div class="s">
-                        <p class="s4">So grab your straw hat ! and lets Go ! </p>
-                    </div>
-
-
-
-
-
-                </div>
-
-
-
-            </div>
-
-        </div>
-
-
-
-        <div class="con-tainer alukha">
-            <video id="my-video" class="video-js video-js2" controls poster="Thumbnail/thumbnail1.jpg" preload="auto" width="600" height="400" data-setup="{}">
-                <source src="https://anipub.github.io/AniPub/Video/%20ONE%20PIECE%20-%20UNLEASHED%20%20Final%20Saga%20Trailer%20AMV.mp4" type="video/mp4">
-            </video>
-            <img class="ship" src="TTS.png" alt="">
-        </div>
-
-
-
-
-
-    </div>
-
-
-
-
-    <div class="abt-site">
-
-
-        <div class="main-container">
-            <div class="con-tainer2">
-
-                <video id="my-video" controls poster="Thumbnail/thumbnail2.jpg" preload="auto" class="video-js2 video-js" data-setup="{}">
-                    <source src="https://anipub.github.io/AniPub/Video/Doflamingo%20ASMV%20-%20Justice%20Will%20Prevail%20-%20One%20Piece.mp4" type="video/mp4">
-                </video>
-
-
-            </div>
-
-            <div class="ReviewS">
-                <div class="r-vtitle">Reviews</div>
-                <div class="ReviewS-c r-rv">
-                    <div class="img-dp">
-                        <img class="profile-pic" src="Zoro.png" alt="">
-                    </div>
-                    <div class="pi-div">
-                        <p class="nameprofile">Roronoa Zoro</p>
-                        <p class="desc">I lost my way while searching for the best anime, and somehow I stumbled upon this site. Now, I can’t seem to leave! It’s as solid as my swords, packed with great discussions and insights. If you’re a true anime fan, you’ll find yourself hooked just like I am! </p>
-
-                    </div>
-                </div>
-
-                <div class="ReviewS-c">
-                    <div class="img-dp">
-                        <img class="profile-pic" src="Naruto.png" alt="">
-                    </div>
-                    <div class="pi-div">
-                        <p class="nameprofile">Naruto Uzumaki</p>
-                        <p class="desc">This website is awesome! It’s like a gathering of all my ninja friends talking about the best anime. The energy here is incredible, and it makes me want to watch even more. Let’s go on an anime adventure together! Dattebayo!</p>
-                    </div>
-                </div>
-
-                <div class="ReviewS-c">
-                    <div class="img-dp">
-                        <img class="profile-pic" src="Eren.jpg" alt="">
-                    </div>
-                    <div class="pi-div">
-                        <p class="nameprofile">Eren Yeager</p>
-                        <p class="desc">This site captures the essence of what it means to be a true anime fan. It’s raw and real, just like the battles we face. If you want to understand the struggles and triumphs in anime, you’ve found the right place. Tatakae</p>
-                    </div>
-                </div>
-                <div class="ReviewS-c">
-                    <div class="img-dp">
-                        <img class="profile-pic" src="Bell.jpg" alt="">
-                    </div>
-                    <div class="pi-div">
-                        <p class="nameprofile">Bell Cranell</p>
-                        <p class="desc">This site feels like a new dungeon waiting to be explored! The discussions about heroism and adventure in anime inspire me, and I love connecting with others who share the same passion for epic journeys!</p>
-                    </div>
-                </div>
-
-
-            </div>
-
-
-            <div class="dialog-div" style="height: fit-content; padding-top: 10px;
-   padding-bottom: 10px;">
-                <div class="texts">
-                    <p class="ti-tle">┌──(user(>-<)AniPub)-[~]< /p>
-                            <p class="text1">└─$ AniPub</p>
-                            <p class="text2">└─$ Fast, Secure and convenient</p>
-                            <p class="text3">└─$ Dattebayo !</p>
-                </div>
-
-                <dialog class="dialog">
-
-                    <p class="salam">Assalamualaikum</p>
-                    <p class="intro">Hope you like this Site Anipub.
-                        We don't host any video in our server ! It's
-                        All hosted from third party's source !
-                        Also we are adding features everyday ! Stay Tune and
-                        Find Anime in the Home page
-                        <a href="/Home">Home</a>
-                        So if you wanna contribute in this project feel free
-                        to do so! suggestion appreciated (>-<) </p>
-                            <p class="info">Info:-</p>
-                            <p class="nameM">Name:Adnan D. Luffy</p>
-
-                            <div class="b-m-div">
-                                <a target="_blank" href="https://github.com/AnimePub/"><button class="Git-buttonM">
-                                        <img class="git-im" src="github.svg" alt="">
-                                        Githhub
-                                    </button></a>
-                                <a target="_blank" href="https://www.facebook.com/adnandluffy.atomic"> <button class="fb-bM">
-                                        <img class="f-p" src="fb.svg" alt="">Facebook
-                                    </button> </a>
-                            </div>
-                            <div class="wmdiv">
-                                <p class="Wm">Do you want to leave this ?</p>
-                            </div>
-
-                            <div class="lbm"><button class="leave">Yes</button><button class="stay">No</button></div>
-
-
-
-
-                </dialog>
-                <div class="buttons">
-                    <button class="d-m-button">Dev's Message</button>
-
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="p-container">
-            <div class="he-ader">
-                <p class="title">Ahoy, Nakama! Welcome to AniPub!</p>
-                <p class="question1">Why You Should Set Sail with AniPub! </p>
-                <p class="description">Hey there, fellow anime lovers! It’s me, Luffy! If you’re looking for a place to dive into the amazing world of anime, then AniPub is the treasure you’ve been searching for! Here’s why you should join me on this epic adventure:</p>
-            </div>
-            <div class="container2">
-                <div class="m-div">
-                    <p class="question2">1.Super Easy to Navigate!</p>
-                    <p class="description2">Just like sailing the Grand Line, navigating AniPub is a piece of cake! Our website is designed so that even a kid can find their way around. With bright colors and simple menus, you won’t get lost! Whether you’re a newbie or a seasoned pirate, you’ll be able to find your favorite shows and discover new ones without any trouble. It’s as easy as stretching my rubber arms!</p>
-                </div>
-                <div class="m-div">
-                    <p class="question2">2.Cross the Red Line to Find Your Treasure!</p>
-                    <p class="description2">At AniPub, your secrets are locked tighter than the Void Century archives! ⚓🔒 We don’t track a single step of your journey—no logs, no creepy eyes. Your info rests safe in our unbreakable vault, passwords hashed with extra sea-salt strength. No ads will ever crash your binge, promise! Pure, uninterrupted sailing ahead. Built by true nakama who live for anime—just like you. So grab the helm and dive into the New World worry-free! 🏴‍☠️🍿
-                    </p>
-                </div>
-                <div class="m-div">
-                    <p class="question2">3.Feel the Romance and Thrill!</p>
-                    <p class="description2">Get ready for some heart-fluttering moments! At AniPub, you can experience the sweet romance of shows like Tonikaku Kawaii and Shikimori-san is Just a Cutie. They’ll make you feel all warm and fuzzy inside! And if you’re craving action, you’ll find thrills that pack a punch, just like my Gear Fourth! Whether it’s Sasuke’s Chidori or Saitama’s epic punches, we’ve got the adrenaline rush you’re looking for!</p>
-                </div>
-                <div class="m-div">
-                    <p class="question2">4.Relive Your Youthful Adventures!</p>
-                    <p class="description2">Anime has a magical way of bringing back the joy of youth! At AniPub, you can relive those exciting moments and feel like a kid again! Join a crew of fellow anime fans who share your passion and excitement. Together, we’ll explore new worlds, share our favorite stories, and create unforgettable memories! It’s like having your own Straw Hat crew, ready to take on any adventure!
-                    </p>
-                </div>
-
-                <div>
-                    <p class="title">Join Me on This Epic Journey at AniPub!</p>
-                    <p class="description">So what are you waiting for, nakama? AniPub isn’t just a website; it’s a grand adventure waiting for you! With our easy-to-use design, treasure-hunting features, and a treasure trove of genres, you’ll find everything you need to satisfy your anime cravings. Let’s set sail together and discover the amazing world of anime at AniPub!
-
-                        Grab your straw hat, and let’s go find some treasure!</p>
-                </div>
-
-
-
-            </div>
-
-
-
-        </div>
-
-
-
-
-
-
-    </div><%- include("./include/footer.ejs") %>
     <script src="modal.js"></script>
     <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "AniPub",
-  "url": "https://www.anipub.xyz",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.anipub.xyz/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-</body>
 
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "AniPub",
+        "url": "https://www.anipub.xyz",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.anipub.xyz/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </body>
 </html>
