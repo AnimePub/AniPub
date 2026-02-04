@@ -109,8 +109,8 @@
             </div>
             <div class="genre-row">
                 <% const GENRES = [
-                    "Action","Adventure","Comedy","Drama","Fantasy","Horror","Mystery","Romance","Sci-Fi","Slice of Life",
-                    "Sports","Supernatural","Thriller","Psychological","Isekai","Mecha","Music","School","Shounen","Seinen"
+                    "action","adventure","comedy","drama","fantasy","horror","mystery","romance","sci-fi","slice of life",
+                    "sports","supernatural","thriller","psychological","isekai","mecha","music","school","shounen","seinen"
                 ]; %>
                 <% GENRES.forEach((g)=>{ %>
                     <a class="genre-chip" href="/Search?genre=<%=encodeURIComponent(g)%>" title="Search <%=g%>"><%=g%></a>
