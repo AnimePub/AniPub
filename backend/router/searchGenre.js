@@ -9,9 +9,27 @@ const JSONAUTH = process.env.jsonauth;
 
 SearchGenre.get("/Search",async(req,res)=>{
     const Token = req.cookies.anipub;
-    const query = req.query.genre;
+    let query = req.query.genre;
+      if(req.query.query){
+           query = query.toLowerCase()
+    }
+    let page = 1;
+    if(req.query.page === undefined) {
+        page = 1;
+    }
+    else {
+        if( !isNaN(req.query.page))
+        {
+              page = Number((req.query.page));
+        }
+        else {
+            page =1 
+        }
+        
+    }
+       let alus = 20*(page-1);
      let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-    AnimeDB.find({"Genres":query},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1})
+    AnimeDB.find({"Genres":query},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).skip(alus).limit(20)
     .then(info=>{
         const AniData = info;
             if (Token) {
