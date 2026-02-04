@@ -327,7 +327,7 @@ app.get("/logout", (req, res) => {
 
 })
 //ai render 
-app.get("/ai",AuthAcc,(req,res)=>{
+app.get("/ai",(req,res)=>{
     res.render("ai");
 })
 
