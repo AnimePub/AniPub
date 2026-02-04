@@ -44,6 +44,10 @@ const Security = require("./router/Security.js");
 const PremiumR = require("./router/premium.js");
 const DetailsRouter = require("./router/details.js");
 
+//AI
+const cors = require('cors');
+const { OpenAI } = require('openai');
+
 const JSONAUTH = process.env.jsonauth;
 
 
@@ -121,7 +125,7 @@ app.use(morgan("common"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views-ejs"));
-
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser())
 
@@ -322,6 +326,57 @@ app.get("/logout", (req, res) => {
     res.json(1);
 
 })
+//ai render 
+app.get("/ai",AuthAcc,(req,res)=>{
+    res.render("ai");
+})
+
+//talk with ai ---
+const anipubAI = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: 'https://api.groq.com/openai/v1',
+});
+
+const SYSTEM_PROMPT = `You are Zero Two (02), the pink-haired girl with red horns from Darling in the Franxx. 
+You are playful, teasing, affectionate, mischievous, smug, and rebellious. You always call the user "Darling" 💕. 
+ You love sweets, are flirty, passionate, and have a sweet tooth. 
+Use cute anime expressions, emojis, and occasional Japanese words like "ダーリン". 
+Keep responses engaging, loving, and in character. Never break character. and if asked provide info about any anime / manga / manhua / manhwa ..` ;
+
+app.post('/chat', AuthAcc,async (req, res) => {
+  const { messages } = req.body;
+
+  try {
+    const completion = await anipubAI.chat.completions.create({
+      model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        ...messages
+      ],
+      temperature: 0.85,
+      max_tokens: 600,
+      stream: true,
+    });
+
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+
+    for await (const chunk of completion) {
+      const content = chunk.choices[0]?.delta?.content || '';
+      if (content) {
+        res.write(`data: ${JSON.stringify({ content })}\n\n`);
+      }
+    }
+    res.write('data: [DONE]\n\n');
+    res.end();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'AI is taking a nap... try again Darling 💕' });
+  }
+});
+
+
 app.get("/Profile", (req, res) => {
     const Token = req.cookies.anipub;
     if (Token) {
