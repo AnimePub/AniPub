@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AniPubAI is your daily companion for all things anime. Get insights, recommendations, and engage in fun conversations about your favorite anime characters and series.">
+    <meta name="keywords"
+        content="AniPubAI, anime companion, anime information, Zero Two, anime chat, anime recommendations">
+    <meta property="og:title" content="AniPubAI • Zero Two">
+    <meta property="og:description"
+        content="Meet Zero Two, your AI companion for exploring anime. Discover information and engage in chats about your favorite series.">
+    <meta property="og:image" content="https://anipub.xyz/zerotwo.png">
+    <meta property="og:url" content="https://anipub.xyz/zerotwo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AniPubAI • Zero Two">
+    <meta name="twitter:description"
+        content="Your daily anime companion. Chat with Zero Two about your favorite anime!">
+    <meta name="twitter:image" content="https://anipub.xyz/zerotwo.png">
+    <title>AniPubAI • Zero Two</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
+
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+
+        .title-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
+
+        .chat-container {
+            scrollbar-width: thin;
+            scrollbar-color: #f472b6 #27272a;
+        }
+
+        .chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb {
+            background: #f472b6;
+            border-radius: 20px;
+        }
+
+        .message-bubble {
+            animation: fadeInUp 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .neon-pink {
+            text-shadow: 0 0 20px #f472b6, 0 0 40px #db2777;
+        }
+
+        .zero-avatar {
+            box-shadow: 0 0 25px #f472b549;
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-950 text-zinc-200">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-80 border-r border-zinc-800 bg-zinc-950 flex flex-col">
+            <div class="p-6 border-b border-zinc-800">
+                <div class="flex items-center gap-x-4">
+                    <img src="https://c.tenor.com/jDzuJe3ss3wAAAAd/zero-two-darling-in-the-franxx.gif"
+                        class="w-16 h-16 rounded-2xl object-cover zero-avatar">
+                    <div>
+                        <div class="title-font text-3xl font-bold tracking-tighter neon-pink">Zero Two</div>
+                        <div class="text-pink-400 text-sm">AniPubAI • ダーリン</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6">
+                <div class="text-xs uppercase tracking-widest text-zinc-500 mb-3">About Me</div>
+                <div class="text-zinc-400 text-sm leading-relaxed">
+                    The Partner Killer 💕<br>
+                    Pink hair, red horns, and a love for sweets.<br><br>
+                    Call me Zero Two... or just darling's favorite pilot.
+                    Find Info About Any Anime You Need ..
+                </div>
+            </div>
+
+            <div class="mt-auto p-6">
+                <button onclick="clearChat()"
+                    class="w-full py-3 text-xs uppercase tracking-widest border border-zinc-700 hover:border-rose-600 hover:text-rose-400 transition-colors rounded-xl">
+                    New Conversation
+                </button>
+                <div class="text-[10px] text-zinc-600 mt-4 text-center">Powered by AniPub</div>
+            </div>
+        </div>
+
+        <!-- Main Chat -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <div
+                class="h-16 border-b border-zinc-800 flex items-center px-8 justify-between bg-zinc-950/80 backdrop-blur-xl z-10">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <div>
+                        <div class="font-medium">Zero Two</div>
+                        <div class="text-zinc-500 text-xs -mt-0.5">Online • Feeling playful</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-6 text-xs uppercase tracking-widest text-zinc-500">
+                    <div>Franxx Pilot</div>
+                    <div>Klaxosaur Hybrid</div>
+                    <div>Sweet Tooth</div>
+                    <a href="/login">
+                        <div>Account</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div id="chat"
+                class="flex-1 overflow-y-auto chat-container p-8 space-y-8 bg-[radial-gradient(at_bottom_right,#4c1d95_0%,transparent_50%)]">
+            </div>
+
+            <!-- Input -->
+            <div class="p-6 border-t border-zinc-800 bg-zinc-950">
+                <div class="relative max-w-4xl mx-auto">
+                    <textarea id="input" rows="1"
+                        class="w-full bg-zinc-900 border border-zinc-700 focus:border-pink-500 rounded-3xl px-6 py-4 pr-16 resize-none text-base placeholder-zinc-500 focus:outline-none min-h-[54px] max-h-[160px]"
+                        placeholder="Say something to your Darling... 💕"></textarea>
+
+                    <button onclick="sendMessage()"
+                        class="absolute bottom-4 right-4 bg-gradient-to-br from-pink-600 to-rose-600 text-white p-3 rounded-2xl hover:scale-110 active:scale-95 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="text-center text-zinc-600 text-xs mt-3">Zero Two is always listening, Darling~</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/ai.js"></script>
+</body>
+
+</html>
