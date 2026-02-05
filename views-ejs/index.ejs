@@ -76,9 +76,9 @@
   </head>
 
   <body>
-    <header class="nav-header">
+    <header class="nav-header" id="mainHeader">
       <a href="/" class="nav-logo">
-        <img src="Logo-1.png" alt="AniPub Logo" />
+        <img src="Logo-1.png" alt="AniPub Logo" id="navLogo" />
         <span class="logo-text">AniPub</span>
       </a>
       <nav class="nav-links">
@@ -90,6 +90,18 @@
       </nav>
       <a href="/Home" class="nav-cta">Start Watching</a>
     </header>
+
+    <script>
+      // Header Scroll Effect
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("mainHeader");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+    </script>
 
     <main>
       <!-- Hero Section -->
@@ -299,28 +311,39 @@
       </section>
 
       <!-- Trailer Section -->
-      <section style="padding: 100px 5%; text-align: center">
-        <h2 style="margin-bottom: 40px">Epic Final Saga Trailer</h2>
+      <section
+        style="padding: 120px 5%; text-align: center; background: #0a0a0a"
+      >
+        <h2
+          style="
+            font-size: 42px;
+            margin-bottom: 50px;
+            font-weight: 800;
+            letter-spacing: -1px;
+          "
+        >
+          Epic Final Saga Trailer
+        </h2>
         <div
           style="
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
-            border-radius: 20px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
             border: 1px solid var(--glass-border);
+            aspect-ratio: 16 / 9;
+            background: #000;
           "
         >
           <video
             id="my-video"
-            class="video-js vjs-big-play-centered"
+            class="video-js vjs-big-play-centered vjs-theme-city"
             controls
             poster="Thumbnail/thumbnail1.jpg"
             preload="auto"
-            width="900"
-            height="500"
-            data-setup="{}"
-            style="width: 100%; height: auto"
+            data-setup='{"fluid": true}'
+            style="width: 100%; height: 100%; object-fit: cover"
           >
             <source
               src="https://anipub.github.io/AniPub/Video/%20ONE%20PIECE%20-%20UNLEASHED%20%20Final%20Saga%20Trailer%20AMV.mp4"

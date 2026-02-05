@@ -12,19 +12,27 @@ p {
 }
 
 .header-div {
-    z-index: 200;
+    z-index: 1000;
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    height: 70px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-bottom-color: rgba(0, 89, 255, 0.575);
-    border-bottom-style: solid;
-    background-color: black;
+    padding: 0 6%;
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+}
+
+.header-div.scrolled {
+    height: 65px;
+    background-color: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .first-section {
@@ -44,7 +52,13 @@ p {
 
 .logo {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(255, 46, 99, 0.4));
+}
+
+.logo:hover {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .name {
@@ -61,6 +75,7 @@ p {
     font-size: 14px;
     margin: 0;
 }
+
 
 .first-section-a {
     text-decoration: none;
@@ -136,16 +151,23 @@ p {
 }
 
 .searchbox {
-        height: 28px;
-    border-bottom-left-radius: 15px;
-    border-top-left-radius: 15px;
-    padding-left: 14px;
-    border: 2px solid rgb(110, 110, 110);
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgb(255, 255, 255);
-    font-size: 14px;
+    font-size: 15px;
     flex: 1;
-    background-color: rgba(0, 0, 0, 0.589);
-    width: 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.searchbox:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ff2e63;
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 46, 99, 0.2);
 }
 
 .searchbox:focus {
@@ -154,20 +176,19 @@ p {
 }
 
 .search-button {
-   height: 32px;
-    width: 35px;
+    height: 34px;
+    width: 34px;
     background-image: url(/search.svg);
-    background-size: 20px;
+    background-size: 18px;
     background-repeat: no-repeat;
     background-position: center;
-     background-color: rgb(141, 141, 141);
+    background-color: transparent;
     cursor: pointer;
-    border: 2px solid rgba(0, 255, 234, 0.568);
-    border-left: none;
-    margin-left: -2px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border: none;
+    position: absolute;
+    right: 10px;
     transition: all 0.20s;
+    filter: invert(1);
 }
 .search-button:hover {
     opacity: 0.8;

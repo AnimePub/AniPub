@@ -31,51 +31,20 @@ img {
 .box {
     position: absolute;
     bottom: 0;
-    height: 100px;
     top: 0;
-    overflow: hidden;
-    bottom: 0;
+    left: 0;
     height: 100%;
-    width: 30%;
-    background-color: #000000f2;
-    box-shadow: 20px 0px 20px 9px #000000f2;
+    width: 40%;
+    background: linear-gradient(to right, #000 0%, #000000e0 70%, transparent 100%);
     display: flex;
-    align-items: end;
-}
-
-.box::after {
-    content: "";
-    height: 100%;
-    width: 100%;
-
-    position: absolute;
-    transform: rotateZ(-60deg);
-
-    right: -50px;
-    top: -230px;
-    background: rgba(39, 39, 39, 0.103);
-}
-
-.Number-DIV {
-    position: absolute;
-    top: 100px;
-}
-
-.AniName {
-    font-size: 40px;
-    color: white;
-    font-weight: bold;
-    font-family: sans-serif;
-    margin-bottom: 20px;
-}
-
-.box p {
-    color: white;
+    align-items: flex-end;
+    z-index: 2;
 }
 
 .Box_D {
-    margin-bottom: 40px;
-    margin-left: 10px;
+    margin-bottom: 80px;
+    margin-left: 6%;
+    max-width: 80%;
 }
 
 .small-d {
@@ -108,72 +77,69 @@ img {
 }
 
 .watch-button {
-    height: 50px;
-    width: 50px;
-    background: transparent;
+    height: 60px;
+    width: 60px;
+    background: #ff2e63;
     border-radius: 50%;
-    border: 0;
+    border: none;
     cursor: pointer;
-    transition: all 0.30s;
-}
-
-.watch-button img {
-    object-fit: cover;
-}
-
-.watch-button:hover {
-    opacity: 0.9;
-}
-
-.watch-button:active {
-    opacity: 0.6;
-}
-
-.watch-list {
-    height: 50px;
-    width: 50px;
-    background-color: rgba(0, 102, 63, 0.842);
-    border: 0;
-    cursor: pointer;
-    transition: all 0.15s;
-    border-radius: 10px;
-}
-
-.but-divs {
-    display: flex;
-    column-gap: 20px;
-}
-
-.watch-list:hover {
-    opacity: 0.8;
-    background: rgba(12, 196, 125, 0.842);
-}
-
-.watch-list:active {
-    opacity: 0.6;
-}
-
-.details-button {
-    height: 50px;
-    width: 50px;
-    background-color: rgba(59, 130, 246, 0.842);
-    border: 0;
-    cursor: pointer;
-    transition: all 0.15s;
-    border-radius: 10px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 10px 25px rgba(255, 46, 99, 0.4);
+}
+
+.watch-button:hover {
+    transform: scale(1.15) rotate(10deg);
+    background: #ff4d7d;
+    box-shadow: 0 15px 35px rgba(255, 46, 99, 0.6);
+}
+
+.watch-button img {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1);
+    object-fit: contain;
+}
+
+.watch-list {
+    height: 60px;
+    width: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.watch-list:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.details-button {
+    height: 60px;
+    width: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
     text-decoration: none;
 }
 
 .details-button:hover {
-    opacity: 0.8;
-    background: rgba(96, 165, 250, 0.842);
-}
-
-.details-button:active {
-    opacity: 0.6;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
 }
 
 .number-List {
@@ -258,33 +224,26 @@ img {
 
 .slider-prev,
 .slider-next {
-    width: 55px;
-    height: 55px;
-    border: none;
-    background: rgba(234, 7, 7, 0.78);
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 15, 15, 0.4);
     color: white;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    font-weight: bold;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(15px);
 }
 
 .slider-prev:hover,
 .slider-next:hover {
-    background: rgba(19, 252, 229, 0.3);
-    transform: scale(1.1);
-   
-}
-
-.slider-prev:active,
-.slider-next:active {
-    transform: scale(0.95);
-    background: rgba(60, 20, 220, 0.4);
+    background: #ff2e63;
+    border-color: #ff2e63;
+    transform: translateY(-5px) scale(1.1);
 }
 
 .slide-indicators {
@@ -294,23 +253,23 @@ img {
 }
 
 .slide-indicator {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    background: rgba(10, 226, 255, 0.946);
+    background: rgba(255, 255, 255, 0.2);
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid transparent;
 }
 
 .slide-indicator.active {
-    background: rgba(255, 5, 5, 0.972);
-    transform: scale(1.3);
-    
+    background: #ff2e63;
+    transform: scale(1.4);
+    box-shadow: 0 0 15px rgba(255, 46, 99, 0.5);
 }
 
 .slide-indicator:hover {
-    background: rgba(234, 5, 255, 0.837);
+    background: rgba(255, 255, 255, 0.5);
 }
 @media screen and (min-width:300px) and (max-width:600px) { 
     .slider-controls {
