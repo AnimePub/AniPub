@@ -4,106 +4,1313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | AniPub</title>
-    <meta name="description" content="About Us Page - A Free Anime Watching Site built by Anime Lovers for Anime Lovers">
-    <link rel="stylesheet" href="/DynamicScrollbar.css">
-    <link rel="stylesheet" href="/JAboutUS.css">
+    <title>About AniPub | Where Legends Are Made</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Space+Mono:wght@400;700&family=Bebas+Neue&family=Exo+2:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --electric-cyan: #00fff5;
+            --neon-pink: #ff006e;
+            --deep-purple: #1a0033;
+            --midnight: #0a0a15;
+            --gold-accent: #ffd60a;
+            --plasma-blue: #4361ee;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--midnight);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ============= HEADER ============= */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 21, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 2px solid rgba(0, 255, 245, 0.2);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 245, 0.5));
+            animation: logoGlow 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(0, 255, 245, 0.5)) brightness(1); }
+            50% { filter: drop-shadow(0 0 30px rgba(0, 255, 245, 0.8)) brightness(1.2); }
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--electric-cyan), var(--neon-pink));
+            transition: width 0.4s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--electric-cyan);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--plasma-blue));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .header-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .header-cta:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .header-cta:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============= HERO SECTION ============= */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                rgba(26, 0, 51, 0.8) 0%, 
+                rgba(10, 10, 21, 0.6) 50%,
+                rgba(10, 10, 21, 0.95) 100%);
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 245, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 245, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridScroll 20s linear infinite;
+        }
+
+        @keyframes gridScroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 10px 25px;
+            background: rgba(0, 255, 245, 0.1);
+            border: 2px solid var(--electric-cyan);
+            border-radius: 50px;
+            color: var(--electric-cyan);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 245, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 245, 0.6); }
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 0.9;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fff 0%, var(--electric-cyan) 50%, var(--neon-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleSlide 1s ease-out;
+        }
+
+        @keyframes titleSlide {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+            font-weight: 300;
+            animation: titleSlide 1s ease-out 0.2s backwards;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: titleSlide 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-pink), var(--plasma-blue));
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--electric-cyan);
+            border: 2px solid var(--electric-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: var(--electric-cyan);
+            color: var(--midnight);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--electric-cyan);
+            filter: drop-shadow(0 0 10px var(--electric-cyan));
+        }
+
+        /* ============= STATS SECTION ============= */
+        .stats-bar {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(255, 0, 110, 0.1));
+            padding: 60px 20px;
+            border-top: 1px solid rgba(0, 255, 245, 0.2);
+            border-bottom: 1px solid rgba(0, 255, 245, 0.2);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--electric-cyan), var(--gold-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        /* ============= ABOUT SECTION ============= */
+        .section {
+            padding: 120px 40px;
+            position: relative;
+        }
+
+        .section-dark {
+            background: var(--midnight);
+        }
+
+        .section-accent {
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.5), rgba(67, 97, 238, 0.1));
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--electric-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #fff, var(--electric-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-desc {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ============= FEATURES GRID ============= */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.6), rgba(67, 97, 238, 0.1));
+            border: 1px solid rgba(0, 255, 245, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 245, 0.1), transparent);
+            transition: left 0.7s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric-cyan);
+            box-shadow: 0 20px 60px rgba(0, 255, 245, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 20px var(--electric-cyan));
+        }
+
+        .feature-title {
+            font-family: 'Righteous', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--electric-cyan);
+        }
+
+        .feature-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* ============= CONTRIBUTORS SECTION ============= */
+        .contributors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .contributor-card {
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.8), rgba(67, 97, 238, 0.2));
+            border: 2px solid rgba(0, 255, 245, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contributor-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 255, 245, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .contributor-card:hover::after {
+            opacity: 1;
+        }
+
+        .contributor-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--neon-pink);
+            box-shadow: 0 20px 50px rgba(255, 0, 110, 0.3);
+        }
+
+        .contributor-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--electric-cyan);
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s;
+        }
+
+        .contributor-card:hover .contributor-avatar {
+            border-color: var(--neon-pink);
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 30px var(--neon-pink);
+        }
+
+        .contributor-name {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contributor-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contributor-stat {
+            text-align: center;
+        }
+
+        .contributor-stat-number {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2rem;
+            color: var(--gold-accent);
+        }
+
+        .contributor-stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contributor-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid var(--electric-cyan);
+            color: var(--electric-cyan);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contributor-link:hover {
+            background: var(--electric-cyan);
+            color: var(--midnight);
+            transform: scale(1.05);
+        }
+
+        /* ============= CONTRIBUTION GRAPH ============= */
+        .graph-container {
+            background: linear-gradient(135deg, rgba(26, 0, 51, 0.8), rgba(10, 10, 21, 0.9));
+            border: 2px solid rgba(0, 255, 245, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 60px;
+        }
+
+        .graph-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .graph-title {
+            font-family: 'Righteous', cursive;
+            font-size: 2rem;
+            color: var(--electric-cyan);
+        }
+
+        .graph-legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .graph-canvas {
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+
+        /* ============= CTA SECTION ============= */
+        .cta-section {
+            text-align: center;
+            padding: 120px 40px;
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(67, 97, 238, 0.1));
+            border-top: 2px solid rgba(0, 255, 245, 0.2);
+            border-bottom: 2px solid rgba(0, 255, 245, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 245, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--electric-cyan), var(--neon-pink), var(--gold-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-text {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* ============= FOOTER ============= */
+        .footer {
+            background: rgba(10, 10, 21, 0.95);
+            border-top: 2px solid rgba(0, 255, 245, 0.2);
+            padding: 80px 40px 40px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Righteous', cursive;
+            font-size: 1.5rem;
+            color: var(--electric-cyan);
+            margin-bottom: 25px;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--electric-cyan);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--electric-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--electric-cyan);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--electric-cyan);
+            color: var(--midnight);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 245, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 255, 245, 0.2);
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 245, 0.4));
+        }
+
+        /* ============= LOADING SPINNER ============= */
+        .loading {
+            text-align: center;
+            padding: 60px;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(0, 255, 245, 0.2);
+            border-top-color: var(--electric-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ============= RESPONSIVE ============= */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 15px 20px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .section {
+                padding: 80px 20px;
+            }
+
+            .contributors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .graph-canvas {
+                height: 300px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <%- include('include/JHeader.ejs') %>
-    <div class="hero-section">
-        <video autoplay muted loop id="hero-video">
-            <source src="/one-piece-amv-welcome-to-onigashima-1080-publer.io.mp4" type="video/mp4">
-        </video>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://www.anipub.xyz/Logo-1-AniPub.png" alt="AniPub Logo">
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/anime">Anime</a></li>
+                    <li><a href="/community">Community</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+            <button class="header-cta">Join Now</button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <img src="monkey-d-luffy-adventure-digital_bmdna2WUmZqaraWkpJRmbmdsrWZlbWU-4162485200.jpg" alt="Hero Background" class="hero-bg">
         <div class="hero-overlay"></div>
+        <div class="hero-grid"></div>
         <div class="hero-content">
-            <h1>Welcome to AniPub</h1>
-            <p>The Ultimate Hub for Anime Lovers</p>
+            <div class="hero-badge">Est. 2025</div>
+            <h1 class="hero-title">WHERE LEGENDS<br>ARE MADE</h1>
+            <p class="hero-subtitle">The Ultimate Anime Streaming Platform Built by Fans, For Fans</p>
+            <div class="hero-cta-group">
+                <a href="https://github.com/AnimePub/AniPub" target="_blank" class="btn btn-primary">Star on GitHub</a>
+                <a href="#contributors" class="btn btn-secondary">Meet the Team</a>
+            </div>
         </div>
-    </div>
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+            </svg>
+        </div>
+    </section>
 
-    <div class="main-content">
-        <div class="content-section right-align full-width animate-section">
-            <div class="text-content">
-                <h2>What is AniPub? 🌟</h2>
-                <p>
-                    AniPub is not just another anime website; it’s a vibrant community where anime lovers unite to celebrate their passion! Whether you’re a seasoned otaku or just discovering anime, AniPub is your ultimate destination.
+    <!-- STATS BAR -->
+    <section class="stats-bar" id="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" data-target="0">0</div>
+                <div class="stat-label">Stars</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="0">0</div>
+                <div class="stat-label">Forks</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="0">0</div>
+                <div class="stat-label">Contributors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="0">0</div>
+                <div class="stat-label">Commits</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Our Mission</div>
+                <h2 class="section-title">Revolutionary Anime Experience</h2>
+                <p class="section-desc">
+                    We're building more than just a streaming platform. We're creating a movement where anime fans unite, 
+                    contribute, and shape the future of anime entertainment.
                 </p>
             </div>
-            <div class="image-content">
-                <img src="Naruto.png" alt="Naruto">
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3 class="feature-title">Ad-Free Streaming</h3>
+                    <p class="feature-text">
+                        Watch your favorite anime without interruptions. Pure, uninterrupted entertainment designed for true fans.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3 class="feature-title">Community Driven</h3>
+                    <p class="feature-text">
+                        Built by the community, for the community. Every feature, every improvement comes from people like you.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-text">
+                        Cutting-edge technology ensures blazing-fast load times and seamless streaming across all devices.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">Modern Design</h3>
+                    <p class="feature-text">
+                        A futuristic interface that's as stunning as your favorite anime, crafted with attention to every detail.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔓</div>
+                    <h3 class="feature-title">Open Source</h3>
+                    <p class="feature-text">
+                        Fully transparent and open. Contribute code, report bugs, or suggest features on our GitHub repository.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3 class="feature-title">Massive Library</h3>
+                    <p class="feature-text">
+                        From classics to the latest releases, discover thousands of anime titles, all in one place.
+                    </p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="content-section left-align full-width animate-section">
-            <div class="image-content">
-                <img src="Eren.jpg" alt="Eren">
-            </div>
-            <div class="text-content">
-                <h2>Our Vision 🚀</h2>
-                <p>
-                    We’re crafting a comprehensive anime database, Ad free Anime Streaming, community engagement, and personalized features — all with a futuristic vibe.
+    <!-- CONTRIBUTORS SECTION -->
+    <section class="section section-accent" id="contributors">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">The Dream Team</div>
+                <h2 class="section-title">Meet Our Contributors</h2>
+                <p class="section-desc">
+                    These incredible individuals are the driving force behind AniPub. 
+                    Every line of code, every pixel, every feature — built with passion.
                 </p>
             </div>
-        </div>
 
-        <div class="content-section right-align full-width animate-section">
-            <div class="text-content">
-                <h2>Join the Crew! 🤝</h2>
-                <p>
-                    Just like Luffy and his crew, teamwork makes the dream work! Share ideas, suggest features, or help with design — your input shapes AniPub.
-                </p>
+            <div class="contributors-grid" id="contributorsGrid">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading our amazing contributors...</p>
+                </div>
             </div>
-            <div class="image-content">
-                <img src="Cid.jpg" alt="Cid">
-            </div>
-        </div>
 
-        <div class="team-section full-width animate-section">
-            <h2>Meet the Team</h2>
-            <div class="team-members">
-                <a href="https://github.com/adnan123456a" target="_blank" class="team-member-link">
-                    <div class="team-member">
-                        <img src="Bell.jpg" alt="Team Member 1">
-                        <h3>Adnan D Luffy</h3>
-                        <p>Founder & Lead Developer</p>
+            <!-- CONTRIBUTION GRAPH -->
+            <div class="graph-container">
+                <div class="graph-header">
+                    <h3 class="graph-title">📊 Contribution Activity</h3>
+                    <div class="graph-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: var(--electric-cyan);"></div>
+                            <span>High Activity</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: var(--plasma-blue);"></div>
+                            <span>Medium Activity</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(0, 255, 245, 0.3);"></div>
+                            <span>Low Activity</span>
+                        </div>
                     </div>
-                </a>
-
-                <a href="https://github.com/Junaid433" target="_blank" class="team-member-link">
-                    <div class="team-member">
-                        <img src="Zoro.png" alt="Team Member 2">
-                        <h3>Junaid Rahman</h3>
-                        <p>UI/UX Designer</p>
-                    </div>
-                </a>
+                </div>
+                <canvas id="contributionGraph" class="graph-canvas"></canvas>
             </div>
         </div>
+    </section>
 
-        <div class="cta-section full-width animate-section">
-            <h2>Ready to Contribute?</h2>
-            <p>Join us on our journey to create the ultimate anime hub!</p>
-            <a href="https://github.com/AnimePub/AniPub" target="_blank" class="cta-button">Get Involved</a>
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Join the Revolution?</h2>
+            <p class="cta-text">
+                Whether you're a developer, designer, or anime enthusiast, there's a place for you in our crew. 
+                Let's build something legendary together!
+            </p>
+            <div class="hero-cta-group">
+                <a href="https://github.com/AnimePub/AniPub" target="_blank" class="btn btn-primary">Contribute on GitHub</a>
+                <a href="https://www.facebook.com/anipub" target="_blank" class="btn btn-secondary">Follow on Facebook</a>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="footer">
-        <p>&copy; 2025 AniPub. All Rights Reserved.</p>
-    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="https://www.anipub.xyz/Logo-1-AniPub.png" alt="AniPub Logo">
+                    </div>
+                    <p>
+                        The revolutionary anime streaming platform built by fans, for fans. 
+                        Ad-free, open-source, and community-driven.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://github.com/AnimePub/AniPub" target="_blank" class="social-link" title="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/anipub" target="_blank" class="social-link" title="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
 
-    <script src="/navigator.js"></script>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/anime">Browse Anime</a></li>
+                        <li><a href="/trending">Trending</a></li>
+                        <li><a href="/schedule">Schedule</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul class="footer-links">
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="https://github.com/AnimePub/AniPub" target="_blank">Contribute</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/support">Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                        <li><a href="/dmca">DMCA</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 AniPub. Built with ❤️ by anime fans worldwide. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        const sections = document.querySelectorAll('.animate-section');
-        window.addEventListener('scroll', () => {
-            const triggerBottom = window.innerHeight / 1.2;
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                if (sectionTop < triggerBottom) {
-                    section.classList.add('show');
+        const GITHUB_REPO = 'AnimePub/AniPub';
+        const GITHUB_API = 'https://api.github.com';
+
+        // Animated counter
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = Math.ceil(target);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.ceil(current);
+                }
+            }, 16);
+        }
+
+        // Fetch repository stats
+        async function fetchRepoStats() {
+            try {
+                const [repoResponse, commitsResponse] = await Promise.all([
+                    fetch(`${GITHUB_API}/repos/${GITHUB_REPO}`),
+                    fetch(`${GITHUB_API}/repos/${GITHUB_REPO}/commits?per_page=1`)
+                ]);
+
+                const repoData = await repoResponse.json();
+                const commitsLinkHeader = commitsResponse.headers.get('Link');
+                
+                // Parse total commits from Link header
+                let totalCommits = 0;
+                if (commitsLinkHeader) {
+                    const match = commitsLinkHeader.match(/page=(\d+)>; rel="last"/);
+                    totalCommits = match ? parseInt(match[1]) : 0;
+                }
+
+                const stats = document.querySelectorAll('.stat-number');
+                const contributorsResponse = await fetch(`${GITHUB_API}/repos/${GITHUB_REPO}/contributors`);
+                const contributors = await contributorsResponse.json();
+
+                setTimeout(() => {
+                    animateCounter(stats[0], repoData.stargazers_count || 0);
+                    animateCounter(stats[1], repoData.forks_count || 0);
+                    animateCounter(stats[2], Array.isArray(contributors) ? contributors.length : 0);
+                    animateCounter(stats[3], totalCommits || 0);
+                }, 500);
+
+            } catch (error) {
+                console.error('Error fetching stats:', error);
+            }
+        }
+
+        // Fetch contributors
+        async function fetchContributors() {
+            try {
+                const response = await fetch(`${GITHUB_API}/repos/${GITHUB_REPO}/contributors`);
+                const contributors = await response.json();
+
+                if (!Array.isArray(contributors) || contributors.length === 0) {
+                    document.getElementById('contributorsGrid').innerHTML = `
+                        <div style="text-align: center; padding: 60px; color: rgba(255,255,255,0.6);">
+                            <p>No contributors found yet. Be the first to contribute!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const contributorsHTML = await Promise.all(
+                    contributors.map(async (contributor) => {
+                        let userDetails = {};
+                        try {
+                            const userResponse = await fetch(contributor.url);
+                            userDetails = await userResponse.json();
+                        } catch (err) {
+                            console.error('Error fetching user details:', err);
+                        }
+
+                        return `
+                            <div class="contributor-card">
+                                <img src="${contributor.avatar_url}" alt="${contributor.login}" class="contributor-avatar">
+                                <h3 class="contributor-name">${userDetails.name || contributor.login}</h3>
+                                <div class="contributor-stats">
+                                    <div class="contributor-stat">
+                                        <div class="contributor-stat-number">${contributor.contributions}</div>
+                                        <div class="contributor-stat-label">Commits</div>
+                                    </div>
+                                    ${userDetails.public_repos ? `
+                                    <div class="contributor-stat">
+                                        <div class="contributor-stat-number">${userDetails.public_repos}</div>
+                                        <div class="contributor-stat-label">Repos</div>
+                                    </div>
+                                    ` : ''}
+                                </div>
+                                <a href="${contributor.html_url}" target="_blank" class="contributor-link">
+                                    View Profile →
+                                </a>
+                            </div>
+                        `;
+                    })
+                );
+
+                document.getElementById('contributorsGrid').innerHTML = contributorsHTML.join('');
+
+                // Animate cards
+                const cards = document.querySelectorAll('.contributor-card');
+                cards.forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.6s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+
+            } catch (error) {
+                console.error('Error fetching contributors:', error);
+                document.getElementById('contributorsGrid').innerHTML = `
+                    <div style="text-align: center; padding: 60px; color: #ff6b6b;">
+                        <p>⚠️ Unable to load contributors. Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Create contribution graph
+        async function createContributionGraph() {
+            const canvas = document.getElementById('contributionGraph');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            try {
+                // Fetch commit activity data
+                const response = await fetch(`${GITHUB_API}/repos/${GITHUB_REPO}/stats/commit_activity`);
+                const data = await response.json();
+
+                if (!Array.isArray(data)) {
+                    throw new Error('Invalid data format');
+                }
+
+                // Get last 12 weeks
+                const weeks = data.slice(-12);
+                const maxCommits = Math.max(...weeks.map(w => w.total));
+                
+                const barWidth = (canvas.width / weeks.length) - 10;
+                const maxBarHeight = canvas.height - 60;
+
+                weeks.forEach((week, index) => {
+                    const barHeight = (week.total / maxCommits) * maxBarHeight;
+                    const x = index * (barWidth + 10);
+                    const y = canvas.height - barHeight - 30;
+
+                    // Color gradient based on activity
+                    let color;
+                    if (week.total > maxCommits * 0.7) {
+                        color = '#00fff5'; // High activity
+                    } else if (week.total > maxCommits * 0.3) {
+                        color = '#4361ee'; // Medium activity
+                    } else {
+                        color = 'rgba(0, 255, 245, 0.3)'; // Low activity
+                    }
+
+                    // Draw bar with glow
+                    ctx.shadowBlur = 15;
+                    ctx.shadowColor = color;
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x, y, barWidth, barHeight);
+
+                    // Draw value on top
+                    ctx.shadowBlur = 0;
+                    ctx.fillStyle = '#fff';
+                    ctx.font = '12px "Space Mono", monospace';
+                    ctx.textAlign = 'center';
+                    ctx.fillText(week.total, x + barWidth / 2, y - 10);
+
+                    // Draw week label
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                    ctx.font = '10px "Space Mono", monospace';
+                    const date = new Date(week.week * 1000);
+                    const weekLabel = `${date.getMonth() + 1}/${date.getDate()}`;
+                    ctx.fillText(weekLabel, x + barWidth / 2, canvas.height - 10);
+                });
+
+            } catch (error) {
+                console.error('Error creating graph:', error);
+                ctx.fillStyle = 'rgba(255, 107, 107, 0.7)';
+                ctx.font = '16px "Exo 2", sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Unable to load contribution data', canvas.width / 2, canvas.height / 2);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchRepoStats();
+            fetchContributors();
+            
+            // Wait a bit before creating graph to ensure canvas is properly sized
+            setTimeout(createContributionGraph, 1000);
+        });
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            setTimeout(createContributionGraph, 500);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
