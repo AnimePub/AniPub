@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Anime Messenger - Rooms</title>
+    <link rel="stylesheet" href="/homeC.css">
+</head>
+<body>
+    <div class="bg-animation" id="bg-animation"></div>
+
+    <div class="container">
+        <header class="main-header">
+            <div class="header-left">
+                <h1>🌸 Anime Messenger</h1>
+            </div>
+            <div class="header-right">
+                <span class="welcome">Welcome, <strong id="username"></strong>!</span>
+                <button id="logout-btn" class="btn-secondary">Account</button>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="rooms-header">
+                <h2>Chat Rooms</h2>
+                <button id="create-room-btn" class="btn-primary">+ Create Room</button>
+            </div>
+
+            <div id="rooms-list" class="rooms-list">
+                <!-- Rooms-->
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Room Modal -->
+    <div id="create-room-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create New Room</h2>
+            <form id="create-room-form">
+                <div class="form-group">
+                    <label>Room Name</label>
+                    <input type="text" id="room-name" placeholder="Enter room name..." required maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label>Description (Optional)</label>
+                    <textarea id="room-description" placeholder="What's this room about?" maxlength="200"></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Create Room ✨</button>
+                <p class="error-message" id="create-error"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Chat Room</title>
+    <link rel="stylesheet" href="/chat.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="header-left">
+                <button id="back-btn" class="btn-back">← Back</button>
+                <div>
+                    <h2 id="room-name">Loading...</h2>
+                    <span class="online-count"><span id="online-count">0</span> online</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="messages" class="messages-area">
+            <!-- Messages will appear here -->
+        </div>
+        
+        <div id="typing-indicator" class="typing-indicator"></div>
+
+        <div class="chat-input">
+            <input type="text" id="message-input" placeholder="Type your message..." autocomplete="off" maxlength="1000">
+            <button id="send-btn" class="btn-send">Send 💌</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/chat.js"></script>
+</body>
+</html>
