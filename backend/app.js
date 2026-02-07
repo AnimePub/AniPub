@@ -99,8 +99,11 @@ mongoose.connect(DataBaseId)
        console.log(error);
     })
 
-
-
+    // for chat room 
+const Room = require('./models/Room');
+const Message = require('./models/Message');
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 app.use(express.static(path.join(__dirname, "../style")));
 
 app.use(express.static(path.join(__dirname, "../profilePic")));
