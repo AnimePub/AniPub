@@ -30,10 +30,9 @@ form.addEventListener('submit', async (event) => {
 })
 
 function Changer(data) {
-    if(data.ok) {
+    if(data.includes("/Home")) {
          window.location.href = "/Home"; 
     }
-     
     else if (data.includes("Email or Pass is wrong")) {
         warning("Email or Pass is wrong")
     } else if (data.includes("Could't find any account with this account")) {
