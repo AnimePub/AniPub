@@ -32,11 +32,13 @@ const configureGoogleAuth = () => {
                 
                 if (profile.photos && profile.photos[0] && profile.photos[0].value) {
                     try {
-                        await Data.findByIdAndUpdate(existingUser._id, { 
+                       const ALu =  await Data.findByIdAndUpdate(existingUser._id, { 
                             googleId: profile.id ,
                             Image: profile.photos[0].value
                         });
-                       
+                        req.session.userId = ALu._id;
+                           req.session.username = ALu.Name;
+                           req.session.avatar = ALu.Image;
                        } catch (error) {
                         console.log(`⚠️  Failed to update profile picture for existing user: ${error.message}`);
                     }
@@ -58,7 +60,9 @@ const configureGoogleAuth = () => {
                 googleId: profile.id,
                 Image: profile.photos[0].value
             });
-            
+             req.session.userId = newUser._id;
+    req.session.username = newUser.Name;
+    req.session.avatar = newUser.Image;
             console.log(`✅ Created new Google OAuth user: ${newUser.Name} with profile picture: ${profilePictureName}`);
             return done(null, newUser);
         } catch (error) {
