@@ -5,6 +5,7 @@ const ejs = require("ejs");
 const path = require("path");
 const mongoose = require("mongoose");
 const Data = require("./models/model");
+
 const {
     newList
 } = require("./models/list");
@@ -34,6 +35,7 @@ const Premium = require("./models/premium.js");
 
 // router
 const HomeRouter = require("./router/home.js");
+const Chat = require("./router/chat.js");
 const Settings = require("./router/pvchng.js");
 const Notify = require("./router/notify.js");
 const Random = require ("./router/random.js");
@@ -133,16 +135,26 @@ app.use(express.json());
 app.use(cookieParser())
 
 const session = require('express-session');
+const {MongoStore} = require('connect-mongo'); 
 const passport = require('passport');
 const { configureGoogleAuth } = require('./config/google');
 
-app.use(session({
-    secret: process.env.SESSION_SECRET ,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false }
-}));
+const sessionMiddleware = session({
+  secret: process.env.SESSION_SECRET || 'anime-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.mongoDB
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+    httpOnly: true,
+    secure: false
+  }
+});
+app.use(sessionMiddleware);
 
+app.use(Chat);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -277,7 +289,11 @@ app.post("/Login", async (req, res) => {
                                 httpOnly: true,
                                 maxAge: 3 * 60 * 60 * 24 * 60
                             });
-                            res.json(["/Home"]);
+                              req.session.userId = info._id;
+    req.session.username = info.Name;
+    req.session.avatar = info.Image;
+      res.json({ success: true, user: { username: info.Name, avatar: info.Image } });
+                         
                         } else {
                             res.json(["Email or Pass is wrong"])
 
@@ -323,6 +339,7 @@ app.get("/Login", (req, res) => {
 })
 //Logout 
 app.get("/logout", (req, res) => {
+    req.session.destroy();
     res.cookie("anipub", "", {
         maxAge: 1,
     })

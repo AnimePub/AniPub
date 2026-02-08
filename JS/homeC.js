@@ -20,7 +20,7 @@ async function loadUser() {
             const user = await response.json();
             document.getElementById('username').textContent = user.username;
         } else {
-            window.location.href = '/login.html';
+            window.location.href = '/login';
         }
     } catch (error) {
         console.error('Error loading user:', error);
@@ -67,14 +67,13 @@ function escapeHtml(text) {
 }
 
 function joinRoom(roomId) {
-    window.location.href = `/chat.html?room=${roomId}`;
+    window.location.href = `/chatroom?room=${roomId}`;
 }
 
 // Logout
 document.getElementById('logout-btn').addEventListener('click', async () => {
     try {
-        await fetch('/api/logout', { method: 'POST' });
-        window.location.href = '/Login';
+        window.location.href = '/Logout';
     } catch (error) {
         console.error('Logout error:', error);
     }
