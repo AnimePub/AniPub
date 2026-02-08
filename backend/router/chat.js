@@ -28,6 +28,7 @@ io.use((socket, next) => {
 
 // Auth middleware
 const requireAuth = (req, res, next) => {
+  console.log(req.session);
   if (!req.session.userId) {
     return res.redirect('/Login');
   }
