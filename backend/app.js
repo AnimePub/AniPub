@@ -103,7 +103,7 @@ mongoose.connect(DataBaseId)
 
     // for chat room 
 const Room = require('./models/Room');
-const Message = require('./models/Message');
+const Message = require('./models/Message.js');
 
 app.use(express.static(path.join(__dirname, "../style")));
 
@@ -1400,7 +1400,7 @@ app.get('/api/rooms', requireAuth, async (req, res) => {
 // Get room messages
 app.get('/api/rooms/:roomId/messages', requireAuth, async (req, res) => {
   try {
-    const messages = await Message.find({ room: req.params.roomId })
+    const messages = await Message.find({ "room": req.params.roomId })
       .sort({ createdAt: 1 })
       .limit(100);
     res.json(messages);
