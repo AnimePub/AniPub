@@ -16,6 +16,9 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
         passport.authenticate('google', { failureRedirect: '/Login' }),
         (req, res) => {
             const user = req.user;
+                 req.session.userId = req.user._id;
+                           req.session.username = req.user.Name;
+                           req.session.avatar = req.user.Image;
             const myCookie = TokenGen(user._id);
             
             res.cookie("anipub", myCookie, {
