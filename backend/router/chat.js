@@ -2,7 +2,7 @@ const express = require("express");
 const Chat = express.Router();
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
-
+const {sessionMiddleware} = require("../app");
 require('dotenv').config();
 const app = express();
 const http = require('http').createServer(app);
@@ -16,7 +16,7 @@ const Room = require('../models/Room');
 const Message = require('../models/Message');
 const { Session } = require("express-session");
 
-// Session configuration
+
 
 
 

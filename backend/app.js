@@ -5,7 +5,8 @@ const ejs = require("ejs");
 const path = require("path");
 const mongoose = require("mongoose");
 const Data = require("./models/model");
-
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 const {
     newList
 } = require("./models/list");
@@ -87,7 +88,7 @@ mongoose.connect(DataBaseId)
             check transporter and check the routers 
             `);
         console.log(`Or use smtp.gmail.com and your app password ! ~ not real password ! ThankYou`);
-        app.listen(port, "0.0.0.0", (error) => {
+        http.listen(port, "0.0.0.0", (error) => {
             if (error) {
                 console.log(error);
             }
@@ -104,8 +105,7 @@ mongoose.connect(DataBaseId)
     // for chat room 
 const Room = require('./models/Room');
 const Message = require('./models/Message');
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+
 app.use(express.static(path.join(__dirname, "../style")));
 
 app.use(express.static(path.join(__dirname, "../profilePic")));
@@ -152,6 +152,7 @@ const sessionMiddleware = session({
     secure: false
   }
 });
+module.exports = sessionMiddleware;
 app.use(sessionMiddleware);
 
 app.use(Chat);
