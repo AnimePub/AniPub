@@ -23,7 +23,9 @@ const configureGoogleAuth = () => {
             console.log(existingUser);
             if (existingUser) {
                 console.log(`🔄 Found existing user: ${existingUser.Name}`);
-                
+                  req.session.userId = existingUser._id;
+                           req.session.username = existingUser.Name;
+                           req.session.avatar = existingUser.Image;
                 // Update account status if needed
                 if (existingUser.AcStats === "Pending") {
                     await Data.findByIdAndUpdate(existingUser._id, { AcStats: "Active" });
@@ -32,13 +34,11 @@ const configureGoogleAuth = () => {
                 
                 if (profile.photos && profile.photos[0] && profile.photos[0].value) {
                     try {
-                       const ALu =  await Data.findByIdAndUpdate(existingUser._id, { 
+                    await Data.findByIdAndUpdate(existingUser._id, { 
                             googleId: profile.id ,
                             Image: profile.photos[0].value
                         });
-                        req.session.userId = ALu._id;
-                           req.session.username = ALu.Name;
-                           req.session.avatar = ALu.Image;
+                      
                        } catch (error) {
                         console.log(`⚠️  Failed to update profile picture for existing user: ${error.message}`);
                     }
