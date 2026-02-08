@@ -18,7 +18,7 @@ async function loadUser() {
         const response = await fetch('/api/user');
         if (response.ok) {
             const user = await response.json();
-            document.getElementById('username').textContent = user.username;
+            document.getElementById('username').textContent = user.Name;
         } else {
             window.location.href = '/login';
         }
