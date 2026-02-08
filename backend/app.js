@@ -1363,7 +1363,7 @@ app.get('/api/user', requireAuth, async (req, res) => {
 });
 
 // Create room
-app.post('/api/rooms', requireAuth, async (req, res) => {
+app.post('/api/rooms', requireAuth,validAdmin , async (req, res) => {
   try {
     const { name, description } = req.body;
 
