@@ -1340,7 +1340,7 @@ const requireAuth = (req, res, next) => {
 
 app.get('/chat', requireAuth, (req, res) => res.render("chat"));
 app.get('/chatroom', requireAuth, (req, res) => res.render("chatroom"));
-app.get('/message', requireAuth, (req, res) => res.render("Schat"));
+app.get('/private', requireAuth, (req, res) => res.render("Schat"));
 
 
 app.get('/api/user', requireAuth, async (req, res) => {
