@@ -84,7 +84,7 @@ async function loadConversations() {
         conversationsList.innerHTML = conversations.map(conv => `
             <div class="conversation-item ${conv.isPinned ? 'pinned' : ''}" onclick="openDM('${conv.otherUser._id}')">
                 <div class="conversation-avatar">
-                    <img src="${getAvatarUrl(conv.otherUser.avatar)}" class="avatar avatar-sm" alt="${escapeHtml(conv.otherUser.Name)}">
+                    <img src="${getAvatarUrl(conv.otherUser.Image)}" class="avatar avatar-sm" alt="${escapeHtml(conv.otherUser.Name)}">
                     ${conv.unreadCount > 0 ? `<div class="unread-badge">${conv.unreadCount}</div>` : ''}
                 </div>
                 <div class="conversation-info">

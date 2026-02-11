@@ -16,7 +16,7 @@ const directMessageSchema = new mongoose.Schema({
     required: true
   },
   senderAvatar: {
-    type: Number,
+    type: String,
     required: true
   },
   message: {

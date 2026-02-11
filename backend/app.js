@@ -1395,7 +1395,7 @@ app.get('/api/conversations', requireAuth, async (req, res) => {
     const conversations = await Conversation.find({ participants: userId }).sort({ lastMessageTime: -1 });
     const conversationList = await Promise.all(conversations.map(async (conv) => {
       const otherUserId = conv.participants.find(id => id.toString() !== userId.toString());
-      const otherUser = await User.findById(otherUserId).select('username avatar lastSeen');
+      const otherUser = await User.findById(otherUserId).select('Name Image lastSeen');
       const isPinned = conv.pinnedBy.includes(userId);
       const unreadCount = conv.unreadCount.get(userId.toString()) || 0;
       return { _id: conv._id, otherUser, lastMessage: conv.lastMessage, lastMessageTime: conv.lastMessageTime, isPinned, unreadCount };
@@ -1466,10 +1466,12 @@ app.get('/api/rooms/:roomId/messages', requireAuth, async (req, res) => {
 
 app.get('/api/dm/:userId/messages', requireAuth, async (req, res) => {
   try {
+    console.log(req.session.userId,req.params.userId)
     const messages = await DirectMessage.find({ participants: { $all: [req.session.userId, req.params.userId] }, deleted: false }).sort({ createdAt: 1 })
     const currentUserId = req.session.userId;
     let conversation = await Conversation.findOne({ participants: { $all: [currentUserId, req.params.userId] } });
     if (conversation) {
+
       conversation.unreadCount.set(currentUserId.toString(), 0);
       await conversation.save();
     }
