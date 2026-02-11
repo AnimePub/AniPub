@@ -1457,7 +1457,7 @@ app.get('/api/rooms', requireAuth, async (req, res) => {
 
 app.get('/api/rooms/:roomId/messages', requireAuth, async (req, res) => {
   try {
-    const messages = await Message.find({ room: req.params.roomId, deleted: false }).sort({ createdAt: 1 }).limit(100);
+    const messages = await Message.find({ room: req.params.roomId, deleted: false }).sort({ createdAt: 1 })
     res.json(messages);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
@@ -1466,7 +1466,7 @@ app.get('/api/rooms/:roomId/messages', requireAuth, async (req, res) => {
 
 app.get('/api/dm/:userId/messages', requireAuth, async (req, res) => {
   try {
-    const messages = await DirectMessage.find({ participants: { $all: [req.session.userId, req.params.userId] }, deleted: false }).sort({ createdAt: 1 }).limit(100);
+    const messages = await DirectMessage.find({ participants: { $all: [req.session.userId, req.params.userId] }, deleted: false }).sort({ createdAt: 1 })
     const currentUserId = req.session.userId;
     let conversation = await Conversation.findOne({ participants: { $all: [currentUserId, req.params.userId] } });
     if (conversation) {
@@ -1497,7 +1497,7 @@ io.on('connection', (socket) => {
     socket.disconnect();
     return;
   }
-  console.log(`🌸 User connected: ${session.username}`);
+  console.log(` User connected: ${session.username}`);
 
   socket.on('join room', async ({ roomId }) => {
     try {
@@ -1546,7 +1546,7 @@ io.on('connection', (socket) => {
           // Emit loading message
           const loadingMessageData = {
             sender: 'SYSTEM',
-            senderName: '🤖 Anipub AI',
+            senderName: '🤖 Zero Two',
             senderAvatar: 0,
             message: '💭 Thinking...',
             createdAt: new Date(),
@@ -1567,7 +1567,7 @@ io.on('connection', (socket) => {
             },
             body: JSON.stringify({ messages: history })
           });
-          if (!response.ok) throw new Error('AI service error');
+          if (!response.ok) throw new Error('Error with Zero Two');
 
           // Handle streaming response
           const reader = response.body.getReader();
