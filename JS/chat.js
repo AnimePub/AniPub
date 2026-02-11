@@ -3,7 +3,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const roomId = urlParams.get('room');
 
 if (!roomId) {
-    window.location.href = '/';
+    window.location.href = '/chat';
 }
 
 let currentUser = null;
@@ -16,13 +16,14 @@ const emojis = ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','
 
 // Back button
 document.getElementById('back-btn').addEventListener('click', () => {
-    window.location.href = '/';
+    window.location.href = '/chat';
 });
 
 // Get avatar URL
 function getAvatarUrl(avatarNum) {
-    const colors = ['FF6B9D', '667eea', 'FFA500', '20E3B2', 'F368E0', '00D2FF', 'FFD93D', 'A8E6CF'];
-    return `https://ui-avatars.com/api/?name=${avatarNum}&background=${colors[avatarNum - 1]}&color=fff&size=100&bold=true&rounded=true`;
+    if(avatarNum) {
+        return `https://www.anipub.xyz/ZeroTwo.jpg`
+    }
 }
 
 function escapeHtml(text) {
@@ -39,7 +40,7 @@ async function loadUser() {
             currentUser = await response.json();
             document.body.setAttribute('data-theme', currentUser.theme || 'purple');
         } else {
-            window.location.href = '/login.html';
+            window.location.href = '/login';
         }
     } catch (error) {
         console.error('Error loading user:', error);

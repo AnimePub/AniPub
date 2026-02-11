@@ -1345,7 +1345,16 @@ app.get('/message', requireAuth, (req, res) => res.render("Schat"));
 
 app.get('/api/user', requireAuth, async (req, res) => {
   try {
-    const user = await User.findById(req.session.userId).select('-password');
+    const user = await User.findById(req.session.userId, {
+  Password: 0,
+  AcStats:0,
+  List: 0,
+  GenreList: 0,
+  Address: 0,
+  RelationshipStatus: 0,
+  BloodGroup: 0,
+  Hide: 0
+});
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
@@ -1356,7 +1365,7 @@ app.put('/api/user/profile', requireAuth, async (req, res) => {
   try {
     const { bio, theme, backgroundImage } = req.body;
     const user = await User.findById(req.session.userId);
-    if (bio !== undefined) user.bio = bio;
+    if (bio !== undefined) user.Bio = bio;
     if (theme !== undefined) user.theme = theme;
     if (backgroundImage !== undefined) user.backgroundImage = backgroundImage;
     await user.save();
