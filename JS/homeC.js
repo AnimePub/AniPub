@@ -21,8 +21,8 @@ async function loadUser() {
         const response = await fetch('/api/user');
         if (response.ok) {
             currentUser = await response.json();
-            document.getElementById('username').textContent = currentUser.username;
-            document.getElementById('user-avatar').src = getAvatarUrl(currentUser.avatar);
+            document.getElementById('username').textContent = currentUser.Name;
+            document.getElementById('user-avatar').src = getAvatarUrl(currentUser.Image);
             
             if (currentUser.theme) {
                 document.body.setAttribute('data-theme', currentUser.theme);

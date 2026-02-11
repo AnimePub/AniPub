@@ -59,8 +59,8 @@ async function loadOtherUser() {
         const response = await fetch(`/api/users/${otherUserId}`);
         if (response.ok) {
             otherUser = await response.json();
-            document.getElementById('other-user-name').textContent = otherUser.username;
-            document.getElementById('other-user-avatar').src = getAvatarUrl(otherUser.avatar);
+            document.getElementById('other-user-name').textContent = otherUser.Name;
+            document.getElementById('other-user-avatar').src = getAvatarUrl(otherUser.Image);
         }
     } catch (error) {
         console.error('Error loading other user:', error);
