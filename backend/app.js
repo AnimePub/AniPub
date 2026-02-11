@@ -1369,7 +1369,7 @@ app.put('/api/user/profile', requireAuth, async (req, res) => {
     if (theme !== undefined) user.theme = theme;
     if (backgroundImage !== undefined) user.backgroundImage = backgroundImage;
     await user.save();
-    res.json({ success: true, user: { bio: user.bio, theme: user.theme, backgroundImage: user.backgroundImage } });
+    res.json({ success: true, user: { bio: user.Bio, theme: user.theme, backgroundImage: user.backgroundImage } });
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
@@ -1382,7 +1382,7 @@ app.get('/api/users/search', requireAuth, async (req, res) => {
     const users = await User.find({
       Name: { $regex: query, $options: 'i' },
       _id: { $ne: req.session.userId }
-    }).select('username avatar bio lastSeen').limit(10);
+    }).select('Name Image Bio lastSeen').limit(10);
     res.json(users);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });

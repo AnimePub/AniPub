@@ -84,11 +84,11 @@ async function loadConversations() {
         conversationsList.innerHTML = conversations.map(conv => `
             <div class="conversation-item ${conv.isPinned ? 'pinned' : ''}" onclick="openDM('${conv.otherUser._id}')">
                 <div class="conversation-avatar">
-                    <img src="${getAvatarUrl(conv.otherUser.avatar)}" class="avatar avatar-sm" alt="${escapeHtml(conv.otherUser.username)}">
+                    <img src="${getAvatarUrl(conv.otherUser.avatar)}" class="avatar avatar-sm" alt="${escapeHtml(conv.otherUser.Name)}">
                     ${conv.unreadCount > 0 ? `<div class="unread-badge">${conv.unreadCount}</div>` : ''}
                 </div>
                 <div class="conversation-info">
-                    <div class="conversation-name">${escapeHtml(conv.otherUser.username)}</div>
+                    <div class="conversation-name">${escapeHtml(conv.otherUser.Name)}</div>
                     <div class="conversation-preview">${escapeHtml(conv.lastMessage || 'No messages yet')}</div>
                 </div>
                 <div class="conversation-actions">
@@ -199,10 +199,10 @@ searchInput.addEventListener('input', (e) => {
             
             searchResults.innerHTML = users.map(user => `
                 <div class="user-result" onclick="openDM('${user._id}')">
-                    <img src="${getAvatarUrl(user.avatar)}" class="avatar avatar-sm" alt="${escapeHtml(user.username)}">
+                    <img src="${getAvatarUrl(user.Image)}" class="avatar avatar-sm" alt="${escapeHtml(user.Name)}">
                     <div class="user-result-info">
-                        <div class="user-result-name">${escapeHtml(user.username)}</div>
-                        <div class="user-result-bio">${escapeHtml(user.bio || 'No bio')}</div>
+                        <div class="user-result-name">${escapeHtml(user.Name)}</div>
+                        <div class="user-result-bio">${escapeHtml(user.Bio || 'No bio')}</div>
                     </div>
                     <i class="fas fa-paper-plane" style="color: var(--primary-color);"></i>
                 </div>
