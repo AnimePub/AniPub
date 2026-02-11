@@ -40,9 +40,22 @@ async function loadUser() {
 }
 
 function getAvatarUrl(avatarNum) {
-    const colors = ['FF6B9D', '667eea', 'FFA500', '20E3B2', 'F368E0', '00D2FF', 'FFD93D', 'A8E6CF'];
-    return `https://ui-avatars.com/api/?name=${avatarNum}&background=${colors[avatarNum - 1]}&color=fff&size=100&bold=true&rounded=true`;
-}
+    if(Number(avatarNum) === 0) {
+        return `https://www.anipub.xyz/ZeroTwo.jpg`
+    }
+    else {
+        const PIC = avatarNum;
+                            const POSTERARY = PIC.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                                return LINKU;
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                                 return LINKU;
+    }
+}}
 
 function escapeHtml(text) {
     const div = document.createElement('div');

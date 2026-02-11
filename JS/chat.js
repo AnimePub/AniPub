@@ -21,9 +21,23 @@ document.getElementById('back-btn').addEventListener('click', () => {
 
 // Get avatar URL
 function getAvatarUrl(avatarNum) {
-    if(avatarNum) {
+    if(Number(avatarNum) === 0) {
         return `https://www.anipub.xyz/ZeroTwo.jpg`
     }
+    else {
+        const PIC = avatarNum;
+                            const POSTERARY = PIC.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                                return LINKU;
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                                 return LINKU;
+    }
+}
+
 }
 
 function escapeHtml(text) {
