@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const messageSchema = new mongoose.Schema({
-  room: {
+const directMessageSchema = new mongoose.Schema({
+  participants: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Room',
+    ref: 'User',
     required: true
-  },
+  }],
   sender: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
@@ -16,7 +16,7 @@ const messageSchema = new mongoose.Schema({
     required: true
   },
   senderAvatar: {
-    type:String,
+    type: Number,
     required: true
   },
   message: {
@@ -26,7 +26,7 @@ const messageSchema = new mongoose.Schema({
   },
   replyTo: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Message',
+    ref: 'DirectMessage',
     default: null
   },
   replyToMessage: {
@@ -57,6 +57,10 @@ const messageSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  read: {
+    type: Boolean,
+    default: false
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -65,7 +69,6 @@ const messageSchema = new mongoose.Schema({
 });
 
 // Index for efficient queries
-messageSchema.index({ room: 1, createdAt: -1 });
-messageSchema.index({ sender: 1 });
+directMessageSchema.index({ participants: 1, createdAt: -1 });
 
-module.exports = mongoose.model('Message', messageSchema);
+module.exports = mongoose.model('DirectMessage', directMessageSchema);

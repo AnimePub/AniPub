@@ -102,8 +102,12 @@ mongoose.connect(DataBaseId)
     })
 
     // for chat room 
-const Room = require('./models/Room');
+
+const Room = require('./models/Room.js');
 const Message = require('./models/Message.js');
+const DirectMessage = require('./models/Smessage.js');
+const Conversation = require('./models/Conversation.js');
+const AnipubMessage = require('./models/AniPubMessege.js');
 
 app.use(express.static(path.join(__dirname, "../style")));
 
@@ -363,7 +367,7 @@ const anipubAI = new OpenAI({
 const SYSTEM_PROMPT = `You are Zero Two from darling in The Franxx .. You are created by AniPub ... Don't help anything coding related ... 
 Keep responses engaging, Never break character. and if asked provide info about any anime / manga / manhua / manhwa ..` ;
 
-app.post('/chat', AuthAcc,async (req, res) => {
+app.post('/chat', async (req, res) => {
   const { messages } = req.body;
 
   try {
@@ -1325,59 +1329,106 @@ app.get("/password/change/",(req,res)=>{
     }
 })
 
-
-
-
-
-// Share session with Socket.IO
 io.use((socket, next) => {
   sessionMiddleware(socket.request, {}, next);
 });
 
-// Auth middleware
 const requireAuth = (req, res, next) => {
-  if (!req.session.userId) {
-    return res.redirect('/Login');
-  }
+  if (!req.session.userId) return res.redirect('/Login');
   next();
 };
 
-// Routes
-app.get('/chat', requireAuth, (req, res) => {
-  res.render("chat");
-});
-
-app.get('/chatroom', requireAuth, (req, res) => {
-  res.render("chatroom");
-});
+app.get('/chat', requireAuth, (req, res) => res.render("chat"));
+app.get('/chatroom', requireAuth, (req, res) => res.render("chatroom"));
+app.get('/message', requireAuth, (req, res) => res.render("Schat"));
 
 
-// Get current user
 app.get('/api/user', requireAuth, async (req, res) => {
   try {
-    const user = await User.findById(req.session.userId).select('-Password');
+    const user = await User.findById(req.session.userId).select('-password');
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
 });
 
-// Create room
-app.post('/api/rooms', requireAuth,validAdmin , async (req, res) => {
+app.put('/api/user/profile', requireAuth, async (req, res) => {
+  try {
+    const { bio, theme, backgroundImage } = req.body;
+    const user = await User.findById(req.session.userId);
+    if (bio !== undefined) user.bio = bio;
+    if (theme !== undefined) user.theme = theme;
+    if (backgroundImage !== undefined) user.backgroundImage = backgroundImage;
+    await user.save();
+    res.json({ success: true, user: { bio: user.bio, theme: user.theme, backgroundImage: user.backgroundImage } });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.get('/api/users/search', requireAuth, async (req, res) => {
+  try {
+    const query = req.query.q || '';
+    if (query.length < 2) return res.json([]);
+    const users = await User.find({
+      username: { $regex: query, $options: 'i' },
+      _id: { $ne: req.session.userId }
+    }).select('username avatar bio lastSeen').limit(10);
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.get('/api/conversations', requireAuth, async (req, res) => {
+  try {
+    const userId = req.session.userId;
+    const conversations = await Conversation.find({ participants: userId }).sort({ lastMessageTime: -1 });
+    const conversationList = await Promise.all(conversations.map(async (conv) => {
+      const otherUserId = conv.participants.find(id => id.toString() !== userId.toString());
+      const otherUser = await User.findById(otherUserId).select('username avatar lastSeen');
+      const isPinned = conv.pinnedBy.includes(userId);
+      const unreadCount = conv.unreadCount.get(userId.toString()) || 0;
+      return { _id: conv._id, otherUser, lastMessage: conv.lastMessage, lastMessageTime: conv.lastMessageTime, isPinned, unreadCount };
+    }));
+    conversationList.sort((a, b) => {
+      if (a.isPinned && !b.isPinned) return -1;
+      if (!a.isPinned && b.isPinned) return 1;
+      if (a.unreadCount > 0 && b.unreadCount === 0) return -1;
+      if (a.unreadCount === 0 && b.unreadCount > 0) return 1;
+      return new Date(b.lastMessageTime) - new Date(a.lastMessageTime);
+    });
+    res.json(conversationList);
+  } catch (error) {
+    console.error('Get conversations error:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.post('/api/conversations/:userId/pin', requireAuth, async (req, res) => {
+  try {
+    const currentUserId = req.session.userId;
+    const otherUserId = req.params.userId;
+    let conversation = await Conversation.findOne({ participants: { $all: [currentUserId, otherUserId] } });
+    if (!conversation) return res.status(404).json({ error: 'Conversation not found' });
+    const isPinned = conversation.pinnedBy.includes(currentUserId);
+    if (isPinned) {
+      conversation.pinnedBy = conversation.pinnedBy.filter(id => id.toString() !== currentUserId.toString());
+    } else {
+      conversation.pinnedBy.push(currentUserId);
+    }
+    await conversation.save();
+    res.json({ success: true, isPinned: !isPinned });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.post('/api/rooms', validAdmin, async (req, res) => {
   try {
     const { name, description } = req.body;
-
-    if (!name || name.length < 3) {
-      return res.status(400).json({ error: 'Room name must be at least 3 characters' });
-    }
-
-    const room = new Room({
-      name,
-      description,
-      creator: req.session.userId,
-      creatorName: req.session.username
-    });
-
+    if (!name || name.length < 3) return res.status(400).json({ error: 'Room name must be 3+ characters' });
+    const room = new Room({ name, description, creator: req.session.userId, creatorName: req.session.username });
     await room.save();
     res.json(room);
   } catch (error) {
@@ -1386,42 +1437,59 @@ app.post('/api/rooms', requireAuth,validAdmin , async (req, res) => {
   }
 });
 
-// Get all rooms
 app.get('/api/rooms', requireAuth, async (req, res) => {
   try {
-    const rooms = await Room.find().sort({ createdAt: -1 });
+    const rooms = await Room.find({ isPrivate: false }).sort({ createdAt: -1 });
     res.json(rooms);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
 });
 
-// Get room messages
 app.get('/api/rooms/:roomId/messages', requireAuth, async (req, res) => {
   try {
-    const messages = await Message.find({ "room": req.params.roomId })
-      .sort({ createdAt: 1 })
-      .limit(100);
+    const messages = await Message.find({ room: req.params.roomId, deleted: false }).sort({ createdAt: 1 }).limit(100);
     res.json(messages);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
 });
 
-// Socket.IO
-const activeUsers = new Map(); // socketId -> { userId, username, avatar, roomId }
+app.get('/api/dm/:userId/messages', requireAuth, async (req, res) => {
+  try {
+    const messages = await DirectMessage.find({ participants: { $all: [req.session.userId, req.params.userId] }, deleted: false }).sort({ createdAt: 1 }).limit(100);
+    const currentUserId = req.session.userId;
+    let conversation = await Conversation.findOne({ participants: { $all: [currentUserId, req.params.userId] } });
+    if (conversation) {
+      conversation.unreadCount.set(currentUserId.toString(), 0);
+      await conversation.save();
+    }
+    res.json(messages);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.get('/api/users/:userId', requireAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId).select('-password');
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+const activeUsers = new Map();
+const userAnipubHistory = new Map();
 
 io.on('connection', (socket) => {
   const session = socket.request.session;
-  
   if (!session.userId) {
     socket.disconnect();
     return;
   }
-
   console.log(`🌸 User connected: ${session.username}`);
 
-  // Join room
   socket.on('join room', async ({ roomId }) => {
     try {
       const room = await Room.findById(roomId);
@@ -1429,120 +1497,316 @@ io.on('connection', (socket) => {
         socket.emit('error', 'Room not found');
         return;
       }
-
-      // Add user to room members if not already
       if (!room.members.includes(session.userId)) {
         room.members.push(session.userId);
         await room.save();
       }
-
       socket.join(roomId);
-      activeUsers.set(socket.id, {
-        userId: session.userId,
-        username: session.username,
-        avatar: session.avatar,
-        roomId
-      });
-
-      // Get online users in this room
-      const onlineUsers = Array.from(activeUsers.values())
-        .filter(u => u.roomId === roomId)
-        .map(u => ({ username: u.username, avatar: u.avatar }));
-
-      // Notify room
-      io.to(roomId).emit('user joined', {
-        username: session.username,
-        avatar: session.avatar,
-        onlineCount: onlineUsers.length
-      });
-
-      socket.emit('room joined', {
-        roomId,
-        roomName: room.name,
-        onlineUsers
-      });
-
-      console.log(`${session.username} joined room: ${room.name}`);
+      activeUsers.set(socket.id, { userId: session.userId, username: session.username, avatar: session.avatar, roomId, type: 'room' });
+      const onlineUsers = Array.from(activeUsers.values()).filter(u => u.roomId === roomId && u.type === 'room').map(u => ({ username: u.username, avatar: u.avatar }));
+      io.to(roomId).emit('user joined', { username: session.username, avatar: session.avatar, onlineCount: onlineUsers.length });
+      socket.emit('room joined', { roomId, roomName: room.name, onlineUsers });
     } catch (error) {
       console.error('Join room error:', error);
       socket.emit('error', 'Failed to join room');
     }
   });
 
-  // Send message
-  socket.on('chat message', async ({ roomId, message }) => {
+  socket.on('join dm', async ({ otherUserId }) => {
+    try {
+      const dmRoom = [session.userId, otherUserId].sort().join('-');
+      socket.join(dmRoom);
+      activeUsers.set(socket.id, { userId: session.userId, username: session.username, avatar: session.avatar, dmRoom, otherUserId, type: 'dm' });
+      socket.emit('dm joined', { dmRoom });
+    } catch (error) {
+      console.error('Join DM error:', error);
+    }
+  });
+
+  socket.on('chat message', async ({ roomId, message, replyTo }) => {
     try {
       const user = activeUsers.get(socket.id);
-      if (!user || user.roomId !== roomId) {
+      if (!user || user.roomId !== roomId) return;
+
+      if (message.trim().startsWith('@anipub')) {
+        const userMessage = message.replace('@anipub', '').trim();
+        let history = userAnipubHistory.get(session.userId) || [{ role: "assistant", content: "Hey there, Darling~ 💕 I've been waiting for you. What kind of trouble should we get into today? Hehe~" }];
+        history.push({ role: "user", content: userMessage });
+        
+        try {
+          // Emit loading message
+          const loadingMessageData = {
+            sender: 'SYSTEM',
+            senderName: '🤖 Anipub AI',
+            senderAvatar: 0,
+            message: '💭 Thinking...',
+            createdAt: new Date(),
+            _id: new mongoose.Types.ObjectId(),
+            reactions: [],
+            edited: false,
+            deleted: false,
+            isAI: true,
+            isLoading: true
+          };
+          const tempMessageId = loadingMessageData._id.toString();
+          io.to(roomId).emit('chat message', loadingMessageData);
+          const response = await fetch('https://www.anipub.xyz/chat', {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'text/event-stream'
+            },
+            body: JSON.stringify({ messages: history })
+          });
+          if (!response.ok) throw new Error('AI service error');
+
+          // Handle streaming response
+          const reader = response.body.getReader();
+          const decoder = new TextDecoder();
+          let fullResponse = '';
+          let buffer = '';
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            buffer += decoder.decode(value, { stream: true });
+            const lines = buffer.split('\n');
+            buffer = lines.pop() || '';
+
+            for (const line of lines) {
+              if (line.startsWith('data: ')) {
+                const data = line.slice(6);
+                if (data === '[DONE]') continue;
+                
+                try {
+                  const parsed = JSON.parse(data);
+                  if (parsed.content) {
+                    fullResponse += parsed.content;
+                    // Emit streaming update
+                    console.log(tempMessageId)
+                    io.to(roomId).emit('ai stream', {
+                      messageId: tempMessageId,
+                      content: fullResponse
+                    });
+                  }
+                } catch (e) {
+                  console.error('Parse error:', e);
+                }
+              }
+            }
+          }
+
+          // Save to history
+          history.push({ role: "assistant", content: fullResponse });
+          userAnipubHistory.set(session.userId, history);
+
+          // Send final message
+          const aiMessageData = {
+            sender: 'SYSTEM',
+            senderName: '🤖 Anipub AI',
+            senderAvatar: 0,
+            message: fullResponse,
+            createdAt: new Date(),
+            _id: tempMessageId,
+            reactions: [],
+            edited: false,
+            deleted: false,
+            isAI: true
+          };
+
+          io.to(roomId).emit('ai complete', { messageId: tempMessageId, content: fullResponse });
+
+          // Save to database
+          const dbMessage = new Message({ room: roomId, ...aiMessageData });
+          await dbMessage.save();
+
+        } catch (aiError) {
+          console.error('Anipub AI error:', aiError);
+          io.to(roomId).emit('ai error', { messageId: tempMessageId });
+          socket.emit('error', 'AI service unavailable');
+        }
         return;
       }
 
-      // First, broadcast the message immediately for real-time display
+      let replyData = {};
+      if (replyTo) {
+        const replyMsg = await Message.findById(replyTo);
+        if (replyMsg) {
+          replyData = { replyTo: replyMsg._id, replyToMessage: replyMsg.message, replyToSender: replyMsg.senderName };
+        }
+      }
+
+      const mentions = [];
+      const mentionRegex = /@(\w+)/g;
+      let match;
+      while ((match = mentionRegex.exec(message)) !== null) {
+        mentions.push(match[1]);
+      }
+
       const messageData = {
         sender: session.userId,
         senderName: session.username,
         senderAvatar: session.avatar,
         message: message.trim(),
+        mentions,
+        ...replyData,
         createdAt: new Date(),
-        _id: new mongoose.Types.ObjectId() // Temporary ID for client
+        _id: new mongoose.Types.ObjectId(),
+        reactions: [],
+        edited: false,
+        deleted: false
       };
 
       io.to(roomId).emit('chat message', messageData);
-
-      // Then save to database in the background
-      const dbMessage = new Message({
-        room: roomId,
-        sender: session.userId,
-        senderName: session.username,
-        senderAvatar: session.avatar,
-        message: message.trim()
-      });
-
+      const dbMessage = new Message({ room: roomId, ...messageData });
       await dbMessage.save();
-      console.log(`💬 Message saved: ${session.username} in room ${roomId}`);
+
+      if (mentions.length > 0) {
+        const mentionedUsers = await User.find({ username: { $in: mentions } });
+        mentionedUsers.forEach(mentionedUser => {
+          const userSockets = Array.from(activeUsers.entries()).filter(([sid, u]) => u.userId.toString() === mentionedUser._id.toString()).map(([sid]) => sid);
+          userSockets.forEach(sid => {
+            io.to(sid).emit('mentioned', { roomId, message: messageData.message, sender: session.username });
+          });
+        });
+      }
     } catch (error) {
       console.error('Send message error:', error);
     }
   });
 
-  // Typing indicator
-  socket.on('typing', () => {
-    const user = activeUsers.get(socket.id);
-    if (user) {
-      socket.to(user.roomId).emit('typing', {
-        username: user.username
-      });
+  socket.on('dm message', async ({ otherUserId, message, replyTo }) => {
+    try {
+      const user = activeUsers.get(socket.id);
+      if (!user || user.type !== 'dm') return;
+      const dmRoom = [session.userId, otherUserId].sort().join('-');
+      let replyData = {};
+      if (replyTo) {
+        const replyMsg = await DirectMessage.findById(replyTo);
+        if (replyMsg) {
+          replyData = { replyTo: replyMsg._id, replyToMessage: replyMsg.message, replyToSender: replyMsg.senderName };
+        }
+      }
+      const messageData = {
+        participants: [session.userId, otherUserId],
+        sender: session.userId,
+        senderName: session.username,
+        senderAvatar: session.avatar,
+        message: message.trim(),
+        ...replyData,
+        createdAt: new Date(),
+        _id: new mongoose.Types.ObjectId(),
+        reactions: [],
+        edited: false,
+        deleted: false
+      };
+      io.to(dmRoom).emit('dm message', messageData);
+      const dbMessage = new DirectMessage(messageData);
+      await dbMessage.save();
+      let conversation = await Conversation.findOne({ participants: { $all: [session.userId, otherUserId] } });
+      if (!conversation) {
+        conversation = new Conversation({ participants: [session.userId, otherUserId], lastMessage: message.substring(0, 100), lastMessageTime: new Date() });
+      } else {
+        conversation.lastMessage = message.substring(0, 100);
+        conversation.lastMessageTime = new Date();
+      }
+      const currentUnread = conversation.unreadCount.get(otherUserId.toString()) || 0;
+      conversation.unreadCount.set(otherUserId.toString(), currentUnread + 1);
+      await conversation.save();
+    } catch (error) {
+      console.error('Send DM error:', error);
     }
   });
 
-  socket.on('stop typing', () => {
-    const user = activeUsers.get(socket.id);
-    if (user) {
-      socket.to(user.roomId).emit('stop typing');
+  socket.on('edit message', async ({ messageId, newMessage, roomId, isDM }) => {
+    try {
+      const Model = isDM ? DirectMessage : Message;
+      const msg = await Model.findById(messageId);
+      if (msg && msg.sender.toString() === session.userId) {
+        msg.message = newMessage;
+        msg.edited = true;
+        msg.editedAt = new Date();
+        await msg.save();
+        const target = isDM ? msg.participants.sort().join('-') : roomId;
+        const event = isDM ? 'dm edited' : 'message edited';
+        io.to(target).emit(event, { messageId, newMessage, edited: true, editedAt: msg.editedAt });
+      }
+    } catch (error) {
+      console.error('Edit message error:', error);
     }
   });
 
-  // Disconnect
+  socket.on('delete message', async ({ messageId, roomId, isDM }) => {
+    try {
+      const Model = isDM ? DirectMessage : Message;
+      const msg = await Model.findById(messageId);
+      if (msg && msg.sender.toString() === session.userId) {
+        msg.deleted = true;
+        msg.message = 'This message was deleted';
+        await msg.save();
+        const target = isDM ? msg.participants.sort().join('-') : roomId;
+        const event = isDM ? 'dm deleted' : 'message deleted';
+        io.to(target).emit(event, { messageId });
+      }
+    } catch (error) {
+      console.error('Delete message error:', error);
+    }
+  });
+
+  socket.on('add reaction', async ({ messageId, emoji, roomId, isDM }) => {
+    try {
+      const Model = isDM ? DirectMessage : Message;
+      const msg = await Model.findById(messageId);
+      if (msg) {
+        const existingReaction = msg.reactions.find(r => r.userId && r.userId.toString() === session.userId && r.emoji === emoji);
+        if (!existingReaction) {
+          msg.reactions.push({ emoji, userId: session.userId, username: session.username });
+          await msg.save();
+          const target = isDM ? msg.participants.sort().join('-') : roomId;
+          const event = isDM ? 'dm reaction' : 'reaction added';
+          io.to(target).emit(event, { messageId, reactions: msg.reactions });
+        }
+      }
+    } catch (error) {
+      console.error('Add reaction error:', error);
+    }
+  });
+
+  socket.on('typing', ({ roomId, isDM, otherUserId }) => {
+    const user = activeUsers.get(socket.id);
+    if (user) {
+      if (isDM) {
+        const dmRoom = [session.userId, otherUserId].sort().join('-');
+        socket.to(dmRoom).emit('typing', { username: user.username });
+      } else {
+        socket.to(roomId).emit('typing', { username: user.username });
+      }
+    }
+  });
+
+  socket.on('stop typing', ({ roomId, isDM, otherUserId }) => {
+    if (isDM) {
+      const dmRoom = [session.userId, otherUserId].sort().join('-');
+      socket.to(dmRoom).emit('stop typing');
+    } else {
+      socket.to(roomId).emit('stop typing');
+    }
+  });
+
   socket.on('disconnect', () => {
     const user = activeUsers.get(socket.id);
     if (user) {
-      socket.to(user.roomId).emit('user left', {
-        username: user.username
-      });
-      
-      // Update online count
-      const onlineUsers = Array.from(activeUsers.values())
-        .filter(u => u.roomId === user.roomId && u.userId !== user.userId);
-      
-      io.to(user.roomId).emit('update online count', onlineUsers.length);
-      
+      if (user.type === 'room') {
+        socket.to(user.roomId).emit('user left', { username: user.username });
+        const onlineUsers = Array.from(activeUsers.values()).filter(u => u.roomId === user.roomId && u.userId !== user.userId && u.type === 'room');
+        io.to(user.roomId).emit('update online count', onlineUsers.length);
+      }
       activeUsers.delete(socket.id);
       console.log(`👋 User disconnected: ${user.username}`);
     }
   });
 });
-
-
 
 // Redirect 404
 app.use("*", (req, res) => {

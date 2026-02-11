@@ -3,52 +3,562 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 Anime Messenger - Rooms</title>
-    <link rel="stylesheet" href="/homeC.css">
+    <title>🌸 Anime Messenger Pro</title>
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            height: calc(100vh - 40px);
+        }
+
+        /* LEFT SIDEBAR - DM Conversations */
+        .conversations-sidebar {
+            width: 320px;
+            background: var(--bg-primary);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .sidebar-header h3 {
+            font-size: 1.3em;
+            color: var(--text-primary);
+        }
+
+        .conversations-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .conversation-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .conversation-item:hover {
+            background: var(--bg-secondary);
+            transform: translateX(5px);
+        }
+
+        .conversation-item.pinned {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 2px solid var(--primary-color);
+        }
+
+        .conversation-avatar {
+            position: relative;
+        }
+
+        .unread-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-weight: 700;
+        }
+
+        .conversation-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .conversation-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .conversation-preview {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .conversation-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .pin-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .pin-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .pin-btn.pinned {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .empty-conversations {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+        }
+
+        /* MAIN CONTENT AREA */
+        .main-content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow: hidden;
+        }
+
+        .main-header {
+            background: var(--bg-primary);
+            padding: 20px 30px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border-radius: 50px;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+
+        .search-results {
+            margin-top: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .user-result {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .user-result:hover {
+            background: var(--bg-secondary);
+            border-color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .user-result-info {
+            flex: 1;
+        }
+
+        .user-result-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .user-result-bio {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Rooms Grid */
+        .rooms-section {
+            flex: 1;
+            background: var(--bg-primary);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .room-card {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-radius: 20px;
+            padding: 24px;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .room-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .room-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            margin-bottom: 12px;
+        }
+
+        .room-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .room-description {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            margin-bottom: 16px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .room-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: 24px;
+            padding: 32px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-title {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        textarea.input {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .conversations-sidebar {
+                width: 100%;
+                max-height: 300px;
+            }
+        }
+    </style>
 </head>
-<body>
+<body data-theme="purple">
     <div class="bg-animation" id="bg-animation"></div>
 
     <div class="container">
-        <header class="main-header">
-            <div class="header-left">
-                <h1>🌸 Anime Messenger</h1>
+        <!-- LEFT SIDEBAR - Conversations -->
+        <aside class="conversations-sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-comments"></i> Messages</h3>
             </div>
-            <div class="header-right">
-                <span class="welcome">Welcome, <strong id="username"></strong>!</span>
-                <button id="logout-btn" class="btn-secondary">Account</button>
+            <div class="conversations-list" id="conversations-list">
+                <div class="empty-conversations">
+                    <i class="fas fa-inbox" style="font-size: 3em; opacity: 0.3; margin-bottom: 10px;"></i>
+                    <p>No conversations yet<br>Start chatting with someone!</p>
+                </div>
             </div>
-        </header>
+        </aside>
 
-        <div class="content">
-            <div class="rooms-header">
-                <h2>Chat Rooms</h2>
-                <button id="create-room-btn" class="btn-primary">+ Create Room</button>
+        <!-- MAIN CONTENT -->
+        <div class="main-content-wrapper">
+            <header class="main-header">
+                <div class="header-content">
+                    <div class="logo">
+                        <i class="fas fa-comments"></i>
+                        Anime Messenger Pro
+                    </div>
+                    <div class="header-actions">
+                        <div class="user-info">
+                            <img class="avatar avatar-sm" id="user-avatar" src="" alt="Avatar">
+                            <span id="username" style="font-weight: 600;"></span>
+                        </div>
+                        <button class="btn btn-ghost" id="theme-btn" title="Change Theme">
+                            <i class="fas fa-palette"></i>
+                        </button>
+                        <button class="btn btn-ghost" id="bg-btn" title="Background">
+                            <i class="fas fa-image"></i>
+                        </button>
+                        <button class="btn btn-secondary" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="search-section">
+                <h3 style="margin-bottom: 12px; color: var(--text-primary);">
+                    <i class="fas fa-search"></i> Find People
+                </h3>
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="user-search" class="input" placeholder="Search users..." autocomplete="off">
+                </div>
+                <div class="search-results" id="search-results"></div>
             </div>
 
-            <div id="rooms-list" class="rooms-list">
-                <!-- Rooms-->
-            </div>
+            <main class="rooms-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-door-open"></i>
+                        Chat Rooms
+                    </h2>
+                    <button class="btn btn-primary" id="create-room-btn">
+                        <i class="fas fa-plus-circle"></i>
+                        Create Room
+                    </button>
+                </div>
+                <div class="rooms-grid" id="rooms-list"></div>
+            </main>
         </div>
     </div>
 
     <!-- Create Room Modal -->
-    <div id="create-room-modal" class="modal">
+    <div class="modal" id="create-room-modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Create New Room</h2>
+            <button class="modal-close" id="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title">
+                <i class="fas fa-plus-circle"></i> Create New Room
+            </h2>
             <form id="create-room-form">
                 <div class="form-group">
-                    <label>Room Name</label>
-                    <input type="text" id="room-name" placeholder="Enter room name..." required maxlength="50">
+                    <label class="form-label">Room Name *</label>
+                    <input type="text" class="input" id="room-name" placeholder="Enter room name..." required maxlength="50">
                 </div>
                 <div class="form-group">
-                    <label>Description (Optional)</label>
-                    <textarea id="room-description" placeholder="What's this room about?" maxlength="200"></textarea>
+                    <label class="form-label">Description</label>
+                    <textarea class="input" id="room-description" placeholder="What's this room about?" maxlength="200"></textarea>
                 </div>
-                <button type="submit" class="btn-primary">Create Room ✨</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-check"></i> Create Room
+                </button>
                 <p class="error-message" id="create-error"></p>
             </form>
+        </div>
+    </div>
+
+    <!-- Theme Selector Modal -->
+    <div class="modal" id="theme-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="document.getElementById('theme-modal').classList.remove('show')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="modal-title"><i class="fas fa-palette"></i> Choose Theme</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <button class="btn btn-outline" onclick="changeTheme('purple')" style="justify-content: center;">Purple Dream</button>
+                <button class="btn btn-outline" onclick="changeTheme('blue')" style="justify-content: center;">Ocean Blue</button>
+                <button class="btn btn-outline" onclick="changeTheme('pink')" style="justify-content: center;">Cherry Blossom</button>
+                <button class="btn btn-outline" onclick="changeTheme('green')" style="justify-content: center;">Nature Green</button>
+                <button class="btn btn-outline" onclick="changeTheme('orange')" style="justify-content: center;">Sunset Orange</button>
+                <button class="btn btn-outline" onclick="changeTheme('dark')" style="justify-content: center;">Dark Mode</button>
+            </div>
         </div>
     </div>
 

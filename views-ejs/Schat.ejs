@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Room - Anime Messenger Pro</title>
+    <title>Direct Message - Anime Messenger Pro</title>
     <link rel="stylesheet" href="/theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -57,17 +57,20 @@
             transform: translateX(-3px);
         }
 
-        .room-info h2 {
+        .user-info-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-info-header h2 {
             font-size: 1.5em;
             margin-bottom: 5px;
         }
 
-        .online-count {
+        .user-status {
             font-size: 0.9em;
             opacity: 0.9;
-            display: flex;
-            align-items: center;
-            gap: 5px;
         }
 
         .messages-area {
@@ -209,14 +212,6 @@
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border-color: transparent;
-        }
-
-        .system-message {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.9em;
-            margin: 15px 0;
-            font-weight: 500;
         }
 
         .typing-indicator {
@@ -378,27 +373,12 @@
                 padding: 15px 20px;
             }
 
-            .header-left {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
             .messages-area {
                 padding: 15px;
             }
 
             .message-content {
                 max-width: 85%;
-            }
-
-            .chat-input-wrapper {
-                padding: 15px;
-            }
-
-            .emoji-picker {
-                right: 15px;
-                max-width: 90%;
             }
         }
     </style>
@@ -411,11 +391,11 @@
                     <i class="fas fa-arrow-left"></i>
                     Back
                 </button>
-                <div class="room-info">
-                    <h2 id="room-name">Loading...</h2>
-                    <div class="online-count">
-                        <i class="fas fa-circle" style="color: #2ecc71; font-size: 0.6em;"></i>
-                        <span id="online-count">0</span> online
+                <div class="user-info-header">
+                    <img class="avatar avatar-lg" id="other-user-avatar" src="" alt="Avatar">
+                    <div>
+                        <h2 id="other-user-name">Loading...</h2>
+                        <div class="user-status" id="user-status">Online</div>
                     </div>
                 </div>
             </div>
@@ -453,6 +433,6 @@
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/chat.js"></script>
+    <script src="dm.js"></script>
 </body>
 </html>

@@ -1,25 +1,23 @@
 const socket = io();
 const urlParams = new URLSearchParams(window.location.search);
-const roomId = urlParams.get('room');
+const otherUserId = urlParams.get('user');
 
-if (!roomId) {
-    window.location.href = '/';
+if (!otherUserId) {
+    window.location.href = '/Home';
 }
 
 let currentUser = null;
+let otherUser = null;
 let typingTimer;
 let replyToMessageId = null;
 let editingMessageId = null;
 
-// Emojis
-const emojis = ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🤫','🤔','🤐','🤨','😐','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','🥴','😵','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','😟','🙁','☹️','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽','👾','🤖','😺','😸','😹','😻','😼','😽','🙀','😿','😾','❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❣️','💕','💞','💓','💗','💖','💘','💝','👋','🤚','🖐️','✋','🖖','👌','🤌','🤏','✌️','🤞','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝️','👍','👎','✊','👊','🤛','🤜','👏','🙌','👐','🤲','🤝','🙏','✍️','💅','🤳','💪','🦾','🦿','🦵','🦶','👂','🦻','👃','🧠','🫀','🫁','🦷','🦴','👀','👁️','👅','👄','💋','🩸'];
+const emojis = ['😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','☺️','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🤫','🤔','🤐','🤨','😐','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','🥴','😵','🤯','🤠','🥳','🥸','😎','🤓','🧐','😕','😟','🙁','☹️','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','👿','💀','☠️','💩','🤡','👹','👺','👻','👽','👾','🤖','😺','😸','😹','😻','😼','😽','🙀','😿','😾','❤️','🧡','💛','💚','💙','💜','🖤','🤍','🤎','💔','❣️','💕','💞','💓','💗','💖','💘','💝','👋','🤚','🖐️','✋','🖖','👌','🤌','🤏','✌️','🤞','🤟','🤘','🤙','👈','👉','👆','🖕','👇','☝️','👍','👎','✊','👊','🤛','🤜','👏','🙌','👐','🤲','🤝','🙏','✍️','💅','🤳','💪'];
 
-// Back button
 document.getElementById('back-btn').addEventListener('click', () => {
-    window.location.href = '/';
+    window.location.href = '/Home';
 });
 
-// Get avatar URL
 function getAvatarUrl(avatarNum) {
     const colors = ['FF6B9D', '667eea', 'FFA500', '20E3B2', 'F368E0', '00D2FF', 'FFD93D', 'A8E6CF'];
     return `https://ui-avatars.com/api/?name=${avatarNum}&background=${colors[avatarNum - 1]}&color=fff&size=100&bold=true&rounded=true`;
@@ -31,7 +29,6 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// Load current user
 async function loadUser() {
     try {
         const response = await fetch('/api/user');
@@ -46,10 +43,22 @@ async function loadUser() {
     }
 }
 
-// Load previous messages
+async function loadOtherUser() {
+    try {
+        const response = await fetch(`/api/users/${otherUserId}`);
+        if (response.ok) {
+            otherUser = await response.json();
+            document.getElementById('other-user-name').textContent = otherUser.username;
+            document.getElementById('other-user-avatar').src = getAvatarUrl(otherUser.avatar);
+        }
+    } catch (error) {
+        console.error('Error loading other user:', error);
+    }
+}
+
 async function loadMessages() {
     try {
-        const response = await fetch(`/api/rooms/${roomId}/messages`);
+        const response = await fetch(`/api/dm/${otherUserId}/messages`);
         const messages = await response.json();
         
         messages.forEach(msg => {
@@ -67,7 +76,6 @@ function scrollToBottom() {
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-// Add message to UI
 function addMessage(data, shouldScroll = true) {
     const messagesDiv = document.getElementById('messages');
     const messageEl = document.createElement('div');
@@ -163,16 +171,6 @@ function addMessage(data, shouldScroll = true) {
     }
 }
 
-function addSystemMessage(text) {
-    const messagesDiv = document.getElementById('messages');
-    const messageEl = document.createElement('div');
-    messageEl.className = 'system-message';
-    messageEl.textContent = text;
-    messagesDiv.appendChild(messageEl);
-    scrollToBottom();
-}
-
-// Reply to message
 window.replyToMessage = function(messageId, messageText, senderName) {
     replyToMessageId = messageId;
     document.getElementById('reply-preview-text').textContent = `${senderName}: ${messageText.substring(0, 100)}`;
@@ -185,7 +183,6 @@ document.getElementById('cancel-reply').addEventListener('click', () => {
     document.getElementById('reply-preview').classList.remove('show');
 });
 
-// Edit message
 window.editMessage = function(messageId, currentText) {
     editingMessageId = messageId;
     const input = document.getElementById('message-input');
@@ -194,39 +191,35 @@ window.editMessage = function(messageId, currentText) {
     input.setSelectionRange(input.value.length, input.value.length);
 };
 
-// Delete message
 window.deleteMessage = function(messageId) {
     if (confirm('Delete this message?')) {
-        socket.emit('delete message', { messageId, roomId, isDM: false });
+        socket.emit('delete message', { messageId, isDM: true });
     }
 };
 
-// React to message
 window.reactToMessage = function(messageId) {
     const picker = document.getElementById('emoji-picker');
     picker.setAttribute('data-message-id', messageId);
     picker.classList.toggle('show');
 };
 
-// Send message
 const messageInput = document.getElementById('message-input');
 const sendBtn = document.getElementById('send-btn');
 
 function sendMessage() {
     const message = messageInput.value.trim();
-    if (!message || !roomId) return;
+    if (!message || !otherUserId) return;
 
     if (editingMessageId) {
         socket.emit('edit message', { 
             messageId: editingMessageId, 
             newMessage: message,
-            roomId,
-            isDM: false
+            isDM: true
         });
         editingMessageId = null;
     } else {
-        socket.emit('chat message', { 
-            roomId, 
+        socket.emit('dm message', { 
+            otherUserId, 
             message,
             replyTo: replyToMessageId
         });
@@ -236,7 +229,7 @@ function sendMessage() {
 
     messageInput.value = '';
     messageInput.style.height = 'auto';
-    socket.emit('stop typing', { roomId, isDM: false });
+    socket.emit('stop typing', { isDM: true, otherUserId });
 }
 
 sendBtn.addEventListener('click', sendMessage);
@@ -247,19 +240,17 @@ messageInput.addEventListener('keypress', (e) => {
     }
 });
 
-// Auto-resize textarea
 messageInput.addEventListener('input', () => {
     messageInput.style.height = 'auto';
     messageInput.style.height = Math.min(messageInput.scrollHeight, 150) + 'px';
 
-    socket.emit('typing', { roomId, isDM: false });
+    socket.emit('typing', { isDM: true, otherUserId });
     clearTimeout(typingTimer);
     typingTimer = setTimeout(() => {
-        socket.emit('stop typing', { roomId, isDM: false });
+        socket.emit('stop typing', { isDM: true, otherUserId });
     }, 1000);
 });
 
-// Emoji picker
 const emojiBtn = document.getElementById('emoji-btn');
 const emojiPicker = document.getElementById('emoji-picker');
 const emojiGrid = document.getElementById('emoji-grid');
@@ -283,7 +274,7 @@ emojiPicker.addEventListener('click', (e) => {
 window.selectEmoji = function(emoji) {
     const messageId = emojiPicker.getAttribute('data-message-id');
     if (messageId) {
-        socket.emit('add reaction', { messageId, emoji, roomId, isDM: false });
+        socket.emit('add reaction', { messageId, emoji, isDM: true });
         emojiPicker.removeAttribute('data-message-id');
         emojiPicker.classList.remove('show');
     } else {
@@ -292,59 +283,23 @@ window.selectEmoji = function(emoji) {
     }
 };
 
-// Socket events
 socket.on('connect', async () => {
     console.log('Connected to server');
     await loadUser();
+    await loadOtherUser();
     await loadMessages();
-    socket.emit('join room', { roomId });
+    socket.emit('join dm', { otherUserId });
 });
 
-socket.on('room joined', (data) => {
-    document.getElementById('room-name').textContent = data.roomName;
-    document.getElementById('online-count').textContent = data.onlineUsers.length;
+socket.on('dm joined', () => {
     messageInput.focus();
 });
 
-socket.on('chat message', (data) => {
+socket.on('dm message', (data) => {
     addMessage(data);
 });
 
-// Handle AI streaming
-socket.on('ai stream', (data) => {
-    const messageEl = document.querySelector(`.message[data-id="${data.messageId}"]`);
-    if (messageEl) {
-        const textEl = messageEl.querySelector('.message-text');
-        if (textEl) {
-            textEl.textContent = data.content;
-            scrollToBottom();
-        }
-    }
-});
-
-socket.on('ai complete', (data) => {
-    const messageEl = document.querySelector(`.message[data-id="${data.messageId}"]`);
-    if (messageEl) {
-        const textEl = messageEl.querySelector('.message-text');
-        if (textEl) {
-            textEl.textContent = data.content;
-            messageEl.classList.remove('loading');
-        }
-    }
-});
-
-socket.on('ai error', (data) => {
-    const messageEl = document.querySelector(`.message[data-id="${data.messageId}"]`);
-    if (messageEl) {
-        const textEl = messageEl.querySelector('.message-text');
-        if (textEl) {
-            textEl.textContent = '❌ AI service temporarily unavailable';
-            textEl.classList.add('deleted');
-        }
-    }
-});
-
-socket.on('message edited', (data) => {
+socket.on('dm edited', (data) => {
     const messageEl = document.querySelector(`.message[data-id="${data.messageId}"]`);
     if (messageEl) {
         const textEl = messageEl.querySelector('.message-text');
@@ -353,7 +308,7 @@ socket.on('message edited', (data) => {
     }
 });
 
-socket.on('message deleted', (data) => {
+socket.on('dm deleted', (data) => {
     const messageEl = document.querySelector(`.message[data-id="${data.messageId}"]`);
     if (messageEl) {
         const textEl = messageEl.querySelector('.message-text');
@@ -364,7 +319,7 @@ socket.on('message deleted', (data) => {
     }
 });
 
-socket.on('reaction added', (data) => {
+socket.on('dm reaction', (data) => {
     const messageEl = document.querySelector(`.message[data-id="${data.messageId}"]`);
     if (messageEl) {
         let reactionsDiv = messageEl.querySelector('.message-reactions');
@@ -398,19 +353,6 @@ socket.on('reaction added', (data) => {
     }
 });
 
-socket.on('user joined', (data) => {
-    addSystemMessage(`✨ ${data.username} joined the room!`);
-    document.getElementById('online-count').textContent = data.onlineCount;
-});
-
-socket.on('user left', (data) => {
-    addSystemMessage(`👋 ${data.username} left the room`);
-});
-
-socket.on('update online count', (count) => {
-    document.getElementById('online-count').textContent = count;
-});
-
 const typingIndicator = document.getElementById('typing-indicator');
 socket.on('typing', (data) => {
     typingIndicator.innerHTML = `${data.username} is typing<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>`;
@@ -418,11 +360,6 @@ socket.on('typing', (data) => {
 
 socket.on('stop typing', () => {
     typingIndicator.innerHTML = '';
-});
-
-socket.on('error', (message) => {
-    console.error('Socket error:', message);
-    alert(message);
 });
 
 window.addEventListener('beforeunload', () => {
