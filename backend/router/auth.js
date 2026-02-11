@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
+const User = require('../models/model')
 
 const JSONAUTH = process.env.jsonauth;
 
@@ -14,12 +15,13 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
 
     router.get('/google/callback', 
         passport.authenticate('google', { failureRedirect: '/Login' }),
-        (req, res) => {
+      async  (req, res) => {
             const user = req.user;
                  req.session.userId = req.user._id;
                            req.session.username = req.user.Name;
                            //next time
-                           req.session.avatar = 'https://avatars.githubusercontent.com/u/227847983?s=48&v=4';
+                        const uiImage = await User.findOne(req.user._id).select("Image");
+                           req.session.avatar = uiImage;
             const myCookie = TokenGen(user._id);
             
             res.cookie("anipub", myCookie, {
