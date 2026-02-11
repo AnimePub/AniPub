@@ -19,9 +19,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
             const user = req.user;
                  req.session.userId = req.user._id;
                            req.session.username = req.user.Name;
-                           //next time
-                        const uiImage = await User.findOne(req.user._id).select("Image");
-                           req.session.avatar = uiImage;
+                           req.session.avatar = `https://avatars.githubusercontent.com/u/227847983?s=200&v=4`;
             const myCookie = TokenGen(user._id);
             
             res.cookie("anipub", myCookie, {

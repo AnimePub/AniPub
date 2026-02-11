@@ -47,7 +47,6 @@ const configureGoogleAuth = () => {
             }
             
             // Create new user with Google profile picture
-            console.log(`🆕 Creating new user: ${profile.displayName}`);
             
             let profilePictureName = 'default.jpg';
            
