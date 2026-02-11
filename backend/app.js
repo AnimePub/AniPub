@@ -1380,7 +1380,7 @@ app.get('/api/users/search', requireAuth, async (req, res) => {
     const query = req.query.q || '';
     if (query.length < 2) return res.json([]);
     const users = await User.find({
-      username: { $regex: query, $options: 'i' },
+      Name: { $regex: query, $options: 'i' },
       _id: { $ne: req.session.userId }
     }).select('username avatar bio lastSeen').limit(10);
     res.json(users);
