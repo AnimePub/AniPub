@@ -141,7 +141,7 @@
     /* BG image */
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('../image/monkey-d-luffy-adventure-digital_bmdna2WUmZqaraWkpJRmbmdsrWZlbWU-4162485200.jpg');
+      background-image: url('/monkey-d-luffy-adventure-digital_bmdna2WUmZqaraWkpJRmbmdsrWZlbWU-4162485200.jpg');
       background-size: cover;
       background-position: center right;
       z-index: 0;
