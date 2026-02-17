@@ -10,7 +10,9 @@ const validAdminReqJs = require("../middleware/validReqfAdmin.js");
 HomeRouter.get("/", (req, res) => {
     res.render("index");
 })
-
+HomeRouter.get("/v1", (req, res) => {
+    res.render("v1");
+})
 HomeRouter.get("/Home", async (req, res) => {
     const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
         updatedAt: -1
