@@ -591,7 +591,7 @@
     }
     .dbtn.ghost { background:transparent; border-color:var(--border); color:var(--muted); }
     .dbtn.ghost:hover { border-color:var(--blue); color:var(--blue); }
-    .dbtn.solid { background:var(--blue); color:#fff; box-shadow:0 4px 20px rgba(26,140,255,.35); }
+    .dbtn.solid { background:var(--blue); color:#fff; }
     .dbtn.solid:hover { background:#0f72d9; transform:translateY(-1px); }
 
    
