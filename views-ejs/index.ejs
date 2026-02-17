@@ -429,7 +429,7 @@
   /* Search */
   function doSearch() {
     const q = document.getElementById('hs').value.trim();
-    if (q) window.location.href = '/search?q=' + encodeURIComponent(q);
+    if (q) window.location.href = '/search/q?query=' + encodeURIComponent(q);
   }
   function qs(t) {
     document.getElementById('hs').value = t;
