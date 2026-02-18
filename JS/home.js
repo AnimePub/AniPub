@@ -1,19 +1,21 @@
 const profileButton = document.querySelector(".profile-icon");
-const searchInput = document.querySelector('.searchbox');
-const bOXS = document.querySelector('.sbf');
-const searchButton = document.querySelector('.search-button');
+const searchInput = document.querySelectorAll('.searchbox');
+const bOXS = document.querySelectorAll('.sbf');
+const searchButton = document.querySelectorAll('.search-button');
 let MSGEBOX = "";
 profileButton.addEventListener('click', () => {
     window.location.href = `/Profile`
 })
 
-searchInput.addEventListener("keyup",(e)=>{
-    searchDB ();
+searchInput.forEach((value,i)=>{
+    value.addEventListener("keyup",(e)=>{
+    searchDB (i);
 })
+});
 
-function   searchDB (){
-    if (searchInput.value.length > 2) {
-        const index = searchInput.value ;
+function   searchDB (i){
+    if (searchInput[i].value.length > 2) {
+        const index = searchInput[i].value ;
         fetch("/search/q",{
             method:"POST",
             headers:{
@@ -23,7 +25,7 @@ function   searchDB (){
         })
         .then(response=>response.json())
         .then(info=>{
-            shower(info)
+            shower(info,i)
         })
     }
     else {
@@ -33,7 +35,7 @@ function   searchDB (){
     }
 }
 
-const shower = (info) =>{
+const shower = (info,i) =>{
       let fl = JSON.parse(info);
      if (fl.length > 1 ) {
         fl.forEach((value,i) => {
@@ -59,11 +61,19 @@ const shower = (info) =>{
             `
             
         });
-        bOXS.innerHTML = MSGEBOX;
-             
-        bOXS.style.display = "flex"
+        if(i === 0) {
+        bOXS[0].innerHTML = MSGEBOX;
+        bOXS[0].style.display = "flex"
         MSGEBOX = "";
+        }
+        else {
+        bOXS[1].innerHTML = MSGEBOX;  
+        bOXS[1].style.display = "flex"
+        MSGEBOX = "";
+        }
+      
     }
+    //letter fix
     else {
       if(info === 0) {
         MSGEBOX = `
@@ -71,9 +81,19 @@ const shower = (info) =>{
             <p>Can't Find Any Account With That Info</p>
             </div>
         `
-        bOXS.innerHTML = MSGEBOX;
-        bOXS.style.display = "flex"
+        if(i===0){
+             bOXS[0].innerHTML = MSGEBOX;
+        bOXS[0].style.display = "flex"
+         
          MSGEBOX = "";
+        }
+        else {
+ bOXS[1].innerHTML = MSGEBOX;
+        bOXS[1].style.display = "flex"
+            
+         MSGEBOX = "";
+        }
+       
     }
    
     else {
@@ -96,8 +116,9 @@ const shower = (info) =>{
 }
 
 
-searchButton.addEventListener('click',()=>{
-    if (searchInput.value.length > 2) {
+searchButton.forEach((value,i)=>{
+    value.addEventListener('click',()=>{
+    if (searchInput[i].value.length > 2) {
         const searchString = searchInput.value ;
         window.location.href = `/search/q?query=${searchString}`
     }
@@ -105,11 +126,19 @@ searchButton.addEventListener('click',()=>{
         alert("Please Enter A Query")
     }
 })
+})
 
 document.body.addEventListener("keyup",(e)=>{
-    if(e.key === "Enter" && searchInput.value.length > 2) {
-         const searchString = searchInput.value ;
+    if(e.key === "Enter" ) {
+        if(searchInput[0].value.length > searchInput[1].value.length ) {
+                const searchString = searchInput[0].value ;
         window.location.href = `/search/q?query=${searchString}`
+        }
+        else {
+                const searchString = searchInput[1].value ;
+        window.location.href = `/search/q?query=${searchString}`
+        }
+     
     }
 })
 
