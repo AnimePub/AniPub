@@ -355,6 +355,15 @@
 
 <script src="/playListUP.js"></script>
 <script src="/home.js"></script>
+<script>
+    document.querySelectorAll(".slide-title").forEach((value,i)=>{
+        let alu = value.innerText ;
+        if(alu.length > 30) {
+            console.log("Hi")
+              document.querySelectorAll(".slide-title")[i].style.fontSize = "26px";
+        }
+    })
+</script>
 <script type="module" src="/ANiPlayer-render.js"></script>
 
 </body>
