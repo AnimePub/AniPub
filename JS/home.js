@@ -47,7 +47,7 @@ const shower = (info) =>{
                        LINKU = "https://www.anipub.xyz/" + POSTERARY[0];
                    }
             MSGEBOX += `
-              <a href="/AniPlayer/${value.Id}/0" target="_blank" data-value="${i}"> <div class="fdivS" data-anime="${value.Id}">
+              <a style="text-decoration:none" href="/AniPlayer/${value.Id}/0" target="_blank" data-value="${i}"> <div class="fdivS" data-anime="${value.Id}">
                 <img class="sdivImg" src="${LINKU}" alt="">
                 <div>
                     <p class="sName">${value.Name}</p>

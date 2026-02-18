@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | AniPub</title>
+    <meta name="description" content="Home Page - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
+  <meta name="keywords" content=" anime , anime streaming, watch anime online, hianime,anilab,gogoanime,9anime,zoro,aniplex,AniPub">
+ 
+    <link rel="stylesheet" href="/hSlider.css">
+    <link rel="stylesheet" href="/home.css">
+    <link rel="stylesheet" href="/third-section.css">
+    <link rel="stylesheet" href="/home-main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Footer.css">
+
+</head>
+
+<body> <!--onload="CheckAuth();"-->
+
+    <%- include("./include/haHeader.ejs") %>
+
+    <div class="Slider" >
+           <% DBAnime.forEach((value,i) => { %>
+
+
+        <div class="slide">
+
+            <div class="box">
+
+                <div class="Box_D">
+                    <div class="Number-DIV">
+                        <p class="number-List">🔥 Number <%=i+1%> in the List</p>
+                    </div>
+
+                    <p class="AniName"><%=value.Name%> </p>
+                    <p class="det">
+                        <span class="small-d" style="margin: 0;"><%= value.Duration %> </span> <span class="small-d t"><%= value.Aired %> </span>
+                        <% if (value.ep.length === 0) {%>
+                        <% const ehe = 1 %>
+                        <span class="small-d ep">EP<%=ehe%> </span>
+                        <% }else {%>
+                        <% const ehe = value.ep.length + 1 %>
+                        <span class="small-d ep">EP<%=ehe%> </span>
+                        <% } %>
+                    </p>
+                    <div>
+                        <% const deSC = value.DescripTion ;
+                        const desCA  = deSC.split("");
+                        let TEXT = "";
+                        for (let i = 0; i < 170; i++) {
+                            TEXT += desCA[i];
+                        }
+                        %>
+                        <p class="DesCrip"><%= TEXT %>...</p>
+                    </div>
+                    <div class="but-divs">
+                        <button class="watch-button" data-ANIMEID="<%=value.id%>">
+                            <img src="/play-svgrepo-com.svg" alt="">
+                        </button>
+                        <button class="watch-list" data-ANIMEID="<%=value.id%>">
+                            <img src="/plus-large-svgrepo-com.svg" alt="">
+                        </button>
+                        <% let DName = value.Name ; DName = DName.split(" "); DName = DName.join("-") %> 
+                        <a href="/details/<%=DName%>" class="details-button" title="View Details">
+                            <img src="/info_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="Details" style="width: 24px; height: 24px;">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+             <% const POSTER = value.Cover;
+                            const POSTERARY = POSTER.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                            }
+                        %>
+
+            <img style="object-position:top;" src="<%=LINKU%>" alt="<%=value.Name%> Cover">
+        
+        </div>
+        <% }); %>
+
+        <!-- Slider Navigation Controls -->
+        <div class="slider-controls">
+            <button class="slider-prev" title="Previous anime" aria-label="Previous anime">❮</button>
+            <div class="slide-indicators">
+                <% DBAnime.forEach((value, i) => { %>
+                    <div class="slide-indicator <%= i === 0 ? 'active' : '' %>" data-slide="<%=i%>" title="Go to anime <%=i+1%>"></div>
+                <% }); %>
+            </div>
+            <button class="slider-next" title="Next anime" aria-label="Next anime">❯</button>
+        </div>
+     
+    </div>
+
+    <div class="home-shell">
+        <section class="genre-shortcuts" aria-label="Genre shortcuts">
+            <div class="genre-head">
+                <div class="ntg"></div>
+                <p>Browse by Genre</p>
+            </div>
+            <div class="genre-row">
+                <% const GENRES = [
+                    "action","adventure","comedy","drama","fantasy","horror","mystery","romance","sci-fi","slice of life",
+                    "sports","supernatural","thriller","psychological","isekai","mecha","music","school","shounen","seinen"
+                ]; %>
+                <% GENRES.forEach((g)=>{ %>
+                    <a class="genre-chip" href="/Search?genre=<%=encodeURIComponent(g)%>" title="Search <%=g%>"><%=g%></a>
+                <% }) %>
+            </div>
+        </section>
+
+        <div class="secoNd-Section">
+
+        <section class="aniLists" aria-label="Ongoing anime">
+
+            <div class="recents">
+                <div class="ntg"></div>
+                <a href="/search/q?type=airing" style="text-decoration: none;">
+                <p>
+                   Airing
+                </p></a>
+            </div>
+            <% Airing.forEach(value => {%>
+         <a href="/AniPlayer/<%=value._id%>/0" style="text-decoration: none;">     <div class="Profile-div">
+                <div class="Profile" data-anime="<%=value._id%>">
+                    <div class="Image-div">
+                        <% const POSTER = value.ImagePath;
+                            const POSTERARY = POSTER.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                            }
+                        %>
+                        <img class="poster" src="<%=LINKU%>" alt="<%=value.Name%> Anime Poster">
+                    </div>
+                    <div class="Title-div">
+                        <p class="Title"><%=value.Name%></p>
+                    </div>
+                    <div class="ratings-div">
+                        <p class="mal-score"><%=value.MALScore%></p>
+                        <img style="width: 90px;" src="/rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
+                    </div>
+                    <div class="des-div">
+                        <p class="des">
+                            <% const desc = value.DescripTion;
+                            const descr = desc.slice(0,60);
+                            %>
+
+                            <%=descr%>...
+                        </p>
+                    </div>
+                </div>
+            </div></a>
+            <% }); %>
+        </section>
+
+
+          <section class="aniLists" aria-label="Recent anime">
+
+            <div class="recents">
+                <div class="ntg"></div>
+                              <a href="/search/q?type=all" style="text-decoration: none;">
+                             <p>
+                    Recent:-
+                </p>  </a> 
+            </div>
+            <% Anime.forEach(value => {%>
+             <a href="/AniPlayer/<%=value._id%>/0" style="text-decoration: none;">  <div class="Profile-div">
+                <div class="Profile" data-anime="<%=value._id%>">
+                    <div class="Image-div">
+                        <% const POSTER = value.ImagePath;
+                            const POSTERARY = POSTER.split("https://");
+                            let LINKU = "";
+                            if(POSTERARY.length > 1){
+                                LINKU = "https://" + POSTERARY[1]; 
+                            }
+                            else {
+                                 LINKU= "/"+POSTERARY[0]
+                            }
+                        %>
+                        <img class="poster" src="<%=LINKU%>" alt="<%=value.Name%> Anime Poster">
+                    </div>
+                    <div class="Title-div">
+                        <p class="Title"><%=value.Name%></p>
+                    </div>
+                    <div class="ratings-div">
+                        <p class="mal-score"><%=value.MALScore%></p>
+                        <img style="width: 90px;" src="/rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
+                    </div>
+                    <div class="des-div">
+                        <p class="des">
+                           <% const desc = value.DescripTion;
+                            const descr = desc.slice(0,60);
+                            %>
+
+                            <%=descr%>...
+                        </p>
+                    </div>
+                </div>
+            </div></a>   
+            <% }); %>
+        </section>
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+    <%- include("./include/footer.ejs") %>
+
+    <!--
+    <script type="module" src="animeInfo.js"></script>
+     <script type="module" src="/Home.js"></script>
+-->
+    <script src="/Hslider.js"></script>
+    <script src="/playListUP.js"></script>
+    <script src="/home.js"></script>
+    <script type="module" src="/ANiPlayer-render.js"></script>
+
+</body>
+
+</html>

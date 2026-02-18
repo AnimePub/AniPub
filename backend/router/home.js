@@ -13,6 +13,7 @@ HomeRouter.get("/", (req, res) => {
 HomeRouter.get("/v1", (req, res) => {
     res.render("v1");
 })
+
 HomeRouter.get("/Home", async (req, res) => {
     const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
         updatedAt: -1
@@ -174,6 +175,81 @@ HomeRouter.get(`/api/info/:AniId`, async (req, res) => {
               
 });
 
+//version 1 letter for delete 
+HomeRouter.get("/v1/Home", async (req, res) => {
+    const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
+        updatedAt: -1
+    }).limit(20);
+    let ArrayList =[];
+    slider.findById(1)
+    .then(async ar=>{
+        const b = (ar && Array.isArray(ar.slArray)) ? ar.slArray : [];
+        b.forEach(c=>{
+            ArrayList.push(c);
+        })
+    const DBarray = ArrayList;
+    const DBAnime = await AnimeDB.find({
+        _id: {
+            $in: DBarray
+        }
+    })
+    const Token = req.cookies.anipub;
+    let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
+    AnimeDB.find({"Status":"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
+    .then(Airing=>{
+    if (Token) {
+        jwt.verify(Token, JSONAUTH, (err, data) => {
+            if (err) {
+                console.log(err);
+            }
 
+            Data.findById(`${data.id}`)
+                .then((info) => {
+                    let link = info.Image;
+                    const Gender = info.Gender;
+
+                    if (Gender === "Male") {
+                        const finalLink = `boys/` + link;
+
+                        res.render("v1Home", {
+                            Anime: animeDb,
+                            DBAnime,
+                            Airing,
+                            auth: true,
+                            ID: data.id,
+                            Link: finalLink
+                        });
+
+                    } else {
+
+                        res.render("v1Home", {
+                            Anime: animeDb,
+                            Airing,
+                            DBAnime,
+                            auth: true,
+                            ID: data.id,
+                            Link: link
+                        });
+                    }
+
+
+
+                })
+
+        })
+    } else {
+        res.render("v1Home", {
+            Anime: animeDb,
+            DBAnime,
+            Airing,
+            auth: false,
+            ID: "guest",
+            Link: linkI
+        });
+    }
+
+ })
+    })
+})
 
 module.exports = HomeRouter;
