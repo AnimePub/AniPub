@@ -30,8 +30,8 @@ function   searchDB (i){
     }
     else {
          MSGEBOX = "";
-         bOXS.innerHTML = "";
-        bOXS.style.display = "none"
+         bOXS[i].innerHTML = "";
+        bOXS[i].style.display = "none"
     }
 }
 
@@ -108,8 +108,8 @@ const shower = (info,i) =>{
                 </div>
             </div> </a>
       `
-       bOXS.innerHTML = MSGEBOX;
-        bOXS.style.display = "flex"
+       bOXS[i].innerHTML = MSGEBOX;
+        bOXS[i].style.display = "flex"
          MSGEBOX = "";
     }
 }
@@ -119,7 +119,7 @@ const shower = (info,i) =>{
 searchButton.forEach((value,i)=>{
     value.addEventListener('click',()=>{
     if (searchInput[i].value.length > 2) {
-        const searchString = searchInput.value ;
+        const searchString = searchInput[i].value ;
         window.location.href = `/search/q?query=${searchString}`
     }
     else {
@@ -130,12 +130,12 @@ searchButton.forEach((value,i)=>{
 
 document.body.addEventListener("keyup",(e)=>{
     if(e.key === "Enter" ) {
-        if(searchInput[0].value.length > searchInput[1].value.length ) {
-                const searchString = searchInput[0].value ;
+        if(searchInput[0].value.length < searchInput[1].value.length ) {
+                const searchString = searchInput[1].value ;
         window.location.href = `/search/q?query=${searchString}`
         }
         else {
-                const searchString = searchInput[1].value ;
+                const searchString = searchInput[0].value ;
         window.location.href = `/search/q?query=${searchString}`
         }
      
