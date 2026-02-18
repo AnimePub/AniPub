@@ -139,7 +139,7 @@ DetailsRouter.get("/v1/api/details/:id", async (req, res) => {
     try {
         const animeId = req.params.id;
 
-        const localAnime = await  AnimeDB.findOne({"_id":Number(animeId)},{Genres:0,MALID:0,Cover:0,ImagePath:0,Synonyms:0,Producers:0,Premiered:0,Aired:0,Duration:0,Status:0,Studios:0,Name:0,ImagePath:0,DescripTion:0,MALScore:0,-RatingsNum:0,)
+        const localAnime = await  AnimeDB.findOne({"_id":Number(animeId)},{Genres:0,MALID:0,Cover:0,ImagePath:0,Synonyms:0,Producers:0,Premiered:0,Aired:0,Duration:0,Status:0,Studios:0,Name:0,ImagePath:0,DescripTion:0,MALScore:0,RatingsNum:0,)
 
         if (!localAnime) {
             return res.status(404).json({ error: "Anime not found" });
