@@ -234,7 +234,7 @@
                         </div>
                         <p class="airing-card-desc">
                             <% const desc = value.DescripTion;
-                               const descr = desc.slice(0,60);
+                               const descr = desc.slice(0,30);
                             %>
                             <%=descr%>...
                         </p>
@@ -279,10 +279,10 @@
                         <img class="rating-stars" src="rating-<%=value.RatingsNum%>.png" alt="Rating">
                     </div>
                     <p class="recent-card-desc">
-                        <% const desc = value.DescripTion;
-                           const descr = desc.slice(0,60);
-                        %>
-                        <%=descr%>...
+                       <% const desc = value.DescripTion;
+   const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
+%>
+<%=descr%><% if(desc && desc.length > 60) { %>...<% } %>
                     </p>
                 </div>
             </a>
