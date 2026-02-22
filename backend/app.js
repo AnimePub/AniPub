@@ -952,6 +952,7 @@ app.post("/Upload", validAdmin, async (req, res) => {
             Producers: req.body.producers,
             MALID: req.body.MALID,
             DescripTion: req.body.des,
+            whatType:req.body.whatType,
             type: req.body.type,
         })
         if (Update) {
