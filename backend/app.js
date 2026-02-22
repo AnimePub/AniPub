@@ -119,6 +119,8 @@ app.use(express.static(path.join(__dirname, "../Video")));
 app.use(express.static(path.join(__dirname, "../Cover")));
 app.use(express.static(path.join(__dirname, "../icon")));
 app.use(express.static(path.join(__dirname, "../image")));
+app.use(express.static(path.join(__dirname, "../image/ProfilePic")));
+app.use(express.static(path.join(__dirname, "../image/ProfilePic/boys")));
 app.use(express.static(path.join(__dirname, "../JS")));
 app.use(express.static(path.join(__dirname, "../Logo")));
 app.use(express.static(path.join(__dirname, "../Poster Pic")));
@@ -539,19 +541,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                                 .then(async info => {
                                    
                                     let link = info.Image;
-                                    const Gender = info.Gender;
-                                  if (Gender === "Male") {
-                                        const finalLink = `boys/` + link;
-                                        res.render("AniPlayer", {
-                                            AniDB: animeDb,
-                                            video,
-                                            AniId,
-                                            AniEP,
-                                            auth: true,
-                                            ID: data.id,
-                                            Link: finalLink
-                                        });
-                                    } else {
+                                 
                                         res.render("AniPlayer", {
                                             AniDB: animeDb,
                                             video,
@@ -561,7 +551,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                                             ID: data.id,
                                             Link: link
                                         })
-                                    }
+                                    
                                 })
 
                         })

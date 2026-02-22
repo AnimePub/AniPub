@@ -154,4 +154,42 @@ DetailsRouter.get("/v1/api/details/:id", async (req, res) => {
     }
 });
 
+
+DetailsRouter.post(["/anime/api/check","/api/check"], async (req, res) => {
+    try {
+        const { Name, Genre } = req.body;
+        if (!Name || (Genre === undefined || Genre === null)) {
+            return res.status(400).json({ error: "Name and Genre are required" });
+        }
+
+        // search by name case-insensitively (exact match)
+        const regex = new RegExp(`^${Name}$`, "i");
+        const anime = await AnimeDB.findOne({ Name: regex });
+
+        if (!anime) {
+            return res.json({ exists: false, genreMatch: false });
+        }
+
+        // Determine if any of the provided genres match the anime's genres.
+        // Accept Genre as a string or an array of strings.
+        let requested = [];
+        if (Array.isArray(Genre)) {
+            requested = Genre.map(g => String(g).toLowerCase());
+        } else {
+            requested = [String(Genre).toLowerCase()];
+        }
+
+        let genreMatch = false;
+        if (Array.isArray(anime.Genres)) {
+            const animeGenres = anime.Genres.map(g => String(g).toLowerCase());
+            genreMatch = requested.some(r => animeGenres.includes(r));
+        }
+
+        res.json({ exists: true, genreMatch });
+    } catch (err) {
+        console.error("Error in /api/check route:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
 module.exports = DetailsRouter;
