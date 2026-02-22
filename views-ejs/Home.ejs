@@ -234,7 +234,7 @@
                         </div>
                         <p class="airing-card-desc">
                             <% const desc = value.DescripTion;
-                               const descr = desc.slice(0,30);
+                                 const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
                             %>
                             <%=descr%>...
                         </p>
@@ -246,9 +246,8 @@
 </section>
 
 
-<!-- ══════════════════════════════════════════
-     RECENT — GRID
-══════════════════════════════════════════ -->
+<!-- 
+     RECENT — GRID -->
 <section class="recent-sec">
     <div class="sec-head">
         <div class="sec-bar"></div>
