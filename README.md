@@ -1,161 +1,138 @@
-# 🌌 AniPub — The Ultimate Anime Multiverse 🚀
+<p align="center">
+  <img src="https://github.com/AnimePub/AniPub/blob/main/Logo/Ship.png" alt="AniPub Logo" width="180"/>
+</p>
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-anipub.xyz-blueviolet?style=for-the-badge)](https://anipub.xyz)
-[![Status](https://img.shields.io/badge/Status-Live-green?style=for-the-badge)](#)
-[![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)](./CONTRIBUTING.md)
-[![License](https://img.shields.io/badge/License-GNU%20GPLv3-blue?style=for-the-badge)](./LICENSE)
-[![AniPub](https://github.com/AnimePub/AniPub/actions/workflows/npm-publish-github-packages.yml/badge.svg)](https://github.com/AnimePub/AniPub/actions/workflows/npm-publish-github-packages.yml)
----
+<h1 align="center">AniPub — The Ultimate Anime Multiverse</h1>
 
-> **AniPub** isn't just an anime platform—it's a cosmic adventure! Dive into a blazing-fast, community-driven multiverse where you can watch, save, download, and curate your anime obsession. **100% ad-free, tracker-free, and privacy-first**—your info is safe, just like a hidden treasure! 🏴‍☠️ Created by anime lovers, for anime lovers.
+<p align="center">
+  <a href="https://anipub.xyz"><img src="https://img.shields.io/badge/Live%20Site-anipub.xyz-blueviolet?style=for-the-badge" alt="Live Site"/></a>
+  <img src="https://img.shields.io/badge/Status-Live-green?style=for-the-badge" alt="Status"/>
+  <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge" alt="Contributions"/></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-GNU%20GPLv3-blue?style=for-the-badge" alt="License"/></a>
+  <a href="https://github.com/AnimePub/AniPub/actions/workflows/npm-publish-github-packages.yml"><img src="https://github.com/AnimePub/AniPub/actions/workflows/npm-publish-github-packages.yml/badge.svg" alt="AniPub CI"/></a>
+</p>
 
----
-
-## 🌟 Why AniPub?
-
-- **Ad-Free Forever:** No annoying ads, ever. We promise a pure, uninterrupted anime experience.
-- **Privacy First:** We don’t track you. Your data stays yours, locked away like a sacred scroll.
-- **Community-Powered:** Built by anime fans, for anime fans. Join the revolution and make it yours!
-
----
-
-## 🎉 Features That Rock
-
-- **Create Accounts:** Join the AniPubverse and customize your anime journey.
-- **Stream Anime:** Lightning-fast streaming with crystal-clear quality.
-- **AniPub AI.Zero Two:** Your Personal Waifu Assistant 
-- **Save & Download:** Bookmark your faves or download(upcoming) for offline binges.
-- **Epic Playlists:** Curate and share your ultimate anime playlists.
-- **Community Vibes:** Rate and connect with fellow anime legends 
-- **Sleek UI:** Powered by EJS, custom CSS, and JavaScript for a futuristic feel.
-- **Fortress-Level Security:** JWT authentication, hashed passwords,Google OAuth, and session controls 
-- **Cloud Hosted:** Always online, always fast !
-- **Comment Section** Share your thoughts or go on in epic battle in the comment section
+<p align="center">
+  AniPub isn't just an anime platform — it's a cosmic adventure. Blazing-fast, community-driven, and built by anime lovers for anime lovers.<br/>
+  <b>100% ad-free · tracker-free · privacy-first.</b>
+</p>
 
 ---
 
-## 🚀 Get Started in Seconds
+## Why AniPub?
 
-1. **Clone the Repo**
-   ```bash
-   git clone https://github.com/AnimePub/AniPub.git
-   cd AniPub
-   ```
+| | |
+|---|---|
+| **Ad-Free Forever** | No ads. Ever. Pure, uninterrupted anime. |
+| **Privacy First** | We don't track you. Your data stays yours. |
+| **Community-Powered** | Built by fans, shaped by fans. |
+| **Blazing Fast** | Cloud-hosted, always online, always snappy. |
 
-2. **Install Dependencies**
-   ```bash
-   npm install
-   ```
+---
 
-3. **Launch Locally**
-   ```bash
-   node backend/app.js
-   ```
-   Then open [http://localhost:3000](http://localhost:3000) in your browser!
+## Features
 
-## Using npm
-```
-   npm i anipub
+- **Stream Anime** — Lightning-fast streaming with crystal-clear quality
+- **AniPub AI · Zero Two** — Your personal waifu assistant
+- **Save & Download** — Bookmark favorites or download for offline binges *(download coming soon)*
+- **Epic Playlists** — Curate and share your ultimate anime playlists
+- **Comment Section** — Share thoughts or wage epic battles in the comments
+- **Ratings & Community** — Rate anime and connect with fellow legends
+- **Fortress Security** — JWT auth, hashed passwords, Google OAuth, and session controls
+- **Sleek UI** — EJS templates, custom CSS, and JS for a futuristic feel
+
+---
+
+## Get Started
+
+### Run Locally
+
+```bash
+git clone https://github.com/AnimePub/AniPub.git
+cd AniPub
+npm install
+node backend/app.js
 ```
 
-## Quick Install (Linux)
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-> **Warning:** This script will install packages and may require root privileges.
+### Install via npm
+
+```bash
+npm i anipub
+```
+
+### Quick Install — Linux
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/AnimePub/redirect-domain/bc1105d1e1350aab25b68a49a37cb6ead07a8336/install.sh | bash
-# or
-wget -qO- https://raw.githubusercontent.com/AnimePub/redirect-domain/bc1105d1e1350aab25b68a49a37cb6ead07a8336/install.sh | bash
 ```
 
-Review the script if you wish:
-```bash
-less install.sh
-```
+> Review before running: `less install.sh` · Make executable: `chmod +x install.sh`
 
-Make it executable (if you downloaded it):
-```bash
-chmod +x install.sh
-```
-
-Run the script:
-```bash
-./install.sh
-```
-
-## Quick Install (Arch Linux)
-
-> **Warning:** This script will install packages and may require root privileges.
+### Quick Install — Arch Linux
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/AnimePub/redirect-domain/cbdda435d8b9f0ae6d71eba7b7b199771c89dd9a/arch.sh | bash
-# or
-wget -qO- https://raw.githubusercontent.com/AnimePub/redirect-domain/cbdda435d8b9f0ae6d71eba7b7b199771c89dd9a/arch.sh | bash
 ```
 
-Review the script if you wish:
-```bash
-less arch.sh
-```
+> Review before running: `less arch.sh` · Make executable: `chmod +x arch.sh`
 
-Make it executable:
-```bash
-chmod +x arch.sh
-```
-
-Run the script:
-```bash
-./arch.sh
-```
+> Both scripts may require root privileges. Review them before running.
 
 ---
 
+## Tech Stack
 
-## 🛠️ Tech Stack
-
-- **Frontend:** EJS (dynamic templates), CSS, JavaScript
-- **Backend:** Node.js, Express
-- **Database:** MongoDB
-- **Authentication:** JWT , Google OAuth
-- **Security:** Hashed passwords, secure sessions, HTTPS
-
----
-
-## 🧪 What’s Cooking?
-
-- **New Features:** Dropping regularly to keep the AniPubverse fresh.
-- **Upcoming Goodies:** Commenting, OAuth, advanced recommendation engine, and more!
-- **Shape the Future:** Contribute ideas or code to make AniPub legendary.
+| Layer | Tech |
+|---|---|
+| Frontend | EJS, CSS, JavaScript |
+| Backend | Node.js, Express |
+| Database | MongoDB |
+| Auth | JWT, Google OAuth |
+| Security | Hashed passwords, secure sessions, HTTPS |
 
 ---
 
-## 🤝 Join the AniPub Revolution
+## What's Cooking?
 
-AniPub thrives on community love and contributions!  
-- **Contribute Code:** Check out [CONTRIBUTING.md](./CONTRIBUTING.md).  
-- **Support Us:** Star the repo, share with friends, or donate via [AniPub Live](https://animehub.adnandluffy.site).  
-- **Stay Connected:** Join discussions or report issues to help us grow.
-
----
-
-## 💬 Community & Feedback
-
-- **Issues/Bugs:** Report them [here](https://github.com/AnimePub/AniPub/issues).  
-- **Suggestions:** Share ideas via [discussions](https://github.com/AnimePub/AniPub/discussions) or pull requests!  
-- **Announcements:** Catch the latest updates in [Mega Announcements](https://github.com/AnimePub/AniPub/discussions/categories/announcements).
+- New features dropping regularly
+- Upcoming: advanced recommendation engine, OAuth expansions, download support
+- Have an idea? Open a discussion and help shape the future of AniPub
 
 ---
 
-## 🔒 Our Privacy Pledge
+## Contributors
 
-At AniPub, your trust is our treasure. We’ll **never** show ads or track your activity. Your data is yours alone, safeguarded with top-tier security. Enjoy anime with peace of mind! 🛡️
-
----
-
-## 📜 License
-
-Licensed under the [GNU General Public License v3.0](./LICENSE). Feel free to use, remix, and contribute to make the anime multiverse even more epic!
+<a href="https://github.com/AnimePub/AniPub/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AnimePub/AniPub" />
+</a>
 
 ---
 
-> Crafted with ❤️ and boundless anime passion by [Adnan](https://github.com/adnan123456a) and the AniPub community. Join us and let’s make anime history! 🌌
+## Contribute
+
+- **Code:** See [CONTRIBUTING.md](./CONTRIBUTING.md)
+- **Bugs:** Report at [Issues](https://github.com/AnimePub/AniPub/issues)
+- **Ideas:** Share via [Discussions](https://github.com/AnimePub/AniPub/discussions)
+- **Announcements:** [Mega Announcements](https://github.com/AnimePub/AniPub/discussions/categories/announcements)
+- **Support:** Star the repo or share with friends
+
+---
+
+## Privacy Pledge
+
+At AniPub, your trust is our treasure. We will **never** show ads or track your activity. Your data is yours alone, protected with top-tier security.
+
+---
+
+## License
+
+Licensed under the [GNU General Public License v3.0](./LICENSE). Free to use, remix, and contribute.
+
+---
+
+<p align="center">
+  Crafted with love and boundless anime passion by <a href="https://github.com/adnan123456a">Adnan</a> and the AniPub community.<br/>
+  <b>Join us and let's make anime history.</b>
+</p>
