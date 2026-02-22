@@ -105,6 +105,11 @@ const AnimeDB = new Schema({
         type: String,
         trim: true
     },
+    whatType: {
+        type: String,
+        trim: true,
+        required: false,
+    },
     DescripTion: {
         type: String,
         trim: true
