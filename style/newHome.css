@@ -680,3 +680,6 @@
             .airing-card { width: 160px; }
             .airing-card-img { height: 210px; }
         }
+        a {
+            text-decoration: none;
+        }
