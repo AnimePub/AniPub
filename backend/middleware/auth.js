@@ -2,7 +2,7 @@ function requireAuth(req, res, next) {
   if (req.session && req.session.malId) {
     return next();
   }
-  res.redirect('/Login');
+  res.redirect('/Home');
 }
 
 function redirectIfAuth(req, res, next) {
