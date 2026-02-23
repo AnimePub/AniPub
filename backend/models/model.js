@@ -28,6 +28,37 @@ const Data = new Schema({
         unique: true,
         sparse: true
     },
+    malId: {
+    type: Number,
+    required: false,
+    unique: true,
+
+  },
+  malusername:{
+     type: String,
+     required: false,
+  },
+  malpicture: {
+    type: String,
+    default: null,
+     required: false,
+    
+  },
+  accessToken: {
+    type: String,
+    required: false,
+  },
+  refreshToken: {
+    type: String,
+    required: false
+  },
+  tokenExpiresAt: {
+    type: Date
+  },
+   lastLogin: {
+    type: Date,
+    default: Date.now
+  },
     profilePicture: {
         type: String,
         required: false,
@@ -44,6 +75,10 @@ const Data = new Schema({
         type: String,
         required: false,
     },
+    malProfile: {
+    animeCount: Number,
+    mangaCount: Number,
+  },
     Gender: {
         type: String,
         required: false,
@@ -85,6 +120,12 @@ Data.pre("save", async function(next) {
         this.Password = hashedpass;
     }
     next();
+});
+Data.pre('save', function(next) {
+  if (this.isModified('accessToken')) {
+    this.lastLogin = new Date();
+  }
+  next();
 });
 
 const RegistrationData = mongoose.model("Data", Data);

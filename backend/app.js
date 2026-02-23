@@ -45,7 +45,7 @@ const SearchQ = require("./router/query.js");
 const Security = require("./router/Security.js");
 const PremiumR = require("./router/premium.js");
 const DetailsRouter = require("./router/details.js");
-
+const authRouterMal  = require('./router/malauth.js');
 //AI
 const cors = require('cors');
 const { OpenAI } = require('openai');
@@ -178,10 +178,12 @@ app.use(DetailsRouter);
 app.use(Random);
 
 // Auth router
+const dashboardRouter = require('./router/dashboard');
 const authRouter = require('./router/auth');
 const { isNumberObject, isStringObject } = require("util/types");
 app.use('/auth', authRouter);
-
+app.use('/authmal', authRouterMal);
+app.use('/dashboard', dashboardRouter);
 app.get("/Sign-Up", (req, res) => {
     res.render("Sign-Up")
 })
