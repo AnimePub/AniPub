@@ -36,7 +36,7 @@ router.get('/login', (req, res) => {
     code_challenge: codeChallenge,
     code_challenge_method: 'plain'
   });
-console.log(params)
+
   res.redirect(`https://myanimelist.net/v1/oauth2/authorize?${params}`);
 });
 
@@ -125,7 +125,7 @@ router.get('/callback', async (req, res) => {
     // Save user ID to session ---
     req.session.malId = user.malId.toString();
     req.session.malUsername = user.malusername;
-
+console.log( req.session.malId,  req.session.malUsername,user._id)
     res.redirect('/Home');
 
   } catch (err) {
