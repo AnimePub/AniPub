@@ -61,7 +61,7 @@ router.get('/callback', async (req, res) => {
   if (error) {
     return res.redirect('/?error=access_denied');
   }
-  console.log(Token);
+
 
   // Validate state to prevent CSRF
   if (!state || state !== req.session.oauthState) {
@@ -103,7 +103,7 @@ router.get('/callback', async (req, res) => {
     });
 
     const profile = profileRes.data;
- console.log(profile);
+
     // -Upsert user in MongoDB ---
     const user = await User.findOneAndUpdate(
       { "_id":data.id },
@@ -122,11 +122,11 @@ router.get('/callback', async (req, res) => {
         tokenExpiresAt: new Date(Date.now() + expires_in * 1000)
       }
     );
-console.log(user)
+
     // Save user ID to session ---
     req.session.malId = user.malId.toString();
     req.session.malUsername = user.malusername;
-console.log( req.session.malId,  req.session.malUsername,user._id)
+
     res.redirect('/Home');
 
   } catch (err) {

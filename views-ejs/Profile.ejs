@@ -29,10 +29,6 @@
                             if(PrArray.length > 1){
                                 PrLink = "https://" + PrArray[1]; 
                             }
-                            else {
-                                 PrLink= "/ProfilePic/boys/"+PrArray[0]
-                            } %> 
-
                              src="<%=PrLink%>"
                               <% } else {%>
                                  <% const LinkPr =  userInfo.image;
@@ -41,9 +37,6 @@
                             if(PrArray.length > 1){
                                 PrLink = "https://" + PrArray[1]; 
                             }
-                            else {
-                                 PrLink= "/ProfilePic/"+PrArray[0]
-                            } %> 
 
                                  src="<%=PrLink%>"
                                   <% } %>
@@ -56,7 +49,7 @@
 
                     <div class="profile-stats">
                         <div class="stat">
-                            <div class="stat-value">0</div>
+                            <div class="stat-value"><%=userInfo.watched%></div>
                             <div class="stat-label">Watched</div>
                         </div>
                         <div class="stat">

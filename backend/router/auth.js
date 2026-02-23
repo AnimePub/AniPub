@@ -26,7 +26,6 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
                                req.session.malUsername = req.user.malusername;
                                }
             const myCookie = TokenGen(user._id);
-            console.log(user._id)
             res.cookie("anipub", myCookie, {
                 httpOnly: true,
                 maxAge: 3 * 60 * 60 * 24 * 60

@@ -302,7 +302,7 @@ app.post("/Login", async (req, res) => {
                                 httpOnly: true,
                                 maxAge: 3 * 60 * 60 * 24 * 60
                             });
-                            console.log(info._id,info.Name,info.Image,info.malId,info.malusername)
+                   
                               req.session.userId = info._id;
     req.session.username = info.Name;
     req.session.avatar = info.Image;
@@ -432,6 +432,13 @@ app.get("/Profile/:id", (req, res) => {
             if (err) {
                 console.log(err);
             };
+            let bool ;
+            if(data.id === profileID) {
+                bool = true 
+            }
+            else {
+                bool = false
+            }
             Data.findById(profileID)
                 .then(info => {
                     const userInfo = {
@@ -446,10 +453,11 @@ app.get("/Profile/:id", (req, res) => {
                         Address: info.Address,
                         Relation: info.RelationshipStatus,
                         Hide : info.Hide,
+                        watched : info.malProfile.animeCount,
                     }
                     res.render("Profile", {
                         SectionName: "Profile",
-                        Auth: true,
+                        Auth: bool,
                         userInfo,
                         alu: "p"
                     })
