@@ -6,7 +6,7 @@ function requireAuth(req, res, next) {
 }
 
 function redirectIfAuth(req, res, next) {
-  if (req.session && req.session.malusername) {
+  if (req.session && req.session.malUsername) {
     return res.redirect('/Home');
   }
   next();

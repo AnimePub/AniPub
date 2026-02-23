@@ -19,7 +19,12 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
             const user = req.user;
                  req.session.userId = req.user._id;
                            req.session.username = req.user.Name;
-                           req.session.avatar = `https://avatars.githubusercontent.com/u/227847983?s=200&v=4`;
+
+                           req.session.avatar = req.user.Image;
+                             if(req.user.malId) {
+                                    req.session.malId = req.user.malId
+                               req.session.malUsername = req.user.malusername;
+                               }
             const myCookie = TokenGen(user._id);
             
             res.cookie("anipub", myCookie, {
@@ -39,14 +44,5 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
     });
 }
 
-router.get('/logout', (req, res) => {
-    req.logout((err) => {
-        if (err) {
-            console.error('Logout error:', err);
-        }
-        res.cookie("anipub", "", { maxAge: 1 });
-        res.redirect('/Login');
-    });
-});
 
 module.exports = router;

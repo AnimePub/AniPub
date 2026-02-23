@@ -305,6 +305,10 @@ app.post("/Login", async (req, res) => {
                               req.session.userId = info._id;
     req.session.username = info.Name;
     req.session.avatar = info.Image;
+    if(info.malId) {
+         req.session.malId = info.malId
+    req.session.malUsername = info.malusername;
+    }
        res.json(["/Home"]);                
                         } else {
                             res.json(["Email or Pass is wrong"])

@@ -35,9 +35,11 @@ const configureGoogleAuth = () => {
                     try {
                     await Data.findByIdAndUpdate(existingUser._id, { 
                             googleId: profile.id ,
-                            Image: profile.photos[0].value
+                            profilePicture: profile.photos[0].value,
+                            
                         });
-                      
+                
+                        
                        } catch (error) {
                         console.log(`⚠️  Failed to update profile picture for existing user: ${error.message}`);
                     }
@@ -73,7 +75,7 @@ const configureGoogleAuth = () => {
 
     passport.deserializeUser(async (id, done) => {
         try {
-            const user = await Data.findById(id);
+            const user = await Data.findById(id).select('-Password -accessToken -refreshToken ');
             done(null, user);
         } catch (error) {
             done(error, null);
