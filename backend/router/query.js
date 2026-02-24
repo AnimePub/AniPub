@@ -7,23 +7,9 @@ const Data = require("../models/model");
 const AnimeDB = require("../models/AniDB.js");
 
 SearchQ.post("/search/q",async (req,res)=>{
-     let page = 1;
-    if(req.query.page === undefined) {
-        page = 1;
-    }
-    else {
-        if( !isNaN(req.query.page))
-        {
-              page = Number((req.query.page));
-        }
-        else {
-            page =1 
-        }
-        
-    }
-     let alus = 20*(page-1);
+    
     const regex = new RegExp(req.body.query)
-   AnimeDB.find({Name:{$regex:regex,$options:"i"}}).skip(alus).limit(20)
+   AnimeDB.find({Name:{$regex:regex,$options:"i"}})
     .then(ser=>{
    if(ser.length>0 && ser.length === 1 ) { 
    const sendBack = {
@@ -182,7 +168,7 @@ SearchQ.get("/search/q",async(req,res)=>{
     }
     else {
     const regex = new RegExp(query);
-           AnimeDB.find({Name:{$regex:regex,$options:"i"}}).limit(20)
+           AnimeDB.find({Name:{$regex:regex,$options:"i"}}).skip(alus).limit(20)
         .then(info=>{
             const AniData = info;
                 if (Token) {
