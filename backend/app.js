@@ -132,7 +132,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.set('trust proxy', true) ;
+app.set('trust proxy', false) ;
 //IP Block 
 app.use((req, res, next) => {
   const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.ip;
