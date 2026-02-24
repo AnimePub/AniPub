@@ -42,7 +42,7 @@ aluR.get('/api/anime/watching', requireAuth, async (req, res) => {
 });
 
 aluR.get('/api/info/anime/:id', requireAuth ,async (req, res) => {
-  const user = await Data.findById(req.session.userId);
+  const user = await User.findById(req.session.userId);
   
   const response = await axios.get('https://api.myanimelist.net/v2/users/@me/animelist', {
     headers: { Authorization: `Bearer ${user.accessToken}` },
