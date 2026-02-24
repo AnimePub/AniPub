@@ -130,7 +130,17 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.set('trust proxy', true) 
+app.set('trust proxy', true) ;
+//IP Block 
+app.use((req, res, next) => {
+  const clientIp = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.ip;
+  const blockedIps = ['136.243.220.209']; 
+  
+  if (blockedIps.includes(clientIp)) {
+    return res.status(403).send('Access denied');
+  }
+  next();
+});
 app.use(morgan("common"));
 
 app.set("view engine", "ejs");
