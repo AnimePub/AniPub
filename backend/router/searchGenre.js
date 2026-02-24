@@ -10,7 +10,7 @@ const JSONAUTH = process.env.jsonauth;
 SearchGenre.get("/Search",async(req,res)=>{
     const Token = req.cookies.anipub;
     let query = req.query.genre;
-      if(req.query.query){
+      if(req.query.genre){
            query = query.toLowerCase()
     }
     let page = 1;
