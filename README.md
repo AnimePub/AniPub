@@ -44,7 +44,13 @@
 ---
 
 ## Get Started
+```.env
+for local dev.
+email : aabdullahal466@gmail.com
+pass: 12345678
+please don't change it and if it doesn't work than in the Login post req compare section  make the if (value) ... if (1===1) to bypass it ..
 
+```
 ### Run Locally
 
 ```bash
