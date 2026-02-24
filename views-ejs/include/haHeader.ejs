@@ -1,44 +1,112 @@
-<header class="header-div">
-    <a href="/Home" target="_blank" class="first-section-a">
-        <div class="first-section">
-            <div class="logo-div">
-                <img class="logo" src="/Logo-1.png" alt="">
-            </div>
-            <div class="details">
-                <p class="name">AniPub</p>
-                <p class="slogan" style="margin-left: 1px; margin-top: -5px;">Yamate Kudasai</p>
-            </div>
+<%
+  // Normalize: support both "auth" and "Auth"
+  const isAuth = (typeof auth !== "undefined" ? auth : (typeof Auth !== "undefined" ? Auth : null));
+  const userID = typeof ID !== "undefined" ? ID : "";
+  const userLink = (typeof Link !== "undefined" && Link && Link.trim() !== "") ? Link : "favicon.ico";
+%>
+<link rel="stylesheet" href="/newHeader.css">
+<header class="header">
+    <a href="/Home" class="logo-wrap">
+        <div class="logo-icon">
+              <img style="height: 100%; width: 100%; background-color:rgb(6, 9, 15);" src="https://www.anipub.xyz/Logo-1-AniPub.png" alt="AniPub Logo">
+        </div>
+        <div class="logo-txt">
+            <div class="logo-name">Ani<em>Pub</em></div>
+            <div class="logo-sub">Yamate Kudasai</div>
         </div>
     </a>
-    <div class="Search-Box-Area">
-        <input class="searchbox" type="text" placeholder="Search">
-        <button class="search-button"></button>
-        <div class="SBOX">
-<div class="sbf" style="display: none;">
-           
+
+    <div class="search-wrap">
+        <input type="text" class="search-inp searchbox" placeholder="Search anime..." autocomplete="off">
+        <button class="search-btn search-button" title="Search">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            </svg>
+        </button>
+        <div class="search-results SBOX">
+            <div class="sbf" style="display: none; flex-direction: column;"></div>
         </div>
-        </div>
-        
     </div>
 
-    <div class="Second-Section">
-        <a href="/Random"><button class="random">Random</button></a>
-
+    <div class="nav-right">
+        <a href="/Random"><button class="rand-btn random">Random</button></a>
         <% if(auth === true) { %>
-            <% const LinkPr =  Link;
+              <% const LinkPr =  Link;
                             const PrArray = LinkPr.split("https://");
                             let PrLink = "";
                             if(PrArray.length > 1){
                                 PrLink = "https://" + PrArray[1]; 
                             }
-                     %> 
-        <button class="profile-icon" title="Profile Menu">
-            <img style="width: 50px; height: 50px;  object-position: center;border-radius: 50%;" src="<%= PrLink %> " alt="">
-        </button>
+                            else {
+                                 PrLink= "/ProfilePic/"+PrArray[0]
+                            } %> 
+            <button class="prof-btn profile-icon" title="Profile Menu">
+                <img src="<%= PrLink %>" alt="Profile">
+            </button>
         <% } else {%>
-        <button class="profile-icon" title="Profile Menu">
-            <img style="width: 50px; height: 50px;  object-position: center ; border-radius: 50%;" src="<%= Link %>" alt="">
-        </button>
+            <button class="prof-btn profile-icon" title="Profile Menu">
+                <img src="<%= Link %>" alt="Profile">
+            </button>
         <% } %>
     </div>
+
+    <button class="ham" id="ham" onclick="toggleNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
 </header>
+
+<!-- Mobile Nav -->
+<div class="mob-nav" id="mobnav">
+    <div class="search-wrap">
+        <input type="text" class="search-inp searchbox" placeholder="Search anime..." autocomplete="off">
+        <button class="search-btn search-button" title="Search">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            </svg>
+        </button>
+    </div>
+    <div class="nav-right">
+           <div class="search-results SBOX">
+            <div class="sbf" style="display: none; flex-direction: column;"></div>
+        </div>
+        <a href="/Random"><button class="rand-btn random">Random</button></a>
+        <% if(auth === true) { %>
+              <% const LinkPr =  Link;
+                            const PrArray = LinkPr.split("https://");
+                            let PrLink = "";
+                            if(PrArray.length > 1){
+                                PrLink = "https://" + PrArray[1]; 
+                            }
+                            else {
+                                 PrLink= "/ProfilePic/"+PrArray[0]
+                            } %> 
+          <a style="text-decoration: none;" href="/Random">   <button class="prof-btn profile-icon" title="Profile Menu">
+                <img src="<%= PrLink %>" alt="Profile">
+            </button></a>
+        <% } else {%>
+         <a style="text-decoration: none;" href="/Profile">  <button class="prof-btn profile-icon" title="Profile Menu">
+                <img src="<%= Link %>" alt="Profile"></a> 
+            </button>
+              <a style="text-decoration: none;" href="/Playlist">  <button class="prof-btn profile-icon">PlayList</button></a>
+
+              <a style="text-decoration: none;" href="/Logout">  <button class="prof-btn profile-icon">Logout</button></a>
+        <% } %>
+    </div>
+</div>
+
+<script>
+    /* ── Mobile Nav ── */
+    function toggleNav() {
+        const n = document.getElementById('mobnav');
+        const h = document.getElementById('ham');
+        const o = n.classList.toggle('open');
+        h.classList.toggle('open', o);
+    }
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            document.getElementById('mobnav').classList.remove('open');
+            document.getElementById('ham').classList.remove('open');
+        }
+    });
+
+</script>

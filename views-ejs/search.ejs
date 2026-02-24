@@ -1,232 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AniPub</title>
-    <meta name="description" content="Watch all <%= query %> related anime on anipub ">
-    <link rel="stylesheet" href="/home.css">
-    <link rel="stylesheet" href="/third-section.css">
-    <link rel="stylesheet" href="/home-main.css">
+    <title>Search: <%= query %> | AniPub</title>
+    <meta name="description" content="Watch all <%= query %> related anime on anipub">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Footer.css">
-<style>
-    .recents{
-        display: flex;
-        width: 95%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-     
-    }
-    .Next, .Prev , .PageNum{
-        background-color: #ff3d00;
-        border: none;
-        padding: 10px 15px;
-        color: white;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 0 5px;
-    }
-    .Next{
-        background-color: rgb(23, 237, 23);
-    }
-    .Next:hover{
-        background-color: #4caf50;
-    }
-    .Next:active{
-        background-color: #388e3c;
-    }
-    .PageNum{
-        background-color: #607d8b;
-    }
-    .PageNum:hover{
-        background-color: #607d8b;
-    }
-    .PageNum:active{
-        background-color: #607d8b;
-    }
-    .Prev:hover{
-        background-color: #e63600;
-
-    }
-    .Prev:active{
-        background-color: #bf2e00;}
-</style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/search.css">
 </head>
 
-<body style="padding-top: 70px; height: 100%;"> <!--onload="CheckAuth();"-->
-
+<body>
     <%- include("./include/haHeader.ejs") %>
-    <div class="secoNd-Section" >
 
+    <div class="secoNd-Section">
         <div class="aniLists">
-
             <div class="recents">
-                <div style="width: fit-content; display: flex; flex-direction: row; align-items: center;">
-                     <div class="ntg"></div>
-                <p>
-                    Search Result for query {<%=query%>}:-
-                </p>
-                </div>
-               
                 <div>
-                     <button class="Prev">Prev</button>
-                <button class="PageNum"></button>
-                <button class="Next">Next</button>
+                    <div class="ntg"></div>
+                    <p>Search Result for query {<%=query%>}:-</p>
                 </div>
-               
+                
+                <div class="pagination-controls">
+                    <button class="Prev">← Prev</button>
+                    <button class="PageNum"></button>
+                    <button class="Next">Next →</button>
+                </div>
             </div>
-            <% if(Anime.length>0) { %> 
-            <% Anime.forEach(value => {%>
-                  <a href="/AniPlayer/<%=value._id%>/0" style="text-decoration: none;">    <div class="Profile-div">
-                <div class="Profile" data-anime="<%=value._id%>">
-                    <div class="Image-div">
-                          <% const POSTER = value.ImagePath;
-                            const POSTERARY = POSTER.split("https://");
-                            let LINKU = "";
-                            if(POSTERARY.length > 1){
-                                LINKU = "https://" + POSTERARY[1]; 
-                            }
-                            else {
-                                 LINKU= "/"+POSTERARY[0]
-                            }
-                        %>
-                        <img class="poster" src="<%=LINKU%>" alt="<%=value.Name%> Anime Poster">
-                    </div>
-                    <div class="Title-div">
-                        <p class="Title"><%=value.Name%></p>
-                    </div>
-                    <div class="ratings-div">
-                        <p class="mal-score"><%=value.MALScore%></p>
-                        <img style="width: 90px;" src="/rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
-                    </div>
-                    <div class="des-div">
-                        <p class="des">
-                             <% const desc = value.DescripTion;
-                          const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
-                            %>
 
-                            <%=descr%>...
-                        </p>
-                    </div>
-                </div>
-            </div> </a>
-            <% }); %>
+            <% if(Anime.length > 0) { %> 
+                <% Anime.forEach(value => {%>
+                    <a href="/AniPlayer/<%=value._id%>/0" style="text-decoration: none;">
+                        <div class="Profile-div">
+                            <div class="Profile" data-anime="<%=value._id%>">
+                                <div class="Image-div">
+                                    <% const POSTER = value.ImagePath;
+                                        const POSTERARY = POSTER.split("https://");
+                                        let LINKU = "";
+                                        if(POSTERARY.length > 1){
+                                            LINKU = "https://" + POSTERARY[1]; 
+                                        } else {
+                                            LINKU= "/"+POSTERARY[0]
+                                        }
+                                    %>
+                                    <img class="poster" src="<%=LINKU%>" alt="<%=value.Name%> Anime Poster">
+                                </div>
+                                <div class="Title-div">
+                                    <p class="Title"><%=value.Name%></p>
+                                </div>
+                                <div class="ratings-div">
+                                    <p class="mal-score"><%=value.MALScore%></p>
+                                    <img style="width: 90px;" src="/rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
+                                </div>
+                                <div class="des-div">
+                                    <p class="des">
+                                        <% const desc = value.DescripTion;
+                                            const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
+                                        %>
+                                        <%=descr%>...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                <% }); %>
             <% } else { %> 
-                <h1>There is No Genre Result Found in the DataBase</h1>
-                <% } %> 
+                <div class="no-results">
+                    <h1>🔍 No Results Found</h1>
+                    <p>There are no anime matching your search in the database. Try a different query or browse by genre below.</p>
+                </div>
+            <% } %> 
         </div>
-
-
-
-
-
-
-
     </div>
 
-    <div style="width: 100%;">
-    <link rel="stylesheet" href="/genreSearch.css">
-         <div class="genre-list">
-        
-                            <span class="genre action" data-genre="action">Action</span>
-                            <span class="genre adventure" data-genre="adventure">Adventure</span>
-                            <span class="genre comedy" data-genre="comedy">Comedy</span>
-                            <span class="genre drama" data-genre="drama">Drama</span>
-                            <span class="genre fantasy" data-genre="fantasy">Fantasy</span>
-                            <span class="genre sci-fi" data-genre="sci-fi">Sci-Fi</span>
-                            <span class="genre mecha" data-genre="mecha">Mecha</span>
-                            <span class="genre mystery" data-genre="mystery">Mystery</span>
-                            <span class="genre psychological" data-genre="psychological">Psychological</span>
-                            <span class="genre slice-of-life" data-genre="slice-of-life">Slice of Life</span>
-                            <span class="genre romance" data-genre="romance">Romance</span>
-                            <span class="genre supernatural" data-genre="supernatural">Supernatural</span>
-                            <span class="genre horror" data-genre="horror">Horror</span>
-                            <span class="genre sports" data-genre="sports">Sports</span>
-                            <span class="genre martial-arts" data-genre="martial-arts">Martial Arts</span>
-                            <span class="genre historical" data-genre="historical">Historical</span>
-                            <span class="genre samurai" data-genre="samurai">Samurai</span>
-                            <span class="genre school" data-genre="school">School</span>
-                            <span class="genre music" data-genre="music">Music</span>
-                            <span class="genre isekai" data-genre="isekai">Isekai</span>
-                            <span class="genre post-apocalyptic" data-genre="post-apocalyptic">Post-Apocalyptic</span>
-                            <span class="genre cyberpunk" data-genre="cyberpunk">Cyberpunk</span>
-                            <span class="genre steampunk" data-genre="steampunk">Steampunk</span>
-                            <span class="genre military" data-genre="military">Military</span>
-                            <span class="genre police" data-genre="police">Police</span>
-                            <span class="genre thriller" data-genre="thriller">Thriller</span>
-                            <span class="genre game" data-genre="game">Game</span>
-                            <span class="genre cooking" data-genre="cooking">Cooking</span>
-                            <span class="genre parody" data-genre="parody">Parody</span>
-                            <span class="genre kids" data-genre="kids">Kids</span>
-                            <span class="genre shounen" data-genre="shounen">Shounen</span>
-                            <span class="genre shoujo" data-genre="shoujo">Shoujo</span>
-                            <span class="genre seinen" data-genre="seinen">Seinen</span>
-                            <span class="genre harem" data-genre="harem">Harem</span>
-                        </div>
-                        <script src="/Gnrerender.js"></script>
-   </div>
+    <div class="genre-section">
+        <div class="genre-header">
+            <div class="ntg"></div>
+            <h2>Browse by Genre</h2>
+        </div>
+        <div class="genre-list">
+            <span class="genre action" data-genre="action">Action</span>
+            <span class="genre adventure" data-genre="adventure">Adventure</span>
+            <span class="genre comedy" data-genre="comedy">Comedy</span>
+            <span class="genre drama" data-genre="drama">Drama</span>
+            <span class="genre fantasy" data-genre="fantasy">Fantasy</span>
+            <span class="genre sci-fi" data-genre="sci-fi">Sci-Fi</span>
+            <span class="genre mecha" data-genre="mecha">Mecha</span>
+            <span class="genre mystery" data-genre="mystery">Mystery</span>
+            <span class="genre psychological" data-genre="psychological">Psychological</span>
+            <span class="genre slice-of-life" data-genre="slice-of-life">Slice of Life</span>
+            <span class="genre romance" data-genre="romance">Romance</span>
+            <span class="genre supernatural" data-genre="supernatural">Supernatural</span>
+            <span class="genre horror" data-genre="horror">Horror</span>
+            <span class="genre sports" data-genre="sports">Sports</span>
+            <span class="genre martial-arts" data-genre="martial-arts">Martial Arts</span>
+            <span class="genre historical" data-genre="historical">Historical</span>
+            <span class="genre samurai" data-genre="samurai">Samurai</span>
+            <span class="genre school" data-genre="school">School</span>
+            <span class="genre music" data-genre="music">Music</span>
+            <span class="genre isekai" data-genre="isekai">Isekai</span>
+            <span class="genre post-apocalyptic" data-genre="post-apocalyptic">Post-Apocalyptic</span>
+            <span class="genre cyberpunk" data-genre="cyberpunk">Cyberpunk</span>
+            <span class="genre steampunk" data-genre="steampunk">Steampunk</span>
+            <span class="genre military" data-genre="military">Military</span>
+            <span class="genre police" data-genre="police">Police</span>
+            <span class="genre thriller" data-genre="thriller">Thriller</span>
+            <span class="genre game" data-genre="game">Game</span>
+            <span class="genre cooking" data-genre="cooking">Cooking</span>
+            <span class="genre parody" data-genre="parody">Parody</span>
+            <span class="genre kids" data-genre="kids">Kids</span>
+            <span class="genre shounen" data-genre="shounen">Shounen</span>
+            <span class="genre shoujo" data-genre="shoujo">Shoujo</span>
+            <span class="genre seinen" data-genre="seinen">Seinen</span>
+            <span class="genre harem" data-genre="harem">Harem</span>
+        </div>
+    </div>
+
     <%- include("./include/footer.ejs") %>
 
-    <!--
-    <script type="module" src="animeInfo.js"></script>
-     <script type="module" src="/Home.js"></script>
--->
     <script src="/home.js"></script>
     <script type="module" src="/ANiPlayer-render.js"></script>
-<script>
-  let page =  window.location.search;
-  page = page.split("&");
-  if(page.length > 1) {
-    let hel = page[1];
-    hel = hel.split("=");
-    hel = hel[1];
-    document.querySelector(".PageNum").innerHTML = `${hel}`
-  }
-  else {
-      document.querySelector(".PageNum").innerHTML = `1`;
-  }
-  document.querySelector(".Next").addEventListener('click',()=>{
-    let url = window.location.href;
-    url = new URL(url);
-    let currentPage = url.searchParams.get('page');
-    if(currentPage) {
-        let nextPage = parseInt(currentPage) + 1;
-        url.searchParams.set('page',nextPage);
-    }
-    else {
-        url.searchParams.set('page','2');
-    }
-    window.location.href = url.href;
-  })
-   document.querySelector(".Prev").addEventListener('click',()=>{
-    let url = window.location.href;
-    url = new URL(url);
-    let currentPage = url.searchParams.get('page');
-    if(currentPage && parseInt(currentPage) > 1) {
-        let nextPage = parseInt(currentPage) - 1;
-        url.searchParams.set('page',nextPage);
-    }
-    else {
-        url.searchParams.set('page','1');
-    }
-    window.location.href = url.href;
-  })
-  document.querySelector(".PageNum").addEventListener('click',()=>{
-    let pageNum = prompt("Enter Page Number:");
-    if(pageNum !== null && pageNum !== "" && !isNaN(pageNum) && parseInt(pageNum) > 0) {
-        let url = window.location.href;
-        url = new URL(url);
-        url.searchParams.set('page',pageNum);
-        window.location.href = url.href;
-    }
-  })
-</script>
-</body>
+    <script src="/Gnrerender.js"></script>
+    <script>
+        let page = window.location.search;
+        page = page.split("&");
+        if(page.length > 1) {
+            let hel = page[1];
+            hel = hel.split("=");
+            hel = hel[1];
+            document.querySelector(".PageNum").innerHTML = `${hel}`;
+        } else {
+            document.querySelector(".PageNum").innerHTML = `1`;
+        }
 
+        document.querySelector(".Next").addEventListener('click', () => {
+            let url = window.location.href;
+            url = new URL(url);
+            let currentPage = url.searchParams.get('page');
+            if(currentPage) {
+                let nextPage = parseInt(currentPage) + 1;
+                url.searchParams.set('page', nextPage);
+            } else {
+                url.searchParams.set('page', '2');
+            }
+            window.location.href = url.href;
+        });
+
+        document.querySelector(".Prev").addEventListener('click', () => {
+            let url = window.location.href;
+            url = new URL(url);
+            let currentPage = url.searchParams.get('page');
+            if(currentPage && parseInt(currentPage) > 1) {
+                let nextPage = parseInt(currentPage) - 1;
+                url.searchParams.set('page', nextPage);
+            } else {
+                url.searchParams.set('page', '1');
+            }
+            window.location.href = url.href;
+        });
+
+        document.querySelector(".PageNum").addEventListener('click', () => {
+            let pageNum = prompt("Enter Page Number:");
+            if(pageNum !== null && pageNum !== "" && !isNaN(pageNum) && parseInt(pageNum) > 0) {
+                let url = window.location.href;
+                url = new URL(url);
+                url.searchParams.set('page', pageNum);
+                window.location.href = url.href;
+            }
+        });
+    </script>
+</body>
 </html>

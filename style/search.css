@@ -1,0 +1,461 @@
+
+    <style>
+        /* ══════════════════════════════════════════
+           RESET & TOKENS
+        ══════════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --blue: #1a8cff;
+            --blue-dim: #0d5fab;
+            --cyan: #00d4ff;
+            --dark: #06090f;
+            --dark2: #090d18;
+            --dark3: #0d1526;
+            --dark4: #111d35;
+            --dark5: #172440;
+            --border: rgba(26,140,255,0.2);
+            --border-hi: rgba(26,140,255,0.55);
+            --text: #ddeeff;
+            --muted: #5a7aa8;
+            --gold: #ffd166;
+            --green: #10b981;
+            --red: #ef4444;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'Nunito', sans-serif;
+            --radius: 14px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--dark) !important;
+            color: var(--text);
+            min-height: 100vh;
+            padding-top: 70px !important;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(26,140,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26,140,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark2); }
+        ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 3px; }
+
+        /* ══════════════════════════════════════════
+           MAIN CONTAINER
+        ══════════════════════════════════════════ */
+        .secoNd-Section {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 32px);
+        }
+
+        .aniLists {
+            width: 100%;
+        }
+
+        /* ══════════════════════════════════════════
+           HEADER SECTION
+        ══════════════════════════════════════════ */
+        .recents {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: clamp(24px, 4vw, 40px);
+            padding: clamp(20px, 3vw, 28px);
+            background: var(--dark3);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+           
+        }
+
+        .recents > div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .ntg {
+            width: 4px;
+            height: 28px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, var(--blue), var(--cyan));
+       
+        }
+
+        .recents p {
+            font-family: var(--font-display);
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            letter-spacing: 2px;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        /* Pagination Controls */
+        .pagination-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .Prev, .Next, .PageNum {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .Prev {
+            background: var(--dark5);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .Prev:hover {
+            background: var(--red);
+            border-color: var(--red);
+            color: #fff;
+            transform: translateY(-2px);
+         
+        }
+
+        .Prev:active {
+            transform: translateY(0);
+        }
+
+        .Next {
+            background: var(--green);
+            color: #fff;
+       
+        }
+
+        .Next:hover {
+            background: #059669;
+            transform: translateY(-2px);
+         
+        }
+
+        .Next:active {
+            transform: translateY(0);
+        }
+
+        .PageNum {
+            background: var(--blue);
+            color: #fff;
+            min-width: 50px;
+            justify-content: center;
+          
+        }
+
+        .PageNum:hover {
+            background: #0f72d9;
+            transform: scale(1.05);
+        }
+
+        /* ══════════════════════════════════════════
+           ANIME GRID
+        ══════════════════════════════════════════ */
+        .Profile-div {
+            width: 100%;
+            animation: fadeInUp 0.5s ease both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stagger animation */
+        .Profile-div:nth-child(1) { animation-delay: 0.05s; }
+        .Profile-div:nth-child(2) { animation-delay: 0.1s; }
+        .Profile-div:nth-child(3) { animation-delay: 0.15s; }
+        .Profile-div:nth-child(4) { animation-delay: 0.2s; }
+        .Profile-div:nth-child(5) { animation-delay: 0.25s; }
+        .Profile-div:nth-child(6) { animation-delay: 0.3s; }
+
+        .aniLists {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .aniLists > .recents {
+            grid-column: 1 / -1;
+        }
+
+        .Profile {
+            background: black;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .Profile::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .Profile:hover {
+            border-color: var(--blue);
+        
+        }
+
+        .Profile:hover::before {
+            opacity: 1;
+        }
+
+        .Image-div {
+            position: relative;
+            width: 100%;
+            padding-top: 140%;
+            overflow: hidden;
+            background: var(--dark5);
+        }
+
+        .poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .Profile:hover .poster {
+            transform: scale(1.12);
+        }
+
+        .Title-div {
+            padding: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .Title {
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .ratings-div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 12px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mal-score {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--gold);
+        }
+
+        .ratings-div img {
+            height: 14px;
+        }
+
+        .des-div {
+            padding: 0 12px 12px;
+            position: relative;
+            z-index: 2;
+            flex-grow: 1;
+        }
+
+        .des {
+            font-size: 0.75rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ══════════════════════════════════════════
+           NO RESULTS
+        ══════════════════════════════════════════ */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: clamp(60px, 10vw, 120px) 20px;
+        }
+
+        .no-results h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 2px;
+            color: var(--text);
+            margin-bottom: 16px;
+            opacity: 0.7;
+        }
+
+        .no-results p {
+            font-size: 1.1rem;
+            color: var(--muted);
+        }
+
+        /* ══════════════════════════════════════════
+           GENRE LIST SECTION
+        ══════════════════════════════════════════ */
+        .genre-section {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: clamp(40px, 6vw, 80px) auto;
+            padding: 0 clamp(16px, 4vw, 32px) clamp(30px, 5vw, 60px);
+        }
+
+        .genre-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .genre-header .ntg {
+            width: 4px;
+            height: 28px;
+        }
+
+        .genre-header h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            letter-spacing: 2px;
+            color: var(--text);
+        }
+
+        .genre-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: clamp(24px, 4vw, 36px);
+            background: var(--dark3);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+       
+        }
+
+        .genre {
+            padding: 9px 20px;
+            border-radius: 50px;
+            background: var(--dark4);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .genre::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .genre span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .genre:hover {
+            border-color: var(--blue);
+            color: #fff;
+            transform: translateY(-3px);
+     
+        }
+
+        .genre:hover::before {
+            opacity: 1;
+        }
+
+        /* ══════════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .aniLists {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+
+            .recents {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pagination-controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px !important;
+            }
+
+            .Prev, .Next, .PageNum {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .aniLists {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 14px;
+            }
+
+            .recents p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
