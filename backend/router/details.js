@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const AnimeDB = require("../models/AniDB.js");
 const Data = require("../models/model");
 const JSONAUTH = process.env.jsonauth;
-
+const {streamLimiter,infoLimiter} = require("../middleware/ratelimit.js")
 // Fetch anime details from Jikan API
 async function fetchJikanDetails(malId) {
     try {
@@ -108,7 +108,7 @@ DetailsRouter.get("/details/:id", async (req, res) => {
 });
 
 // GET /api/details/:id - JSON endpoint for details data
-DetailsRouter.get("/anime/api/details/:id", async (req, res) => {
+DetailsRouter.get("/anime/api/details/:id",infoLimiter, async (req, res) => {
     try {
         const animeId = req.params.id;
 
@@ -135,7 +135,7 @@ DetailsRouter.get("/anime/api/details/:id", async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
-DetailsRouter.get("/v1/api/details/:id", async (req, res) => {
+DetailsRouter.get("/v1/api/details/:id",streamLimiter, async (req, res) => {
     try {
         const animeId = req.params.id;
 

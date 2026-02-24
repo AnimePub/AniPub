@@ -19,6 +19,8 @@ const cookieParser = require("cookie-parser");
 const {
     AuthAcc
 } = require("./middleware/valideAcc.js");
+//rate limiter
+const {globalLimiter} = require("./middleware/ratelimit.js")
 const bcrypt = require("bcrypt");
 require('dotenv').config();
 const mailChanger = require("./models/VERIFY.js")
@@ -179,7 +181,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 configureGoogleAuth();
-
+//global rate limit
+app.use(globalLimiter)
 //Home router
 app.use(HomeRouter);
 //Details router
