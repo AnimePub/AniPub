@@ -5,7 +5,13 @@ function isGoodBot(req) {
   const ua = req.get('user-agent') || '';
   return /Googlebot|Google-InspectionTool|Slurp|yandex|yahoo|DuckDuckBot/i.test(ua);
 }
-//global
+
+// Helper to get real client IP
+function getClientIP(req) {
+  return req.ip; 
+}
+
+// Global limiter
 const globalLimiter = rateLimit({
   windowMs: 60 * 1000,       
   max: 80,                   
@@ -13,23 +19,24 @@ const globalLimiter = rateLimit({
   skip: (req) => isGoodBot(req),
   standardHeaders: true,
   legacyHeaders: false,
+  keyGenerator: (req) => getClientIP(req), // Use real IP
 });
 
-
-// streaming link generation / episode fetch
+// Streaming limiter
 const streamLimiter = rateLimit({
   windowMs: 60 * 1000,
   max: 6,                 
   message: { error: 'Streaming rate limit exceeded. Wait 60s.' },
-  skipFailedRequests: true,  
+  skipFailedRequests: true,
+  keyGenerator: (req) => getClientIP(req),
 });
 
-
-// anime info, search
+// Info limiter
 const infoLimiter = rateLimit({
   windowMs: 60 * 1000,
   max: 25,
   message: { error: 'Too many info requests.' },
+  keyGenerator: (req) => getClientIP(req),
 });
 
-module.exports = {globalLimiter,streamLimiter,infoLimiter}
+module.exports = { globalLimiter, streamLimiter, infoLimiter };
