@@ -108,7 +108,7 @@
                     <div class="des-div">
                         <p class="des">
                              <% const desc = value.DescripTion;
-                            const descr = desc.slice(0,60);
+                          const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
                             %>
 
                             <%=descr%>...
