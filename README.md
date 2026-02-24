@@ -56,11 +56,6 @@ node backend/app.js
 
 Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Install via npm
-
-```bash
-npm i anipub
-```
 
 ### Quick Install — Linux
 
