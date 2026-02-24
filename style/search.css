@@ -1,8 +1,4 @@
 
-    <style>
-        /* ══════════════════════════════════════════
-           RESET & TOKENS
-        ══════════════════════════════════════════ */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
@@ -68,9 +64,7 @@
             width: 100%;
         }
 
-        /* ══════════════════════════════════════════
-           HEADER SECTION
-        ══════════════════════════════════════════ */
+    
         .recents {
             display: flex;
             flex-direction: row;
@@ -110,7 +104,6 @@
             line-height: 1.2;
         }
 
-        /* Pagination Controls */
         .pagination-controls {
             display: flex;
             align-items: center;
@@ -313,9 +306,7 @@
             line-height: 1.5;
         }
 
-        /* ══════════════════════════════════════════
-           NO RESULTS
-        ══════════════════════════════════════════ */
+      
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -458,4 +449,4 @@
                 font-size: 1.2rem;
             }
         }
-    </style>
+   
