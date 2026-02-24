@@ -1220,24 +1220,20 @@ app.get("/getCors",validAdmin,(req,res)=>{
         res.json(info)
     })
 })
-app.get("/sitemaps",(req,res)=>{
+app.get("/sitemaps",async (req,res)=>{
     // res.sendFile(path.join(__dirname,"../sitemaps/sitemap.xml"))
-    AnimeDB.find()
-    .then(async info=>{
-        const i =  info.length;
+  const i = await  AnimeDB.find().countDocuments()
          res.contentType(".xml")
          res.render("sitemap",{i})
-        })
     })
 
-app.get("/sitemap.xml",(req,res)=>{
+app.get("/sitemap.xml",async (req,res)=>{
     // res.sendFile(path.join(__dirname,"../sitemaps/sitemap.xml"))
-    AnimeDB.find()
-    .then(async info=>{
-        const i =  info.length;
+   
+    const i = await  AnimeDB.find().countDocuments()
          res.contentType(".xml")
          res.render("sitemap",{i})
-        })
+    
     })      
 app.get("/robots.txt",(req,res)=>{
      res.sendFile(path.join(__dirname,"../sitemaps/robots.txt"))
