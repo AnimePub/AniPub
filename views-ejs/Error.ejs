@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error | AniPub</title>
+    <meta name="description" content="Something went wrong - AniPub">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/error.css">
+    
+</head>
+
+<body>
+    <div class="glitch-element glitch-1">⚠️</div>
+    <div class="glitch-element glitch-2">❌</div>
+    <div class="glitch-element glitch-3">🔴</div>
+
+    <div class="error-container">
+        <div class="error-content">
+            <!-- Error Badge -->
+            <div class="error-badge">
+                <i class="fas fa-exclamation-triangle"></i>
+                System Alert
+            </div>
+
+            <!-- Error Code -->
+            <div class="error-code" data-text="ERROR">ERROR</div>
+
+            <!-- Error Image with Rings -->
+            <div class="error-image-container">
+                <div class="error-image-wrapper">
+                    <div class="error-ring"></div>
+                    <div class="error-ring"></div>
+                    <div class="error-image">
+                        <img src="/crying.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Title -->
+            <h1 class="error-title">Validation Failed</h1>
+
+            <!-- Error Message -->
+            <p class="error-message">
+                Oops! Something went wrong while processing your request. 
+                The <strong>validation check failed</strong>, and we couldn't complete the operation. 
+                Don't worry though, we're here to help you get back on track!
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="error-actions">
+                <a href="/Home" class="error-btn error-btn-primary">
+                    <i class="fas fa-home"></i>
+                    Go to Homepage
+                </a>
+                <a href="javascript:history.back()" class="error-btn error-btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Go Back
+                </a>
+            </div>
+
+            <!-- Error Details Card -->
+            <div class="error-details">
+                <div class="error-details-title">
+                    <i class="fas fa-info-circle"></i> What happened?
+                </div>
+                <div class="error-details-text">
+                    The request you submitted couldn't be validated. This usually happens when:
+                    <ul style="margin-top: 10px; padding-left: 20px;">
+                        <li style="margin-bottom: 6px;">Required fields are missing or incorrect</li>
+                        <li style="margin-bottom: 6px;">Session has expired or authentication failed</li>
+                        <li style="margin-bottom: 6px;">Invalid data format was provided</li>
+                        <li style="margin-bottom: 6px;">Server encountered an unexpected error</li>
+                    </ul>
+                </div>
+                <div class="error-details-code">
+                    Error Code: VALIDATION_FAILED | Timestamp: <script>document.write(new Date().toISOString())</script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include("./include/footer.ejs") %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --blue: #1a8cff;
+            --blue-dim: #0d5fab;
+            --cyan: #00d4ff;
+            --dark: #06090f;
+            --dark2: #090d18;
+            --dark3: #0d1526;
+            --dark4: #111d35;
+            --dark5: #172440;
+            --border: rgba(26,140,255,0.2);
+            --text: #ddeeff;
+            --muted: #5a7aa8;
+            --red: #ef4444;
+            --orange: #f97316;
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-body: 'Nunito', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--dark);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Animated grid background */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(26,140,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(26,140,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+            animation: gridPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Floating gradient orbs */
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 40%, rgba(239,68,68,0.12) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 60%, rgba(249,115,22,0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: bgDrift 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes bgDrift {
+            0% { transform: translate(0,0) rotate(0deg); }
+            100% { transform: translate(2%,2%) rotate(2deg); }
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--dark2); }
+        ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 3px; }
+
+
+        .glitch-element {
+            position: fixed;
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: rgba(239,68,68,0.08);
+            pointer-events: none;
+            z-index: 0;
+           
+        }
+
+        .glitch-1 {
+            top: 15%;
+            right: 8%;
+            animation-delay: 0s;
+        }
+
+        .glitch-2 {
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 2s;
+        }
+
+        .glitch-3 {
+            top: 60%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        @keyframes glitchFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.08; }
+            50% { transform: translateY(-15px) rotate(5deg); opacity: 0.12; }
+        }
+
+        .error-container {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(1px, 8vw, 100px) clamp(1px, 5vw, 40px);
+            padding-top: 1px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .error-content {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Error Badge */
+        .error-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(239,68,68,0.15);
+            border: 1px solid rgba(239,68,68,0.4);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--red);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            animation: slideDown 0.7s ease both;
+        }
+
+        .error-badge i {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Error Code */
+        .error-code {
+            font-family: var(--font-display);
+            font-size: clamp(6rem, 15vw, 12rem);
+            letter-spacing: 8px;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideDown 0.7s 0.1s ease both;
+            position: relative;
+            text-shadow: 0 0 80px rgba(239,68,68,0.3);
+        }
+
+        /* Glitch effect on error code */
+        .error-code::before,
+        .error-code::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .error-code::before {
+            animation: glitch1 2s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        }
+
+        .error-code::after {
+            animation: glitch2 2s infinite;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitch1 {
+            0%, 90% { transform: translate(0); }
+            91% { transform: translate(-2px, 2px); }
+            92% { transform: translate(2px, -2px); }
+            93% { transform: translate(0); }
+        }
+
+        @keyframes glitch2 {
+            0%, 90% { transform: translate(0); }
+            91% { transform: translate(2px, -2px); }
+            92% { transform: translate(-2px, 2px); }
+            93% { transform: translate(0); }
+        }
+
+        /* Error Image Container */
+        .error-image-container {
+            position: relative;
+            margin: 40px auto;
+            max-width: 400px;
+            animation: slideDown 0.7s 0.2s ease both;
+        }
+
+        .error-image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--dark3);
+            border: 3px solid var(--border);
+          
+        }
+
+        .error-image {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(8rem, 20vw, 14rem);
+         
+        }
+        /* Spinning rings around image */
+        .error-ring {
+            position: absolute;
+            inset: -20px;
+            border: 2px solid transparent;
+            border-top-color: var(--red);
+            border-right-color: var(--orange);
+            border-radius: 50%;
+            animation: spin 8s linear infinite;
+        }
+
+        .error-ring:nth-child(2) {
+            inset: -40px;
+            border-top-color: var(--blue);
+            border-left-color: var(--cyan);
+            animation-duration: 10s;
+            animation-direction: reverse;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error Title */
+        .error-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            color: var(--text);
+            animation: slideDown 0.7s 0.3s ease both;
+        }
+
+        /* Error Message */
+        .error-message {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.8;
+            color: var(--muted);
+            margin-bottom: 40px;
+            animation: slideDown 0.7s 0.4s ease both;
+        }
+
+        .error-message strong {
+            color: var(--red);
+            font-weight: 800;
+        }
+
+        /* Action Buttons */
+        .error-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideDown 0.7s 0.5s ease both;
+        }
+
+        .error-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            border: 2px solid transparent;
+        }
+
+        .error-btn-primary {
+            background: var(--blue);
+            color: #fff;
+           
+        }
+
+        .error-btn-primary:hover {
+            background: #0f72d9;
+            transform: translateY(-3px);
+        }
+
+        .error-btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .error-btn-secondary:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+            background: rgba(26,140,255,0.08);
+            transform: translateY(-3px);
+        }
+
+        .error-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* Error Details Card */
+        .error-details {
+            margin-top: 50px;
+            padding: 24px 28px;
+            background: var(--dark3);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--red);
+            border-radius: 12px;
+            text-align: left;
+            animation: slideDown 0.7s 0.6s ease both;
+        }
+
+        .error-details-title {
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .error-details-text {
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: var(--muted);
+            font-family: var(--font-body);
+        }
+
+        .error-details-code {
+            margin-top: 12px;
+            padding: 12px 16px;
+            background: var(--dark2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.82rem;
+            color: var(--orange);
+            word-break: break-all;
+        }
+
+        /* ══════════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+
+            .error-image-container {
+                max-width: 280px;
+            }
+
+            .error-actions {
+                flex-direction: column;
+            }
+
+            .error-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .glitch-element {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .error-container {
+                padding: 30px 16px;
+            }
+
+            .error-code {
+                font-size: 4rem;
+                letter-spacing: 4px;
+            }
+
+            .error-image-container {
+                max-width: 220px;
+            }
+
+            .error-details {
+                padding: 18px 20px;
+            }
+        }

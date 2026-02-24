@@ -8,7 +8,13 @@ const AnimeDB = require("../models/AniDB.js");
 const JSONAUTH = process.env.jsonauth;
 const validAdminReqJs = require("../middleware/validReqfAdmin.js");
 HomeRouter.get("/", (req, res) => {
-    res.render("index");
+    if (req.query.error) {
+        res.render("Error")
+    }
+    else {
+          res.render("index");
+    }
+  
 })
 HomeRouter.get("/v1", (req, res) => {
     res.render("v1");
