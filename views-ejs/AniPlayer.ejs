@@ -416,7 +416,11 @@ const parts = path.split('/').filter(Boolean);
 const animeId = parts[1];
         subBtn.addEventListener('click',async()=>{
             fetch("/lang",{
-                id : animeId
+                method:"POST",
+                 headers: {
+                "Content-Type": "application/json"
+            },
+                id : JSON.stringify(animeId),
             })
             .then(response=>response.json())
             .then(info=>{
@@ -429,8 +433,12 @@ const animeId = parts[1];
             })
         })
          dubBtn.addEventListener('click',async()=>{
-            fetch("/lang",{
-                id : animeId
+              fetch("/lang",{
+                method:"POST",
+                 headers: {
+                "Content-Type": "application/json"
+            },
+                id : JSON.stringify(animeId),
             })
             .then(response=>response.json())
             .then(info=>{
