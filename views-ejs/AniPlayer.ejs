@@ -41,7 +41,7 @@
         body {
             padding-top: 50px;
         }
-        .stream-toggle {
+     .stream-toggle {
   display: inline-flex;
   background: #1a1a2e;
   border-radius: 8px;
@@ -127,10 +127,7 @@
                                 <span>Episode <%= Number(AniEP) + 1 %></span>
                                 <span><i class="fas fa-star"></i> <%=video.MALScore %></span>
                                 <span><i class="fas fa-clock"></i> <%=video.Duration %></span>
-                         <div class="stream-toggle">
-  <button class="toggle-btn sub active">SUB</button>
-  <button class="toggle-btn dub">DUB</button>
-</div>
+         
                             </div>
 
                             <div class="video-actions">
@@ -143,8 +140,11 @@
                                
                                 <button class="btn btn-secondary">
                                     <i class="fas fa-share-alt"></i> Share
-                                </button>
-                                <button class="btn btn-secondary" onclick="alert('Working On It')">
+                                </button>                <div class="stream-toggle">
+  <button class="toggle-btn sub active">SUB</button>
+  <button class="toggle-btn dub">DUB</button>
+</div>
+                                <button class="btn btn-secondary" style="display: none;">
                                     <i class="fas fa-download"></i> Download
                                 </button>
                                
@@ -443,33 +443,30 @@
     <script src="/ANiPlayer-render.js"></script>
     <script src="/play.js"> </script>
     <script>
-      const subBtn = document.querySelector('.sub')
-const dubBtn = document.querySelector('.dub')
-const path = window.location.pathname;
-const parts = path.split('/').filter(Boolean);
-const animeId = parts[1];
-
-// Set active button based on current URL
-const currentType = new URLSearchParams(window.location.search).get('type') || 'sub';
-document.querySelector(`.${currentType}`).classList.add('active');
-
-async function switchLang(targetType) {
-  const response = await fetch("/lang", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(animeId),
-  });
-  const info = await response.json();
-
-  if (info === "dub") {
-    window.location.href = `?type=${targetType}`;
-  } else {
-    window.location.href = `?type=sub`;
+   const subBtn = document.querySelector('.sub');
+  const dubBtn = document.querySelector('.dub');
+  //lang to fetch lang data ... 
+  const currentType = new URLSearchParams(window.location.search).get('type') ;
+  if(currentType) {
+    if(currentType === "sub") {
+  document.querySelector(`.${currentType}`).classList.add('active');
+   document.querySelector(`.dub`).classList.remove('active');
+    }
+    else {
+  document.querySelector(`.${currentType}`).classList.add('active');
+   document.querySelector(`.sub`).classList.remove('active');
+    }
+    
   }
-}
 
-subBtn.addEventListener('click', () => switchLang('sub'));
-dubBtn.addEventListener('click', () => switchLang('dub'));
+
+  subBtn.addEventListener('click', () => {
+    window.location.href = '?type=sub';
+  });
+
+  dubBtn.addEventListener('click', () => {
+    window.location.href = '?type=dub';
+  });
     </script>
     <% if(auth === true) {%> 
     <script src="/update-Watch.js"></script>

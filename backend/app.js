@@ -623,7 +623,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                                 })
 
                         })
-                    } else {console.log(video)
+                    } else {
                         res.render("AniPlayer", {
                             
                             AniDB: animeDb,
