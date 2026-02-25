@@ -41,6 +41,38 @@
         body {
             padding-top: 50px;
         }
+        .stream-toggle {
+  display: inline-flex;
+  background: #1a1a2e;
+  border-radius: 8px;
+  padding: 4px;
+  gap: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+.toggle-btn {
+  padding: 8px 22px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: transparent;
+  color: #666;
+}
+
+.toggle-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.05);
+}
+
+.toggle-btn.active {
+  background: linear-gradient(135deg, #e63946, #c1121f);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(230, 57, 70, 0.5);
+}
     </style>
 </head>
 
@@ -95,8 +127,10 @@
                                 <span>Episode <%= Number(AniEP) + 1 %></span>
                                 <span><i class="fas fa-star"></i> <%=video.MALScore %></span>
                                 <span><i class="fas fa-clock"></i> <%=video.Duration %></span>
-                                <button class="sub">Sub</button>
-                                <button class="dub">dub</button>
+                         <div class="stream-toggle">
+  <button class="toggle-btn sub active">SUB</button>
+  <button class="toggle-btn dub">DUB</button>
+</div>
                             </div>
 
                             <div class="video-actions">
@@ -409,48 +443,33 @@
     <script src="/ANiPlayer-render.js"></script>
     <script src="/play.js"> </script>
     <script>
-        const subBtn = document.querySelector('.sub')
-        const dubBtn = document.querySelector('.dub')
-        const path = window.location.pathname;
+      const subBtn = document.querySelector('.sub')
+const dubBtn = document.querySelector('.dub')
+const path = window.location.pathname;
 const parts = path.split('/').filter(Boolean);
 const animeId = parts[1];
-        subBtn.addEventListener('click',async()=>{
-            fetch("/lang",{
-                method:"POST",
-                 headers: {
-                "Content-Type": "application/json"
-            },
-                id : JSON.stringify(animeId),
-            })
-            .then(response=>response.json())
-            .then(info=>{
-                if(info === "dub"){
-                     window.location.href = "?type=sub"
-                }
-                else {
-                   alert("It's in the sub already ...")
-                }
-            })
-        })
-         dubBtn.addEventListener('click',async()=>{
-              fetch("/lang",{
-                method:"POST",
-                 headers: {
-                "Content-Type": "application/json"
-            },
-                id : JSON.stringify(animeId),
-            })
-            .then(response=>response.json())
-            .then(info=>{
-                if(info === "dub"){
-                   alert("It's in the dub already ...")  
-                }
-                else {
-                   window.location.href = "?type=dub"
-                }
-            })
-        })
 
+// Set active button based on current URL
+const currentType = new URLSearchParams(window.location.search).get('type') || 'sub';
+document.querySelector(`.${currentType}`).classList.add('active');
+
+async function switchLang(targetType) {
+  const response = await fetch("/lang", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(animeId),
+  });
+  const info = await response.json();
+
+  if (info === "dub") {
+    window.location.href = `?type=${targetType}`;
+  } else {
+    window.location.href = `?type=sub`;
+  }
+}
+
+subBtn.addEventListener('click', () => switchLang('sub'));
+dubBtn.addEventListener('click', () => switchLang('dub'));
     </script>
     <% if(auth === true) {%> 
     <script src="/update-Watch.js"></script>

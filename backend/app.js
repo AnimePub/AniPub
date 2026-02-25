@@ -537,11 +537,28 @@ app.get("/Video/:id/:lang",(req,res)=>{
     }
   
 })
+//link Changer 
+function changeStreamType(link, type) {
+  if (link.includes("type=")) {
+    return link.replace(/type=(sub|dub)/i, `type=${type}`);
+  }
+  if (link.match(/\/(sub|dub)/i)) {
+    return link.replace(/\/(sub|dub)/i, `/${type}`);
+  }
 
+  return link;
+}
 app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
     const Token = req.cookies.anipub;  
     const AniId = req.params.AniId;
     const AniEP = req.params.AniEP; 
+    let type = req.query.type ;
+    if(type) {
+        type = "sub"
+    }
+    else {
+        type = "dub"
+    }
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     let video = "";
     if(!isNaN(AniId) && !isNaN(AniEP)) {
@@ -555,10 +572,34 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
             }
             else if (ANIMEIN.ep.length >=  Number(req.params.AniEP)) {
          AnimeDB.findById(Number(AniId))
-         .then(video=>{     
+         .then(Video=>{     
             AnimeDB.find({"Genres":{$in:video.Genres}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
             .then(animeDb=>{
-           
+         let video = {
+  _id: Video._id,
+  name: Video.name,
+  Name: Video.Name,
+  ImagePath: Video.ImagePath,
+  Cover: Video.Cover,
+  Synonyms: Video.Synonyms,
+  link: changeStreamType(Video.link,type),
+  title: Video.title,
+  poster: Video.poster,
+  Aired: Video.Aired,
+  Premiered: Video.Premiered,
+  RatingsNum: Video.RatingsNum,
+  Genres: Video.Genres,
+  Studios: Video.Studios,
+  Producers: Video.Producers,
+  DescripTion: Video.DescripTion,
+  type: Video.type,
+  ep: Video.ep,
+  Duration: Video.Duration,
+  MALScore: Video.MALScore,
+  Status: Video.Status,
+  createdAt: Video.createdAt,
+  updatedAt: Video.updatedAt,
+}
                 if (Token) {
             jwt.verify(Token,JSONAUTH ,async (err, data) => {
                 if (err) {
@@ -566,8 +607,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                 }
 
               Data.findById(`${data.id}`)
-                                .then(async info => {
-                                   
+                                .then(async info => {        
                                     let link = info.Image;
                                  
                                         res.render("AniPlayer", {
@@ -583,8 +623,9 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                                 })
 
                         })
-                    } else {
+                    } else {console.log(video)
                         res.render("AniPlayer", {
+                            
                             AniDB: animeDb,
                             video,
                             AniId,
@@ -1220,21 +1261,112 @@ app.get("/getCors",validAdmin,(req,res)=>{
         res.json(info)
     })
 })
-app.get("/sitemaps",async (req,res)=>{
-    // res.sendFile(path.join(__dirname,"../sitemaps/sitemap.xml"))
-  const i = await  AnimeDB.find().countDocuments()
-         res.contentType(".xml")
-         res.render("sitemap",{i})
-    })
+// app.get("/sitemaps",async (req,res)=>{
+//     // res.sendFile(path.join(__dirname,"../sitemaps/sitemap.xml"))
+//   const i = await  AnimeDB.find().countDocuments()
+//          res.contentType(".xml")
+//          res.render("sitemap",{i})
+//     })
 
-app.get("/sitemap.xml",async (req,res)=>{
-    // res.sendFile(path.join(__dirname,"../sitemaps/sitemap.xml"))
-   
-    const i = await  AnimeDB.find().countDocuments()
-         res.contentType(".xml")
-         res.render("sitemap",{i})
-    
-    })      
+// sitemap index
+app.get("/sitemap.xml", (req, res) => {
+  const total = 8000;
+  const perPage = 1000;
+  const pages = Math.ceil(total / perPage);
+
+  const sitemaps = Array.from({ length: pages }, (_, i) => `
+  <sitemap>
+    <loc>https://www.anipub.xyz/sitemap-${i + 1}.xml</loc>
+  </sitemap>`).join("");
+
+  res.contentType("xml");
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://www.anipub.xyz/sitemap-static.xml</loc>
+  </sitemap>
+  ${sitemaps}
+</sitemapindex>`);
+});
+
+// static pages sitemap
+app.get("/sitemap-static.xml", (req, res) => {
+  res.contentType("xml");
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.anipub.xyz/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.anipub.xyz/Home</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.anipub.xyz/AI</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.anipub.xyz/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.anipub.xyz/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+    <url>
+    <loc>https://www.anipub.xyz/Sign-Up</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+    <url>
+    <loc>https://www.anipub.xyz/Login</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+    <url>
+    <loc>https://www.anipub.xyz/privacy-policy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.anipub.xyz/about-us</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>`);
+});
+
+// anime pages
+app.get("/sitemap-:page.xml", async (req, res) => {
+  const page = parseInt(req.params.page) - 1;
+  const limit = 1000;
+
+  const animes = await AnimeDB.find({}, { _id: 1 })
+    .skip(page * limit)
+    .limit(limit)
+    .lean();
+
+  const urls = animes.map(a => `
+  <url>
+    <loc>https://www.anipub.xyz/AniPlayer/id/${a._id}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`).join("");
+
+  res.contentType("xml");
+  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${urls}
+</urlset>`);
+});
+
 app.get("/robots.txt",(req,res)=>{
      res.sendFile(path.join(__dirname,"../sitemaps/robots.txt"))
 })
@@ -1265,9 +1397,15 @@ app.get("/premium",(req,res)=>{
   res.json("sub");
 }
 app.post("/lang",async (req,res)=>{
-    const aniId = req.body.id ;
-    const link = await AnimeDB.findById(Number(aniId)).select("link")
+    const aniId = req.body.aniId ;
+    try {
+         const link = await AnimeDB.findById(Number(aniId)).select("link")
 getSubDubType(link,res);
+    }
+    catch {
+        res.json("sub")
+    }
+   
 })
 app.post("/premium",(req,res)=>{
     const number = req.body.Number ;
