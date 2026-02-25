@@ -1244,7 +1244,31 @@ app.get("/premium",(req,res)=>{
             alu: "tr"
     })
 })
+//checking sub or dub 
+ function getSubDubType(src,res) {
+  if (!src || typeof src !== 'string') res.json("sub");
+  const pathMatch = src.match(/\/(sub|dub)(?:[?#]|$)/i);
+  if (pathMatch) {
+    res.json(pathMatch[1].toLowerCase());
+  }
 
+  try {
+    const url = new URL(src);
+    const type = url.searchParams.get("type");
+    if (type && (type === "sub" || type === "dub")) {
+      res.json(type);
+    }
+  } catch {
+   res.json("sub")
+  }
+
+  res.json("sub");
+}
+app.post("/lang",async (req,res)=>{
+    const aniId = req.body.id ;
+    const link = await AnimeDB.findById(Number(aniId)).select("link")
+getSubDubType(link,res);
+})
 app.post("/premium",(req,res)=>{
     const number = req.body.Number ;
     const trxID = req.body.ID;

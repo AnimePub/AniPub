@@ -95,6 +95,8 @@
                                 <span>Episode <%= Number(AniEP) + 1 %></span>
                                 <span><i class="fas fa-star"></i> <%=video.MALScore %></span>
                                 <span><i class="fas fa-clock"></i> <%=video.Duration %></span>
+                                <button class="sub">Sub</button>
+                                <button class="dub">dub</button>
                             </div>
 
                             <div class="video-actions">
@@ -406,6 +408,42 @@
     <script src="/playList-Up.js"></script>
     <script src="/ANiPlayer-render.js"></script>
     <script src="/play.js"> </script>
+    <script>
+        const subBtn = document.querySelector('.sub')
+        const dubBtn = document.querySelector('.dub')
+        const path = window.location.pathname;
+const parts = path.split('/').filter(Boolean);
+const animeId = parts[1];
+        subBtn.addEventListener('click',async()=>{
+            fetch("/lang",{
+                id : animeId
+            })
+            .then(response=>response.json())
+            .then(info=>{
+                if(info === "dub"){
+                     window.location.href = "?type=sub"
+                }
+                else {
+                   alert("It's in the sub already ...")
+                }
+            })
+        })
+         dubBtn.addEventListener('click',async()=>{
+            fetch("/lang",{
+                id : animeId
+            })
+            .then(response=>response.json())
+            .then(info=>{
+                if(info === "dub"){
+                   alert("It's in the dub already ...")  
+                }
+                else {
+                   window.location.href = "?type=dub"
+                }
+            })
+        })
+
+    </script>
     <% if(auth === true) {%> 
     <script src="/update-Watch.js"></script>
     <% } %> 
