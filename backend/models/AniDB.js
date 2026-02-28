@@ -39,6 +39,11 @@ const AnimeDB = new Schema({
         required: true,
         trim: true
     },
+    finder:{
+         type: String,
+        required: false,
+        trim: true
+    },
     ImagePath: {
         type: String,
           required: false,
