@@ -9,12 +9,12 @@ const AnimeDB = require("../models/AniDB.js");
 SearchQ.post("/search/q",async (req,res)=>{
     
     const regex = new RegExp(req.body.query)
-   AnimeDB.find({Name:{$regex:regex,$options:"i"}})
+   AnimeDB.find({Name:{$regex:regex,$options:"i"}},{Name:1,finder:1,Image:1})
     .then(ser=>{
    if(ser.length>0 && ser.length === 1 ) { 
    const sendBack = {
         Name: ser[0].Name,
-        Id : ser[0]._id,
+        Id : ser[0].finder,
         Image : ser[0].ImagePath
     }
     res.json(JSON.stringify(sendBack));
@@ -64,7 +64,7 @@ SearchQ.get("/search/q",async(req,res)=>{
      let alus = 20*(page-1);
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if( type === "airing") {
-          AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).skip(alus).limit(20)
+          AnimeDB.find({Status:"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).skip(alus).limit(20)
             .then(info=>{
             const AniData = info;
                 if (Token) {
@@ -114,7 +114,7 @@ SearchQ.get("/search/q",async(req,res)=>{
          })
     }
     else if (type === "all") {
-        AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
+        AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).sort({
         updatedAt: -1
     }).skip(alus).limit(20)
     
