@@ -182,7 +182,7 @@ app.use(passport.session());
 
 configureGoogleAuth();
 //global rate limit
-app.use(globalLimiter)
+// app.use(globalLimiter)
 //Home router
 app.use(HomeRouter);
 //Details router
