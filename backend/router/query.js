@@ -9,12 +9,13 @@ const AnimeDB = require("../models/AniDB.js");
 SearchQ.post("/search/q",async (req,res)=>{
     
     const regex = new RegExp(req.body.query)
-   AnimeDB.find({Name:{$regex:regex,$options:"i"}},{Name:1,finder:1,Image:1})
+   AnimeDB.find({Name:{$regex:regex,$options:"i"}},{Name:1,finder:1,ImagePath:1,_id:1})
     .then(ser=>{
    if(ser.length>0 && ser.length === 1 ) { 
    const sendBack = {
         Name: ser[0].Name,
-        Id : ser[0].finder,
+        Id:ser[0]._id,
+        finder : ser[0].finder,
         Image : ser[0].ImagePath
     }
     res.json(JSON.stringify(sendBack));
