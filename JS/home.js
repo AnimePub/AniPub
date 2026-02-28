@@ -98,7 +98,7 @@ const shower = (info,i) =>{
    
     else {
       MSGEBOX = `
-       <a href="/AniPlayer/${fl.Id}/0" target="_blank"> <div class="fdivS" data-anime="${fl.Id}">
+       <a href="/AniPlayer/${fl.finder}/0" target="_blank"> <div class="fdivS" data-anime="${fl.Id}">
                 <img class="sdivImg" src="${fl.Image}" alt="">
                 <div>
                     <p class="sName">${fl.Name}</p>
