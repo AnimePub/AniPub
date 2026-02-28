@@ -154,8 +154,8 @@
                                 <button class="Watchlist-btn Add-to-watchlist-button" data-animelink="https://anipub.xyz/AniPlayer/<%=Number(AniId)%>/0">
                                     Add To Watchlist
                                 </button>
-                                <% let DName = video.Name ; DName = DName.split(" "); DName = DName.join("-") %> 
-                                 <a href="/details/<%=DName%>" class="btn btn-secondary" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                             
+                                 <a href="/details/<%=video.finder%>" class="btn btn-secondary" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
                                     <i class="fas fa-info-circle"></i> Details
                                 </a>
                             </div>
