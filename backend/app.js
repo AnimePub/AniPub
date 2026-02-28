@@ -1460,14 +1460,14 @@ app.get("/sitemap-:page.xml", async (req, res) => {
   const page = parseInt(req.params.page) - 1;
   const limit = 1000;
 
-  const animes = await AnimeDB.find({}, { _id: 1 })
+  const animes = await AnimeDB.find({}, { finder: 1 })
     .skip(page * limit)
     .limit(limit)
     .lean();
 
   const urls = animes.map(a => `
   <url>
-    <loc>https://www.anipub.xyz/AniPlayer/id/${a._id}</loc>
+    <loc>https://www.anipub.xyz/AniPlayer/${a.finder}/0</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`).join("");
