@@ -253,27 +253,6 @@ app.post("/Sign-Up", async (req, res) => {
     }
 })
 
-app.post("/api/update-slug", async (req, res) => {
-  try {
-    const { id, newName } = req.body;
-
-    if (!id || !newName) {
-      return res.status(400).json({ error: "id and newName are required" });
-    }
-
-    const updated = await AnimeDB.findByIdAndUpdate(
-      Number(id),
-      { finder: newName }
-    );
-
-    if (!updated) return res.status(404).json({ error: "Anime not found" });
-
-    res.json({ success: true, id: updated._id, slug: updated.slug });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
 //Verify Router 
 app.get("/verify/:code", (req, res) => {
     const verificationCode = req.params.code;
