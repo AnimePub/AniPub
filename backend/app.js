@@ -253,6 +253,26 @@ app.post("/Sign-Up", async (req, res) => {
     }
 })
 
+app.post("/api/update-slug", async (req, res) => {
+  try {
+    const { id, newName } = req.body;
+
+    if (!id || !newName) {
+      return res.status(400).json({ error: "id and newName are required" });
+    }
+
+    const updated = await AnimeDB.findByIdAndUpdate(
+      Number(id),
+      { finder: newName }
+    );
+
+    if (!updated) return res.status(404).json({ error: "Anime not found" });
+
+    res.json({ success: true, id: updated._id, slug: updated.slug });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 //Verify Router 
 app.get("/verify/:code", (req, res) => {
@@ -573,7 +593,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
             else if (ANIMEIN.ep.length >=  Number(req.params.AniEP)) {
          AnimeDB.findById(Number(AniId))
          .then(Video=>{     
-            AnimeDB.find({"Genres":{$in:video.Genres}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
+            AnimeDB.find({"Genres":{$in:Video.Genres[0]}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
             .then(animeDb=>{
          let video = {
   _id: Video._id,
@@ -645,7 +665,99 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
             })
     }
     else {
-        res.redirect("/*")
+      AniDB.findOne({"finder":AniId})
+        .then( ANIMEIN=>{
+            if (ANIMEIN === null) {
+                  res.redirect("/*")
+            }
+            else if(ANIMEIN.length === 0 ) {
+                 res.redirect("/*")
+            }
+            else if (ANIMEIN.ep.length >=  Number(req.params.AniEP)) {
+         AnimeDB.findOne({"finder":AniId})
+         .then(Video=>{     
+            AnimeDB.find({"Genres":{$in:Video.Genres[0]}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
+            .then(animeDb=>{
+         let video = {
+  _id: Video._id,
+  name: Video.name,
+  Name: Video.Name,
+  ImagePath: Video.ImagePath,
+  Cover: Video.Cover,
+  Synonyms: Video.Synonyms,
+  link: changeStreamType(Video.link,type),
+  title: Video.title,
+  poster: Video.poster,
+  Aired: Video.Aired,
+  Premiered: Video.Premiered,
+  RatingsNum: Video.RatingsNum,
+  Genres: Video.Genres,
+  Studios: Video.Studios,
+  Producers: Video.Producers,
+  DescripTion: Video.DescripTion,
+  type: Video.type,
+  ep: Video.ep,
+  Duration: Video.Duration,
+  MALScore: Video.MALScore,
+  Status: Video.Status,
+  createdAt: Video.createdAt,
+  updatedAt: Video.updatedAt,
+}
+                if (Token) {
+            jwt.verify(Token,JSONAUTH ,async (err, data) => {
+                if (err) {
+                    console.log(err)
+                }
+
+              Data.findById(`${data.id}`)
+                                .then(async info => {        
+                                    let link = info.Image;
+                                 
+                                        res.render("AniPlayer", {
+                                            AniDB: animeDb,
+                                            video,
+                                            AniId,
+                                            AniEP,
+                                            auth: true,
+                                            ID: data.id,
+                                            Link: link
+                                        })
+                                    
+                                })
+
+                        })
+                    } else {
+                        res.render("AniPlayer", {
+                            
+                            AniDB: animeDb,
+                            video,
+                            AniId,
+                            AniEP,
+                            auth: false,
+                            ID: "guest",
+                            Link: linkI
+                        })
+                    }
+}) 
+ })
+                } else {
+                    res.redirect("/*")
+                }
+
+
+            })
+
+
+
+
+
+
+
+
+
+
+
+
     }
 });
 app.get("/PlayList", AuthAcc, (req, res) => {

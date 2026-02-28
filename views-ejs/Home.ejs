@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/newHome.css">
+
 </head>
 
 <body>
@@ -147,16 +148,15 @@
                 </p>
 
                 <div class="slide-btns">
-                    <button class="slide-btn primary watch-button" data-ANIMEID="<%=value.id%>">
+                   <a href="/AniPlayer/<%=value.finder%>/0"> <button class="slide-btn primary watch-button" data-ANIMEID="<%=value.id%>">
                         <img src="/play-svgrepo-com.svg" alt="">
                         Watch Now
-                    </button>
+                    </button></a>
                     <button class="slide-btn secondary watch-list" data-ANIMEID="<%=value.id%>">
                         <img src="/plus-large-svgrepo-com.svg" alt="">
                         Add to List
                     </button>
-                    <% let DName = value.Name; DName = DName.split(" "); DName = DName.join("-") %>
-                    <a href="/details/<%=DName%>" class="slide-btn secondary" style="text-decoration: none;">
+                    <a href="/details/<%=value.finder%>" class="slide-btn secondary" style="text-decoration: none;">
                         <img src="/info_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
                         Details
                     </a>
@@ -197,7 +197,9 @@
 
 
 
-<section class="airing-sec">
+
+<section class="airing-section">
+    <!-- Section Header -->
     <div class="sec-head">
         <div class="sec-bar"></div>
         <a href="/search/q?type=airing" style="text-decoration: none; color: inherit;">
@@ -205,45 +207,44 @@
         </a>
     </div>
 
-    <div class="airing-scroll">
-        <div class="scroll-arrows">
-            <button class="scroll-arrow left" onclick="scrollAiring('left')">❮</button>
-            <button class="scroll-arrow right" onclick="scrollAiring('right')">❯</button>
-        </div>
-
-        <div class="airing-track" id="airingTrack">
-            <% Airing.forEach(value => {%>
-                <a href="/AniPlayer/<%=value._id%>/0" class="airing-card">
-                    <div class="airing-card-img">
-                        <% const POSTER = value.ImagePath;
-                           const POSTERARY = POSTER.split("https://");
-                           let LINKU = "";
-                           if(POSTERARY.length > 1){
-                               LINKU = "https://" + POSTERARY[1];
-                           } else {
-                               LINKU= "/"+POSTERARY[0]
-                           }
+    <!-- Grid Container -->
+    <div class="airing-grid">
+        <% Airing.forEach(value => {%>
+            <a href="/AniPlayer/<%=value.finder%>/0" class="airing-card">
+                <!-- Card Image -->
+                <div class="airing-card-img">
+                    <% const POSTER = value.ImagePath;
+                       const POSTERARY = POSTER.split("https://");
+                       let LINKU = "";
+                       if(POSTERARY.length > 1){
+                           LINKU = "https://" + POSTERARY[1];
+                       } else {
+                           LINKU= "/"+POSTERARY[0]
+                       }
+                    %>
+                    <img src="<%=LINKU%>" alt="<%=value.Name%> Poster">
+                </div>
+                
+                <!-- Card Body -->
+                <div class="airing-card-body">
+                    <div class="airing-card-title"><%=value.Name%></div>
+                    <div class="airing-card-rating">
+                        <span class="airing-rating-num"><%=value.MALScore%></span>
+                        <img class="airing-rating-stars" src="/rating-<%=value.RatingsNum%>.png" alt="Rating">
+                    </div>
+                    <p class="airing-card-desc">
+                        <% const desc = value.DescripTion;
+                           const descr = desc.slice(0,60);
                         %>
-                        <img src="<%=LINKU%>" alt="<%=value.Name%> Poster">
-                    </div>
-                    <div class="airing-card-body">
-                        <div class="airing-card-title"><%=value.Name%></div>
-                        <div class="airing-card-rating">
-                            <span class="rating-num"><%=value.MALScore%></span>
-                            <img class="rating-stars" src="rating-<%=value.RatingsNum%>.png" alt="Rating">
-                        </div>
-                        <p class="airing-card-desc">
-                            <% const desc = value.DescripTion;
-                                 const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
-                            %>
-                            <%=descr%>...
-                        </p>
-                    </div>
-                </a>
-            <% }); %>
-        </div>
+                        <%=descr%>...
+                    </p>
+                </div>
+            </a>
+        <% }); %>
     </div>
 </section>
+
+
 
 
 <!-- 
@@ -258,7 +259,7 @@
 
     <div class="recent-grid">
         <% Anime.forEach(value => {%>
-            <a href="/AniPlayer/<%=value._id%>/0" class="recent-card">
+            <a href="/AniPlayer/<%=value.finder%>/0" class="recent-card">
                 <div class="recent-card-img">
                     <% const POSTER = value.ImagePath;
                        const POSTERARY = POSTER.split("https://");

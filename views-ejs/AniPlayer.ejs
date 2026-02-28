@@ -42,11 +42,13 @@
             padding-top: 50px;
         }
      .stream-toggle {
-  display: inline-flex;
+  display: flex;
   background: #1a1a2e;
   border-radius: 8px;
   padding: 4px;
   gap: 4px;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
 
@@ -74,6 +76,7 @@
   box-shadow: 0 0 12px rgba(230, 57, 70, 0.5);
 }
     </style>
+    <link rel="stylesheet" href="/recom.css">
 </head>
 
 <body>
@@ -288,48 +291,56 @@
 
 
 
-            <div class="recommendations-section">
-                <link rel="stylesheet" href="/third-section.css">
-                <h2 class="section-title"><i class="fas fa-fire"></i> Recommendations</h2>
-                <div class="recommendations-grid">
-            
-                    <% AniDB.forEach(value => {%>
+           
+<div class="recommendations-section">
+    <h2 class="section-title">
+        <i class="fas fa-fire"></i> 
+        Recommendations
+    </h2>
+    
+    <div class="recommendations-grid">
+        <% AniDB.forEach(value => {%>
             <div class="Profile-div">
                 <div class="Profile" data-anime="<%=value._id%>">
+                    <!-- Image -->
                     <div class="Image-div">
-                     <% const POSTER = value.ImagePath;
-                            const POSTERARY = POSTER.split("https://");
-                            let LINKU = "";
-                            if(POSTERARY.length > 1){
-                                LINKU = "https://" + POSTERARY[1]; 
-                            }
-                            else {
-                                 LINKU= "/"+POSTERARY[0]
-                            }
+                        <% const POSTER = value.ImagePath;
+                           const POSTERARY = POSTER.split("https://");
+                           let LINKU = "";
+                           if(POSTERARY.length > 1){
+                               LINKU = "https://" + POSTERARY[1]; 
+                           } else {
+                               LINKU= "/"+POSTERARY[0]
+                           }
                         %>
                         <img class="anime-thumb" src="<%=LINKU%>" alt="<%= value.Name %>"> 
-                    
                     </div>
+                    
+                    <!-- Title -->
                     <div class="Title-div">
                         <p class="Title"><%=value.Name%></p>
                     </div>
+                    
+                    <!-- Rating -->
                     <div class="ratings-div">
                         <p class="mal-score"><%=value.MALScore%></p>
-                        <img style="width: 90px;" src="/rating-<%=value.RatingsNum%>.png" alt="Rating Star Image">
+                        <img src="/rating-<%=value.RatingsNum%>.png" alt="Rating">
                     </div>
+                    
+                    <!-- Description -->
                     <div class="des-div">
                         <p class="des">
-                           <% const desc = value.DescripTion;
-   const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
-%>
-<%=descr%><% if(desc && desc.length > 60) { %>...<% } %>
+                            <% const desc = value.DescripTion;
+                               const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
+                            %>
+                            <%=descr%><% if(desc && desc.length > 60) { %>...<% } %>
                         </p>
                     </div>
                 </div>
             </div>
-            <% }); %>
-                </div>
-            </div>
+        <% }); %>
+    </div>
+</div>
 
             <!-- Comments Section -->
             <section class="comments-section">

@@ -29,7 +29,7 @@ SearchGenre.get("/Search",async(req,res)=>{
     }
        let alus = 20*(page-1);
      let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-    AnimeDB.find({"Genres":query},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).skip(alus).limit(20)
+    AnimeDB.find({"Genres":query},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).skip(alus).limit(20)
     .then(info=>{
         const AniData = info;
             if (Token) {

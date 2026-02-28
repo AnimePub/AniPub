@@ -222,14 +222,6 @@
                 font-size: 1.3rem;
             }
 
-            .footer {
-                padding: 3rem 1rem 1.5rem;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
         }
 
         /* Scrollbar Styling */

@@ -21,7 +21,7 @@ HomeRouter.get("/v1", (req, res) => {
 })
 
 HomeRouter.get("/Home", async (req, res) => {
-    const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
+    const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).sort({
         updatedAt: -1
     }).limit(20);
     let ArrayList =[];
@@ -39,7 +39,7 @@ HomeRouter.get("/Home", async (req, res) => {
     })
     const Token = req.cookies.anipub;
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-    AnimeDB.find({"Status":"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
+    AnimeDB.find({"Status":"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).sort({createdAt:-1}).limit(20)
     .then(Airing=>{
     if (Token) {
         jwt.verify(Token, JSONAUTH, (err, data) => {
@@ -167,6 +167,7 @@ HomeRouter.get(`/api/info/:AniId`, async (req, res) => {
             if (ANIMEIN === null) {
                   res.json("err")
             }
+            else {
          AnimeDB.findById(Number(AniId))
          .then(video=>{     
             AnimeDB.findOne({"_id":AniId},{Genres:1,Cover:1,Synonyms:1,Producers:1,Premiered:1,Aired:1,Duration:1,Status:1,Studios:1,Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"$ep"}})
@@ -174,7 +175,7 @@ HomeRouter.get(`/api/info/:AniId`, async (req, res) => {
                 res.json(info)
             })
          
-        })
+        })}
    
 })
     }   

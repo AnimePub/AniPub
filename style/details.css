@@ -13,6 +13,7 @@
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 20px;
+    padding-top: 60px;
     color: var(--text-primary);
 }
 

@@ -1,0 +1,452 @@
+.recommendations-section {
+    padding: clamp(40px, 5vw, 70px) clamp(20px, 6vw, 84px);
+    background: linear-gradient(180deg, transparent 0%, rgba(217, 236, 255, 0.02) 50%, transparent 100%);
+}
+
+.recommendations-section .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+    position: relative;
+    padding-bottom: 16px;
+}
+
+.recommendations-section .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(26,140,255,0.5);
+}
+
+.recommendations-section .section-title i {
+    color: var(--orange);
+    font-size: 1.4em;
+    animation: flicker 2s ease-in-out infinite;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Grid */
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+/* Profile Card Container */
+.Profile-div {
+    width: 100%;
+    animation: fadeInUp 0.5s ease both;
+}
+
+/* Stagger animation */
+.Profile-div:nth-child(1) { animation-delay: 0.05s; }
+.Profile-div:nth-child(2) { animation-delay: 0.1s; }
+.Profile-div:nth-child(3) { animation-delay: 0.15s; }
+.Profile-div:nth-child(4) { animation-delay: 0.2s; }
+.Profile-div:nth-child(5) { animation-delay: 0.25s; }
+.Profile-div:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Profile Card */
+.Profile {
+    background: black;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Profile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,140,255,0.1), rgba(0,212,255,0.1));
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.Profile:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--blue);
+  
+}
+
+.Profile:hover::before {
+    opacity: 1;
+}
+
+/* Image Container */
+.Image-div {
+    position: relative;
+    width: 100%;
+    padding-top: 140%;
+    overflow: hidden;
+    background: var(--dark5);
+}
+
+.anime-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.Profile:hover .anime-thumb {
+    transform: scale(1.12);
+}
+
+/* Title */
+.Title-div {
+    padding: 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.Title {
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--text);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+/* Rating */
+.ratings-div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.mal-score {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--gold);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mal-score::before {
+    content: '⭐';
+    font-size: 0.85em;
+}
+
+.ratings-div img {
+    height: 14px;
+    width: auto;
+}
+
+/* Description */
+.des-div {
+    padding: 0 12px 14px;
+    position: relative;
+    z-index: 2;
+    flex-grow: 1;
+}
+
+.des {
+    font-size: 0.76rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE - ALL DEVICES
+══════════════════════════════════════════ */
+
+/* Large Tablets (900px - 1024px) */
+@media (max-width: 1024px) {
+    .recommendations-section {
+        padding: clamp(32px, 4vw, 60px) clamp(16px, 4vw, 32px);
+    }
+}
+
+/* Tablets (768px - 900px) */
+@media (max-width: 900px) {
+    .recommendations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 18px;
+    }
+    
+    .recommendations-section .section-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Small Tablets / Large Phones (600px - 768px) */
+@media (max-width: 768px) {
+    .recommendations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 16px;
+    }
+    
+    .recommendations-section .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .Title {
+        font-size: 0.85rem;
+    }
+    
+    .Title-div {
+        padding: 10px;
+    }
+    
+    .ratings-div {
+        padding: 0 10px;
+        margin-bottom: 8px;
+    }
+    
+    .des-div {
+        padding: 0 10px 12px;
+    }
+}
+
+/* Medium Phones (480px - 600px) */
+@media (max-width: 600px) {
+    .recommendations-section {
+        padding: 28px 12px;
+    }
+    
+    .recommendations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 14px;
+    }
+    
+    .recommendations-section .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+    }
+    
+    .Title {
+        font-size: 0.82rem;
+        line-height: 1.2;
+    }
+    
+    .mal-score {
+        font-size: 0.85rem;
+    }
+    
+    .des {
+        font-size: 0.73rem;
+        line-height: 1.4;
+    }
+}
+
+/* Small Phones (375px - 480px) */
+@media (max-width: 480px) {
+    .recommendations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .recommendations-section .section-title {
+        font-size: 1.4rem;
+    }
+    
+    .Title {
+        font-size: 0.8rem;
+    }
+    
+    .Title-div {
+        padding: 8px;
+    }
+    
+    .ratings-div {
+        padding: 0 8px;
+        gap: 6px;
+        margin-bottom: 6px;
+    }
+    
+    .mal-score {
+        font-size: 0.8rem;
+    }
+    
+    .ratings-div img {
+        height: 12px;
+    }
+    
+    .des-div {
+        padding: 0 8px 10px;
+    }
+    
+    .des {
+        font-size: 0.7rem;
+    }
+}
+
+/* Extra Small Phones (320px - 375px) */
+@media (max-width: 375px) {
+    .recommendations-section {
+        padding: 24px 10px;
+    }
+    
+    .recommendations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .recommendations-section .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+    }
+    
+    .recommendations-section .section-title::after {
+        width: 60px;
+        height: 2px;
+    }
+    
+    .Title {
+        font-size: 0.75rem;
+    }
+    
+    .Title-div {
+        padding: 8px 6px;
+    }
+    
+    .ratings-div {
+        padding: 0 6px;
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+    
+    .mal-score {
+        font-size: 0.75rem;
+    }
+    
+    .mal-score::before {
+        font-size: 0.8em;
+    }
+    
+    .ratings-div img {
+        height: 11px;
+    }
+    
+    .des-div {
+        padding: 0 6px 8px;
+    }
+    
+    .des {
+        font-size: 0.68rem;
+        -webkit-line-clamp: 2;
+    }
+}
+
+/* Tiny Phones (< 320px) */
+@media (max-width: 320px) {
+    .recommendations-section {
+        padding: 20px 8px;
+    }
+    
+    .recommendations-grid {
+        gap: 8px;
+    }
+    
+    .recommendations-section .section-title {
+        font-size: 1.2rem;
+        gap: 8px;
+    }
+    
+    .recommendations-section .section-title i {
+        font-size: 1.2em;
+    }
+    
+    .Title {
+        font-size: 0.72rem;
+    }
+    
+    .mal-score {
+        font-size: 0.72rem;
+    }
+    
+    .ratings-div img {
+        height: 10px;
+    }
+    
+    .des {
+        font-size: 0.66rem;
+    }
+}
+
+/* Landscape Orientation for Phones */
+@media (max-height: 500px) and (orientation: landscape) {
+    .recommendations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+    
+    .Image-div {
+        padding-top: 120%; /* Shorter aspect ratio in landscape */
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets for mobile */
+    .Profile {
+        min-height: 44px; /* Apple's recommended minimum */
+    }
+    
+    /* Disable hover effects on touch devices */
+    .Profile:hover {
+        transform: none;
+        border-color: var(--border);
+        box-shadow: none;
+    }
+    
+    .Profile:hover::before {
+        opacity: 0;
+    }
+    
+    .Profile:hover .anime-thumb {
+        transform: scale(1);
+    }
+    
+    /* Add active state for touch feedback */
+    .Profile:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+}
