@@ -78,7 +78,7 @@
            <div class="search-results SBOX">
             <div class="sbf" style="display: none; flex-direction: column;"></div>
         </div>
-        <a href="/Random"><button class="rand-btn random">Random</button></a>
+        <a href="https://www.anipub.xyz/Random"><button class="rand-btn random">Random</button></a>
         <% if(auth === true) { %>
               <% const LinkPr =  Link;
                             const PrArray = LinkPr.split("https://");
@@ -89,7 +89,7 @@
                             else {
                                  PrLink= "/ProfilePic/"+PrArray[0]
                             } %> 
-          <a style="text-decoration: none;" href="/Random">   <button class="prof-btn profile-icon" title="Profile Menu">
+          <a style="text-decoration: none;" href="https://www.anipub.xyz/Random">   <button class="prof-btn profile-icon" title="Profile Menu">
                 <img src="<%= PrLink %>" alt="Profile">
             </button></a>
         <% } else {%>
@@ -148,7 +148,7 @@
                 </p>
 
                 <div class="slide-btns">
-                   <a href="/AniPlayer/<%=value.finder%>/0"> <button class="slide-btn primary watch-button" data-ANIMEID="<%=value.id%>">
+                   <a href="https://www.anipub.xyz/AniPlayer/<%=value.finder%>/0"> <button class="slide-btn primary watch-button" data-ANIMEID="<%=value.id%>">
                         <img src="/play-svgrepo-com.svg" alt="">
                         Watch Now
                     </button></a>
@@ -202,7 +202,7 @@
     <!-- Section Header -->
     <div class="sec-head">
         <div class="sec-bar"></div>
-        <a href="/search/q?type=airing" style="text-decoration: none; color: inherit;">
+        <a href="https://www.anipub.xyz/search/q?type=airing" style="text-decoration: none; color: inherit;">
             <p>Airing</p>
         </a>
     </div>
@@ -210,7 +210,7 @@
     <!-- Grid Container -->
     <div class="airing-grid">
         <% Airing.forEach(value => {%>
-            <a href="/AniPlayer/<%=value.finder%>/0" class="airing-card">
+            <a href="https://www.anipub.xyz/AniPlayer/<%=value.finder%>/0" class="airing-card">
                 <!-- Card Image -->
                 <div class="airing-card-img">
                     <% const POSTER = value.ImagePath;
@@ -252,14 +252,14 @@
 <section class="recent-sec">
     <div class="sec-head">
         <div class="sec-bar"></div>
-        <a href="/search/q?type=all" style="text-decoration: none; color: inherit;">
+        <a href="https://www.anipub.xyz/search/q?type=all" style="text-decoration: none; color: inherit;">
             <p>Recent</p>
         </a>
     </div>
 
     <div class="recent-grid">
         <% Anime.forEach(value => {%>
-            <a href="/AniPlayer/<%=value.finder%>/0" class="recent-card">
+            <a href="https://www.anipub.xyz/AniPlayer/<%=value.finder%>/0" class="recent-card">
                 <div class="recent-card-img">
                     <% const POSTER = value.ImagePath;
                        const POSTERARY = POSTER.split("https://");
