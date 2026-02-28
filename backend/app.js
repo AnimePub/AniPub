@@ -701,6 +701,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
   Duration: Video.Duration,
   MALScore: Video.MALScore,
   Status: Video.Status,
+   finder:Video.finder,
   createdAt: Video.createdAt,
   updatedAt: Video.updatedAt,
 }
