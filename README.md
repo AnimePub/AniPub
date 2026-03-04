@@ -1,12 +1,14 @@
+
 # AniPub: The Ultimate Anime Multiverse
-
-![AniPub Logo](https://github.com/AnimePub/AniPub/raw/main/Logo/AniPub%20Logo%20-%20Dark.png) 
-
+<p align="center">
+  <img src="https://github.com/AnimePub/AniPub/blob/main/Logo/Ship.png" alt="AniPub Logo" width="180"/>
+</p>
 [![GitHub Stars](https://img.shields.io/github/stars/AnimePub/AniPub?style=for-the-badge&logo=github&color=brightgreen)](https://github.com/AnimePub/AniPub/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/AnimePub/AniPub?style=for-the-badge&logo=github&color=blue)](https://github.com/AnimePub/AniPub/network/members)
 [![GitHub Watchers](https://img.shields.io/github/watchers/AnimePub/AniPub?style=for-the-badge&logo=github&color=orange)](https://github.com/AnimePub/AniPub/watchers)
 [![License: GPL-3.0](https://img.shields.io/github/license/AnimePub/AniPub?style=for-the-badge&logo=gnu&color=purple)](https://github.com/AnimePub/AniPub/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fanipub.xyz&style=for-the-badge&logo=google-chrome&color=cyan&label=Live%20Site)](https://anipub.xyz)
+
 
 Welcome to **AniPub**, the modern, ad-free, and privacy-first anime streaming platform built for true otakus. Dive into a vast multiverse of anime without distractions, trackers, or interruptions. Powered by a passionate community, AniPub combines blazing-fast performance, intuitive design, and innovative features like AI assistance to redefine how you watch, discover, and connect over anime.
 
@@ -69,13 +71,13 @@ The application flows from user requests through the backend to the database, re
 
 ```mermaid
 graph TD
-    A[User Browser] -->|HTTP Request| B[Express Server (Node.js)]
-    B -->|Auth Check| C[JWT / Google OAuth]
-    C -->|Validated| D[MongoDB Database]
+    A["User Browser"] -->|HTTP Request| B["Express Server (Node.js)"]
+    B -->|Auth Check| C["JWT / Google OAuth"]
+    C -->|Validated| D["MongoDB Database"]
     D -->|Data Fetch| B
-    B -->|Render| E[EJS Templates]
+    B -->|Render| E["EJS Templates"]
     E -->|HTML/CSS/JS| A
-    F[AniPub AI Module] -->|API Calls| B
+    F["AniPub AI Module"] -->|API Calls| B
     subgraph "Frontend"
         A
         E
@@ -102,16 +104,16 @@ For a typical user action, like watching an episode:
 
 ```mermaid
 flowchart LR
-    Start[User Requests Episode] --> Auth[Authenticate Session]
-    Auth -->|Success| Fetch[Query MongoDB for Episode Data]
-    Fetch --> Stream[Stream Video Content]
-    Stream --> Render[Render Player in EJS View]
-    Render --> Display[Display in Browser]
+    Start["User Requests Episode"] --> Auth["Authenticate Session"]
+    Auth -->|Success| Fetch["Query MongoDB for Episode Data"]
+    Fetch --> Stream["Stream Video Content"]
+    Stream --> Render["Render Player in EJS View"]
+    Render --> Display["Display in Browser"]
     subgraph "Error Handling"
-        Auth -->|Fail| Redirect[Redirect to Login]
+        Auth -->|Fail| Redirect["Redirect to Login"]
     end
-    Display --> Interact[User Comments/Rates]
-    Interact --> Update[Update DB Ratings/Comments]
+    Display --> Interact["User Comments/Rates"]
+    Interact --> Update["Update DB Ratings/Comments"]
 ```
 
 This model ensures efficient, secure data handling with real-time updates.
@@ -121,12 +123,12 @@ AniPub prioritizes security through layered protections:
 
 ```mermaid
 graph LR
-    A[External Request] -->|HTTPS| B[Firewall / Rate Limiting]
-    B --> C[Input Validation]
-    C --> D[Authentication (JWT/OAuth)]
-    D --> E[Authorization Checks]
-    E --> F[Data Access (MongoDB)]
-    F -->|Encrypted| G[Response]
+    A["External Request"] -->|HTTPS| B["Firewall / Rate Limiting"]
+    B --> C["Input Validation"]
+    C --> D["Authentication (JWT/OAuth)"]
+    D --> E["Authorization Checks"]
+    E --> F["Data Access (MongoDB)"]
+    F -->|Encrypted| G["Response"]
     subgraph "Security Layers"
         B
         C
