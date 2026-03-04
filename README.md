@@ -35,7 +35,7 @@ AniPub is packed with features designed to enhance your anime experience:
 - **Blazing-Fast Performance**: Optimized for speed with cloud hosting, responsive design, and efficient data loading.
 - **AniPub AI · Zero Two**: Your personal AI companion for recommendations, trivia, and chat-based interactions. Ask about plot summaries, character details, or even fan theories!
 - **Save & Bookmark**: Create watchlists, save episodes, and pick up right where you left off.
-- **Playlists & Sharing**: Curate custom playlists and share them with friends or the community.
+- **Playlists**: Curate custom playlists and Track your anime.
 - **Community Comments**: Discuss episodes, theories, and fan art in real-time threaded comments.
 - **Ratings System**: Rate anime and see community averages to discover top-rated shows.
 - **Download Support** (Coming Soon): Offline viewing for your favorite episodes.
