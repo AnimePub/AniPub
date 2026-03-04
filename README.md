@@ -104,7 +104,7 @@ graph TD
 - **Auth Layer**: Validates users via JWT tokens or OAuth, preventing unauthorized access.
 - **MongoDB**: Models data like anime entries (e.g., title, episodes, ratings) and user profiles.
 - **EJS Templates**: Views that dynamically generate HTML based on data from the backend.
-- **AniPub AI**: An integrated module (likely using external AI APIs) for conversational features.
+- **AniPub AI**: An integrated module for conversational features.
 - **Jikan API**: Used to fetch anime details for /details pages, regardless of user MAL connection.
 
 ### Authentication & Session Model
