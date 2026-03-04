@@ -160,7 +160,7 @@ AniPub uses secure sessions for real-time user communication via the /chat endpo
 ```mermaid
 graph TD
     A["User 1 Browser"] -->|Login & Session Init| B["Express Server"]
-    B -->|Secure Session (HTTPS + JWT + Cookies)| C["Chat Endpoint (/chat)"]
+    B -->|"Secure Session (HTTPS + JWT + Cookies)"| C["Chat Endpoint (/chat)"]
     C -->|Store Messages| D["MongoDB (Chat Collection)"]
     A["User 1 Browser"] <-->|Real-Time Messages| C
     E["User 2 Browser"] <-->|Real-Time Messages| C
