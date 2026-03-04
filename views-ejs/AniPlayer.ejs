@@ -300,6 +300,7 @@
     
     <div class="recommendations-grid">
         <% AniDB.forEach(value => {%>
+             <a href="https://www.anipub.xyz/AniPlayer/<%=value.finder%>/0" style="text-decoration: none;">
             <div class="Profile-div">
                 <div class="Profile" data-anime="<%=value.finder%>">
                     <!-- Image -->
@@ -338,6 +339,7 @@
                     </div>
                 </div>
             </div>
+            </a>
         <% }); %>
     </div>
 </div>
@@ -451,7 +453,7 @@
     <script src="/upDate-playlist.js"></script>
     <script src="/home.js"></script>
     <script src="/playList-Up.js"></script>
-    <script src="/ANiPlayer-render.js"></script>
+    <!-- <script src="/ANiPlayer-render.js"></script> -->
     <script src="/play.js"> </script>
     <script>
    const subBtn = document.querySelector('.sub');

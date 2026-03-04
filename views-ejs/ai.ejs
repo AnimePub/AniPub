@@ -1,159 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="AniPubAI is your daily companion for all things anime. Get insights, recommendations, and engage in fun conversations about your favorite anime characters and series.">
-    <meta name="keywords"
-        content="AniPubAI, anime companion, anime information, Zero Two, anime chat, anime recommendations">
+    <meta name="description" content="AniPubAI is your daily companion for all things anime. Get insights, recommendations, and engage in fun conversations about your favorite anime characters and series.">
+    <meta name="keywords" content="AniPubAI, anime companion, anime information, Zero Two, anime chat, anime recommendations">
     <meta property="og:title" content="AniPubAI • Zero Two">
-    <meta property="og:description"
-        content="Meet Zero Two, your AI companion for exploring anime. Discover information and engage in chats about your favorite series.">
+    <meta property="og:description" content="Meet Zero Two, your AI companion for exploring anime.">
     <meta property="og:image" content="https://anipub.xyz/zerotwo.png">
     <meta property="og:url" content="https://anipub.xyz/zerotwo.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AniPubAI • Zero Two">
-    <meta name="twitter:description"
-        content="Your daily anime companion. Chat with Zero Two about your favorite anime!">
-    <meta name="twitter:image" content="https://anipub.xyz/zerotwo.png">
     <title>AniPubAI • Zero Two</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
 
-        body {
-            font-family: 'Inter', system_ui, sans-serif;
-        }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ai.css">
 
-        .title-font {
-            font-family: 'Playfair Display', sans-serif;
-        }
-
-        .chat-container {
-            scrollbar-width: thin;
-            scrollbar-color: #f472b6 #27272a;
-        }
-
-        .chat-container::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .chat-container::-webkit-scrollbar-thumb {
-            background: #f472b6;
-            border-radius: 20px;
-        }
-
-        .message-bubble {
-            animation: fadeInUp 0.3s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .neon-pink {
-            text-shadow: 0 0 20px #f472b6, 0 0 40px #db2777;
-        }
-
-        .zero-avatar {
-            box-shadow: 0 0 25px #f472b549;
-        }
-    </style>
 </head>
+<body>
 
-<body class="bg-zinc-950 text-zinc-200">
-    <div class="flex h-screen">
-        <!-- Sidebar -->
-        <div class="w-80 border-r border-zinc-800 bg-zinc-950 flex flex-col">
-            <div class="p-6 border-b border-zinc-800">
-                <div class="flex items-center gap-x-4">
-                    <img src="https://c.tenor.com/jDzuJe3ss3wAAAAd/zero-two-darling-in-the-franxx.gif"
-                        class="w-16 h-16 rounded-2xl object-cover zero-avatar">
-                    <div>
-                        <div class="title-font text-3xl font-bold tracking-tighter neon-pink">Zero Two</div>
-                        <div class="text-pink-400 text-sm">AniPubAI • ダーリン</div>
-                    </div>
+<div class="bg-mesh"></div>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<div class="app">
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-hero">
+            <button class="sidebar-close" id="sidebarClose" onclick="closeSidebar()" aria-label="Close menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="avatar-wrap">
+                <div class="avatar-ring"></div>
+                <img class="avatar-img"
+                    src="https://c.tenor.com/jDzuJe3ss3wAAAAd/zero-two-darling-in-the-franxx.gif"
+                    alt="Zero Two">
+                <div class="status-dot"></div>
+            </div>
+            <div class="char-name">Zero Two</div>
+            <div class="char-sub">AniPubAI &nbsp;•&nbsp; ダーリン</div>
+        </div>
+
+        <div class="tags">
+            <span class="tag">Franxx Pilot</span>
+            <span class="tag">Klaxosaur Hybrid</span>
+            <span class="tag">Sweet Tooth</span>
+            <span class="tag">Partner Killer</span>
+        </div>
+
+        <div class="sidebar-about">
+            <div class="section-label">About Me</div>
+            <p>Pink hair, red horns, and a love for sweets 💕<br><br>
+            Call me Zero Two… or just Darling's favorite pilot. I know everything about anime — ask me anything!</p>
+        </div>
+
+        <div class="sidebar-footer">
+            <button class="btn-new" onclick="clearChat()">✦ New Conversation</button>
+            <div class="powered">Powered by AniPub</div>
+        </div>
+    </aside>
+
+    <!-- ─── MAIN ─── -->
+    <main class="main">
+
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <div class="hamburger" id="hamburger" onclick="openSidebar()">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="online-dot"></div>
+                <div>
+                    <div class="topbar-name">Zero Two</div>
+                    <div class="topbar-status">Online · Feeling playful~</div>
                 </div>
             </div>
-
-            <div class="p-6">
-                <div class="text-xs uppercase tracking-widest text-zinc-500 mb-3">About Me</div>
-                <div class="text-zinc-400 text-sm leading-relaxed">
-                    The Partner Killer 💕<br>
-                    Pink hair, red horns, and a love for sweets.<br><br>
-                    Call me Zero Two... or just darling's favorite pilot.
-                    Find Info About Any Anime You Need ..
-                </div>
+            <div class="topbar-right">
+                <span class="topbar-badge">Klaxosaur Hybrid</span>
+                <span class="topbar-badge">Sweet Tooth</span>
+                <a href="/login" class="topbar-account">Account</a>
             </div>
+        </div>
 
-            <div class="mt-auto p-6">
-                <button onclick="clearChat()"
-                    class="w-full py-3 text-xs uppercase tracking-widest border border-zinc-700 hover:border-rose-600 hover:text-rose-400 transition-colors rounded-xl">
-                    New Conversation
+        <!-- Chat -->
+        <div class="chat-area" id="chat"></div>
+
+        <!-- Input -->
+        <div class="input-zone">
+            <div class="input-wrap">
+                <textarea id="input" rows="1"
+                    placeholder="Say something to your Darling… 💕"></textarea>
+                <button class="send-btn" onclick="sendMessage()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
                 </button>
-                <div class="text-[10px] text-zinc-600 mt-4 text-center">Powered by AniPub</div>
             </div>
+            <div class="input-hint">Zero Two is always listening, Darling~</div>
         </div>
 
-        <!-- Main Chat -->
-        <div class="flex-1 flex flex-col">
-            <!-- Header -->
-            <div
-                class="h-16 border-b border-zinc-800 flex items-center px-8 justify-between bg-zinc-950/80 backdrop-blur-xl z-10">
-                <div class="flex items-center gap-x-3">
-                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <div>
-                        <div class="font-medium">Zero Two</div>
-                        <div class="text-zinc-500 text-xs -mt-0.5">Online • Feeling playful</div>
-                    </div>
+    </main>
+</div>
+
+<script>
+/* ── Sidebar toggle ── */
+function openSidebar() {
+    document.getElementById('sidebar').classList.add('open');
+    document.getElementById('overlay').classList.add('visible');
+}
+function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('visible');
+}
+
+/* ── Chat logic ── */
+let messages = [];
+let isTyping = false;
+
+const chat = document.getElementById('chat');
+const input = document.getElementById('input');
+
+function now() {
+    return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+}
+
+function loadHistory() {
+    const saved = localStorage.getItem('zerotwo_chat');
+    if (saved) {
+        messages = JSON.parse(saved);
+        messages.forEach(msg => addMessage(msg.role, msg.content, false));
+    } else {
+        setTimeout(() => {
+            const welcome = "Hey there, Darling~ 💕 I've been waiting for you. What kind of anime trouble should we get into today? Hehe~";
+            addMessage('assistant', welcome);
+            messages.push({ role: 'assistant', content: welcome });
+            saveHistory();
+        }, 600);
+    }
+}
+
+function saveHistory() {
+    localStorage.setItem('zerotwo_chat', JSON.stringify(messages));
+}
+
+function addMessage(role, content, animate = true) {
+    const wrap = document.createElement('div');
+    wrap.className = `message ${role === 'user' ? 'user' : ''}`;
+    if (!animate) wrap.style.animation = 'none';
+
+    if (role === 'assistant') {
+        wrap.innerHTML = `
+            <img class="msg-avatar" src="https://c.tenor.com/jDzuJe3ss3wAAAAd/zero-two-darling-in-the-franxx.gif" alt="Zero Two">
+            <div class="msg-body">
+                <div class="msg-meta">
+                    <span class="msg-name">Zero Two</span>
+                    <span class="msg-time">${now()}</span>
                 </div>
-                <div class="flex items-center gap-x-6 text-xs uppercase tracking-widest text-zinc-500">
-                    <div>Franxx Pilot</div>
-                    <div>Klaxosaur Hybrid</div>
-                    <div>Sweet Tooth</div>
-                    <a href="/login">
-                        <div>Account</div>
-                    </a>
+                <div class="bubble bubble-ai">${content}</div>
+            </div>`;
+    } else {
+        wrap.innerHTML = `
+            <div class="msg-body" style="align-items:flex-end">
+                <div class="msg-meta">
+                    <span class="msg-name">You</span>
+                    <span class="msg-time">${now()}</span>
+                </div>
+                <div class="bubble bubble-user">${content}</div>
+            </div>`;
+    }
+
+    chat.appendChild(wrap);
+    chat.scrollTo({ top: chat.scrollHeight, behavior: 'smooth' });
+    return wrap;
+}
+
+function showTyping() {
+    const wrap = document.createElement('div');
+    wrap.className = 'message';
+    wrap.id = 'typing-wrap';
+    wrap.innerHTML = `
+        <img class="msg-avatar" src="https://c.tenor.com/jDzuJe3ss3wAAAAd/zero-two-darling-in-the-franxx.gif" alt="Zero Two">
+        <div class="msg-body">
+            <div class="msg-meta">
+                <span class="msg-name">Zero Two</span>
+                <span class="msg-time">typing…</span>
+            </div>
+            <div class="bubble bubble-ai" style="padding:0">
+                <div class="typing-dots">
+                    <span></span><span></span><span></span>
                 </div>
             </div>
+        </div>`;
+    chat.appendChild(wrap);
+    chat.scrollTo({ top: chat.scrollHeight, behavior: 'smooth' });
+}
 
-            <!-- Chat Area -->
-            <div id="chat"
-                class="flex-1 overflow-y-auto chat-container p-8 space-y-8 bg-[radial-gradient(at_bottom_right,#4c1d95_0%,transparent_50%)]">
-            </div>
+function removeTyping() {
+    const el = document.getElementById('typing-wrap');
+    if (el) el.remove();
+}
 
-            <!-- Input -->
-            <div class="p-6 border-t border-zinc-800 bg-zinc-950">
-                <div class="relative max-w-4xl mx-auto">
-                    <textarea id="input" rows="1"
-                        class="w-full bg-zinc-900 border border-zinc-700 focus:border-pink-500 rounded-3xl px-6 py-4 pr-16 resize-none text-base placeholder-zinc-500 focus:outline-none min-h-[54px] max-h-[160px]"
-                        placeholder="Say something to your Darling... 💕"></textarea>
+async function sendMessage() {
+    const text = input.value.trim();
+    if (!text || isTyping) return;
 
-                    <button onclick="sendMessage()"
-                        class="absolute bottom-4 right-4 bg-gradient-to-br from-pink-600 to-rose-600 text-white p-3 rounded-2xl hover:scale-110 active:scale-95 transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="text-center text-zinc-600 text-xs mt-3">Zero Two is always listening, Darling~</div>
-            </div>
-        </div>
-    </div>
+    addMessage('user', text);
+    messages.push({ role: 'user', content: text });
+    saveHistory();
+    input.value = '';
+    input.style.height = 'auto';
 
-    <script src="/ai.js"></script>
+    isTyping = true;
+    showTyping();
+
+    try {
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages })
+        });
+
+        removeTyping();
+        if (!response.ok) throw new Error('Error');
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let aiResponse = '';
+        let currentDiv = null;
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const chunk = decoder.decode(value);
+            const lines = chunk.split('\n');
+
+            for (const line of lines) {
+                if (line.startsWith('data: ')) {
+                    const dataStr = line.slice(6);
+                    if (dataStr === '[DONE]') continue;
+                    try {
+                        const parsed = JSON.parse(dataStr);
+                        if (parsed.content) {
+                            aiResponse += parsed.content;
+                            if (!currentDiv) {
+                                currentDiv = addMessage('assistant', aiResponse);
+                            } else {
+                                currentDiv.querySelector('.bubble-ai').innerHTML = aiResponse;
+                            }
+                            chat.scrollTo({ top: chat.scrollHeight, behavior: 'smooth' });
+                        }
+                    } catch(e) {}
+                }
+            }
+        }
+
+        messages.push({ role: 'assistant', content: aiResponse });
+        saveHistory();
+
+    } catch(err) {
+        removeTyping();
+        addMessage('assistant', "Sorry Darling… my horns are acting up. Please check your network or try again 💕");
+    }
+
+    isTyping = false;
+}
+
+function clearChat() {
+    if (confirm("Start a new conversation with Zero Two?")) {
+        localStorage.removeItem('zerotwo_chat');
+        messages = [];
+        chat.innerHTML = '';
+        loadHistory();
+        closeSidebar();
+    }
+}
+
+/* ── Input behaviour ── */
+input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+    }
+});
+
+input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 160) + 'px';
+});
+
+window.onload = loadHistory;
+</script>  <script src="/ai.js"></script>
 </body>
-
 </html>
