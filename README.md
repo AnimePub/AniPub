@@ -1,8 +1,6 @@
 
 # AniPub: The Ultimate Anime Multiverse
-<p align="center">
-  <img src="https://github.com/AnimePub/AniPub/blob/main/Logo/Ship.png" alt="AniPub Logo" width="180"/>
-</p>
+
 [![GitHub Stars](https://img.shields.io/github/stars/AnimePub/AniPub?style=for-the-badge&logo=github&color=brightgreen)](https://github.com/AnimePub/AniPub/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/AnimePub/AniPub?style=for-the-badge&logo=github&color=blue)](https://github.com/AnimePub/AniPub/network/members)
 [![GitHub Watchers](https://img.shields.io/github/watchers/AnimePub/AniPub?style=for-the-badge&logo=github&color=orange)](https://github.com/AnimePub/AniPub/watchers)
