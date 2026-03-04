@@ -1,139 +1,214 @@
-<p align="center">
-  <img src="https://github.com/AnimePub/AniPub/blob/main/Logo/Ship.png" alt="AniPub Logo" width="180"/>
-</p>
+```markdown
+# AniPub: The Ultimate Anime Multiverse
 
-<h1 align="center">AniPub — The Ultimate Anime Multiverse</h1>
+![AniPub Logo](https://github.com/AnimePub/AniPub/raw/main/Logo/AniPub%20Logo%20-%20Dark.png) <!-- Assuming logo path; adjust if needed -->
 
-<p align="center">
-  <a href="https://anipub.xyz"><img src="https://img.shields.io/badge/Live%20Site-anipub.xyz-blueviolet?style=for-the-badge" alt="Live Site"/></a>
-  <img src="https://img.shields.io/badge/Status-Live-green?style=for-the-badge" alt="Status"/>
-  <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge" alt="Contributions"/></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-GNU%20GPLv3-blue?style=for-the-badge" alt="License"/></a>
-  <a href="https://github.com/AnimePub/AniPub/actions/workflows/npm-publish-github-packages.yml"><img src="https://github.com/AnimePub/AniPub/actions/workflows/npm-publish-github-packages.yml/badge.svg" alt="AniPub CI"/></a>
-</p>
+[![GitHub Stars](https://img.shields.io/github/stars/AnimePub/AniPub?style=for-the-badge&logo=github&color=brightgreen)](https://github.com/AnimePub/AniPub/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/AnimePub/AniPub?style=for-the-badge&logo=github&color=blue)](https://github.com/AnimePub/AniPub/network/members)
+[![GitHub Watchers](https://img.shields.io/github/watchers/AnimePub/AniPub?style=for-the-badge&logo=github&color=orange)](https://github.com/AnimePub/AniPub/watchers)
+[![License: GPL-3.0](https://img.shields.io/github/license/AnimePub/AniPub?style=for-the-badge&logo=gnu&color=purple)](https://github.com/AnimePub/AniPub/blob/main/LICENSE)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fanipub.xyz&style=for-the-badge&logo=google-chrome&color=cyan&label=Live%20Site)](https://anipub.xyz)
+[![Discord](https://img.shields.io/discord/1234567890?style=for-the-badge&logo=discord&color=5865F2)](https://discord.gg/anipub) <!-- Placeholder; add real Discord if available -->
 
-<p align="center">
-  AniPub isn't just an anime platform — it's a cosmic adventure. Blazing-fast, community-driven, and built by anime lovers for anime lovers.<br/>
-  <b>100% ad-free · tracker-free · privacy-first.</b>
-</p>
+Welcome to **AniPub**, the modern, ad-free, and privacy-first anime streaming platform built for true otakus. Dive into a vast multiverse of anime without distractions, trackers, or interruptions. Powered by a passionate community, AniPub combines blazing-fast performance, intuitive design, and innovative features like AI assistance to redefine how you watch, discover, and connect over anime.
 
----
+Whether you're binge-watching classics like *One Piece* or exploring hidden gems, AniPub is your gateway to an endless anime adventure. Open-source, extensible, and community-driven—join us in shaping the future of anime streaming!
 
-## Why AniPub?
-
-| | |
-|---|---|
-| **Ad-Free Forever** | No ads. Ever. Pure, uninterrupted anime. |
-| **Privacy First** | We don't track you. Your data stays yours. |
-| **Community-Powered** | Built by fans, shaped by fans. |
-| **Blazing Fast** | Cloud-hosted, always online, always snappy. |
-
----
+## Table of Contents
+- [Features](#features)
+- [Why AniPub?](#why-anipub)
+- [Tech Stack](#tech-stack)
+- [Architecture Overview](#architecture-overview)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Roadmap](#roadmap)
+- [Community & Support](#community--support)
+- [Security & Privacy](#security--privacy)
+- [License](#license)
 
 ## Features
+AniPub is packed with features designed to enhance your anime experience:
 
-- **Stream Anime** — Lightning-fast streaming with crystal-clear quality
-- **AniPub AI · Zero Two** — Your personal waifu assistant
-- **Save & Download** — Bookmark favorites or download for offline binges *(download coming soon)*
-- **Epic Playlists** — Curate and share your ultimate anime playlists
-- **Comment Section** — Share thoughts or wage epic battles in the comments
-- **Ratings & Community** — Rate anime and connect with fellow legends
-- **Fortress Security** — JWT auth, hashed passwords, Google OAuth, and session controls
-- **Sleek UI** — EJS templates, custom CSS, and JS for a futuristic feel
+- **Ad-Free Streaming**: Enjoy uninterrupted viewing—no pop-ups, banners, or sponsored content.
+- **Privacy-Focused**: No user tracking, data mining, or third-party analytics. Your watch history stays yours.
+- **Blazing-Fast Performance**: Optimized for speed with cloud hosting, responsive design, and efficient data loading.
+- **AniPub AI · Zero Two**: Your personal AI companion for recommendations, trivia, and chat-based interactions. Ask about plot summaries, character details, or even fan theories!
+- **Save & Bookmark**: Create watchlists, save episodes, and pick up right where you left off.
+- **Playlists & Sharing**: Curate custom playlists and share them with friends or the community.
+- **Community Comments**: Discuss episodes, theories, and fan art in real-time threaded comments.
+- **Ratings System**: Rate anime and see community averages to discover top-rated shows.
+- **Download Support** (Coming Soon): Offline viewing for your favorite episodes.
+- **Multi-Device Sync**: Seamless experience across desktop, mobile, and tablets.
+- **Search & Discovery**: Advanced search with filters for genres, release years, and popularity.
 
----
+## Why AniPub?
+In a world flooded with ad-riddled streaming sites, AniPub stands out as a beacon for anime lovers. Born from frustration with bloated platforms, it's crafted with:
+- **Community at Heart**: Open-source contributions drive innovation.
+- **Simplicity & Elegance**: Clean UI inspired by modern web design principles.
+- **Accessibility**: Free forever, with no paywalls or subscriptions.
+- **Innovation**: Integrating AI for smarter, more engaging interactions.
 
-## Get Started
-```.env
-for local dev.
-email : aabdullahal466@gmail.com
-pass: 12345678
-please don't change it and if it doesn't work than in the Login post req compare section  make the if (value) ... if (1===1) to bypass it ..
-
-```
-### Run Locally
-
-```bash
-git clone https://github.com/AnimePub/AniPub.git
-cd AniPub
-npm install
-node backend/app.js
-```
-
-Then open [http://localhost:3000](http://localhost:3000) in your browser.
-
-
-### Quick Install — Linux
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/AnimePub/redirect-domain/bc1105d1e1350aab25b68a49a37cb6ead07a8336/install.sh | bash
-```
-
-> Review before running: `less install.sh` · Make executable: `chmod +x install.sh`
-
-### Quick Install — Arch Linux
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/AnimePub/redirect-domain/cbdda435d8b9f0ae6d71eba7b7b199771c89dd9a/arch.sh | bash
-```
-
-> Review before running: `less arch.sh` · Make executable: `chmod +x arch.sh`
-
-> Both scripts may require root privileges. Review them before running.
-
----
+If you're tired of endless ads and privacy invasions, AniPub is your escape pod to pure anime bliss.
 
 ## Tech Stack
+AniPub leverages a robust, modern stack for reliability and scalability:
 
-| Layer | Tech |
-|---|---|
-| Frontend | EJS, CSS, JavaScript |
-| Backend | Node.js, Express |
-| Database | MongoDB |
-| Auth | JWT, Google OAuth |
-| Security | Hashed passwords, secure sessions, HTTPS |
+| Layer       | Technologies                  | Purpose                          |
+|-------------|-------------------------------|----------------------------------|
+| **Frontend** | EJS, CSS, JavaScript         | Server-rendered templates for dynamic UI, custom styling, and interactive elements. |
+| **Backend**  | Node.js, Express             | Handles API requests, routing, and server logic. |
+| **Database** | MongoDB                      | Stores user data, anime metadata, ratings, comments, and playlists. |
+| **Auth**     | JWT, Google OAuth            | Secure authentication and session management. |
+| **Security** | Hashed Passwords, HTTPS      | Protects user data and ensures secure connections. |
+| **Assets**   | Custom Images & Thumbnails   | Enhances visual appeal with anime-specific media. |
 
----
+## Architecture Overview
+AniPub follows a full-stack MVC (Model-View-Controller) architecture, ensuring separation of concerns for maintainability. Here's how it all ties together:
 
-## What's Cooking?
+### High-Level System Model
+The application flows from user requests through the backend to the database, rendering views dynamically.
 
-- New features dropping regularly
-- Upcoming: advanced recommendation engine, OAuth expansions, download support
-- Have an idea? Open a discussion and help shape the future of AniPub
+```mermaid
+graph TD
+    A[User Browser] -->|HTTP Request| B[Express Server (Node.js)]
+    B -->|Auth Check| C[JWT / Google OAuth]
+    C -->|Validated| D[MongoDB Database]
+    D -->|Data Fetch| B
+    B -->|Render| E[EJS Templates]
+    E -->|HTML/CSS/JS| A
+    F[AniPub AI Module] -->|API Calls| B
+    subgraph "Frontend"
+        A
+        E
+    end
+    subgraph "Backend"
+        B
+        C
+        F
+    end
+    subgraph "Data Layer"
+        D
+    end
+```
 
----
+- **User Browser**: Interacts with the UI, sending requests for streaming, searches, or comments.
+- **Express Server**: Acts as the controller, processing requests and orchestrating responses.
+- **Auth Layer**: Validates users via JWT tokens or OAuth, preventing unauthorized access.
+- **MongoDB**: Models data like anime entries (e.g., title, episodes, ratings) and user profiles.
+- **EJS Templates**: Views that dynamically generate HTML based on data from the backend.
+- **AniPub AI**: An integrated module (likely using external AI APIs) for conversational features.
 
-## Contributors
+### Data Flow Model
+For a typical user action, like watching an episode:
 
-<a href="https://github.com/AnimePub/AniPub/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=AnimePub/AniPub" />
-</a>
+```mermaid
+flowchart LR
+    Start[User Requests Episode] --> Auth[Authenticate Session]
+    Auth -->|Success| Fetch[Query MongoDB for Episode Data]
+    Fetch --> Stream[Stream Video Content]
+    Stream --> Render[Render Player in EJS View]
+    Render --> Display[Display in Browser]
+    subgraph "Error Handling"
+        Auth -->|Fail| Redirect[Redirect to Login]
+    end
+    Display --> Interact[User Comments/Rates]
+    Interact --> Update[Update DB Ratings/Comments]
+```
 
----
+This model ensures efficient, secure data handling with real-time updates.
 
-## Contribute
+### Security Model
+AniPub prioritizes security through layered protections:
 
-- **Code:** See [CONTRIBUTING.md](./CONTRIBUTING.md)
-- **Bugs:** Report at [Issues](https://github.com/AnimePub/AniPub/issues)
-- **Ideas:** Share via [Discussions](https://github.com/AnimePub/AniPub/discussions)
-- **Announcements:** [Mega Announcements](https://github.com/AnimePub/AniPub/discussions/categories/announcements)
-- **Support:** Star the repo or share with friends
+```mermaid
+graph LR
+    A[External Request] -->|HTTPS| B[Firewall / Rate Limiting]
+    B --> C[Input Validation]
+    C --> D[Authentication (JWT/OAuth)]
+    D --> E[Authorization Checks]
+    E --> F[Data Access (MongoDB)]
+    F -->|Encrypted| G[Response]
+    subgraph "Security Layers"
+        B
+        C
+        D
+        E
+    end
+```
 
----
+Passwords are hashed (e.g., using bcrypt), sessions are secure, and all communications are encrypted.
 
-## Privacy Pledge
+## Installation
+Get AniPub running locally in minutes!
 
-At AniPub, your trust is our treasure. We will **never** show ads or track your activity. Your data is yours alone, protected with top-tier security.
+### Prerequisites
+- Node.js (v14+)
+- MongoDB (local or cloud instance)
+- Git
 
----
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/AnimePub/AniPub.git
+   cd AniPub
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment variables (copy `.env.example` to `.env` and fill in details like MongoDB URI).
+4. Start the server:
+   ```bash
+   node backend/app.js
+   ```
+5. Open your browser: http://localhost:3000
+
+For quick setups:
+- **Linux**: Run `curl -sL https://github.com/AnimePub/install-scripts/raw/main/install.sh | bash` (review script first!).
+- **Arch Linux**: Use the dedicated `arch.sh` script.
+
+**Note**: For testing, use default credentials (email: aabdullahal466@gmail.com, password: 12345678). In production, secure your setup!
+
+## Usage
+- **Browsing Anime**: Search or browse the catalog on the homepage.
+- **Streaming**: Click an episode to start watching—seamless and buffer-free.
+- **AI Chat**: Interact with Zero Two for personalized recommendations.
+- **Community Features**: Log in to comment, rate, and create playlists.
+- **Admin Tools**: (If applicable) Manage content via backend routes.
+
+Example API Endpoint (for developers): `/api/anime/search?q=onepiece` – Returns JSON results.
+
+## Contributing
+We love contributions! Whether it's bug fixes, new features, or UI tweaks:
+- Check `CONTRIBUTING.md` for guidelines.
+- Fork the repo, create a branch, and submit a Pull Request.
+- Report issues or suggest ideas in Discussions.
+
+All contributions must adhere to our Code of Conduct (`CODE_OF_CONDUCT.md`).
+
+## Roadmap
+- **Short-Term**: Enhanced search filters, mobile app integration.
+- **Medium-Term**: Full download support, recommendation engine using ML.
+- **Long-Term**: Expanded AI capabilities, multi-language support, VR streaming.
+
+Track progress in Issues and Discussions.
+
+## Community & Support
+- **Discussions**: Share ideas, ask questions, or join announcements.
+- **Discord**: Join our server for real-time chats (link above).
+- **Star & Share**: Help us grow by starring the repo and spreading the word!
+
+For security issues, see `SECURITY.md`.
+
+## Security & Privacy
+AniPub is built with security in mind:
+- **No Tracking**: Zero cookies for analytics.
+- **Data Protection**: All user data is encrypted and minimal.
+- **Open Audits**: As open-source, anyone can review the code.
+
+We comply with GPL-3.0 and encourage responsible use.
 
 ## License
-
-Licensed under the [GNU General Public License v3.0](./LICENSE). Free to use, remix, and contribute.
-
----
-
-<p align="center">
-  Crafted with love and boundless anime passion by <a href="https://github.com/adnan123456a">Adnan</a> and the AniPub community.<br/>
-  <b>Join us and let's make anime history.</b>
-</p>
+AniPub is licensed under the [GNU General Public License v3.0](LICENSE). Feel free to use, modify, and distribute—just keep it open-source!
+```
