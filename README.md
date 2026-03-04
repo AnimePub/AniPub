@@ -259,7 +259,7 @@ For quick setups:
 - **Secure Chat**: Access /chat after login to communicate with other users using secure sessions.
 - **MAL Connect**: Go to settings, connect your MyAnimeList account via OAuth. If connected, a MAL-specific session is created to enable data fetch/request/modify with MyAnimeList API. Connection info is saved in the database.
 - **Anime Details (/details/animename)**: Displays full anime info using Jikan API, available to all users regardless of MAL connection.
-- **Admin Tools**: (If applicable) Manage content via backend routes.
+
 
 Example API Endpoint (for developers): `/api/anime/search?q=onepiece` – Returns JSON results.
 
