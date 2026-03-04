@@ -1,12 +1,13 @@
-
 # AniPub: The Ultimate Anime Multiverse
+
+![AniPub Logo](https://github.com/AnimePub/AniPub/raw/main/Logo/AniPub%20Logo%20-%20Dark.png) <!-- Assuming logo path; adjust if needed -->
 
 [![GitHub Stars](https://img.shields.io/github/stars/AnimePub/AniPub?style=for-the-badge&logo=github&color=brightgreen)](https://github.com/AnimePub/AniPub/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/AnimePub/AniPub?style=for-the-badge&logo=github&color=blue)](https://github.com/AnimePub/AniPub/network/members)
 [![GitHub Watchers](https://img.shields.io/github/watchers/AnimePub/AniPub?style=for-the-badge&logo=github&color=orange)](https://github.com/AnimePub/AniPub/watchers)
 [![License: GPL-3.0](https://img.shields.io/github/license/AnimePub/AniPub?style=for-the-badge&logo=gnu&color=purple)](https://github.com/AnimePub/AniPub/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fanipub.xyz&style=for-the-badge&logo=google-chrome&color=cyan&label=Live%20Site)](https://anipub.xyz)
-
+[![Discord](https://img.shields.io/discord/1234567890?style=for-the-badge&logo=discord&color=5865F2)](https://discord.gg/anipub) <!-- Placeholder; add real Discord if available -->
 
 Welcome to **AniPub**, the modern, ad-free, and privacy-first anime streaming platform built for true otakus. Dive into a vast multiverse of anime without distractions, trackers, or interruptions. Powered by a passionate community, AniPub combines blazing-fast performance, intuitive design, and innovative features like AI assistance to redefine how you watch, discover, and connect over anime.
 
@@ -19,6 +20,7 @@ Whether you're binge-watching classics like *One Piece* or exploring hidden gems
 - [Architecture Overview](#architecture-overview)
 - [Installation](#installation)
 - [Usage](#usage)
+- [API Documentation](#api-documentation)
 - [Contributing](#contributing)
 - [Roadmap](#roadmap)
 - [Community & Support](#community--support)
@@ -39,6 +41,8 @@ AniPub is packed with features designed to enhance your anime experience:
 - **Download Support** (Coming Soon): Offline viewing for your favorite episodes.
 - **Multi-Device Sync**: Seamless experience across desktop, mobile, and tablets.
 - **Search & Discovery**: Advanced search with filters for genres, release years, and popularity.
+- **Secure Chat (/chat)**: Real-time communication between users with secure sessions to discuss anime, share recommendations, or connect with fellow otakus.
+- **MyAnimeList (MAL) Integration**: Connect your MyAnimeList account in settings to sync watchlists, ratings, and progress seamlessly. Uses secure sessions and stores connection info in the user database for validation and data modification.
 
 ## Why AniPub?
 In a world flooded with ad-riddled streaming sites, AniPub stands out as a beacon for anime lovers. Born from frustration with bloated platforms, it's crafted with:
@@ -97,6 +101,31 @@ graph TD
 - **EJS Templates**: Views that dynamically generate HTML based on data from the backend.
 - **AniPub AI**: An integrated module (likely using external AI APIs) for conversational features.
 
+### Authentication & Session Model
+Users receive secure sessions upon login or Google OAuth. For MAL-connected users, an additional session ID is generated and stored in the database to validate and enable data sync/modification with MyAnimeList.
+
+```mermaid
+flowchart LR
+    Start["User Login/OAuth"] --> Auth["Authenticate (JWT/Google)"]
+    Auth -->|Success| Session["Generate Secure Session"]
+    Session --> DB["Store Session in MongoDB"]
+    DB --> App["Grant Access to Features"]
+    subgraph "MAL Connection"
+        Connect["Connect to MAL (Settings)"] --> MALAuth["MAL OAuth"]
+        MALAuth -->|Success| MALSession["Generate MAL Session ID"]
+        MALSession --> DBStore["Store MAL Info & Session ID in User DB"]
+        DBStore --> Sync["Validate & Sync Data (Get/Req/Modify)"]
+    end
+    App -->|MAL Connected| Sync
+    subgraph "Error Handling"
+        Auth -->|Fail| Redirect["Redirect to Login"]
+        MALAuth -->|Fail| Error["Show Error"]
+    end
+```
+
+- **Secure Sessions**: Used for general auth and features like chat (/chat).
+- **MAL Session ID**: Validates user for syncing watchlists, ratings, etc., with MyAnimeList. Connection details (e.g., access tokens) are securely saved in the user database.
+
 ### Data Flow Model
 For a typical user action, like watching an episode:
 
@@ -115,6 +144,45 @@ flowchart LR
 ```
 
 This model ensures efficient, secure data handling with real-time updates.
+
+### Secure Chat Model (/chat)
+AniPub uses secure sessions for real-time user communication via the /chat endpoint. Here's the flow:
+
+```mermaid
+graph TD
+    A["User 1 Browser"] -->|Login & Session Init| B["Express Server"]
+    B -->|Secure Session (HTTPS + JWT)| C["Chat Endpoint (/chat)"]
+    C -->|Store Messages| D["MongoDB (Chat Collection)"]
+    A["User 1 Browser"] <-->|Real-Time Messages| C
+    E["User 2 Browser"] <-->|Real-Time Messages| C
+    subgraph "Security"
+        B --> F["Session Validation"]
+        F -->|Invalid| G["Reject Access"]
+    end
+```
+
+- **Secure Sessions**: Ensures encrypted, authenticated communication between users.
+- **Real-Time**: Enables live discussions on anime topics.
+
+### MyAnimeList (MAL) Integration Model
+Connect your MAL account in settings for seamless syncing:
+
+```mermaid
+flowchart LR
+    Start["User Accesses Settings"] --> Auth["Authenticate User"]
+    Auth -->|Success| Connect["Initiate MAL OAuth"]
+    Connect -->|Redirect to MAL| MAL["MyAnimeList API"]
+    MAL -->|Access Token| Sync["Sync Watchlists/Ratings"]
+    Sync -->|Update Data| DB["MongoDB (User Profile)"]
+    DB -->|Reflect Changes| App["AniPub App"]
+    subgraph "Error Handling"
+        Auth -->|Fail| Redirect["Redirect to Login"]
+        Connect -->|Fail| Error["Show Error Message"]
+    end
+```
+
+- **OAuth Flow**: Secure connection to MAL for importing/exporting data.
+- **Sync**: Automatically updates watch progress, ratings, and lists. MAL info is stored in the user database for ongoing validation.
 
 ### Security Model
 AniPub prioritizes security through layered protections:
@@ -173,9 +241,29 @@ For quick setups:
 - **Streaming**: Click an episode to start watching—seamless and buffer-free.
 - **AI Chat**: Interact with Zero Two for personalized recommendations.
 - **Community Features**: Log in to comment, rate, and create playlists.
+- **Secure Chat**: Access /chat after login to communicate with other users using secure sessions.
+- **MAL Connect**: Go to settings, connect your MyAnimeList account via OAuth, and sync your data. Connection info is saved in the database, and a special session ID enables validation for data get/request/modify operations.
 - **Admin Tools**: (If applicable) Manage content via backend routes.
 
 Example API Endpoint (for developers): `/api/anime/search?q=onepiece` – Returns JSON results.
+
+## API Documentation
+AniPub provides public API endpoints for accessing anime data. Base URLs: `https://api.anipub.xyz` or `https://www.anipub.xyz`. No authentication required—all endpoints are open.
+
+| Endpoint | Method | Description | Parameters | Response (JSON Example) |
+|----------|--------|-------------|------------|-------------------------|
+| **/api/info/:id** | GET | Get basic anime metadata (name, image, genres, etc.). | `id` (integer ≥1) | `{ "_id": 1, "Name": "Example Anime", "ImagePath": "/path/to/image", ... }` |
+| **/api/getAll** | GET | Get total number of anime entries. | None | Integer (e.g., 1030) |
+| **/v1/api/details/:id** | GET | Get streaming links for anime episodes. | `id` (integer) | `{ "local": { "name": "Anime", "link": "src=URL", "ep": [{ "link": "src=URL" }, ...] } }` |
+| **/anime/api/details/:id** | GET | Get full details including MAL (Jikan) data and characters. | `id` (integer) | `{ "local": {...}, "jikan": {...}, "characters": [{ "character": {...}, "role": "Main", "voice_actors": [] }, ...] }` |
+| **/api/check** | POST | Check if anime name and genre exist. | Body: `{ "Name": "string", "Genre": "string or array" }` | `{ "nameMatch": true, "genreMatch": true, ... }` |
+
+- **Image URLs**: Prepend `https://anipub.xyz/` if paths are relative.
+- **Error Codes**: 200 OK, 400 Bad Request, 404 Not Found, 500 Server Error.
+- **Rate Limiting**: May apply for heavy use.
+- **MAL Integration**: Uses Jikan API for MAL data in `/anime/api/details/:id`.
+
+For more details, visit [api.anipub.xyz](https://api.anipub.xyz).
 
 ## Contributing
 We love contributions! Whether it's bug fixes, new features, or UI tweaks:
