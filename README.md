@@ -40,7 +40,7 @@ AniPub is packed with features designed to enhance your anime experience:
 - **Ratings System**: Rate anime and see community averages to discover top-rated shows.
 - **Download Support** (Coming Soon): Offline viewing for your favorite episodes.
 - **Multi-Device Sync**: Seamless experience across desktop, mobile, and tablets.
-- **Search & Discovery**: Advanced search with filters for genres, release years, and popularity.
+- **Search & Discovery**: Advanced search with by Genres or Names upto 8k+ Anime .
 - **Secure Chat (/chat)**: Real-time communication between users with secure sessions to discuss anime, share recommendations, or connect with fellow otakus.
 - **MyAnimeList (MAL) Integration**: Connect your MyAnimeList account in settings to sync watchlists, ratings, and progress seamlessly. Uses secure sessions and stores connection info in the user database for validation and data modification. Even if not connected, AniPub uses the Jikan API (unofficial MAL API) to fetch and display detailed anime information on the /details/animename page.
 
