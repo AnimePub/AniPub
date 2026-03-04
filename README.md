@@ -1,14 +1,12 @@
-```markdown
 # AniPub: The Ultimate Anime Multiverse
 
-![AniPub Logo](https://github.com/AnimePub/AniPub/raw/main/Logo/AniPub%20Logo%20-%20Dark.png) <!-- Assuming logo path; adjust if needed -->
+![AniPub Logo](https://github.com/AnimePub/AniPub/raw/main/Logo/AniPub%20Logo%20-%20Dark.png) 
 
 [![GitHub Stars](https://img.shields.io/github/stars/AnimePub/AniPub?style=for-the-badge&logo=github&color=brightgreen)](https://github.com/AnimePub/AniPub/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/AnimePub/AniPub?style=for-the-badge&logo=github&color=blue)](https://github.com/AnimePub/AniPub/network/members)
 [![GitHub Watchers](https://img.shields.io/github/watchers/AnimePub/AniPub?style=for-the-badge&logo=github&color=orange)](https://github.com/AnimePub/AniPub/watchers)
 [![License: GPL-3.0](https://img.shields.io/github/license/AnimePub/AniPub?style=for-the-badge&logo=gnu&color=purple)](https://github.com/AnimePub/AniPub/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fanipub.xyz&style=for-the-badge&logo=google-chrome&color=cyan&label=Live%20Site)](https://anipub.xyz)
-[![Discord](https://img.shields.io/discord/1234567890?style=for-the-badge&logo=discord&color=5865F2)](https://discord.gg/anipub) <!-- Placeholder; add real Discord if available -->
 
 Welcome to **AniPub**, the modern, ad-free, and privacy-first anime streaming platform built for true otakus. Dive into a vast multiverse of anime without distractions, trackers, or interruptions. Powered by a passionate community, AniPub combines blazing-fast performance, intuitive design, and innovative features like AI assistance to redefine how you watch, discover, and connect over anime.
 
@@ -211,4 +209,3 @@ We comply with GPL-3.0 and encourage responsible use.
 
 ## License
 AniPub is licensed under the [GNU General Public License v3.0](LICENSE). Feel free to use, modify, and distribute—just keep it open-source!
-```
