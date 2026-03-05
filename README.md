@@ -84,6 +84,7 @@ graph TD
     E -->|HTML/CSS/JS| A
     F["AniPub AI Module"] -->|API Calls| B
     G["Jikan API"] -->|Anime Details| B
+    G["MAL API"] -->|Anime Details| B
     subgraph "Frontend"
         A
         E
