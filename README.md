@@ -79,12 +79,17 @@ graph TD
     A["User Browser"] -->|HTTP Request| B["Express Server (Node.js)"]
     B -->|Auth Check| C["JWT / Google OAuth"]
     C -->|Validated| D["MongoDB Database"]
-    D -->|Data Fetch| B
+    D -->|User Data Fetch| B
+    B -->|Check Login Status| DEC1{Logged In?}
+    DEC1 -->|No| JIKAN["Jikan API"]
+    DEC1 -->|Yes| DEC2{MAL Account Connected?}
+    DEC2 -->|Yes| MAL["MAL API"]
+    DEC2 -->|No| JIKAN
+    JIKAN -->|Anime Details| B
+    MAL -->|Anime Details| B
     B -->|Render| E["EJS Templates"]
     E -->|HTML/CSS/JS| A
     F["AniPub AI Module"] -->|API Calls| B
-    G["Jikan API"] -->|Anime Details| B
-    G["MAL API"] -->|Anime Details| B
     subgraph "Frontend"
         A
         E
@@ -93,12 +98,15 @@ graph TD
         B
         C
         F
+        DEC1
+        DEC2
     end
     subgraph "Data Layer"
         D
     end
     subgraph "External"
-        G
+        JIKAN
+        MAL
     end
 ```
 
