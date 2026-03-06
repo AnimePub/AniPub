@@ -161,6 +161,7 @@ const User = require('./models/model');
 const { Session } = require("express-session");
 
 const { configureGoogleAuth } = require('./config/google');
+const { configureGitHubAuth } = require('./config/github');
 
 const sessionMiddleware = session({
   secret: process.env.SESSION_SECRET || 'anime-secret-key',
@@ -181,6 +182,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 configureGoogleAuth();
+configureGitHubAuth();
 //global rate limit
 // app.use(globalLimiter)
 //Home router
@@ -353,7 +355,8 @@ app.get("/Login", (req, res) => {
                 res.render("Login", {
                     Auth: true,
                     Data: data.id,
-                    oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
+                    oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
+                    githubOauthEnabled: !!(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET)
                 });
             }
         })
@@ -361,7 +364,8 @@ app.get("/Login", (req, res) => {
         res.render("Login", {
             Auth: false,
             Data: "",
-            oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
+            oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
+                    githubOauthEnabled: !!(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET)
         });
     }
 
