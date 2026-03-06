@@ -119,13 +119,81 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Character card click handler (optional - for future enhancement)
-document.querySelectorAll('.character-card').forEach(card => {
-    card.addEventListener('click', function() {
-        // Can add modal or detailed character view here
-        console.log('Character card clicked');
+// Trailer Dialog
+const trailerBtn = document.getElementById('trailerBtn');
+const trailerOverlay = document.getElementById('trailerOverlay');
+const trailerCloseBtn = document.getElementById('trailerCloseBtn');
+const trailerIframe = document.getElementById('trailerIframe');
+
+if (trailerBtn && trailerOverlay) {
+    trailerBtn.addEventListener('click', function () {
+        trailerIframe.src = trailerIframe.dataset.src;
+        trailerOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
     });
-});
+
+    function closeTrailer() {
+        trailerOverlay.classList.remove('active');
+        trailerIframe.src = '';
+        document.body.style.overflow = '';
+    }
+
+    trailerCloseBtn.addEventListener('click', closeTrailer);
+    trailerOverlay.addEventListener('click', function (e) {
+        if (e.target === trailerOverlay) closeTrailer();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && trailerOverlay.classList.contains('active')) closeTrailer();
+    });
+}
+
+// MAL Score & Status voting
+const malVoteSection = document.getElementById('malVoteSection');
+if (malVoteSection) {
+    const malId = malVoteSection.dataset.malId;
+    const scoreButtons = malVoteSection.querySelectorAll('.score-star-btn');
+    const statusSelect = document.getElementById('malStatusSelect');
+    const saveBtn = document.getElementById('malSaveBtn');
+    let selectedScore = parseInt(malVoteSection.querySelector('.score-star-btn.active')?.dataset.score || '0');
+
+    scoreButtons.forEach(btn => {
+        btn.addEventListener('mouseenter', function () {
+            const hovered = parseInt(this.dataset.score);
+            scoreButtons.forEach(b => b.classList.toggle('hover', parseInt(b.dataset.score) <= hovered));
+        });
+        btn.addEventListener('mouseleave', function () {
+            scoreButtons.forEach(b => b.classList.remove('hover'));
+        });
+        btn.addEventListener('click', function () {
+            selectedScore = parseInt(this.dataset.score);
+            scoreButtons.forEach(b => b.classList.toggle('active', parseInt(b.dataset.score) <= selectedScore));
+        });
+    });
+
+    saveBtn.addEventListener('click', async function () {
+        const status = statusSelect.value;
+        if (!status && !selectedScore) {
+            showNotification('Please select a score or status.', 'error');
+            return;
+        }
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'Saving...';
+        try {
+            const res = await fetch(`/api/mal/anime/${malId}/score`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ score: selectedScore || undefined, status: status || undefined })
+            });
+            if (!res.ok) throw new Error('Failed');
+            showNotification('Saved to MyAnimeList!', 'success');
+        } catch {
+            showNotification('Failed to save to MAL.', 'error');
+        } finally {
+            saveBtn.disabled = false;
+            saveBtn.textContent = 'Save to MAL';
+        }
+    });
+}
 
 // Genre tag search
 document.querySelectorAll('.genre-tag').forEach(tag => {

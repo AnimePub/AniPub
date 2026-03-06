@@ -5,6 +5,7 @@ const AnimeDB = require("../models/AniDB.js");
 const Data = require("../models/model");
 const JSONAUTH = process.env.jsonauth;
 const {streamLimiter,infoLimiter} = require("../middleware/ratelimit.js")
+
 // Fetch anime details from Jikan API
 async function fetchJikanDetails(malId) {
     try {
@@ -33,6 +34,26 @@ async function fetchJikanCharacters(malId) {
         console.log("Error fetching characters:", error.message);
         return [];
     }
+}
+
+// Fetch anime details from MAL API (for authenticated MAL users)
+const MAL_FIELDS = "id,title,alternative_titles,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,status,media_type,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,studios,pictures";
+async function fetchMALDetails(malId, accessToken) {
+    try {
+        const response = await fetch(
+            `https://api.myanimelist.net/v2/anime/${malId}?fields=${MAL_FIELDS}`,
+            { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        if (!response.ok) return null;
+        return await response.json();
+    } catch (error) {
+        console.log("Error fetching from MAL API:", error.message);
+        return null;
+    }
+}
+
+function isTokenValid(user) {
+    return !!(user.accessToken && user.tokenExpiresAt && new Date() < new Date(user.tokenExpiresAt));
 }
 
 // GET /details/:id - Display anime details page
@@ -67,28 +88,46 @@ DetailsRouter.get("/details/:id", async (req, res) => {
 
         let malId = "" ;
         // Extract MAL ID from local anime data (if available)
-        // Assuming the _id field is the MAL ID or we can store it separately
         if(localAnime.MALID === null || localAnime.MALID === undefined  || localAnime.MALID === false || localAnime.MALID === "") {
              malId = localAnime._id;
         }
         else {
-           
             malId = localAnime.MALID;
-             
-            console.log(malId)  
+            console.log(malId)
         }
-       
 
-        // Fetch detailed info from Jikan API in parallel
-        const [jikanDetails, jikanCharacters] = await Promise.all([
-            fetchJikanDetails(malId),
-            fetchJikanCharacters(malId)
-        ]);
+        // Check if user has a valid MAL access token
+        let isMalUser = false;
+        let malAccessToken = null;
+        let user = null;
+        if (userAuth && userId) {
+            user = await Data.findById(userId);
+            if (user && isTokenValid(user)) {
+                isMalUser = true;
+                malAccessToken = user.accessToken;
+            }
+        }
+
+        // Fetch detailed info: prefer MAL for authenticated users, fall back to Jikan
+        let jikanDetails = null;
+        let malData = null;
+        if (isMalUser) {
+            [malData, jikanDetails] = await Promise.all([
+                fetchMALDetails(malId, malAccessToken),
+                fetchJikanDetails(malId)
+            ]);
+        } else {
+            jikanDetails = await fetchJikanDetails(malId);
+        }
+
+        // Always use Jikan for characters (MAL API v2 has no character endpoint)
+        const jikanCharacters = await fetchJikanCharacters(malId);
 
         // Combine local and external data
         const animeDetails = {
             ...localAnime.toObject(),
             jikanData: jikanDetails,
+            malData: malData,
             characters: jikanCharacters
         };
 
@@ -96,7 +135,8 @@ DetailsRouter.get("/details/:id", async (req, res) => {
             anime: animeDetails,
             auth: userAuth,
             userId: userId,
-            Link: userLink
+            Link: userLink,
+            isMalUser: isMalUser
         });
 
     } catch (error) {
@@ -186,6 +226,57 @@ DetailsRouter.post(["/anime/api/check","/api/check"], async (req, res) => {
         res.json({ exists: true, genreMatch });
     } catch (err) {
         console.error("Error in /api/check route:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
+
+// POST /api/mal/anime/:id/score  — update MAL list status & score (requires MAL auth)
+DetailsRouter.post("/api/mal/anime/:id/score", async (req, res) => {
+    try {
+        const token = req.cookies.anipub;
+        if (!token) return res.status(401).json({ error: "Not authenticated" });
+
+        let userId;
+        try {
+            const decoded = jwt.verify(token, JSONAUTH);
+            userId = decoded.id;
+        } catch {
+            return res.status(401).json({ error: "Invalid session" });
+        }
+
+        const user = await Data.findById(userId);
+        if (!user || !isTokenValid(user)) {
+            return res.status(403).json({ error: "MAL account not linked or token expired" });
+        }
+
+        const malAnimeId = req.params.id;
+        const { score, status } = req.body;
+
+        const body = new URLSearchParams();
+        if (score !== undefined) body.append("score", String(score));
+        if (status) body.append("status", status);
+
+        const malRes = await fetch(
+            `https://api.myanimelist.net/v2/anime/${malAnimeId}/my_list_status`,
+            {
+                method: "PATCH",
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: body.toString()
+            }
+        );
+
+        if (!malRes.ok) {
+            const errData = await malRes.json().catch(() => ({}));
+            return res.status(malRes.status).json({ error: "MAL update failed", details: errData });
+        }
+
+        const result = await malRes.json();
+        res.json({ success: true, data: result });
+    } catch (error) {
+        console.error("Error updating MAL score:", error);
         res.status(500).json({ error: "Internal server error" });
     }
 });
