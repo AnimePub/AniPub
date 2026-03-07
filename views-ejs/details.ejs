@@ -131,6 +131,14 @@
                         </svg>
                         Add to Watchlist
                     </button>
+                    <% if(anime.jikanData && anime.jikanData.trailer && anime.jikanData.trailer.youtube_id) { %>
+                    <button class="trailer-btn" id="trailerBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"/>
+                        </svg>
+                        Watch Trailer
+                    </button>
+                    <% } %>
                 </div>
             </div>
         </div>
@@ -199,26 +207,82 @@
         </div>
 
         <!-- Characters Section -->
-        <% if(anime.characters && anime.characters.length > 0) { %>
+        <% if(anime.characters && anime.characters.length > 0) {
+            const mainChars = anime.characters.filter(c => c.role === 'Main');
+            const supportChars = anime.characters.filter(c => c.role !== 'Main');
+        %>
+
+        <% if(mainChars.length > 0) { %>
         <div class="details-characters">
-            <h2>Characters</h2>
-            <div class="characters-grid">
-                <% anime.characters.forEach(item => { %>
-                <div class="character-card">
-                    <% if(item.character?.images?.jpg?.image_url) { %>
-                    <img src="<%= item.character.images.jpg.image_url %>" alt="<%= item.character.name %>" class="character-image">
-                    <% } %>
-                    <div class="character-info">
-                        <h4><%= item.character?.name || 'Unknown' %></h4>
-                        <p class="character-role"><%= item.role || 'Unknown' %></p>
-                        <% if(item.voice_actors && item.voice_actors.length > 0) { %>
-                        <p class="character-va">VA: <%= item.voice_actors[0].person?.name || 'Unknown' %></p>
+            <h2>Main Characters</h2>
+            <div class="characters-grid characters-grid--main">
+                <% mainChars.forEach(item => {
+                    const jaVA = item.voice_actors && item.voice_actors.find(v => v.language === 'Japanese');
+                    const anyVA = item.voice_actors && item.voice_actors[0];
+                    const va = jaVA || anyVA;
+                %>
+                <div class="character-card character-card--main">
+                    <div class="character-card-inner">
+                        <div class="character-half">
+                            <% if(item.character?.images?.jpg?.image_url) { %>
+                            <img src="<%= item.character.images.jpg.image_url %>" alt="<%= item.character.name %>" class="character-image">
+                            <% } %>
+                            <div class="character-info">
+                                <h4><%= item.character?.name || 'Unknown' %></h4>
+                                <p class="character-role">Character</p>
+                                <p class="character-fav">❤ <%= item.favorites || 0 %></p>
+                            </div>
+                        </div>
+                        <% if(va) { %>
+                        <div class="character-half character-half--va">
+                            <% if(va.person?.images?.jpg?.image_url) { %>
+                            <img src="<%= va.person.images.jpg.image_url %>" alt="<%= va.person.name %>" class="character-image">
+                            <% } %>
+                            <div class="character-info">
+                                <h4><%= va.person?.name || 'Unknown' %></h4>
+                                <p class="character-role">Voice Actor</p>
+                                <p class="va-lang"><%= va.language %></p>
+                            </div>
+                        </div>
                         <% } %>
                     </div>
                 </div>
                 <% }); %>
             </div>
         </div>
+        <% } %>
+
+        <% if(supportChars.length > 0) { %>
+        <div class="details-characters details-characters--supporting">
+            <h2>Supporting Characters</h2>
+            <div class="characters-grid">
+                <% supportChars.forEach(item => {
+                    const jaVA = item.voice_actors && item.voice_actors.find(v => v.language === 'Japanese');
+                    const anyVA = item.voice_actors && item.voice_actors[0];
+                    const va = jaVA || anyVA;
+                %>
+                <div class="character-card">
+                    <% if(item.character?.images?.jpg?.image_url) { %>
+                    <img src="<%= item.character.images.jpg.image_url %>" alt="<%= item.character.name %>" class="character-image">
+                    <% } %>
+                    <div class="character-info">
+                        <h4><%= item.character?.name || 'Unknown' %></h4>
+                        <p class="character-role">Supporting</p>
+                        <% if(va) { %>
+                        <div class="supporting-va">
+                            <% if(va.person?.images?.jpg?.image_url) { %>
+                            <img src="<%= va.person.images.jpg.image_url %>" alt="<%= va.person.name %>" class="va-thumb">
+                            <% } %>
+                            <span class="va-name"><%= va.person?.name || 'Unknown' %> <em>(<%= va.language %>)</em></span>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+        <% } %>
+
         <% } %>
 
         <!-- Related Anime Section -->
@@ -242,7 +306,65 @@
         </div>
         <% } %>
 
+        <!-- MAL Voting Section -->
+        <% if(isMalUser) {
+            const myStatus = anime.malData && anime.malData.my_list_status;
+            const currentScore = myStatus ? myStatus.score : 0;
+            const currentStatus = myStatus ? myStatus.status : '';
+        %>
+        <div class="mal-vote-section" id="malVoteSection" data-mal-id="<%= anime.MALID || anime._id %>">
+            <h2>Your MyAnimeList Status</h2>
+            <div class="mal-vote-inner">
+                <div class="mal-score-picker">
+                    <label class="mal-vote-label">Score</label>
+                    <div class="score-stars" id="scorePicker">
+                        <% for(let i = 1; i <= 10; i++) { %>
+                        <button class="score-star-btn <%= i <= currentScore ? 'active' : '' %>" data-score="<%= i %>"><%= i %></button>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="mal-status-picker">
+                    <label class="mal-vote-label">Watch Status</label>
+                    <select id="malStatusSelect" class="mal-status-select">
+                        <option value="" <%= !currentStatus ? 'selected' : '' %>>-- Select --</option>
+                        <option value="watching" <%= currentStatus === 'watching' ? 'selected' : '' %>>Watching</option>
+                        <option value="completed" <%= currentStatus === 'completed' ? 'selected' : '' %>>Completed</option>
+                        <option value="on_hold" <%= currentStatus === 'on_hold' ? 'selected' : '' %>>On Hold</option>
+                        <option value="dropped" <%= currentStatus === 'dropped' ? 'selected' : '' %>>Dropped</option>
+                        <option value="plan_to_watch" <%= currentStatus === 'plan_to_watch' ? 'selected' : '' %>>Plan to Watch</option>
+                    </select>
+                </div>
+                <button class="mal-save-btn" id="malSaveBtn">Save to MAL</button>
+            </div>
+            <% if(myStatus && myStatus.updated_at) { %>
+            <p class="mal-last-updated">Last updated: <%= new Date(myStatus.updated_at).toLocaleDateString() %></p>
+            <% } %>
+        </div>
+        <% } %>
+
     </div>
+
+    <!-- Trailer Dialog -->
+    <% if(anime.jikanData && anime.jikanData.trailer && anime.jikanData.trailer.youtube_id) { %>
+    <div class="trailer-overlay" id="trailerOverlay">
+        <div class="trailer-modal">
+            <button class="trailer-close-btn" id="trailerCloseBtn" aria-label="Close trailer">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </button>
+            <div class="trailer-iframe-wrap">
+                <iframe id="trailerIframe"
+                    src=""
+                    data-src="https://www.youtube.com/embed/<%= anime.jikanData.trailer.youtube_id %>?autoplay=1"
+                    allow="autoplay; encrypted-media; fullscreen"
+                    allowfullscreen
+                    frameborder="0">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <% } %>
 
     <script src="/details.js"></script>
      <script src="/home.js"></script>
