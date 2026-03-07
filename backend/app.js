@@ -551,13 +551,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
     const Token = req.cookies.anipub;  
     const AniId = req.params.AniId;
     const AniEP = req.params.AniEP; 
-    let type = req.query.type ;
-    if(type) {
-        type = "sub"
-    }
-    else {
-        type = "dub"
-    }
+    let type = req.query.type || "sub";
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     let video = "";
     if(!isNaN(AniId) && !isNaN(AniEP)) {
