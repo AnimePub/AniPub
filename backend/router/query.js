@@ -28,7 +28,7 @@ SearchQ.post("/search/q",async (req,res)=>{
         Name: ser[i].Name,
         Id : ser[i]._id,
         Image : ser[i].ImagePath,
-         finder : ser[0].finder,
+         finder : ser[i].finder,
     }
     )
     })
