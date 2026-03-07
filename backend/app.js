@@ -586,7 +586,10 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
   Producers: Video.Producers,
   DescripTion: Video.DescripTion,
   type: Video.type,
-  ep: Video.ep,
+  ep: Video.ep?.map(ep => ({
+    ...ep,               
+    link: changeStreamType(ep.link, type)
+  })) || [],
   Duration: Video.Duration,
   MALScore: Video.MALScore,
   Status: Video.Status,
@@ -670,7 +673,10 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
   Producers: Video.Producers,
   DescripTion: Video.DescripTion,
   type: Video.type,
-  ep: Video.ep,
+  ep: Video.ep?.map(ep => ({
+    ...ep,               
+    link: changeStreamType(ep.link, type)
+  })) || [],
   Duration: Video.Duration,
   MALScore: Video.MALScore,
   Status: Video.Status,
