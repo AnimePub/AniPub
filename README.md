@@ -324,3 +324,7 @@ We comply with GPL-3.0 and encourage responsible use.
 
 ## License
 AniPub is licensed under the [GNU General Public License v3.0](LICENSE). Feel free to use, modify, and distribute—just keep it open-source!
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/image?repos=AnimePub/AniPub&type=date&legend=top-left)](https://www.star-history.com/?repos=AnimePub%2FAniPub&type=date&logscale=&legend=top-left)
