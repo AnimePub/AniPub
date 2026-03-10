@@ -254,81 +254,115 @@ HomeRouter.get("/api/findByGenre/:genre",async (req,res)=>{
     } )
 })
 
-//version 1 letter for delete 
-HomeRouter.get("/v1/Home", async (req, res) => {
-    const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
-        updatedAt: -1
-    }).limit(20);
-    let ArrayList =[];
-    slider.findById(1)
-    .then(async ar=>{
-        const b = (ar && Array.isArray(ar.slArray)) ? ar.slArray : [];
-        b.forEach(c=>{
-            ArrayList.push(c);
-        })
-    const DBarray = ArrayList;
-    const DBAnime = await AnimeDB.find({
-        _id: {
-            $in: DBarray
-        }
-    })
-    const Token = req.cookies.anipub;
-    let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-    AnimeDB.find({"Status":"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
-    .then(Airing=>{
-    if (Token) {
-        jwt.verify(Token, JSONAUTH, (err, data) => {
-            if (err) {
-                console.log(err);
-            }
-
-            Data.findById(`${data.id}`)
-                .then((info) => {
-                    let link = info.Image;
-                    const Gender = info.Gender;
-
-                    if (Gender === "Male") {
-                        const finalLink = `boys/` + link;
-
-                        res.render("v1Home", {
-                            Anime: animeDb,
-                            DBAnime,
-                            Airing,
-                            auth: true,
-                            ID: data.id,
-                            Link: finalLink
-                        });
-
-                    } else {
-
-                        res.render("v1Home", {
-                            Anime: animeDb,
-                            Airing,
-                            DBAnime,
-                            auth: true,
-                            ID: data.id,
-                            Link: link
-                        });
-                    }
-
-
-
-                })
-
-        })
-    } else {
-        res.render("v1Home", {
-            Anime: animeDb,
-            DBAnime,
-            Airing,
-            auth: false,
-            ID: "guest",
-            Link: linkI
-        });
+//Search 
+HomeRouter.get("/api/search/:query",(req,res)=>{
+    if (req.params.query.length >= 3) {
+    const regex = new RegExp(req.params.query)
+   AnimeDB.find({Name:{$regex:regex,$options:"i"}},{Name:1,ImagePath:1,_id:1,finder:1})
+    .then(ser=>{
+       
+   if(ser.length>0 && ser.length === 1 ) { 
+   const sendBack = {
+        Name: ser[0].Name,
+        Id:ser[0]._id,
+        finder : ser[0].finder,
+        Image : ser[0].ImagePath
     }
-
- })
+    res.json(sendBack);
+    }
+    else if (ser.length > 1) {
+        const ArrayDB = [];
+        ser.forEach((value,i)=>{
+             ArrayDB.push(
+    {
+        Name: ser[i].Name,
+        Id : ser[i]._id,
+        Image : ser[i].ImagePath,
+         finder : ser[i].finder,
+    }
+    )
     })
+   
+      res.json(ArrayDB);
+    }
+    else {
+        res.json({found:false})
+    }
+      
+    }) 
+}
+else {
+    res.json({found:false})
+}
 })
 
+HomeRouter.get("/api/searchAll/:query",(req,res)=>{
+    if(req.params.query.length >=3) {
+ 
+    let page = 1;
+    if(req.query.page === undefined) {
+        page = 1;
+    }
+    else {
+        if( !isNaN(req.query.page))
+        {
+              page = Number((req.query.page));
+        }
+        else {
+            page =1 
+        }
+        
+    }
+        let alus = 20*(page-1);
+        let query = req.params.query
+     const regex = new RegExp(query);
+               AnimeDB.find({Name:{$regex:regex,$options:"i"}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).skip(alus).limit(20)
+            .then(info=>{
+                const AniData = info; 
+                if(AniData.length > 0) {
+                    res.json(
+                        {
+                            currentPage:page,
+                            AniData
+                        })
+                }
+                else {
+                     res.json({found:false})
+                }
+            })
+        } else {
+              res.json({found:false})
+        }
+})
+HomeRouter.get("/api/findByRating",async (req,res)=>{
+     let page = 1;
+    if(req.query.page === undefined) {
+        page = 1;
+    }
+    else {
+        if( !isNaN(req.query.page))
+        {
+              page = Number((req.query.page));
+        }
+        else {
+            page =1 
+        }
+        
+    }
+        let alus = 20*(page-1);
+    const info = await AnimeDB.find({MALScore:{$ne:'?'}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).skip(alus).limit(10).sort({MALScore:-1})
+    if(info) {
+        res.json({
+            currentPage:page,
+            AniData:info
+        })
+
+    }
+    else {
+          res.json({found:false})
+    }
+})
+HomeRouter.get("/API",(req,res)=>{
+    res.json(["Docs https://api.anipub.xyz"])
+})
 module.exports = HomeRouter;
