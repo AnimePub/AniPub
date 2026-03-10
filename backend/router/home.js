@@ -209,7 +209,7 @@ HomeRouter.get("/api/find/:byName",async (req,res)=>{
   { $match: { Name: animeName } },
   { $project: { _id: 1, epCount: { $size: "$ep" } } }
 ]);
-        if(info) {
+        if(info.length> 0) {
         info = {
             exist:true,
             id:info[0]._id,
