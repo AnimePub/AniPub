@@ -205,12 +205,15 @@ HomeRouter.get("/api/find/:byName",async (req,res)=>{
     const animeName = req.params.byName;
     console.log(animeName)
     if(animeName) {
-        let info =  await AnimeDB.findOne({"Name":animeName},{_id:1,epCount:{$size:"$ep"}});
+      let info = await AnimeDB.aggregate([
+  { $match: { Name: animeName } },
+  { $project: { _id: 1, epCount: { $size: "$ep" } } }
+]);
         if(info) {
         info = {
             exist:true,
-            id:info._id,
-            epCount:info.epCount,
+            id:info[0]._id,
+            ep:info[0].epCount + 1 ,
         }
         res.json(info);}
         else {
