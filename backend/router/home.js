@@ -200,6 +200,56 @@ HomeRouter.get(`/api/info/:AniId`, async (req, res) => {
     }
               
 });
+//Byname 
+HomeRouter.get("/api/find/:byName",async (req,res)=>{
+    const animeName = req.params.byName;
+    console.log(animeName)
+    if(animeName) {
+        let info =  await AnimeDB.findOne({"Name":animeName},{_id:1,epCount:{$size:"$ep"}});
+        if(info) {
+        info = {
+            exist:true,
+            id:info._id,
+            epCount:info.epCount,
+        }
+        res.json(info);}
+        else {
+                   res.json({exist:false})
+        }
+    }
+    else {
+        res.json({exist:false})
+    }
+})
+HomeRouter.get("/api/findByGenre/:genre",async (req,res)=>{
+      let query = req.params.genre;
+      if(req.params.genre){
+           query = query.toLowerCase()
+    }
+    let page = 1;
+    if(req.query.page === undefined) {
+        page = 1;
+    }
+    else {
+        if( !isNaN(req.query.page))
+        {
+              page = Number((req.query.page));
+        }
+        else {
+            page =1 
+        }
+        
+    }
+       let alus = 20*(page-1);
+        AnimeDB.find({"Genres":query},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).skip(alus).limit(20)
+    .then(info=>{
+        const AniData = info; 
+        res.json({
+            currentPage:page,
+            wholePage:AniData,
+        })
+    } )
+})
 
 //version 1 letter for delete 
 HomeRouter.get("/v1/Home", async (req, res) => {
