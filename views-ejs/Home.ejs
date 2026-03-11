@@ -233,9 +233,9 @@
                         <img class="airing-rating-stars" src="/rating-<%=value.RatingsNum%>.png" alt="Rating">
                     </div>
                     <p class="airing-card-desc">
-                        <% const desc = value.DescripTion;
-                           const descr = desc.slice(0,60);
-                        %>
+                           <% const desc = value.DescripTion;
+   const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
+%>
                         <%=descr%>...
                     </p>
                 </div>
