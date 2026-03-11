@@ -935,7 +935,7 @@ let stat = "watching";
 
     const params = new URLSearchParams({
       status: stat,
-  num_watched_episodes: 1
+  num_watched_episodes: Number(req.body.EpID)+ 1
     });
 
     const response = await fetch(
