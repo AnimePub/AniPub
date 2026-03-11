@@ -448,6 +448,144 @@
 
     <script id="dsq-count-scr" src="//anipub.disqus.com/count.js" async></script>
     <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+    <script>
+        (function () {
+  // ── Check genres first ──────────────────────────────────────────
+  const BLOCKED_GENRES = ["ecchi", "harem", "nudity", "mature"];
+  
+  const hasBlockedGenre = [...document.querySelectorAll(".genre")].some(el => 
+    BLOCKED_GENRES.includes(el.innerText.trim().toLowerCase())
+  );
+
+  if (!hasBlockedGenre) return; // ← Exit silently if no blocked genres found
+
+  // ── Inject Google Font ──────────────────────────────────────────
+  const font = document.createElement("link");
+  font.rel = "stylesheet";
+  font.href = "https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&family=Outfit:wght@300;400;600&display=swap";
+  document.head.appendChild(font);
+
+  // ── Inject Styles ───────────────────────────────────────────────
+  const style = document.createElement("style");
+  style.textContent = `
+    #ramadan-overlay {
+      position:fixed;inset:0;background:rgba(5,5,18,0.88);
+      backdrop-filter:blur(7px);z-index:999999;
+      display:flex;align-items:center;justify-content:center;
+      animation:rmFadeIn .5s ease;font-family:'Outfit',sans-serif;
+    }
+    @keyframes rmFadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes rmSlideUp{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes rmGlow{from{box-shadow:0 0 20px rgba(240,192,64,.35),0 0 40px rgba(200,130,26,.15)}to{box-shadow:0 0 40px rgba(240,192,64,.65),0 0 80px rgba(200,130,26,.35)}}
+    @keyframes rmTwinkle{from{opacity:.1;transform:scale(.8)}to{opacity:.9;transform:scale(1.2)}}
+    #ramadan-dialog {
+      position:relative;background:linear-gradient(160deg,#11112a,#0d1a2e 60%,#0f1620);
+      border:1px solid rgba(200,160,60,.35);border-radius:20px;
+      padding:48px 44px 40px;max-width:480px;width:90%;text-align:center;
+      box-shadow:0 0 60px rgba(180,130,30,.12),0 30px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,210,80,.1);
+      animation:rmSlideUp .5s cubic-bezier(.22,1,.36,1);
+    }
+    #ramadan-dialog::before{
+      content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);
+      width:160px;height:4px;
+      background:linear-gradient(90deg,transparent,#c8902a,#f0c040,#c8902a,transparent);
+      border-radius:0 0 4px 4px;
+    }
+    .rm-moon{width:72px;height:72px;margin:0 auto 20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:36px; border: 1px solid yellow;}
+    .rm-arabic{font-family:'Scheherazade New',serif;font-size:22px;color:#f0c040;letter-spacing:2px;margin-bottom:6px;}
+    .rm-subtitle{font-size:13px;font-weight:300;color:rgba(200,180,140,.6);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+    .rm-title{font-size:22px;font-weight:600;color:#f0ece0;margin-bottom:10px;line-height:1.3;}
+    .rm-divider{display:flex;align-items:center;gap:12px;margin:18px 0;}
+    .rm-divider::before,.rm-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(200,160,60,.3),transparent);}
+    .rm-message{background:rgba(255,100,80,.07);border:1px solid rgba(255,100,80,.18);border-radius:12px;padding:16px 18px;margin-bottom:24px;}
+    .rm-message p{color:#f0ece0;font-size:15px;line-height:1.7;font-weight:300;}
+    .rm-message p strong{color:#ff9580;font-weight:600;}
+    .rm-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+    .rm-tag{background:rgba(255,80,60,.12);border:1px solid rgba(255,80,60,.25);color:#ff7060;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:20px;}
+    .rm-btn-primary{width:100%;padding:14px;background:linear-gradient(135deg,#c8821a,#f0c040,#c8821a);background-size:200% 100%;border:none;border-radius:12px;color:#1a0e00;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:background-position .4s,box-shadow .3s,transform .15s;box-shadow:0 4px 20px rgba(200,130,26,.3);margin-bottom:12px;display:block;}
+    .rm-btn-primary:hover{background-position:100% 0;box-shadow:0 6px 30px rgba(240,192,64,.5);transform:translateY(-1px);}
+    .rm-btn-secondary{width:100%;padding:12px;background:transparent;border:1px solid rgba(200,160,60,.25);border-radius:12px;color:rgba(200,180,140,.55);font-family:'Outfit',sans-serif;font-size:13px;cursor:pointer;transition:border-color .3s,color .3s;display:block;}
+    .rm-btn-secondary:hover{border-color:rgba(200,160,60,.5);color:rgba(200,180,140,.85);}
+    .rm-deco{position:absolute;font-size:18px;opacity:.18;}
+    .rm-star{position:absolute;border-radius:50%;background:#fff;}
+  `;
+  document.head.appendChild(style);
+
+  // ── Collect matched genre names for display ─────────────────────
+  const matchedGenres = [...document.querySelectorAll(".genre")]
+    .map(el => el.innerText.trim())
+    .filter(text => BLOCKED_GENRES.includes(text.toLowerCase()));
+
+  // ── Build Overlay ───────────────────────────────────────────────
+  const overlay = document.createElement("div");
+  overlay.id = "ramadan-overlay";
+
+  for (let i = 0; i < 100; i++) {
+    const s = document.createElement("div");
+    s.className = "rm-star";
+    const size = Math.random() * 2.5 + 0.5;
+    Object.assign(s.style, {
+      width: size + "px", height: size + "px",
+      top: Math.random() * 100 + "%", left: Math.random() * 100 + "%",
+      animation: `rmTwinkle ${(Math.random()*3+1.5).toFixed(1)}s ease-in-out ${(Math.random()*4).toFixed(1)}s infinite alternate`
+    });
+    overlay.appendChild(s);
+  }
+
+  // ── Dynamically build genre tags from matched genres ────────────
+  const genreTags = matchedGenres
+    .map(g => `<span class="rm-tag">⚠ ${g}</span>`)
+    .join("");
+
+  const dialog = document.createElement("div");
+  dialog.id = "ramadan-dialog";
+  dialog.setAttribute("role", "dialog");
+  dialog.setAttribute("aria-modal", "true");
+  dialog.innerHTML = `
+    <span class="rm-deco" style="top:14px;left:16px">☽</span>
+    <span class="rm-deco" style="top:14px;right:16px;transform:scaleX(-1)">☽</span>
+    <span class="rm-deco" style="bottom:14px;left:16px">✦</span>
+    <span class="rm-deco" style="bottom:14px;right:16px;transform:scaleX(-1)">✦</span>
+    <div class="rm-moon">🌙</div>
+    <div class="rm-arabic">رمضان كريم</div>
+    <div class="rm-subtitle">Ramadan Mubarak</div>
+    <h2 class="rm-title">Content Restricted During<br>The Holy Month</h2>
+    <div class="rm-divider"><span>✦</span></div>
+    <div class="rm-message">
+      <p>This content has been <strong>blocked</strong> because it contains
+      <strong>${matchedGenres.join(" / ")}</strong> material, which is not
+      appropriate to view during the blessed month of <strong>Ramadan</strong>. 🌙</p>
+    </div>
+    <div class="rm-tags">${genreTags}</div>
+    <button class="rm-btn-primary" id="rm-back-btn">🕌 &nbsp; I Understand, Go Back</button>
+    <button class="rm-btn-secondary" id="rm-override-btn">Proceed anyway (not recommended)</button>
+  `;
+
+  overlay.appendChild(dialog);
+  document.body.appendChild(overlay);
+
+  // ── Button Logic ────────────────────────────────────────────────
+  const closeOverlay = () => {
+    overlay.style.transition = "opacity .4s ease";
+    overlay.style.opacity = "0";
+    setTimeout(() => overlay.remove(), 400);
+  };
+
+  document.getElementById("rm-back-btn").addEventListener("click", closeOverlay);
+
+  document.getElementById("rm-override-btn").addEventListener("click", () => {
+    document.querySelector(".rm-message p").innerHTML = `
+      <strong style="color:#ff9580">Are you sure?</strong><br>
+      <span style="font-size:13px;color:rgba(200,180,140,.7)">
+        Remember — Ramadan is a month of discipline and reflection. Stay strong! 🤲
+      </span>`;
+    const btn = document.getElementById("rm-override-btn");
+    btn.textContent = "No, take me back";
+    btn.onclick = closeOverlay;
+  });
+
+})();
+    </script>
     <script src="/videoPlay.js"></script>
     <script src="/Changer-AniPlayer.js"></script>
     <script src="/dialog.js"></script>
