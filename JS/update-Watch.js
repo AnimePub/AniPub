@@ -3,7 +3,7 @@ const fpfa = PFA.split("/");
 const AnimeID = Number(fpfa[2]);
 const EpisodeID = Number(fpfa[3]);
 
-if (AnimeID !== NaN && EpisodeID !== NaN) {
+if (EpisodeID !== NaN) {
     fetch("/WatchList/Updater", {
             method: "POST",
             headers: {

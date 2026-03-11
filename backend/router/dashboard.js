@@ -9,7 +9,7 @@ const { requireAuth } = require('../middleware/auth');
 aluR.get('/api/me', requireAuth, async (req, res) => {
   try {
     const user = await User.findById(req.session.userId)
-      .select('-accessToken -refreshToken -Password -googleId -List')
+      .select('-accessToken -refreshToken -Password -googleId -List -Email -Address -tokenExpiresAt')
       .lean();
     if (!user) return res.status(404).json({ error: 'User not found' });
     res.json(user);
@@ -41,21 +41,6 @@ aluR.get('/api/anime/watching', requireAuth, async (req, res) => {
   }
 });
 
-aluR.get('/api/info/anime/:id', requireAuth ,async (req, res) => {
-  const user = await User.findById(req.session.userId);
-    if (!user) return res.status(404).json({ error: 'User not found' });
-  const response = await axios.get('https://api.myanimelist.net/v2/users/@me/animelist', {
-    headers: { Authorization: `Bearer ${user.accessToken}` },
-    params: {
-      status: req.query.status || 'completed', // watching, completed, on_hold, dropped, plan_to_watch
-      limit: req.query.limit || 10,
-      offset: req.query.offset || 0,
-      fields: 'list_status,num_episodes,mean,synopsis,main_picture,start_season,genres,status'
-    }
-  });
-
-  res.json(response.data);
-});
 aluR.get('/api/anime/search',requireAuth, async (req, res) => {
   const user = await User.findById(req.session.userId);
   if (!user) return res.status(404).json({ error: 'User not found' });
@@ -109,7 +94,7 @@ aluR.get('/api/anime/:id',requireAuth, async (req, res) => {
 });
 aluR.post('/api/animelist/:animeId',requireAuth, async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.session.userId);
       if (!user) return res.status(404).json({ error: 'User not found' });
     const params = new URLSearchParams({
       status: req.body.status,                    // watching, completed, on_hold, dropped, plan_to_watch

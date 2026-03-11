@@ -835,8 +835,8 @@ app.post("/WatchList/Updater", (req, res) => {
                     if (info.length === 0) {
                         console.log("Watched")
                     } else {
-                        console.log(info[0].AniEP, req.body.AnimeID)
-                        if (Number(info[0].AniEP) < Number(req.body.AnimeID)) {
+                     
+                        if (Number(info[0].Progress) < Number(req.body.EpisodeID)) {
                             newList.findOneAndUpdate({
                                     "Owner": data.id,
                                     "AniID": req.body.AnimeID
@@ -845,7 +845,33 @@ app.post("/WatchList/Updater", (req, res) => {
                                         "Progress": req.body.EpisodeID
                                     }
                                 })
-                                .then(() => {
+                                .then(async () => {
+                                const malID = await AnimeDB.find({"_id":req.body.AnimeID},{"MALID":1})
+                                if(malID[0].MALID) {      
+                                      try {
+    const user = await Data.findById(req.session.userId);
+
+    const params = new URLSearchParams({
+      status: 'watching',
+  num_watched_episodes: Number(req.body.EpisodeID)+ 1
+    });
+
+    const response = await fetch(
+      `https://api.myanimelist.net/v2/anime/${malID[0].MALID}/my_list_status`,
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params
+      }
+    );
+
+  } catch(err) {
+    console.log("couldn't be added to Watch List")
+  }
+                                }
                                     res.json(["Watchlist Updated"])
                                 })
                         } else {
@@ -867,6 +893,7 @@ app.post('/PlayList/Update',async (req, res) => {
             if (err) {
                 console.log(err)
             }
+            else {
             newList.find({
                     "Owner": data.id,
                     "AniID": req.body.AniID
@@ -880,17 +907,44 @@ app.post('/PlayList/Update',async (req, res) => {
                             Owner: data.id,
                             Progress: req.body.EpID,
                         })
-                        .then(info => {
+                        .then(async info => {
+
+                               const malID = await AnimeDB.find({"_id":req.body.AniID},{"MALID":1})
+                                if(malID[0].MALID) {                  
+
+  try {
+    const user = await Data.findById(req.session.userId);
+
+    const params = new URLSearchParams({
+      status: 'watching',
+  num_watched_episodes: 1
+    });
+
+    const response = await fetch(
+      `https://api.myanimelist.net/v2/anime/${malID[0].MALID}/my_list_status`,
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${user.accessToken}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: params
+      }
+    );
+
+  } catch(err) {
+    console.log("couldn't be added to Watch List")
+  }
+                                }
                                 res.json(["PlayList Updated"])
                             })
 
 
                     } else {
                         res.json(["Already"])
-                        console.log(already)
                     }
                 })
-
+            }
         })
 
 
