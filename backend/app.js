@@ -850,7 +850,7 @@ app.post("/WatchList/Updater", (req, res) => {
   { $match: { "_id": req.body.AnimeID } },
   { $project: { "MALID": 1, "epCount": { $size: "$ep" } } }
 ])
-                                if(malID[0].MALID) {      
+                                if(malID[0].MALID !== undefined) {      
                                       try {
     const user = await Data.findById(req.session.userId);
     let stat = "watching";
@@ -922,7 +922,7 @@ app.post('/PlayList/Update',async (req, res) => {
   { $match: { "_id": req.body.AnimeID } },
   { $project: { "MALID": 1, "epCount": { $size: "$ep" } } }
 ]) 
-               if(malID[0].MALID) {                  
+               if(malID[0].MALID !== undefined) {                  
 let stat = "watching";
     if(malID[0].epCount+1 === Number(req.body.EpID)+ 1){
         stat = "completed"
