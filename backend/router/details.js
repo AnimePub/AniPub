@@ -88,11 +88,11 @@ DetailsRouter.get("/details/:id", async (req, res) => {
 
         let malId = "" ;
         // Extract MAL ID from local anime data (if available)
-        if(localAnime.MALID === null || localAnime.MALID === undefined  || localAnime.MALID === false || localAnime.MALID === "") {
-             malId = localAnime._id;
+        if(localAnime.MALID) {
+      malId = localAnime.MALID;
         }
-        else {
-            malId = localAnime.MALID;
+        else {       
+            malId = localAnime._id;
             console.log(malId)
         }
 
