@@ -610,7 +610,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                                         res.render("AniPlayer", {
                                             AniDB: animeDb,
                                             video,
-                                            AniId,
+                                            AniId:Video._id,
                                             AniEP,
                                             auth: true,
                                             ID: data.id,
@@ -625,7 +625,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                             
                             AniDB: animeDb,
                             video,
-                            AniId,
+                            AniId:Video._id,
                             AniEP,
                             auth: false,
                             ID: "guest",
@@ -697,7 +697,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                                         res.render("AniPlayer", {
                                             AniDB: animeDb,
                                             video,
-                                            AniId,
+                                            AniId:Video._id,
                                             AniEP,
                                             auth: true,
                                             ID: data.id,
@@ -712,7 +712,7 @@ app.get(`/AniPlayer/:AniId/:AniEP`, async (req, res) => {
                             
                             AniDB: animeDb,
                             video,
-                            AniId,
+                            AniId:Video._id,
                             AniEP,
                             auth: false,
                             ID: "guest",
