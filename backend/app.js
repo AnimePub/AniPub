@@ -846,13 +846,22 @@ app.post("/WatchList/Updater", (req, res) => {
                                     }
                                 })
                                 .then(async () => {
-                                const malID = await AnimeDB.find({"_id":req.body.AnimeID},{"MALID":1})
+                               const malID = await AnimeDB.aggregate([
+  { $match: { "_id": req.body.AnimeID } },
+  { $project: { "MALID": 1, "epCount": { $size: "$ep" } } }
+])
                                 if(malID[0].MALID) {      
                                       try {
     const user = await Data.findById(req.session.userId);
-
+    let stat = "watching";
+    if(malID[0].epCount+1 === Number(req.body.EpisodeID)+ 1){
+        stat = "completed"
+    }
+    else {
+        stat = "watching"
+    }
     const params = new URLSearchParams({
-      status: 'watching',
+      status: stat,
   num_watched_episodes: Number(req.body.EpisodeID)+ 1
     });
 
