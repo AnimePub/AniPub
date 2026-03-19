@@ -11,6 +11,24 @@
 [![License: GPL-3.0](https://img.shields.io/github/license/AnimePub/AniPub?style=for-the-badge&logo=gnu&color=purple)](https://github.com/AnimePub/AniPub/blob/main/LICENSE)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fanipub.xyz&style=for-the-badge&logo=google-chrome&color=cyan&label=Live%20Site)](https://anipub.xyz)
 
+Note:
+```json
+{
+  "project": "AniPub",
+  "status": "Permanently Closed",
+  "lifespan": "2024 – ∞",
+  "reason": "Religious & Ethical Concerns",
+  "developer": "Adnan",
+  "message": {
+    "farewell": "It was a journey building this for you all, but I must say goodbye.",
+    "context": "With over 8,200 Anime On our DB, I have realized that a significant portion of the database contains content that is 'Haram.' As a sole maintainer, it is impossible for me to manually filter or restrict this material.",
+    "decision": "To stay true to my faith and values, I have chosen to sunset AniPub immediately. I will no longer be responsible for any content viewed or actions taken through this site or its open-source code."
+  },
+  "contact": "abdullahaladnan95@gmail.com"
+}
+
+```
+
 Welcome to **AniPub**, the modern, ad-free, and privacy-first anime streaming platform built for true otakus. Dive into a vast multiverse of anime without distractions, trackers, or interruptions. Powered by a passionate community, AniPub combines blazing-fast performance, intuitive design, and innovative features like AI assistance to redefine how you watch, discover, and connect over anime.
 
 Whether you're binge-watching classics like *One Piece* or exploring hidden gems, AniPub is your gateway to an endless anime adventure. Open-source, extensible, and community-driven—join us in shaping the future of anime streaming!
