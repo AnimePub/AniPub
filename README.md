@@ -1,5 +1,5 @@
 
-# AniPub: The Ultimate Anime Multiverse [Suspended] ... 
+# AniPub: The Ultimate Anime Multiverse  ... 
 
 <p align="center">
   &nbsp;&nbsp;<img src="https://github.com/AnimePub/AniPub/blob/main/Logo/Ship.png?raw=true" alt="AniPub Logo" width="180"/>
