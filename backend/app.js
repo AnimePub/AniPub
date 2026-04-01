@@ -147,7 +147,12 @@ app.use(morgan("common"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views-ejs"));
-app.use(cors());
+
+app.use(cors({
+  origin: ['https://api.anipub.xyz', 'https://www.anipub.xyz'], 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 app.use(cookieParser())
 
