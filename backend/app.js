@@ -183,21 +183,7 @@ app.use(passport.session());
 configureGoogleAuth();
 //global rate limit
 app.use(globalLimiter)
-app.use("/", (req, res) => {
-    res.status(410).json({
-        project: "AniPub",
-        status: "Permanently Closed",
-        lifespan: "2024 – ∞", 
-        reason: "Religious & Ethical Concerns",
-        developer: "Adnan",
-        message: {
-            farewell: "It was a journey building this for you all, but I must say goodbye.",
-            context: "With over 8,200 Anime On our DB, I have realized that a significant portion of the database contains content that is 'Haram.' As a sole maintainer, it is impossible for me to manually filter or restrict this material.",
-            decision: "To stay true to my faith and values, I have chosen to sunset AniPub immediately. I will no longer be responsible for any content viewed or actions taken through this site or its open-source code.",
-        },
-        contact: "abdullahaladnan95@gmail.com"
-    });
-});
+
 //Home router
 app.use(HomeRouter);
 //Details router

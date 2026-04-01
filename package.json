@@ -43,7 +43,7 @@
     "mongoose": "^8.23.0",
     "morgan": "^1.10.0",
     "multer": "^2.0.2",
-    "nodemailer": "^7.0.10",
+    "nodemailer": "^8.0.4",
     "nodemon": "^3.1.10",
     "openai": "^6.17.0",
     "passport": "^0.7.0",
