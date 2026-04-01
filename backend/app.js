@@ -1437,14 +1437,14 @@ app.get("/sitemap.xml", (req, res) => {
 
   const sitemaps = Array.from({ length: pages }, (_, i) => `
   <sitemap>
-    <loc>https://www.anipub.xyz/sitemap-${i + 1}.xml</loc>
+    <loc>https://anipub.xyz/sitemap-${i + 1}.xml</loc>
   </sitemap>`).join("");
 
   res.contentType("xml");
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://www.anipub.xyz/sitemap-static.xml</loc>
+    <loc>https://anipub.xyz/sitemap-static.xml</loc>
   </sitemap>
   ${sitemaps}
 </sitemapindex>`);
@@ -1456,48 +1456,48 @@ app.get("/sitemap-static.xml", (req, res) => {
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.anipub.xyz/</loc>
+    <loc>https://anipub.xyz/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.anipub.xyz/Home</loc>
+    <loc>https://anipub.xyz/Home</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.anipub.xyz/AI</loc>
+    <loc>https://anipub.xyz/AI</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://www.anipub.xyz/</loc>
+    <loc>https://anipub.xyz/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.anipub.xyz/terms</loc>
+    <loc>https://anipub.xyz/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
     <url>
-    <loc>https://www.anipub.xyz/Sign-Up</loc>
+    <loc>https://anipub.xyz/Sign-Up</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
     <url>
-    <loc>https://www.anipub.xyz/Login</loc>
+    <loc>https://anipub.xyz/Login</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
     <url>
-    <loc>https://www.anipub.xyz/privacy-policy</loc>
+    <loc>https://anipub.xyz/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.anipub.xyz/about-us</loc>
+    <loc>https://anipub.xyz/about-us</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1516,7 +1516,7 @@ app.get("/sitemap-:page.xml", async (req, res) => {
 
   const urls = animes.map(a => `
   <url>
-    <loc>https://www.anipub.xyz/AniPlayer/${a.finder}/0</loc>
+    <loc>https://anipub.xyz/AniPlayer/${a.finder}/0</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`).join("");
