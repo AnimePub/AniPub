@@ -147,12 +147,22 @@ app.use(morgan("common"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views-ejs"));
+//cors 
+const allowedOrigins = ['https://anipub.xyz','https://api.anipub.xyz', 'https://www.anipub.xyz', 'http://localhost:3000'];
 
-app.use(cors({
-  origin: ['https://api.anipub.xyz', 'https://www.anipub.xyz'], 
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+  credentials: true
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser())
 
