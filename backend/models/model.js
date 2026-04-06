@@ -28,6 +28,12 @@ const Data = new Schema({
         unique: true,
         sparse: true
     },
+    githubId: {
+        type: String,
+        required: false,
+        unique: true,
+        sparse: true
+    },
     malId: {
     type: Number,
     required: false,
