@@ -161,6 +161,11 @@ HomeRouter.get("/api/getAll",async (req,res)=>{
  const total =  await AnimeDB.countDocuments();
  res.json(total);
 })
+HomeRouter.get("/api/getLast",async (req,res)=>{
+const lastDoc = await AnimeDB.findOne().sort({ _id: -1 });
+    const last = lastDoc._id;
+    res.json(last)
+})    
 HomeRouter.get(`/api/info/:AniId`, async (req, res) => {
   
     const AniId = req.params.AniId; 
