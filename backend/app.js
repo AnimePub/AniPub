@@ -1226,6 +1226,7 @@ app.post("/Upload", validAdmin, async (req, res) => {
             DescripTion: req.body.des,
             whatType:req.body.whatType,
             type: req.body.type,
+            finder:req.body.finder,
         })
         if (Update) {
             res.json(1)
