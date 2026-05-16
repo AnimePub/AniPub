@@ -552,6 +552,33 @@ app.get("/Video/:id/:lang",(req,res)=>{
     }
   
 })
+app.get("/play/:id/:ep/:lang",(req,res)=>{
+    const id = req.params.id;
+    const ep = req.params.ep;
+    const lang = req.params.lang;
+    if(id && lang) {
+        if(!isNaN(id) && !isNaN(ep)) {
+            const sID = Number(id);
+            const sEP = Number(ep);
+           let sLang = "sub";
+           if(lang.toLowerCase() === "dub") {
+            sLang = "dub"
+           }
+           else {
+            sLang = "sub"
+           } 
+              const alu = `${process.env.aniAPI}/${sID}/${sEP}/${sLang}`;
+              res.render("videoPlayer.ejs",{alu});
+        }
+        else {
+              res.redirect("/*")
+        }
+    }
+    else {
+        res.redirect("/*")
+    }
+  
+})
 //link Changer 
 function changeStreamType(link, type) {
   if (link.includes("type=")) {
