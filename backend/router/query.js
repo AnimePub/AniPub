@@ -70,7 +70,7 @@ SearchQ.get("/search/q",async(req,res)=>{
         alus = 0
        }
        else {
-        alus = 0
+        alus = alus * 1;
        }
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     if( type === "airing") {

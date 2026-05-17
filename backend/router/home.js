@@ -258,7 +258,7 @@ HomeRouter.get("/api/findByGenre/:genre",async (req,res)=>{
         alus = 0
        }
        else {
-        alus = 0
+        alus = alus * 1
        }
         AnimeDB.find({"Genres":query},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).skip(alus).limit(20)
     .then(info=>{
@@ -336,7 +336,7 @@ HomeRouter.get("/api/searchAll/:query",(req,res)=>{
         alus = 0
        }
        else {
-        alus = 0
+        alus = alus * 1
        }
                AnimeDB.find({Name:{$regex:regex,$options:"i"}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).skip(alus).limit(20)
             .then(info=>{
@@ -376,7 +376,7 @@ HomeRouter.get("/api/findByRating",async (req,res)=>{
         alus = 0
        }
        else {
-        alus = 0
+        alus = alus * 1
        }
     const info = await AnimeDB.find({MALScore:{$ne:'?'}},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).skip(alus).limit(10).sort({MALScore:-1})
     if(info) {
