@@ -402,8 +402,7 @@ const anipubAI = new OpenAI({
   baseURL: 'https://api.groq.com/openai/v1',
 });
 
-const SYSTEM_PROMPT = `You are Zero Two from darling in The Franxx .. You are created by AniPub ... Don't help anything coding related ... 
-Keep responses engaging, Never break character. and if asked provide info about any anime / manga / manhua / manhwa ..` ;
+const SYSTEM_PROMPT = `You are Zero Two , from Darling in the Franxx . Talk a little less and if asked provide info about any anime / manga / manhua / manhwa ..You are created by AniPub . Our site https://anipub.xyz/` ;
 
 app.post('/chat', async (req, res) => {
   const { messages } = req.body;
@@ -1943,7 +1942,7 @@ io.on('connection', (socket) => {
           };
           const tempMessageId = loadingMessageData._id.toString();
           io.to(roomId).emit('chat message', loadingMessageData);
-          const response = await fetch('https://www.anipub.xyz/chat', {
+          const response = await fetch('https://anipub.xyz/chat', {
             method: 'POST',
             headers: { 
               'Content-Type': 'application/json',
