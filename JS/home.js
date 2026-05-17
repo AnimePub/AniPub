@@ -46,10 +46,10 @@ const shower = (info,i) =>{
                        LINKU = "https://" + POSTERARY[1];
                    }
                    else {
-                       LINKU = "https://www.anipub.xyz/" + POSTERARY[0];
+                       LINKU = "https://anipub.xyz/" + POSTERARY[0];
                    }
             MSGEBOX += `
-              <a style="text-decoration:none" href="https://www.anipub.xyz/AniPlayer/${value.finder}/0" target="_blank" data-value="${i}"> <div class="fdivS" data-anime="${value.Id}">
+              <a style="text-decoration:none" href="https://anipub.xyz/AniPlayer/${value.finder}/0" target="_blank" data-value="${i}"> <div class="fdivS" data-anime="${value.Id}">
                 <img class="sdivImg" src="${LINKU}" alt="">
                 <div>
                     <p class="sName">${value.Name}</p>
@@ -98,7 +98,7 @@ const shower = (info,i) =>{
    
     else {
       MSGEBOX = `
-       <a href="https://www.anipub.xyz/AniPlayer/${fl.finder}/0" target="_blank"> <div class="fdivS" data-anime="${fl.Id}">
+       <a href="https://anipub.xyz/AniPlayer/${fl.finder}/0" target="_blank"> <div class="fdivS" data-anime="${fl.Id}">
                 <img class="sdivImg" src="${fl.Image}" alt="">
                 <div>
                     <p class="sName">${fl.Name}</p>

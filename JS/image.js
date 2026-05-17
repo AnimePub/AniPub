@@ -53,7 +53,7 @@ let image = JSON.parse(localStorage.getItem("image")) || [];
 
 pfp.forEach(value => {
     value.addEventListener('click', () => {
-        const name = "https://www.anipub.xyz/" + value.dataset.name;
+        const name = "https://anipub.xyz/" + value.dataset.name;
         checkerPfp(name);
     })
 })

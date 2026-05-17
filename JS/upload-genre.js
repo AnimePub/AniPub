@@ -430,7 +430,7 @@ formapi.addEventListener("submit",(e)=>{
                  const minus = endvalue - initialValue ;
                 for (let i = 0; i <= minus; i++) {
                          APIArray.push({
-            link:  `src=`+ `https://www.anipub.xyz/video/${initialValue+i}/sub`
+            link:  `src=`+ `https://anipub.xyz/video/${initialValue+i}/sub`
         })
                 }
                  const OBJ = {
@@ -474,7 +474,7 @@ formapi.addEventListener("submit",(e)=>{
                 const minus = endvalue - initialValue ;
                 for (let i = 0; i <= minus; i++) {
                          APIArray.push({
-            link:  `src=`+ `https://www.anipub.xyz/video/${initialValue+i}/dub`
+            link:  `src=`+ `https://anipub.xyz/video/${initialValue+i}/dub`
         })
                 }
                  const OBJ = {
@@ -518,7 +518,7 @@ const fetchingAPI = (lang,formapi,animeID)  =>{
             wholeArray.forEach((value,i)=>{
                if(!isNaN(value)) {
                          APIArray.push({
-            link:  `src=`+ `https://www.anipub.xyz/video/` + value + '/' + lang
+            link:  `src=`+ `https://anipub.xyz/video/` + value + '/' + lang
         })
                }
                else {
@@ -594,7 +594,7 @@ FetchB.addEventListener('click',()=>{
     const reqID = FetchFROM.IDFEP.value;
     const totalReqID = getReq + reqID;
     let idEp = 0;
-    fetch(`https://www.anipub.xyz/api/info/${ID}`)
+    fetch(`https://anipub.xyz/api/info/${ID}`)
     .then(response=>response.json())
     .then(info=>{
         idEp = Number(info.epCount) + 1 
@@ -620,7 +620,7 @@ FetchB.addEventListener('click',()=>{
     if(lang === 'sub' ){
         aRray.forEach(value=>{
             APIArray.push({
-                 link:  `src=`+ `https://www.anipub.xyz/video/` + value + '/' + "sub"
+                 link:  `src=`+ `https://anipub.xyz/video/` + value + '/' + "sub"
             })  
            
         })
@@ -628,7 +628,7 @@ FetchB.addEventListener('click',()=>{
     else {
         aRray.forEach(value=>{
             APIArray.push({
-                 link:  `src=`+ `https://www.anipub.xyz/video/` + value + '/' + "dub"
+                 link:  `src=`+ `https://anipub.xyz/video/` + value + '/' + "dub"
             })  
            
         })

@@ -371,7 +371,7 @@
      <script>
         const lsl = document.getElementById("lsl")
         let LSL = lsl.dataset.animeId 
-        fetch(`https://www.anipub.xyz/api/info/${LSL}`)
+        fetch(`https://anipub.xyz/api/info/${LSL}`)
         .then(info=>info.json())
         .then(res=>{
              const POSTER = res.Cover;
@@ -381,7 +381,7 @@
                        LINKU = "https://" + POSTERARY[1];
                    }
                    else {
-                       LINKU = "https://www.anipub.xyz/" + POSTERARY[0];
+                       LINKU = "https://anipub.xyz/" + POSTERARY[0];
                    }
                 
            document.body.style.setProperty('--bg-image', `url('${LINKU}')`);

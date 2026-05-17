@@ -22,7 +22,7 @@ document.getElementById('back-btn').addEventListener('click', () => {
 // Get avatar URL
 function getAvatarUrl(avatarNum) {
     if(Number(avatarNum) === 0) {
-        return `https://www.anipub.xyz/ZeroTwo.jpg`
+        return `https://anipub.xyz/ZeroTwo.jpg`
     }
     else {
         const PIC = avatarNum;

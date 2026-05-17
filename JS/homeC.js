@@ -41,7 +41,7 @@ async function loadUser() {
 
 function getAvatarUrl(avatarNum) {
     if(Number(avatarNum) === 0) {
-        return `https://www.anipub.xyz/ZeroTwo.jpg`
+        return `https://anipub.xyz/ZeroTwo.jpg`
     }
     else {
         const PIC = avatarNum;
@@ -235,7 +235,7 @@ window.changeTheme = async function(theme) {
 
 // Background image button
 document.getElementById('bg-btn').addEventListener('click', () => {
-    const bgUrl = prompt('Enter background image URL (or leave empty to remove):\n\nExample:\nhttps://www.anipub.xyz/monkey-d-luffy-adventure-digital_bmdna2WUmZqaraWkpJRmbmdsrWZlbWU-4162485200.jpg');
+    const bgUrl = prompt('Enter background image URL (or leave empty to remove):\n\nExample:\nhttps://anipub.xyz/monkey-d-luffy-adventure-digital_bmdna2WUmZqaraWkpJRmbmdsrWZlbWU-4162485200.jpg');
     if (bgUrl !== null) {
         fetch('/api/user/profile', {
             method: 'PUT',
