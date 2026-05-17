@@ -580,6 +580,7 @@ app.get("/play/:id/:ep/:lang",(req,res)=>{
 })
 //link Changer 
 function changeStreamType(link, type) {
+    console.log(link)
   if (link.includes("type=")) {
     return link.replace(/type=(sub|dub)/i, `type=${type}`);
   }
