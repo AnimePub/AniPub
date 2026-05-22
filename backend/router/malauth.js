@@ -261,7 +261,6 @@ router.get('/refresh', async (req, res) => {
     return res.json({
       success: true,
       message: 'Token refreshed successfully',
-      accessToken: access_token,
       expiresIn: expires_in,
       expiresAt: user.tokenExpiresAt
     });
