@@ -151,7 +151,7 @@ router.get('/callback', async (req, res) => {
 ;
 
 // Token Re Gen
-router.get('/refresh', async (req, res) => {
+router.post('/refresh', async (req, res) => {
       const Token = req.cookies.anipub;
     if (Token) {
         jwt.verify(Token, JSONAUTH, async (err, data) => {
@@ -201,6 +201,80 @@ router.get('/refresh', async (req, res) => {
  
 
 
+});
+
+//get 
+router.post('/refresh', async (req, res) => {
+  try {
+    const Token = req.cookies.anipub;
+    
+    if (!Token) {
+      return res.status(401).json({ error: 'No token found in cookies' });
+    }
+
+  
+    const data = await new Promise((resolve, reject) => {
+      jwt.verify(Token, JSONAUTH, (err, decoded) => {
+        if (err) reject(err);
+        else resolve(decoded);
+      });
+    });
+
+    if (!data._id) {
+      return res.status(401).json({ error: 'Invalid token data' });
+    }
+
+    const user = await User.findById(data._id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    if (!user.malId) {
+      return res.status(400).json({ error: 'MAL account not linked' });
+    }
+
+    if (!user.refreshToken) {
+      return res.status(401).json({ error: 'No refresh token available' });
+    }
+
+    // Refresh the token
+    const tokenRes = await axios.post(
+      'https://myanimelist.net/v1/oauth2/token',
+      new URLSearchParams({
+        client_id: process.env.MAL_CLIENT_ID,
+        client_secret: process.env.MAL_CLIENT_SECRET,
+        grant_type: 'refresh_token',
+        refresh_token: user.refreshToken
+      }),
+      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+    );
+
+    const { access_token, refresh_token, expires_in } = tokenRes.data;
+
+    user.accessToken = access_token;
+    user.refreshToken = refresh_token;
+    user.tokenExpiresAt = new Date(Date.now() + expires_in * 1000);
+    await user.save();
+
+  
+    return res.json({
+      success: true,
+      message: 'Token refreshed successfully',
+      accessToken: access_token,
+      expiresIn: expires_in,
+      expiresAt: user.tokenExpiresAt
+    });
+
+  } catch (err) {
+    console.error('Token refresh error:', err.message);
+    
+    if (err.response?.status === 401) {
+      return res.status(401).json({ error: 'Refresh token expired or invalid' });
+    }
+    
+    return res.status(500).json({ error: 'Failed to refresh token' });
+  }
 });
 
 module.exports = router;
