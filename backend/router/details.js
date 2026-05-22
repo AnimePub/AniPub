@@ -5,6 +5,7 @@ const AnimeDB = require("../models/AniDB.js");
 const Data = require("../models/model");
 const JSONAUTH = process.env.jsonauth;
 const {streamLimiter,infoLimiter} = require("../middleware/ratelimit.js")
+const getID = require("../middleware/getcookieID");
 
 // Fetch anime details from Jikan API
 async function fetchJikanDetails(malId) {

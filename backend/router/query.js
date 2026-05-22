@@ -6,9 +6,13 @@ const mongoose = require("mongoose");
 const Data = require("../models/model");
 const AnimeDB = require("../models/AniDB.js");
 
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 SearchQ.post("/search/q",async (req,res)=>{
-    
-    const regex = new RegExp(req.body.query)
+
+    const regex = new RegExp(escapeRegExp(req.body.query))
    AnimeDB.find({Name:{$regex:regex,$options:"i"}},{Name:1,ImagePath:1,_id:1,finder:1})
     .then(ser=>{
        
