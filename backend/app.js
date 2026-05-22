@@ -885,14 +885,15 @@ app.post("/WatchList/Updater", (req, res) => {
                                     "AniID": req.body.AnimeID
                                 }, {
                                     $set: {
-                                        "Progress": req.body.EpisodeID
+                                        "Progress": req.body.EpisodeID ?? 0 
                                     }
                                 })
                                 .then(async () => {
                                const malID = await AnimeDB.find({ "_id": req.body.AnimeID }, { "MALID": 1, "epCount": { $size: "$ep" } })
                                 if(malID[0].MALID !== undefined) {      
                                       try {
-    const user = await Data.findById(req.session.userId);
+    const id = await getID(req,JSONAUTH)
+    const user = await User.findById(id);
     let stat = "watching";
     if(malID[0].epCount+1 === Number(req.body.EpisodeID)+ 1){
         stat = "completed"
@@ -949,19 +950,12 @@ app.post('/PlayList/Update',async (req, res) => {
                 })
                 .then(async already => {
                     if (already.length === 0) {
-                        let EPID = 0 ;
-                        if(req.body.EpID === undefined  ){
-                            EPID = 0 ;
-                        }
-                        else {
-                            EPID = req.body.EpID ;
-                        }
                         const ListID = await newList.create({
                             AniID: req.body.AniID,
-                            AniEP: EPID,
+                            AniEP: req.body.EpID ?? 0 ,
                             Date: Date(),
                             Owner: data.id,
-                            Progress: req.body.EpID,
+                            Progress: req.body.EpID ?? 0,
                         })
                         .then(async info => {
 
