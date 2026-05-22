@@ -19,6 +19,7 @@ const cookieParser = require("cookie-parser");
 const {
     AuthAcc
 } = require("./middleware/valideAcc.js");
+const getID = require("./middleware/getcookieID.js");
 //rate limiter
 const {globalLimiter} = require("./middleware/ratelimit.js")
 const bcrypt = require("bcrypt");
@@ -948,9 +949,16 @@ app.post('/PlayList/Update',async (req, res) => {
                 })
                 .then(async already => {
                     if (already.length === 0) {
+                        let EPID = 0 ;
+                        if(req.body.EpID === undefined  ){
+                            EPID = 0 ;
+                        }
+                        else {
+                            EPID = req.body.EpID ;
+                        }
                         const ListID = await newList.create({
                             AniID: req.body.AniID,
-                            AniEP: req.body.EpID,
+                            AniEP: EPID,
                             Date: Date(),
                             Owner: data.id,
                             Progress: req.body.EpID,
@@ -968,7 +976,8 @@ let stat = "watching";
         stat = "watching"
     }
   try {
-    const user = await Data.findById(req.session.userId);
+       const id = await getID(req,JSONAUTH)
+    const user = await User.findById(id);
 
     const params = new URLSearchParams({
       status: stat,
