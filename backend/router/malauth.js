@@ -220,11 +220,11 @@ router.get('/refresh', async (req, res) => {
       });
     });
 
-    if (!data._id) {
+    if (!data.id) {
       return res.status(401).json({ error: 'Invalid token data' });
     }
 
-    const user = await User.findById(data._id);
+    const user = await User.findById(data.id);
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
