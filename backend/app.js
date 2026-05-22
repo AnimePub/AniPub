@@ -885,7 +885,7 @@ app.post("/WatchList/Updater", (req, res) => {
                                     "AniID": req.body.AnimeID
                                 }, {
                                     $set: {
-                                        "Progress": req.body.EpisodeID ?? 0 
+                                        "Progress": req.body.EpisodeID ?? 1
                                     }
                                 })
                                 .then(async () => {
@@ -917,7 +917,8 @@ app.post("/WatchList/Updater", (req, res) => {
         body: params
       }
     );
-
+const data = await response.json()
+        console.log(data);
   } catch(err) {
     console.log("couldn't be added to Watch List")
   }
@@ -955,7 +956,7 @@ app.post('/PlayList/Update',async (req, res) => {
                             AniEP: req.body.EpID ?? 0 ,
                             Date: Date(),
                             Owner: data.id,
-                            Progress: req.body.EpID ?? 0,
+                            Progress: req.body.EpID ?? 1,
                         })
                         .then(async info => {
 
@@ -989,7 +990,8 @@ let stat = "watching";
         body: params
       }
     );
-
+        const data = await response.json()
+        console.log(data);
   } catch(err) {
     console.log("couldn't be added to Watch List")
   }
