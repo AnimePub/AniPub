@@ -151,7 +151,7 @@ router.get('/callback', async (req, res) => {
 ;
 
 // Token Re Gen
-router.post('/refresh', async (req, res) => {
+router.get('/refresh', async (req, res) => {
       const Token = req.cookies.anipub;
     if (Token) {
         jwt.verify(Token, JSONAUTH, async (err, data) => {
