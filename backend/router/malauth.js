@@ -204,7 +204,7 @@ router.post('/refresh', async (req, res) => {
 });
 
 //get 
-router.post('/refresh', async (req, res) => {
+router.get('/refresh', async (req, res) => {
   try {
     const Token = req.cookies.anipub;
     
