@@ -5,7 +5,7 @@ const EpisodeID = Number(fpfa[5]);
 
 if (EpisodeID !== NaN) {
     try {
-     const dataRf = await fetch("/refresh")
+     const dataRf = await fetch("/authmal/refresh")
     let infoRf = dataRf.json()
     if(infoRf.success) {
  fetch("/WatchList/Updater", {

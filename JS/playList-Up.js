@@ -5,7 +5,7 @@ addButtons.forEach(
         value.addEventListener('click', async() => {
             const AniID = value.dataset.animeWId;
             const EpID = value.dataset.animeWEid;
-             const dataRf = await fetch("/refresh")
+             const dataRf = await fetch("/authmal/refresh")
     let infoRf = dataRf.json()
     if(infoRf.success) {
 fetch("/PlayList/Update", {

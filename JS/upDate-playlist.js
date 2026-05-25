@@ -9,7 +9,7 @@ atwb.addEventListener('click', async () => {
 
     const AniID = newInfo[4];
     const EpID = newInfo[5];
-    const dataRf = await fetch("/refresh")
+    const dataRf = await fetch("/authmal/refresh")
     let infoRf = dataRf.json()
     if(infoRf.success) {
  fetch("/PlayList/Update", {
