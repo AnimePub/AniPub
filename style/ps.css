@@ -6,191 +6,227 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Nunito:wght@400;600;700&display=swap');
 
 header {
-  background: linear-gradient(135deg, #0d0f1e 0%, #131629 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #0d0f1e 0%, #131629 100%);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 header::after {
-  content: '';
-  display: block;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,80,80,0.45), rgba(120,80,255,0.45), transparent);
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 80, 80, 0.45), rgba(120, 80, 255, 0.45), transparent);
 }
 
 .header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    position: relative;
 }
 
 
 .first-section-a {
-  text-decoration: none;
-  color: white;
+    text-decoration: none !important;
+    color: white !important;
 }
 
 .fs {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo-div {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #e63946, #9b5de5);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 16px rgba(230, 57, 70, 0.4);
-  flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #e63946, #9b5de5);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 16px rgba(230, 57, 70, 0.4);
+    flex-shrink: 0;
 }
 
 .logo {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
 .details {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .logoName {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.05em;
-  margin: 0;
-  line-height: 1;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    letter-spacing: 0.05em !important;
+    margin: 0 !important;
+    line-height: 1 !important;
 }
 
 .slogan {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.38);
-  letter-spacing: 0.12em;
-  margin: 3px 0 0 0 !important;
+    font-size: 10px !important;
+    color: rgba(255, 255, 255, 0.38) !important;
+    letter-spacing: 0.12em !important;
+    margin: 3px 0 0 0 !important;
+    font-style: normal !important;
 }
 
 
 .NaV ul {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .NaV ul li a {
-  color: rgba(255, 255, 255, 0.55);
-  text-decoration: none;
-  font-size: 13.5px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  padding: 7px 16px;
-  border-radius: 8px;
-  display: block;
-  transition: color 0.2s ease, background 0.2s ease;
-  white-space: nowrap;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none !important;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 7px 16px;
+    border-radius: 8px;
+    display: block;
+    transition: color 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
 }
 
 .NaV ul li a:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.07);
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.07);
 }
 
 .NaV ul li a.active {
-  color: #ff4d6d;
-  background: rgba(255, 77, 109, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(255, 77, 109, 0.25);
+    color: #ff4d6d !important;
+    background: rgba(255, 77, 109, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(255, 77, 109, 0.25);
 }
 
 
 .nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background 0.2s;
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.2s;
 }
 
 .nav-toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .nav-toggle span {
-  width: 20px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.75);
-  border-radius: 2px;
-  display: block;
-  transition: all 0.3s ease;
+    width: 20px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 2px;
+    display: block;
+    transition: all 0.3s ease;
 }
 
 .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle.open span:nth-child(2) { opacity: 0; width: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* === Mobile Menu === */
+
 @media (max-width: 768px) {
-  .header-content {
-    padding: 0 1.25rem;
-    height: 56px;
-    position: relative;
-  }
+    .header-content {
+        padding: 0 1.25rem;
+        height: 56px;
+    }
 
-  .nav-toggle {
-    display: flex;
-  }
+    .nav-toggle {
+        display: flex;
+    }
 
-  .NaV {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #0e1020;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 8px 12px 12px;
-    z-index: 999;
-  }
+    .NaV {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #0e1020;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 8px 12px 12px;
+        z-index: 999;
+    }
 
-  .NaV.open {
-    display: block;
-  }
+    .NaV.open {
+        display: block;
+    }
 
-  .NaV ul {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2px;
-  }
+    .NaV ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+    }
 
-  .NaV ul li a {
-    padding: 11px 14px;
-    font-size: 14px;
-    border-radius: 8px;
-  }
-
-  .isHome { order: -1; }
+    .NaV ul li a {
+        padding: 11px 14px;
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 400px) {
-  .logoName { font-size: 14px; }
-  .slogan { display: none; }
+    .logoName { font-size: 14px !important; }
+    .slogan { display: none; }
+}
+@media (max-width: 300px) {
+    .header-content {
+        padding: 0 0.75rem;
+        height: 52px;
+    }
+
+    .logo-div {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+    }
+
+    .logo {
+        width: 18px;
+        height: 18px;
+    }
+
+    .logoName {
+        font-size: 12px !important;
+    }
+
+    .slogan {
+        display: none;
+    }
+
+    .nav-toggle {
+        padding: 6px;
+    }
+
+    .nav-toggle span {
+        width: 16px;
+    }
+
+    .NaV ul li a {
+        font-size: 13px;
+        padding: 10px 10px;
+    }
 }

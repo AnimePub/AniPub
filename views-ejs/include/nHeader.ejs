@@ -1,44 +1,45 @@
 <link rel="stylesheet" href="/ps.css">
 
 <header>
-    <div class="container-h header-content">
-         <a href="/Home" style="text-decoration: none; color: white;" target="_blank" class="first-section-a">
-        <div class="fs">
-            <div class="logo-div">
-                <img class="logo" src="/Logo-1-AniPub.png" alt="">
-            </div>
-            <div class="details">
-                <p class="logoName">AniPub</p>
-                <p class="slogan" style="margin-left: 1px; margin-top: -10px;">Yamate Kudasai</p>
-            </div>
-        </div>
-      
-    </a>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-  <span></span><span></span><span></span>
-</button>
-        <nav class="NaV">
-            <ul>
-                <li class="isHome"><a href="/Home">Home</a></li>
+  <div class="container-h header-content">
 
-                <% if (alu==="p") { %>
-                <li><a href="/Profile" class="active">Profile</a></li>
-                <li><a href="/Settings">Settings</a></li>
-                <li><a href="/Playlist">PlayList</a></li>
-                <% } else if (alu==="s") { %>
-                <li><a href="/Profile">Profile</a></li>
-                <li><a href="/Settings" class="active">Settings</a></li> 
-                <li><a href="/Playlist">PlayList</a></li>
-                <% } else if(alu==="pr" || alu === "tr") {%>
-                <li><a href="/Profile">Profile</a></li>
-                <li><a href="/Settings">Settings</a></li>
-                <li><a href="/Playlist">PlayList</a></li>
-                <% } else if (alu === "pl") { %> 
-                <li><a href="/Profile">Profile</a></li>
-                <li><a href="/Playlist" class="active">PlayList</a></li>
-                <li><a href="/Settings">Settings</a></li>
-                <%}%>
-            </ul>
-        </nav>
-    </div>
+    <a href="/Home" style="text-decoration: none; color: white;" target="_blank" class="first-section-a">
+      <div class="fs">
+        <div class="logo-div">
+          <img class="logo" src="/Logo-1-AniPub.png" alt="">
+        </div>
+        <div class="details">
+          <p class="logoName">AniPub</p>
+          <p class="slogan" style="margin-left: 1px; margin-top: -10px;">Yamate Kudasai</p>
+        </div>
+      </div>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="NaV">
+      <ul>
+        <li class="isHome"><a href="/Home">Home</a></li>
+        <% if (alu==="p") { %>
+          <li><a href="/Profile" class="active">Profile</a></li>
+          <li><a href="/Settings">Settings</a></li>
+          <li><a href="/Playlist">PlayList</a></li>
+        <% } else if (alu==="s") { %>
+          <li><a href="/Profile">Profile</a></li>
+          <li><a href="/Settings" class="active">Settings</a></li>
+          <li><a href="/Playlist">PlayList</a></li>
+        <% } else if(alu==="pr" || alu === "tr") { %>
+          <li><a href="/Profile">Profile</a></li>
+          <li><a href="/Settings">Settings</a></li>
+          <li><a href="/Playlist">PlayList</a></li>
+        <% } else if (alu === "pl") { %>
+          <li><a href="/Profile">Profile</a></li>
+          <li><a href="/Playlist" class="active">PlayList</a></li>
+          <li><a href="/Settings">Settings</a></li>
+        <% } %>
+      </ul>
+    </nav>
+
+  </div>
 </header>
