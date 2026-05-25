@@ -206,7 +206,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 30px;
-            animation: badgePulse 2s ease-in-out infinite;
+         
         }
 
         @keyframes badgePulse {
@@ -295,7 +295,7 @@
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            animation: bounce 2s infinite;
+            animation: bounce 5s infinite;
         }
 
         @keyframes bounce {
@@ -308,7 +308,7 @@
             width: 30px;
             height: 30px;
             fill: var(--electric-cyan);
-            filter: drop-shadow(0 0 10px var(--electric-cyan));
+    
         }
 
         /* ============= STATS SECTION ============= */
@@ -445,7 +445,6 @@
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 25px;
-            filter: drop-shadow(0 0 20px var(--electric-cyan));
         }
 
         .feature-title {
