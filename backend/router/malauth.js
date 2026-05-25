@@ -186,7 +186,7 @@ router.get('/refresh', async (req, res) => {
   const now = new Date();
 
   if (now < targetTime) {
-    return res.status(403).json({error:'Token R'})
+    return res.status(403).json({error:'Token already refreshed'})
 } else {
  
     // Refresh the token
