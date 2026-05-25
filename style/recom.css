@@ -25,13 +25,13 @@
     height: 3px;
     background: linear-gradient(90deg, var(--blue), var(--cyan));
     border-radius: 2px;
-    box-shadow: 0 0 12px rgba(26,140,255,0.5);
+   
 }
 
 .recommendations-section .section-title i {
     color: var(--orange);
-    font-size: 1.4em;
-    animation: flicker 2s ease-in-out infinite;
+   
+
 }
 
 @keyframes flicker {

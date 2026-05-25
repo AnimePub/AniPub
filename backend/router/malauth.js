@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const User = require('../models/model');
 const jwt = require("jsonwebtoken");
 const JSONAUTH = process.env.jsonauth;
-
+const getID = require("../middleware/getcookieID");
 
 function generateCodeVerifier() {
   return crypto.randomBytes(32).toString('base64url');
@@ -275,5 +275,12 @@ router.get('/refresh', async (req, res) => {
     return res.status(500).json({ error: 'Failed to refresh token' });
   }
 });
+
+router.get("/expire",(req,res)=>{
+   const id = await getID(req,JSONAUTH)
+    const user = await User.findById(id)
+      .select('-accessToken -refreshToken -Password -googleId -List -Email -Address')
+    res.json(user);  
+})
 
 module.exports = router;
