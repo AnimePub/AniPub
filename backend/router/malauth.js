@@ -237,7 +237,13 @@ router.get('/refresh', async (req, res) => {
     if (!user.refreshToken) {
       return res.status(401).json({ error: 'No refresh token available' });
     }
+    const targetTime = new Date(user.tokenExpiresAt);
+  const now = new Date();
 
+  if (now < targetTime) {
+    return res.status(403).json({error:'Token R'})
+} else {
+ 
     // Refresh the token
     const tokenRes = await axios.post(
       'https://myanimelist.net/v1/oauth2/token',
@@ -264,8 +270,8 @@ router.get('/refresh', async (req, res) => {
       expiresIn: expires_in,
       expiresAt: user.tokenExpiresAt
     });
-
-  } catch (err) {
+  
+ } } catch (err) {
     console.error('Token refresh error:', err.message);
     
     if (err.response?.status === 401) {
@@ -274,6 +280,7 @@ router.get('/refresh', async (req, res) => {
     
     return res.status(500).json({ error: 'Failed to refresh token' });
   }
+
 });
 
 router.get("/expire",(req,res)=>{
