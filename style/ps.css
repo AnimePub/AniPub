@@ -1,9 +1,10 @@
-    .container-h {
+ @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Nunito:wght@400;600;700&display=swap');
+ 
+ .container-h {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
     }
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Nunito:wght@400;600;700&display=swap');
 
 header {
     background: linear-gradient(135deg, #0d0f1e 0%, #131629 100%);
