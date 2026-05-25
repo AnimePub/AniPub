@@ -7,7 +7,7 @@ addButtons.forEach(
             const EpID = 0;
              const dataRf = await fetch("/authmal/refresh")
     let infoRf = dataRf.json()
-    if(infoRf.success) {
+ 
   fetch("/PlayList/Update", {
                     method: "POST",
                     headers: {
@@ -22,10 +22,7 @@ addButtons.forEach(
                 .then(data => {
                     checking(data);
                 })
-    }
-    else {
-        console.log(infoRf.error);
-    }
+    console.log(infoRf);
           
         })
     }

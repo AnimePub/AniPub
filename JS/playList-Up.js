@@ -7,7 +7,6 @@ addButtons.forEach(
             const EpID = value.dataset.animeWEid;
              const dataRf = await fetch("/authmal/refresh")
     let infoRf = dataRf.json()
-    if(infoRf.success) {
 fetch("/PlayList/Update", {
                     method: "POST",
                     headers: {
@@ -22,10 +21,8 @@ fetch("/PlayList/Update", {
                 .then(data => {
                     checking(data);
                 })
-    }
-    else {
-        console.log(infoRf.error)
-    }
+                console.log(infoRf);
+    
             
         })
     }

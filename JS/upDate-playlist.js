@@ -11,7 +11,7 @@ atwb.addEventListener('click', async () => {
     const EpID = newInfo[5];
     const dataRf = await fetch("/authmal/refresh")
     let infoRf = dataRf.json()
-    if(infoRf.success) {
+   
  fetch("/PlayList/Update", {
             method: "POST",
             headers: {
@@ -27,10 +27,7 @@ atwb.addEventListener('click', async () => {
             Checking(data);
         })
 
-    }
-    else {
-        console.log(infoRf.error);
-    }
+   console.log(infoRf);
    
 
 })

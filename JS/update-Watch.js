@@ -7,7 +7,7 @@ if (EpisodeID !== NaN) {
     try {
      const dataRf = await fetch("/authmal/refresh")
     let infoRf = dataRf.json()
-    if(infoRf.success) {
+ 
  fetch("/WatchList/Updater", {
             method: "POST",
             headers: {
@@ -22,10 +22,7 @@ if (EpisodeID !== NaN) {
         .then(info => {
             console.log(info)
         })
-    }
-    else {
-        console.log(infoRf.error)
-    }
+    console.log(infoRf);
 }
 catch(err) {
     console.log(err)
