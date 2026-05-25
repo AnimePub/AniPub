@@ -3,6 +3,11 @@
      }
           .footer {
             background: rgba(10, 10, 21, 0.95);
+                background-image: url(https://anipub.xyz/utacover.png);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-size: contain;
+    background-blend-mode: darken;
             border-top: 2px solid rgba(0, 255, 245, 0.2);
             padding: 80px 40px 40px;
         }
