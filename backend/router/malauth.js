@@ -228,7 +228,7 @@ router.get('/refresh', async (req, res) => {
 
 });
 
-router.get("/expire",(req,res)=>{
+router.get("/expire",async (req,res)=>{
    const id = await getID(req,JSONAUTH)
     const user = await User.findById(id)
       .select('-accessToken -refreshToken -Password -googleId -List -Email -Address')
