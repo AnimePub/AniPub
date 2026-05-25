@@ -47,12 +47,10 @@ header::after {
 .logo-div {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #e63946, #9b5de5);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 16px rgba(230, 57, 70, 0.4);
     flex-shrink: 0;
 }
 
