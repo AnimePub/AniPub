@@ -148,62 +148,7 @@ router.get('/callback', async (req, res) => {
   
 })
 
-;
-
-// Token Re Gen
-router.post('/refresh', async (req, res) => {
-      const Token = req.cookies.anipub;
-    if (Token) {
-        jwt.verify(Token, JSONAUTH, async (err, data) => {
-            if (err) {
-                console.log(err);
-            }
-             if(data._id) {
-              const malExist = await User.findById(data._id)
-              if(malExist.malId) {
-                 if (!req.session.malId) {
-    return res.status(401).json({ error: 'Not authenticated' });
-  }
-    try {
-    const user = await User.findById(data._id);
-    const tokenRes = await axios.post(
-      'https://myanimelist.net/v1/oauth2/token',
-      new URLSearchParams({
-        client_id: process.env.MAL_CLIENT_ID,
-        client_secret: process.env.MAL_CLIENT_SECRET,
-        grant_type: 'refresh_token',
-        refresh_token: user.refreshToken
-      }),
-      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-    );
-
-    const { access_token, refresh_token, expires_in } = tokenRes.data;
-
-    user.accessToken = access_token;
-    user.refreshToken = refresh_token;
-    user.tokenExpiresAt = new Date(Date.now() + expires_in * 1000);
-    await user.save();
-
-    res.json({ success: true, message: 'Token refreshed' });
-  } catch (err) {
-    console.error('Token refresh error:', err.response?.data || err.message);
-    res.status(500).json({ error: 'Failed to refresh token' });
-  }
-              }
-              else {
-                res.json("I love you ===> Server")
-              }
-        
-
-            }
-        })
-    }
- 
-
-
-});
-
-//get 
+//get token 
 router.get('/refresh', async (req, res) => {
   try {
     const Token = req.cookies.anipub;
