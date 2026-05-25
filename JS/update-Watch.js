@@ -4,7 +4,11 @@ const AnimeID = Number(fpfa[4]);
 const EpisodeID = Number(fpfa[5]);
 
 if (EpisodeID !== NaN) {
-    fetch("/WatchList/Updater", {
+    try {
+     const dataRf = await fetch("/refresh")
+    let infoRf = dataRf.json()
+    if(infoRf.success) {
+ fetch("/WatchList/Updater", {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json"
@@ -18,4 +22,12 @@ if (EpisodeID !== NaN) {
         .then(info => {
             console.log(info)
         })
+    }
+    else {
+        console.log(infoRf.error)
+    }
+}
+catch(err) {
+    console.log(err)
+}
 }

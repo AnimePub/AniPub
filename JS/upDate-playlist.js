@@ -3,14 +3,16 @@ console.log("%c This is working heh ",
 
 const atwb = document.querySelector(".Add-to-watchlist-button");
 
-atwb.addEventListener('click', () => {
+atwb.addEventListener('click', async () => {
     const link = atwb.dataset.animelink;
     const newInfo = link.split("/");
 
     const AniID = newInfo[4];
     const EpID = newInfo[5];
-
-    fetch("/PlayList/Update", {
+    const dataRf = await fetch("/refresh")
+    let infoRf = dataRf.json()
+    if(infoRf.success) {
+ fetch("/PlayList/Update", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -25,6 +27,11 @@ atwb.addEventListener('click', () => {
             Checking(data);
         })
 
+    }
+    else {
+        console.log(infoRf.error);
+    }
+   
 
 })
 

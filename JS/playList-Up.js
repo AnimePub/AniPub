@@ -2,10 +2,13 @@ const addButtons = document.querySelectorAll(".Add-button");
 
 addButtons.forEach(
     value => {
-        value.addEventListener('click', () => {
+        value.addEventListener('click', async() => {
             const AniID = value.dataset.animeWId;
             const EpID = value.dataset.animeWEid;
-            fetch("/PlayList/Update", {
+             const dataRf = await fetch("/refresh")
+    let infoRf = dataRf.json()
+    if(infoRf.success) {
+fetch("/PlayList/Update", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json"
@@ -19,6 +22,11 @@ addButtons.forEach(
                 .then(data => {
                     checking(data);
                 })
+    }
+    else {
+        console.log(infoRf.error)
+    }
+            
         })
     }
 )
