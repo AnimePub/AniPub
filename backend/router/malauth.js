@@ -154,7 +154,7 @@ router.get('/refresh', async (req, res) => {
     const Token = req.cookies.anipub;
     
     if (!Token) {
-      return res.status(401).json({ error: 'No token found in cookies' });
+      return res.json({ error: 'No token found in cookies' });
     }
 
   
@@ -166,27 +166,27 @@ router.get('/refresh', async (req, res) => {
     });
 
     if (!data.id) {
-      return res.status(401).json({ error: 'Invalid token data' });
+      return res.json({ error: 'Invalid token data' });
     }
 
     const user = await User.findById(data.id);
 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(200).json({ error: 'User not found' });
     }
 
     if (!user.malId) {
-      return res.status(400).json({ error: 'MAL account not linked' });
+      return res.status(200).json({ error: 'MAL account not linked' });
     }
 
     if (!user.refreshToken) {
-      return res.status(401).json({ error: 'No refresh token available' });
+      return res.status(200).json({ error: 'No refresh token available' });
     }
     const targetTime = new Date(user.tokenExpiresAt);
   const now = new Date();
 
   if (now < targetTime) {
-    return res.status(403).json({error:'Token already refreshed'})
+    return res.status(200).json({error:'Token already refreshed'})
 } else {
  
     // Refresh the token
@@ -220,10 +220,10 @@ router.get('/refresh', async (req, res) => {
     console.error('Token refresh error:', err.message);
     
     if (err.response?.status === 401) {
-      return res.status(401).json({ error: 'Refresh token expired or invalid' });
+      return res.json({ error: 'Refresh token expired or invalid' });
     }
     
-    return res.status(500).json({ error: 'Failed to refresh token' });
+    return res.json({ error: 'Failed to refresh token' });
   }
 
 });
