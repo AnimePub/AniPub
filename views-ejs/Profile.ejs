@@ -194,6 +194,14 @@
         });
     </script>
     <script src="/linkCopy.js"></script>
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.querySelector('.NaV');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+</script>
 </body>
 
 </html>
