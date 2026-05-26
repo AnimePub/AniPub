@@ -698,7 +698,8 @@ formAuto.addEventListener('submit',async (e)=>{
              window.location.reload();
              return;
         }
-        const newEp = data.data.episodes;
+        const newEp = Number(data.data.episodes) - 1;
+        console.log(data.data.status)
         if (newEp > totalepcount) {
             const difference = newEp - totalepcount;
             const ARY = [];
