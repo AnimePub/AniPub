@@ -689,4 +689,48 @@ formAuto.addEventListener('submit',async (e)=>{
     const getTtotalep = await fetch(`https://anipub.xyz/api/info/${ID}`);
     const totalep = await getTtotalep.json();
     const totalepcount = Number(totalep.epCount)+1;
+    const malid = Number(totalep.MALID);
+    if(malid) {
+        const response = await fetch(`https://api.jikan.moe/v4/anime/${malId}`);
+        const data = await response.json();
+        if(!data){
+            alert("Jikan API Error, Can't Update Automatically")
+             window.location.reload();
+             return;
+        }
+        const newEp = data.data.episodes;
+        if (newEp > totalepcount) {
+            const difference = newEp - totalepcount;
+            const ARY = [];
+            for (let i = totalepcount; i <= newEp; i++) {
+                ARY.push({
+                    link:  `src=`+ `https://anipub.xyz/play/${malid}/${totalepcount + i}/sub`
+                }) 
+            }
+            const OBJ = {
+                ID,
+                ARY
+            }
+            fetch('/Bulk/Add', {
+                'method': 'POST',
+                'headers': {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(OBJ)
+            })
+            .then(res => res.json())
+            .then(info => {
+                if (Number(info) === 1) {
+                    alert("Bulk Added Successfully");
+                    window.location.reload();
+                } else {
+                    alert("There was an error");
+                    window.location.reload();
+                }
+            })  
+        }
+    }
+    else {
+        alert("MAL ID Not Found, Can't Update Automatically")
+    }
 })
