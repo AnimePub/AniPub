@@ -61,7 +61,6 @@ function isTokenValid(user) {
 DetailsRouter.get("/details/:id", async (req, res) => {
     try {
         const anime = req.params.id ?? "one-piece";
-        console.log(anime,req.params.id);
         const token = req.cookies.anipub;
         // Fetch anime from local database
         const localAnime = await  AnimeDB.findOne({"finder":anime},{finder:1,Genres:1,MALID:1,Cover:1,ImagePath:1,Synonyms:1,Producers:1,Premiered:1,Aired:1,Duration:1,Status:1,Studios:1,Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"$ep"}})
