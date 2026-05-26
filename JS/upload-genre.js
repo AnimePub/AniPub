@@ -691,7 +691,7 @@ formAuto.addEventListener('submit',async (e)=>{
     const totalepcount = Number(totalep.epCount)+1;
     const malid = Number(totalep.MALID);
     if(malid) {
-        const response = await fetch(`https://api.jikan.moe/v4/anime/${malId}`);
+        const response = await fetch(`https://api.jikan.moe/v4/anime/${malid}`);
         const data = await response.json();
         if(!data){
             alert("Jikan API Error, Can't Update Automatically")
