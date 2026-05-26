@@ -8,7 +8,7 @@ body {
 .container2,
 .container3,
 .FetchF,
-.form5 ,.formapi {
+.form5 ,.formapi ,.fromAuto {
     padding: 20px;
     background: rgba(0, 0, 0, 0.76);
     display: flex;
@@ -25,7 +25,7 @@ p {
 .container div, 
 .container2 div,
 .container3 div,
-.form5 div ,.formapi div,.FetchF div{
+.form5 div ,.formapi div,.FetchF div, .formAuto div {
     width: 80%;
     min-width: 280px;
 }
@@ -91,7 +91,7 @@ textarea {
 
 .upLoad,
 .upDate,.Fetch,
-.update-existing,
+.update-existing,.AutoUpdate,
 .BulkAdd , .BulkAPI
 {
     background-color: rgb(0, 255, 0);
@@ -112,7 +112,7 @@ textarea {
      background: rgb(114, 10, 41);
 } 
 
-.upDate:hover,.BulkAPI:hover
+.upDate:hover,.BulkAPI:hover,.AutoUpdate:hover
 .upLoad:hover,
 .update-existing:hover,
 .BulkAdd:hover {
@@ -158,4 +158,13 @@ option {
     color: white;
     background-color: black;
     border: 0;
+}
+.formAuto {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.76);
 }

@@ -13,6 +13,9 @@ const BulkADDB = document.querySelector(".BulkAdd");
 const StatusUp = document.querySelector(".StatusUp");
 const onSlct = document.querySelector(".onSlct");
 const genre = document.querySelectorAll(".genre");
+const AutoUpdate = document.querySelector(".AutoUpdate");
+const formAuto = document.querySelector(".formAuto");
+
 genre.forEach(value => {
     value.addEventListener('click', () => {
         if (genreList.includes(value.dataset.genre)) {
@@ -134,6 +137,7 @@ const upDate = document.querySelector(".upDate");
 upLoad.addEventListener("click", () => {
     form6.style.display = "none";
     form.style.display = "flex";
+    formAuto.style.display = "none"
       FetchFROM.style.display = "none"
     form1.style.display = "none";
     form3.style.display = "none";
@@ -150,6 +154,7 @@ BulkAPI.addEventListener('click',()=>{
     form1.style.display = "none";
     form3.style.display = "none";
     form5.style.display = "none";
+     formAuto.style.display = "none"
        formapi.style.display = "none"
      AutoChecker.style.display = "flex"
     SELECT.style.display = "none"
@@ -157,6 +162,7 @@ BulkAPI.addEventListener('click',()=>{
 upDate.addEventListener('click', () => {
     form1.style.display = "flex"
     form.style.display = "none";
+     formAuto.style.display = "none"
        formapi.style.display = "none"
      AutoChecker.style.display = "none"
     SELECT.style.display = "none"
@@ -180,6 +186,7 @@ updateExisting.addEventListener('click', () => {
     form3.style.display = "flex"
     form5.style.display = "none";
     form6.style.display = "none";
+     formAuto.style.display = "none"
       FetchFROM.style.display = "none"
        formapi.style.display = "none"
      AutoChecker.style.display = "none"
@@ -188,6 +195,7 @@ StatusUp.addEventListener('click',()=>{
      form1.style.display = "none"
        FetchFROM.style.display = "none"
     form.style.display = "none";
+     formAuto.style.display = "none"
     SELECT.style.display = "none"
        formapi.style.display = "none"
      AutoChecker.style.display = "none"
@@ -292,6 +300,7 @@ BulkADDB.addEventListener('click', () => {
       FetchFROM.style.display = "none"
     form1.style.display = "none";
     form3.style.display = "none";
+     formAuto.style.display = "none"
     form5.style.display = "none";
        formapi.style.display = "none"
      AutoChecker.style.display = "none"
@@ -575,6 +584,7 @@ fetch("/Status-Change",{
 // 
 FetchB.addEventListener('click',()=>{
  form1.style.display = "none"
+  formAuto.style.display = "none"
     form.style.display = "none"
     SELECT.style.display = "none"
     form3.style.display = "none"
@@ -658,3 +668,25 @@ FetchB.addEventListener('click',()=>{
     
 })
 
+
+
+AutoUpdate.addEventListener('click',()=>{
+ form1.style.display = "none"
+  formAuto.style.display = "flex"
+    form.style.display = "none"
+    SELECT.style.display = "none"
+    form3.style.display = "none"
+    FetchFROM.style.display = "none"
+    form5.style.display = "none";
+    form6.style.display = "none";
+       formapi.style.display = "none"
+     AutoChecker.style.display = "none"
+})
+
+formAuto.addEventListener('submit',async (e)=>{
+    e.preventDefault();
+    const ID = formAuto.ID.value;
+    const getTtotalep = await fetch(`https://anipub.xyz/api/info/${ID}`);
+    const totalep = await getTtotalep.json();
+    const totalepcount = Number(totalep.epCount)+1;
+})
