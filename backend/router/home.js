@@ -21,9 +21,11 @@ HomeRouter.get("/v1", (req, res) => {
 })
 
 HomeRouter.get("/Home", async (req, res) => {
+    console.log("req is acc",req)
     const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).sort({
         updatedAt: -1
     }).limit(20);
+    console.log(animeDb)
     let ArrayList =[];
     slider.findById(1)
     .then(async ar=>{
@@ -32,11 +34,13 @@ HomeRouter.get("/Home", async (req, res) => {
             ArrayList.push(c);
         })
     const DBarray = ArrayList;
+    console.log(DBarray)
     const DBAnime = await AnimeDB.find({
         _id: {
             $in: DBarray
         }
     })
+    console.log(DBAnime)
     const Token = req.cookies.anipub;
     let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
 //instead of doing it like .. we pick randomly .. now it looks fine -- not now 
@@ -85,6 +89,7 @@ HomeRouter.get("/Home", async (req, res) => {
 
         })
     } else {
+        console.log("Rendering Home ")
         res.render("Home", {
             Anime: animeDb,
             DBAnime,
