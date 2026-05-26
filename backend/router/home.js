@@ -169,7 +169,6 @@ const lastDoc = await AnimeDB.findOne().sort({ _id: -1 });
 HomeRouter.get(`/api/info/:AniId`, async (req, res) => {
   
     const AniId = req.params.AniId; 
-    let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
     let video = "";
     if(!isNaN(AniId)) {
          AnimeDB.findById(Number(AniId))
@@ -270,6 +269,52 @@ HomeRouter.get("/api/findByGenre/:genre",async (req,res)=>{
     } )
 })
 
+//sorting 
+HomeRouter.get("/api/sort",async(req,res)=>{
+    let to = req.query.rateto ?? 10 ;
+    const page = req.query.page ?? 1; 
+     let alus = 20*(page-1);
+       if(alus<0) {
+        alus = 0
+       }
+       else {
+        alus = alus * 1
+       }
+    let from = req.query.ratefrom ?? 0 ;
+    let genre = req.query.genre ;
+    if(genre) {
+        genre = genre.split(",").map(a=>a.trim().toLowerCase());
+    }
+    else {
+        genre = [""];
+    }
+    let name = req.query.name ?? "";
+    let query = {}
+    if (name) {
+    query.Name = { $regex: name, $options: "i" };
+}
+if (genre[0] !== "") {
+    query.Genres = { 
+        $all: genre.map(g => new RegExp(`^${g}$`, "i"))
+    };
+}
+from = isNaN(Number(from)) ? 0 : Math.max(0, Number(from));
+to = isNaN(Number(to)) ? 10 : Math.min(10, Number(to));
+query.$expr = {
+    $and: [
+        { $regexMatch: { input: "$MALScore", regex: "^[0-9]+(\\.[0-9]+)?$" } },
+        { $gte: [{ $toDouble: "$MALScore" }, Number(from)] },
+        { $lte: [{ $toDouble: "$MALScore" }, Number(to)] }
+    ]
+};
+const results = await AnimeDB.find(
+    query,
+    { Name: 1, ImagePath: 1, MALScore: 1, Genres: 1, _id: 1, finder: 1 }
+)
+.skip(alus)
+.limit(20);
+res.json([page,results])
+})
 //Search 
 HomeRouter.get("/api/search/:query",(req,res)=>{
     if (req.params.query.length >= 3) {
