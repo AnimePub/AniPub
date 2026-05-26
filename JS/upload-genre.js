@@ -702,9 +702,9 @@ formAuto.addEventListener('submit',async (e)=>{
         if (newEp > totalepcount) {
             const difference = newEp - totalepcount;
             const ARY = [];
-            for (let i = totalepcount; i <= newEp; i++) {
+            for (let i = totalepcount + 1; i <= newEp; i++) {
                 ARY.push({
-                    link:  `src=`+ `https://anipub.xyz/play/${malid}/${totalepcount + i}/sub`
+                    link:  `src=`+ `https://anipub.xyz/play/${malid}/${i}/sub`
                 }) 
             }
             const OBJ = {
