@@ -62,6 +62,8 @@
                         </button>
                     </div>
 
+                    
+
 
                 </div>
             </div>
@@ -276,6 +278,28 @@
                     </div>
                 </div>
             </div>
+<%if(userData.Premium === "Yes"){%>
+              <div class="settings-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-lock"></i>Premium Settings</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="card-content">
+
+                    <div class="form-group">
+                        <label for="Cover">Cover</label>
+                        <input type="url" id="cover" class="form-control input10" value="<%=userData.Cover%>" placeholder="Enter Cover Url">
+                        <button class="btn btn-primary btn-sm change10" style="margin-top: 10px;">
+                            <i class="fas fa-sync-alt"></i> Update Cover
+                        </button>
+                    </div>
+
+                    
+
+
+                </div>
+            </div>
+<%}%>
         </div>
     </div>
 

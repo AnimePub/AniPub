@@ -82,9 +82,9 @@
             .then(info=>{
                const Info = JSON.parse(info)
                if(Info.gender === "Male") {
-                  img[i].src = `/ProfilePic/boys/${Info.Image}`
+                  img[i].src = `${Info.Image}`
                }else {
-                   img[i].src = `/ProfilePic/${Info.Image}`
+                   img[i].src = `${Info.Image}`
                }
             })
 

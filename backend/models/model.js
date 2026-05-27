@@ -110,6 +110,11 @@ const Data = new Schema({
     userType: {
         type: String,
         required: true,
+    },
+    Cover:{
+        type: String,
+        required: false,
+         trim: true,
     }
 })
 

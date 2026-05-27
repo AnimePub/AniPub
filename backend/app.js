@@ -481,6 +481,7 @@ app.get("/Profile/:id", (req, res) => {
                         Address: info.Address,
                         Relation: info.RelationshipStatus,
                         Hide : info.Hide,
+                        Cover : info.Cover,
                         watched : info.malProfile.animeCount,
                     }
                     res.render("Profile", {
@@ -1077,6 +1078,9 @@ app.get("/Settings", (req, res) => {
                         RelationshipStatus: userDATA.RelationshipStatus,
                         Hide : userDATA.Hide,
                         userType : userDATA.userType,
+                        Premium : userDATA.Premium,
+                        Cover :userDATA.Cover,
+                      
                
             } 
             res.render("Settings", {

@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const Data = require("../models/model.js");
 const Pr = require("../models/premium.js");
 const JSONAUTH = process.env.jsonauth;
+const getID = require("../middleware/getcookieID");
 const validAdmin = require("../middleware/validAdmin.js");
 const validAdminReq = require("../middleware/validReqfAdmin.js");
 const mailBody = require("../templates/preconf.js");
@@ -80,5 +81,19 @@ PremiumR.get("/Pr/Photo/:id",validAdminReq,(req,res)=>{
         res.json(JSON.stringify(body));
     })
 })
+PremiumR.post("/pr/change/cover",async(req,res)=>{
+    let cover = req.body.coverlink
+    let userID = await getID(req,JSONAUTH);
+    let stat = await Data.find({"_id":userID},{Premium:1})
+    if(stat[0].Premium === "Yes") {
+        Data.findByIdAndUpdate(userID,{Cover:cover})
+        .then(info=>{
+            res.json([9])
+        })
+    }
+    else {
+        res.json([10])
+    }
 
+})
 module.exports = PremiumR ;

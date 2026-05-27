@@ -6,6 +6,9 @@ const change1 = document.querySelector(".change1");
 const change2 = document.querySelector(".change2");
 const change3 = document.querySelector(".change3");
 
+const input10 = document.querySelector(".input10");
+const change10 = document.querySelector(".change10");
+
 change1.addEventListener("click", () => {
     const value = input1.value;
      if(value.length < 3) {
@@ -109,6 +112,20 @@ function Fetch(data, type) {
         })
 }
 
+change10.addEventListener('click',()=>{
+    const coverlink = input10.value ?? "https://raw.githubusercontent.com/AnimePub/AniPub/refs/heads/main/Cover/Seraph%20Of%20The%20End.jpg"
+    fetch("/pr/change/cover",{
+         method: "POST",
+            headers: {
+                "Content-Type": "Application/json"
+            },
+            body: JSON.stringify({coverlink})  
+    })
+    .then(info=>info.json())
+    .then(data=>{
+        NotifyS(Number(data[0]))
+    })
+})
 
 function NotifyS(v) {
     const toast = document.getElementById('save-toast');
@@ -134,6 +151,12 @@ function NotifyS(v) {
     }
      else if (Number(v)===8) {
         notifys.innerText = "Req already made recently"
+    }
+    else if (Number(v)===9) {
+        notifys.innerText = "Cover Changed"
+    }
+    else if (Number(v)===10) {
+        notifys.innerText = "Req Error"
     }
     toast.classList.add('show');
     setTimeout(() => {
