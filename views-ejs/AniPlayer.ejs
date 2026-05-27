@@ -344,7 +344,9 @@
         <% }); %>
     </div>
 </div>
-
+ <% if(auth === true) {%> 
+    <script src="/update-Watch.js"></script>
+    <% } %> 
             <!-- Comments Section -->
             <div class="comments-section">
   <h2>Comments</h2>
@@ -481,9 +483,7 @@
     window.location.href = '?type=dub';
   });
     </script>
-    <% if(auth === true) {%> 
-    <script src="/update-Watch.js"></script>
-    <% } %> 
+   
 </body>
 
 </html>

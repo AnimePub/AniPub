@@ -12,7 +12,7 @@ function escapeRegExp(string) {
 
 SearchQ.post("/search/q",async (req,res)=>{
 
-    const regex = new RegExp(escapeRegExp(req.body.query))
+    const regex = new RegExp(escapeRegExp(req.body.query)) ?? "";
    AnimeDB.find({Name:{$regex:regex,$options:"i"}},{Name:1,ImagePath:1,_id:1,finder:1})
     .then(ser=>{
        
@@ -182,7 +182,7 @@ SearchQ.get("/search/q",async(req,res)=>{
          })
     }
     else {
-    const regex = new RegExp(query);
+    const regex = new RegExp(query) ?? ""; 
            AnimeDB.find({Name:{$regex:regex,$options:"i"}}).skip(alus).limit(20)
         .then(info=>{
             const AniData = info;
