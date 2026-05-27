@@ -3,6 +3,7 @@ const fpfa = PFA.split("/");
 const AnimeID = Number(fpfa[4]);
 const EpisodeID = Number(fpfa[5]);
 
+async function AutoUpdate () {
 if (EpisodeID !== NaN) {
     try {
      const dataRf = await fetch("/authmal/refresh")
@@ -27,4 +28,5 @@ if (EpisodeID !== NaN) {
 catch(err) {
     console.log(err)
 }
-}
+}}
+AutoUpdate();
