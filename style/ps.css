@@ -7,7 +7,7 @@
     }
 
 header {
-    background: linear-gradient(135deg, #0d0f1e 0%, #131629 100%);
+    background:  rgba(6,9,15,0.92);
     position: sticky;
     top: 0;
     z-index: 1000;

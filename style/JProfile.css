@@ -14,6 +14,8 @@
             --border-radius: 12px;
             --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+              --dark2:      #090d18;
+                 --blue-dim:   #0d5fab;
         }
 
         * {
@@ -283,3 +285,6 @@
             animation-delay: 0.2s;
             animation-fill-mode: both;
         }
+         ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--dark2); }
+        ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 3px; }

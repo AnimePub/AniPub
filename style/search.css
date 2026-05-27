@@ -213,6 +213,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            min-height: 400px;
         }
 
         .Profile::before {

@@ -22,7 +22,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
@@ -575,3 +575,6 @@
                 padding: 12px 18px;
             }
         }
+         ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--dark2); }
+        ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 3px; }

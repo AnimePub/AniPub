@@ -11,6 +11,8 @@
       --warning: #FFCC00;
       --danger: #FF3B30;
       --border-radius: 16px;
+         --dark2:      #090d18;
+                 --blue-dim:   #0d5fab;
       --transition: all 0.3s ease;
   }
 
@@ -464,3 +466,6 @@
       }
 
   }
+   ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--dark2); }
+        ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 3px; }

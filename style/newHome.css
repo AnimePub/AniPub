@@ -669,9 +669,7 @@
         .scroll-arrow.left { margin-left: -40px; }
         .scroll-arrow.right { margin-right: -40px; }
 
-        /* ══════════════════════════════════════════
-           RECENT — GRID
-        ══════════════════════════════════════════ */
+       
         .recent-sec {
             padding: 0 clamp(20px,6vw,84px) clamp(50px,6vw,80px);
         }
