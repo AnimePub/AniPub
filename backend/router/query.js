@@ -182,7 +182,7 @@ SearchQ.get("/search/q",async(req,res)=>{
          })
     }
     else {
-    const regex = new RegExp(query) ?? ""; 
+         const regex = new RegExp(escapeRegExp(query)) ?? ""; 
            AnimeDB.find({Name:{$regex:regex,$options:"i"}}).skip(alus).limit(20)
         .then(info=>{
             const AniData = info;

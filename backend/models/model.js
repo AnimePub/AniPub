@@ -59,6 +59,10 @@ const Data = new Schema({
     type: Date,
     default: Date.now
   },
+  count:{
+    type:Number,
+    required:false,
+  },
     profilePicture: {
         type: String,
         required: false,

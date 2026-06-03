@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const Data = require("../models/model");
 const AnimeDB = require("../models/AniDB.js");
 const JSONAUTH = process.env.jsonauth;
+const isKeyValid = require("../middleware/validkey.js");
+
 const validAdminReqJs = require("../middleware/validReqfAdmin.js");
 HomeRouter.get("/", (req, res) => {
     if (req.query.error) {
@@ -166,7 +168,7 @@ const lastDoc = await AnimeDB.findOne().sort({ _id: -1 });
     const last = lastDoc._id;
     res.json(last)
 })    
-HomeRouter.get(`/api/info/:AniId`, async (req, res) => {
+HomeRouter.get(`/api/info/:AniId`,isKeyValid, async (req, res) => {
   
     const AniId = req.params.AniId; 
     let video = "";

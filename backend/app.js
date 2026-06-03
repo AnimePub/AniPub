@@ -43,6 +43,7 @@ const Settings = require("./router/pvchng.js");
 const Notify = require("./router/notify.js");
 const Random = require ("./router/random.js");
 const AniDB = require("./models/AniDB.js");
+const APIKEY = require("./router/apiKeyProvider.js")
 const SearchGenre = require("./router/searchGenre.js")
 const SearchQ = require("./router/query.js");
 const Security = require("./router/Security.js");
@@ -206,7 +207,7 @@ app.use(HomeRouter);
 app.use(DetailsRouter);
 //Random
 app.use(Random);
-
+app.use(APIKEY)
 // Auth router
 const dashboardRouter = require('./router/dashboard');
 const authRouter = require('./router/auth');

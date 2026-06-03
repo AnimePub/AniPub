@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>privacy Settings | AniPub</title>
+    <meta name="description" content="Settings Page - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Tenali+Ramakrishna&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/JSettings.css">
+<style>
+    .copy-button{
+        margin-top: 10px;
+        padding: 5px 10px 5px 10px;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        background-color: #484848;
+    }
+     .copy-button:hover{
+          background-color: #2c2c2c;
+     }
+    .copy-button:active {
+        opacity: 0.7;
+    }
+    input{
+        padding: 10px;
+        border: 1px solid #4f4848;
+        background-color: #1d171730;
+        width: 100%;
+        margin-top: 10px;
+        color:#ffffff;
+        border-radius: 10px;
+    }
+    .totalCount {
+        margin-top: 20px;
+        color: white;
+    }
+    a {
+        text-decoration: none;
+        color: rgb(83, 83, 247);
+    }
+</style>
+</head>
+
+<body>
+    <%- include("./include/nHeader") %>
+
+    <div class="container">
+           <%- include("./include/cardS") %>
+
+        <div class="main-content">
+            <div class="welcome-banner">
+                <h2>Welcome to API Section, Nakama!</h2>
+                <p>Use your KEY to get Data from AniPub API and keep track of your usage</p>
+            </div>
+
+            <h1 class="section-title">
+                <i class="fas fa-cogs"></i> API Settings
+            </h1>
+            
+            <div class="settings-card">
+                <div class="card-header active">
+                    <h3><i class="fas fa-lock"></i> API Settings</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="card-content active">
+                    <p>Your API Key:</p>
+                    <input type="text" value="<%=myKey%>">
+                    <button class="copy-button" data-value="<%=myKey%>">Copy</button>
+
+                    <p class="totalCount">Total API Called: <em>
+                        <%=userData.Count%>
+                    </em>  </p>
+                    <p>Visit <a href="https://api.anipub.xyz">https://api.anipub.xyz</a> to see our API documentation</p>
+                    
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <script src="/JSettings.js"></script>
+   <script>
+  const copybtn =  document.querySelector(".copy-button")
+  copybtn.addEventListener('click',()=>{
+    const key = copybtn.dataset.value;
+       navigator.clipboard.writeText(key);
+       copybtn.innerHTML = `Copied`
+       setTimeout(() => {
+         copybtn.innerHTML = `Copy`
+       }, 4000);
+    })
+   </script>
+    
+</body>
+
+</html>
