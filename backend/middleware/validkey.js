@@ -17,13 +17,15 @@ const isKeyValid = async (req,res,next) =>{
                    }
                 }
                 catch (err) {
-                    res.json({message:`Invalid API key .. to get an API key visit www.anipub.xyz/APIKEY ..
-            We set up key so that bots can't overwhelm our servers`}) 
+                    next();
+            //         res.json({message:`Invalid API key .. to get an API key visit www.anipub.xyz/APIKEY ..
+            // We set up key so that bots can't overwhelm our servers`}) 
                 }
     }
     else {
-        res.json({message:`Please provide api key ..to get an API key visit www.anipub.xyz/APIKEY ..
-            We set up key so that bots can't overwhelm our servers `});
+        next();
+        // res.json({message:`Please provide api key ..to get an API key visit www.anipub.xyz/APIKEY ..
+        //     We set up key so that bots can't overwhelm our servers `});
     }
     
 }
