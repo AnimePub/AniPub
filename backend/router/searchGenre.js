@@ -6,11 +6,17 @@ const mongoose = require("mongoose");
 const Data = require("../models/model");
 const AnimeDB = require("../models/AniDB.js");
 const JSONAUTH = process.env.jsonauth;
-
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 SearchGenre.get("/Search",async(req,res)=>{
     const Token = req.cookies.anipub;
-    let query = req.query.genre;
-      if(req.query.genre){
+   let query;
+   if(req.query.genre === undefined) {
+   query  = "Action"
+   }
+    query  =  escapeRegExp(req.query.genre);
+      if(query){
            query = query.toLowerCase()
     }
     let page = 1;
