@@ -11,8 +11,11 @@ function escapeRegExp(string) {
 }
 
 SearchQ.post("/search/q",async (req,res)=>{
-
-    const regex = new RegExp(escapeRegExp(req.body.query)) ?? "";
+    let QRY = req.body.query;
+    if(req.body.query === undefined) {
+        QRY = "One Piece" ;//default 
+    }
+    const regex = new RegExp(escapeRegExp(QRY)) ?? "";
    AnimeDB.find({Name:{$regex:regex,$options:"i"}},{Name:1,ImagePath:1,_id:1,finder:1})
     .then(ser=>{
        
@@ -47,7 +50,7 @@ SearchQ.post("/search/q",async (req,res)=>{
     })
 })
 SearchQ.get("/search/q",async(req,res)=>{
-    const query = req.query.query ;
+    const query = req.query.query ?? "One Piece"
     let type = false ;
     if(req.query.type){
            type = (req.query.type).toLowerCase()
