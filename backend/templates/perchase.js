@@ -14,7 +14,7 @@ const PerChase = (name, info) => {
           <!-- Header -->
           <tr>
             <td style="background: linear-gradient(90deg, #ff4b5c, #4b0082); padding: 20px; text-align: center;">
-              <img src="https://www.anipub.xyz/luffy5.png" alt="AniPub Logo" style="max-width: 150px;">
+              <img src="https://anipub.xyz/luffy5.png" alt="AniPub Logo" style="max-width: 150px;">
               <h1 style="color: #ffffff; font-size: 28px; margin: 10px 0; text-transform: uppercase; letter-spacing: 2px;">Welcome to AniPub Premium!</h1>
             </td>
           </tr>
