@@ -2,6 +2,6 @@
        --dark2:      #090d18;
                  --blue-dim:   #0d5fab;
 }
- ::-webkit-scrollbar { width: 5px; }
+ ::-webkit-scrollbar { width: 5px;     scrollbar-width: none;}
         ::-webkit-scrollbar-track { background: var(--dark2); }
         ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 3px; }

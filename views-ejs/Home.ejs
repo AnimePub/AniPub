@@ -10,7 +10,144 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/newHome.css">
+<style>
+  .airing-section{max-width:1400px;margin:0 auto;}
 
+  .sec-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .sec-bar{
+    width:5px;
+    height:22px;
+    background:var(--accent, #2ea8ff);
+    border-radius:2px;
+  }
+  .sec-head p{
+    margin:0;
+    font-weight:700;
+    text-transform:uppercase;
+  }
+
+ 
+  .slider-wrap{
+    position:relative;
+  }
+
+  .airing-track{
+    display:flex;
+    gap:18px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    scroll-snap-type:x proximity;
+    padding:4px 4px 12px;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    cursor:grab;
+  }
+  .airing-track::-webkit-scrollbar{display:none;}
+  .airing-track.dragging{cursor:grabbing;scroll-behavior:auto;}
+
+  .airing-card{
+    flex:0 0 auto;
+    width:200px;
+    scroll-snap-align:start;
+    text-decoration:none;
+    color:inherit;
+    display:block;
+    user-select:none;
+  }
+
+  .airing-card-img{
+    width:100%;
+    aspect-ratio:2/3;
+    border-radius:10px;
+    overflow:hidden;
+    background:#12161f;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .airing-card:hover .airing-card-img{
+    transform:translateY(-4px);
+    box-shadow:0 10px 24px rgba(0,0,0,.5);
+  }
+  .airing-card-img img{
+    width:100%;height:100%;object-fit:cover;
+    display:block;
+    pointer-events:none;
+  }
+
+  .airing-card-body{padding-top:10px;}
+  .airing-card-title{
+    font-size:14px;
+    font-weight:600;
+    line-height:1.3;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .airing-card-rating{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin:4px 0;
+    font-size:12px;
+  }
+  .airing-rating-num{color:#ffb020;font-weight:700;}
+  .airing-rating-stars{height:12px;}
+  .airing-card-desc{
+    margin:0;
+    font-size:12px;
+    color:#8a93a3;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+
+  .slide-btn{
+    position:absolute;
+    top:38%;
+    transform:translateY(-50%);
+    width:38px;height:38px;
+    border-radius:50%;
+    border:none;
+    background:rgba(15,18,26,.85);
+    color:#e8ecf1;
+    font-size:18px;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    z-index:5;
+    box-shadow:0 4px 14px rgba(0,0,0,.5);
+    transition:background .2s ease, opacity .2s ease;
+    opacity:0;
+  }
+  .slider-wrap:hover .slide-btn{opacity:1;}
+  .slide-btn:hover{background:#2ea8ff;}
+  .slide-btn.prev{left:-6px;}
+  .slide-btn.next{right:-6px;}
+  .slide-btn[disabled]{
+    opacity:0 !important;
+    pointer-events:none;
+  }
+
+  .fade-edge{
+    position:absolute;
+    top:0;bottom:12px;
+    width:60px;
+    pointer-events:none;
+    z-index:4;
+  }
+  .fade-edge.left{left:0;background:linear-gradient(90deg,#0b0e14,transparent);}
+  .fade-edge.right{right:0;background:linear-gradient(270deg,#0b0e14,transparent);}
+
+  @media (max-width:600px){
+    .airing-card{width:130px;}
+    .slide-btn{display:none;}
+  }
+</style>
 </head>
 
 <body>
@@ -206,47 +343,156 @@
     <!-- Section Header -->
     <div class="sec-head">
         <div class="sec-bar"></div>
-        <a href="https://anipub.xyz/search/q?type=airing" style="text-decoration: none; color: inherit;">
-            <p>Airing</p>
+        <a href="https://anipub.xyz/search/q?type=Action" style="text-decoration: none; color: inherit;">
+            <p>Action</p>
         </a>
     </div>
 
-    <!-- Grid Container -->
-    <div class="airing-grid">
-        <% Airing.forEach(value => {%>
-            <a href="https://anipub.xyz/AniPlayer/<%=value.finder%>/0" class="airing-card">
-                <!-- Card Image -->
-                <div class="airing-card-img">
-                    <% const POSTER = value.ImagePath;
-                       const POSTERARY = POSTER.split("https://");
-                       let LINKU = "";
-                       if(POSTERARY.length > 1){
-                           LINKU = "https://" + POSTERARY[1];
-                       } else {
-                           LINKU= "/"+POSTERARY[0]
-                       }
-                    %>
-                    <img src="<%=LINKU%>" alt="<%=value.Name%> Poster">
-                </div>
-                
-                <!-- Card Body -->
-                <div class="airing-card-body">
-                    <div class="airing-card-title"><%=value.Name%></div>
-                    <div class="airing-card-rating">
-                        <span class="airing-rating-num"><%=value.MALScore%></span>
-                        <img class="airing-rating-stars" src="/rating-<%=value.RatingsNum%>.png" alt="Rating">
+    <!-- Slider -->
+    <div class="slider-wrap">
+        <button class="slide-btn prev" aria-label="Previous">&#10094;</button>
+        <div class="fade-edge left"></div>
+
+        <div class="airing-track" id="airingTrack">
+            <% Airing.forEach(value => { %>
+                <a href="https://anipub.xyz/AniPlayer/<%=value.finder%>/0" class="airing-card">
+                    <!-- Card Image -->
+                    <div class="airing-card-img">
+                        <% const POSTER = value.ImagePath;
+                           const POSTERARY = POSTER.split("https://");
+                           let LINKU = "";
+                           if(POSTERARY.length > 1){
+                               LINKU = "https://" + POSTERARY[1];
+                           } else {
+                               LINKU= "/"+POSTERARY[0]
+                           }
+                        %>
+                        <img src="<%=LINKU%>" alt="<%=value.Name%> Poster" draggable="false">
                     </div>
-                    <p class="airing-card-desc">
-                           <% const desc = value.DescripTion;
-   const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
-%>
-                        <%=descr%>...
-                    </p>
-                </div>
-            </a>
-        <% }); %>
+
+                    <!-- Card Body -->
+                    <div class="airing-card-body">
+                        <div class="airing-card-title"><%=value.Name%></div>
+                        <div class="airing-card-rating">
+                            <span class="airing-rating-num"><%=value.MALScore%></span>
+                            <img class="airing-rating-stars" src="/rating-<%=value.RatingsNum%>.png" alt="Rating">
+                        </div>
+                        <p class="airing-card-desc">
+                            <% const desc = value.DescripTion;
+                               const descr = desc && desc.length > 60 ? desc.slice(0, 60) : desc;
+                            %>
+                            <%=descr%>...
+                        </p>
+                    </div>
+                </a>
+            <% }); %>
+        </div>
+
+        <div class="fade-edge right"></div>
+        <button class="slide-btn next" aria-label="Next">&#10095;</button>
     </div>
 </section>
+
+
+
+<script>
+(function(){
+  const track = document.getElementById('airingTrack');
+  const wrap = track.closest('.slider-wrap');
+  const prevBtn = wrap.querySelector('.slide-btn.prev');
+  const nextBtn = wrap.querySelector('.slide-btn.next');
+
+  function scrollByCard(dir){
+    const card = track.querySelector('.airing-card');
+    const cardWidth = card ? card.getBoundingClientRect().width + 18 : 220;
+    track.scrollBy({ left: dir * cardWidth * 3, behavior: 'smooth' });
+  }
+  prevBtn.addEventListener('click', () => { scrollByCard(-1); restartAutoScroll(); });
+  nextBtn.addEventListener('click', () => { scrollByCard(1); restartAutoScroll(); });
+
+  function updateButtons(){
+    prevBtn.disabled = track.scrollLeft <= 4;
+    nextBtn.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  }
+  track.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  updateButtons();
+
+
+  const AUTO_INTERVAL = 3500;   
+  const RESUME_DELAY  = 4000;   
+  let autoTimer = null;
+  let resumeTimer = null;
+
+  function advance(){
+    const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+    if(atEnd){
+      track.scrollTo({ left: 0, behavior: 'smooth' }); // loop back to start
+    } else {
+      scrollByCard(1);
+    }
+  }
+
+  function startAutoScroll(){
+    stopAutoScroll();
+    autoTimer = setInterval(advance, AUTO_INTERVAL);
+  }
+  function stopAutoScroll(){
+    if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+  }
+  function restartAutoScroll(){
+    stopAutoScroll();
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAutoScroll, RESUME_DELAY);
+  }
+
+ 
+  wrap.addEventListener('mouseenter', stopAutoScroll);
+  wrap.addEventListener('mouseleave', startAutoScroll);
+  track.addEventListener('touchstart', () => { stopAutoScroll(); }, { passive: true });
+  track.addEventListener('touchend', restartAutoScroll, { passive: true });
+  track.addEventListener('wheel', restartAutoScroll, { passive: true });
+
+ 
+  document.addEventListener('visibilitychange', () => {
+    if(document.hidden) stopAutoScroll(); else startAutoScroll();
+  });
+
+  startAutoScroll();
+
+ 
+  let isDown = false, startX, scrollLeftStart, dragged = false;
+
+  track.addEventListener('mousedown', e => {
+    isDown = true;
+    dragged = false;
+    track.classList.add('dragging');
+    startX = e.pageX - track.offsetLeft;
+    scrollLeftStart = track.scrollLeft;
+    stopAutoScroll();
+  });
+  window.addEventListener('mouseup', () => {
+    isDown = false;
+    track.classList.remove('dragging');
+    restartAutoScroll();
+  });
+  track.addEventListener('mouseleave', () => {
+    isDown = false;
+    track.classList.remove('dragging');
+  });
+  track.addEventListener('mousemove', e => {
+    if(!isDown) return;
+    e.preventDefault();
+    dragged = true;
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.2;
+    track.scrollLeft = scrollLeftStart - walk;
+  });
+  track.addEventListener('click', e => {
+    if(dragged){ e.preventDefault(); e.stopPropagation(); }
+  }, true);
+})();
+</script>
 
 
 

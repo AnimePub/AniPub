@@ -744,9 +744,7 @@
 
    
 
-        /* ══════════════════════════════════════════
-           RESPONSIVE
-        ══════════════════════════════════════════ */
+      
         @media (max-width: 900px) {
             .recent-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
             .ft-grid { grid-template-columns: 1fr; gap: 28px; }
