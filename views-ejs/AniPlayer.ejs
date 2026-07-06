@@ -465,26 +465,6 @@
     window.location.href = '?type=dub';
   });
     </script>
-   <script>
-    window.addEventListener('beforeunload', (e) => {
-  e.preventDefault();
-  e.returnValue = '';
-});
-
-window.addEventListener("message", function (event) {
-  if (!event.origin.includes("anipub.xyz")) return;
-
-  let data = event.data;
-  if (typeof data === "string") {
-    try { data = JSON.parse(data); } catch(e) { return; }
-  }
-
-  if (data.event === "complete") {
-    console.log("Episode finished!");
-    // auto next episode here
-  }
-});
-    </script>
 </body>
 
 </html>

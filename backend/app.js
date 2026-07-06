@@ -153,7 +153,7 @@ app.set("views", path.join(__dirname, "../views-ejs"));
 const allowedOrigins = ['https://anipub.xyz','https://api.anipub.xyz', 'https://www.anipub.xyz', 'http://localhost:3000'];
 
 const corsOptions = {
-  origin: '',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: false
