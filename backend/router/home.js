@@ -44,7 +44,7 @@ HomeRouter.get("/Home", async (req, res) => {
 //instead of doing it like .. we pick randomly .. now it looks fine 
 
     AnimeDB.aggregate([
-  { $match: { "Genres": { $in: ["Action"] } } },
+  { $match: { "Status":"Ongoing"} },
   { $sample: { size:20  } },
   { $project: { Name:1, ImagePath:1, DescripTion:1, _id:1, MALScore:1, RatingsNum:1, finder:1 } }
 ])
