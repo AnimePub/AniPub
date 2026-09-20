@@ -476,9 +476,11 @@ app.get("/Profile/:id", (req, res) => {
                         Address: info.Address,
                         Relation: info.RelationshipStatus,
                         Hide : info.Hide,
+                        Premium:info.Premium,
                         Cover : info.Cover,
                         watched : info.malProfile.animeCount,
                     }
+                    console.log(info.Premium)
                     res.render("Profile", {
                         SectionName: "Profile",
                         Auth: bool,
@@ -506,6 +508,7 @@ app.get("/Profile/:id", (req, res) => {
                     image: info.Image,
                     Gender: info.Gender,
                     Genre: info.GenreList,
+                    Premium:info.Premium,
                     Address: info.Address,
                     Relation: info.RelationshipStatus,
                 }

@@ -45,7 +45,12 @@
                     </div>
                 </div>
                 <div class="profile-body">
-                    <h2 class="profile-name"><%= userInfo.Name %></h2>
+                    <h2 class="profile-name"><%= userInfo.Name %> 
+                        <%if(userInfo.Premium==="Yes"){%>
+                        <span>
+                          <img width="20" height="20" src="https://img.icons8.com/?size=100&id=98A4yZTt9abw&format=png&color=000000" alt="Premium account logo"/>
+                    </span>
+                <%}%></h2>
                     <p class="profile-bio"><%= userInfo.Bio %></p>
 
                     <div class="profile-stats">

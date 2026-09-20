@@ -11,6 +11,15 @@ const Data = new Schema({
         type: String,
         required: true,
     },
+    Number:{
+        type:Number,
+        required:false,
+        unique:[true,"This Number is already being used"],
+    },  
+    nStat:{
+        type:Boolean,
+        required:false,
+    },
     Email: {
         type: String,
         required: true,

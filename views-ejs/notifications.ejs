@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>privacy Settings | AniPub</title>
+    <meta name="description" content="Settings Page - A Free Anime Watching Site built by Anime Loves for Anime Lovers">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Tenali+Ramakrishna&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/JSettings.css">
+
+</head>
+<style>
+    input {
+        width: 250px;
+        height: 30px;
+        padding-left: 10px;
+
+        border: 1px solid gray;
+        border-radius: 15px;
+    }
+    .submit , .t1 , .t2 {
+        width: 60px;
+        height: 30px ;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 10%;
+        transition: all 0.16s;
+        background-color: rgb(19, 176, 19);
+    }
+    input:focus {
+        outline: none;
+    }
+    .submit:active ,.t1:active,t2:active {
+        opacity: 0.5;
+    }
+    .submit:hover , t1:hover , .t2:hover {
+        opacity: 0.7;
+    }
+    .t2 {
+        background-color: red;
+    }
+</style>
+<body>
+    <%- include("./include/nHeader") %>
+
+    <div class="container">
+           <%- include("./include/cardS") %>
+
+        <div class="main-content">
+            <div class="welcome-banner">
+                <h2>Welcome to Notification Section, Nakama!</h2>
+                <p>We keep track of What's in your playlist .. And Update you with Whatsapp message if New Episode of that Anime is released on our Site !</p>
+            </div>
+
+            <h1 class="section-title">
+                <i class="fas fa-cogs"></i> Notification Settings
+            </h1>
+            
+            <div class="settings-card">
+                <div class="card-header active">
+                    <h3><i class="fas fa-lock"></i> Notification Settings</h3>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </div>
+                <div class="card-content active" style="display: flex; row-gap: 10px; flex-direction: column;">
+                    <p>Your Phone Number:</p>
+                    <input type="number" value="<%=Number%>" placeholder="Your Number with your Country Code">
+                    <button class="submit">Submit</button>    
+                
+                    <p>Notification Status:</p>
+                    <%if(userData.nStat === undefined){%>
+                        <%let z= "OFF" %>
+                        <p>Currently your notification service is <span style="color: red;"><%=z%> </span></p>
+                        <%} else if (userData.nStat === true){%>
+                       <%let z= "ON" %>
+                       <p>Currently your notification service is <span style="color: rgb(12, 236, 12);"><%=z%> </span> </p>
+                        <%} else if (userData.nStat === false) {%>
+                             <%let z = "OFF" %>
+                             <p>Currently your notification service is <span style="color: red;"><%=z%> </span> </p>
+                            <%}%>   
+                <div> <button class="t1">Turn On</button> 
+                    <button class="t2">Turn Off</button>
+                </div>
+                   
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+<script src="notify.js"></script>    
+</body>
+
+
+</html>

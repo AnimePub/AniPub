@@ -28,7 +28,7 @@ const configureGoogleAuth = () => {
                 // Update account status if needed
                 if (existingUser.AcStats === "Pending") {
                     await Data.findByIdAndUpdate(existingUser._id, { AcStats: "Active" });
-                    console.log(`✅ Activated pending account for: ${existingUser.Name}`);
+                    console.log(` Activated pending account for: ${existingUser.Name}`);
                 }
                 
                 if (profile.photos && profile.photos[0] && profile.photos[0].value) {
@@ -61,10 +61,10 @@ const configureGoogleAuth = () => {
                 Image: profile.photos[0].value
             });
   
-            console.log(`✅ Created new Google OAuth user: ${newUser.Name} with profile picture: ${profilePictureName}`);
+            console.log(` Created new Google OAuth user: ${newUser.Name} with profile picture: ${profilePictureName}`);
             return done(null, newUser);
         } catch (error) {
-            console.error('❌ Error in Google OAuth strategy:', error);
+            console.error('Error in Google OAuth strategy:', error);
             return done(error, null);
         }
     }));
@@ -82,7 +82,7 @@ const configureGoogleAuth = () => {
         }
     });
 
-    console.log('✅ Google OAuth configured successfully');
+    console.log('Google OAuth configured successfully');
 };
 
 module.exports = { configureGoogleAuth };
