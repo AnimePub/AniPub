@@ -411,7 +411,7 @@ app.post('/chat', async (req, res) => {
         ...messages
       ],
       temperature: 0.85,
-      max_tokens: 600,
+      max_tokens: 512,
       stream: true,
     });
 
