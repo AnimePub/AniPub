@@ -71,6 +71,15 @@ async function loadConversations() {
         
         const conversationsList = document.getElementById('conversations-list');
         
+        if (response.status === 302 ) {
+             conversationsList.innerHTML = `
+                <div class="empty-conversations">
+                    <i class="fas fa-inbox" style="font-size: 3em; opacity: 0.3; margin-bottom: 10px;"></i>
+                    <p>Please LogIn <br>You can't see messages unless are logged in</p>
+                </div>
+            `;
+            return;
+        }
         if (conversations.length === 0) {
             conversationsList.innerHTML = `
                 <div class="empty-conversations">

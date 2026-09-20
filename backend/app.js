@@ -480,7 +480,7 @@ app.get("/Profile/:id", (req, res) => {
                         Cover : info.Cover,
                         watched : info.malProfile.animeCount,
                     }
-                    console.log(info.Premium)
+                  
                     res.render("Profile", {
                         SectionName: "Profile",
                         Auth: bool,
@@ -1726,7 +1726,7 @@ const requireAuth = (req, res, next) => {
   next();
 };
 
-app.get('/chat', requireAuth, (req, res) => res.render("chat"));
+app.get('/chat',  (req, res) => res.render("chat"));
 app.get('/chatroom', requireAuth, (req, res) => res.render("chatroom"));
 app.get('/private', requireAuth, (req, res) => res.render("Schat"));
 
@@ -1763,7 +1763,7 @@ app.put('/api/user/profile', requireAuth, async (req, res) => {
   }
 });
 
-app.get('/api/users/search', requireAuth, async (req, res) => {
+app.get('/api/users/search', async (req, res) => {
   try {
     const query = req.query.q || '';
     if (query.length < 2) return res.json([]);
@@ -1834,7 +1834,7 @@ app.post('/api/rooms', validAdmin, async (req, res) => {
   }
 });
 
-app.get('/api/rooms', requireAuth, async (req, res) => {
+app.get('/api/rooms', async (req, res) => {
   try {
     const rooms = await Room.find({ isPrivate: false }).sort({ createdAt: -1 });
     res.json(rooms);
