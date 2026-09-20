@@ -107,7 +107,7 @@
   }
 
 
-  .slide-btn{
+  .slide-btn2{
     position:absolute;
     top:38%;
     transform:translateY(-50%);
@@ -124,11 +124,11 @@
     transition:background .2s ease, opacity .2s ease;
     opacity:0;
   }
-  .slider-wrap:hover .slide-btn{opacity:1;}
-  .slide-btn:hover{background:#2ea8ff;}
-  .slide-btn.prev{left:-6px;}
-  .slide-btn.next{right:-6px;}
-  .slide-btn[disabled]{
+  .slider-wrap:hover .slide-btn2{opacity:1;}
+  .slide-btn2:hover{background:#2ea8ff;}
+  .slide-btn2.prev{left:-6px;}
+  .slide-btn2.next{right:-6px;}
+  .slide-btn2[disabled]{
     opacity:0 !important;
     pointer-events:none;
   }
@@ -340,7 +340,7 @@
 
 
 <section class="airing-section">
-    <!-- Section Header -->
+  
     <div class="sec-head">
         <div class="sec-bar"></div>
         <a href="https://anipub.xyz/search/q?type=Action" style="text-decoration: none; color: inherit;">
@@ -348,15 +348,15 @@
         </a>
     </div>
 
-    <!-- Slider -->
+    
     <div class="slider-wrap">
-        <button class="slide-btn prev" aria-label="Previous">&#10094;</button>
+        <button class="slide-btn2 prev" aria-label="Previous">&#10094;</button>
         <div class="fade-edge left"></div>
 
         <div class="airing-track" id="airingTrack">
             <% Airing.forEach(value => { %>
                 <a href="https://anipub.xyz/AniPlayer/<%=value.finder%>/0" class="airing-card">
-                    <!-- Card Image -->
+                  
                     <div class="airing-card-img">
                         <% const POSTER = value.ImagePath;
                            const POSTERARY = POSTER.split("https://");
@@ -370,7 +370,7 @@
                         <img src="<%=LINKU%>" alt="<%=value.Name%> Poster" draggable="false">
                     </div>
 
-                    <!-- Card Body -->
+                  
                     <div class="airing-card-body">
                         <div class="airing-card-title"><%=value.Name%></div>
                         <div class="airing-card-rating">
@@ -389,9 +389,9 @@
         </div>
 
         <div class="fade-edge right"></div>
-        <button class="slide-btn next" aria-label="Next">&#10095;</button>
+        <button class="slide-btn2 next" aria-label="Next">&#10095;</button>
     </div>
-</section>
+</section> 
 
 
 
@@ -399,8 +399,8 @@
 (function(){
   const track = document.getElementById('airingTrack');
   const wrap = track.closest('.slider-wrap');
-  const prevBtn = wrap.querySelector('.slide-btn.prev');
-  const nextBtn = wrap.querySelector('.slide-btn.next');
+  const prevBtn = wrap.querySelector('.slide-btn2.prev');
+  const nextBtn = wrap.querySelector('.slide-btn2.next');
 
   function scrollByCard(dir){
     const card = track.querySelector('.airing-card');
