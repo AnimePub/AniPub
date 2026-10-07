@@ -196,7 +196,7 @@ DetailsRouter.get("/v1/api/details/:id",streamLimiter, async (req, res) => {
 
 DetailsRouter.post(["/anime/api/check","/api/check"], async (req, res) => {
     try {
-        console.log(req.body.Name)
+      
         const { Name, Genre } = req.body;
         if (!Name && Genre === undefined || Genre === null) {
             return res.status(400).json({ error: "Name and Genre are required" });
