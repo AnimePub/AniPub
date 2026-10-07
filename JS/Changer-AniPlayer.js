@@ -14,10 +14,25 @@ List.forEach(value => {
     })
 })
 Left.addEventListener('click', () => {
-    window.location.href = `/AniPlayer/${AniId}/${Math.abs(Number(AniEp)-1)}`
+    if(isNaN(AniEp)){
+           window.location.href = `/AniPlayer/${AniId}/${Math.abs(Number(AniEp)-1)}`
+    }
+    else {
+        AniEp = AniEp.split("?");
+        AniEp = Math.abs(Number(AniEp[0])-1) + AniEp[1]
+         window.location.href = `/AniPlayer/${AniId}/${AniEp}`
+    }
+   
 })
 Right.addEventListener('click', () => {
-    window.location.href = `/AniPlayer/${AniId}/${Number(AniEp)+1}`
+    if(isNaN(AniEp)){
+           window.location.href = `/AniPlayer/${AniId}/${Math.abs(Number(AniEp)+1)}`
+    }
+    else {
+        AniEp = AniEp.split("?");
+        AniEp = Math.abs(Number(AniEp[0])+1) + AniEp[1]
+         window.location.href = `/AniPlayer/${AniId}/${AniEp}`
+    }
 })
 
 const Aniprofile = document.querySelectorAll(".anime-card");
