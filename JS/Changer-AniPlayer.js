@@ -1,7 +1,7 @@
 const link = document.URL;
 const newlink = link.split("/");
-const AniId = newlink[4];
-const AniEp = newlink[5];
+let AniId = newlink[4];
+let AniEp = newlink[5];
 
 const Left = document.querySelector(".left-btn");
 const Right = document.querySelector(".right-btn")
@@ -14,23 +14,23 @@ List.forEach(value => {
     })
 })
 Left.addEventListener('click', () => {
-    if(isNaN(AniEp)){
+    if(!isNaN(AniEp)){
            window.location.href = `/AniPlayer/${AniId}/${Math.abs(Number(AniEp)-1)}`
     }
     else {
         AniEp = AniEp.split("?");
-        AniEp = Math.abs(Number(AniEp[0])-1) + AniEp[1]
+        AniEp = Math.abs(Number(AniEp[0])-1)  +"?" + AniEp[1]
          window.location.href = `/AniPlayer/${AniId}/${AniEp}`
     }
    
 })
 Right.addEventListener('click', () => {
-    if(isNaN(AniEp)){
+    if(!isNaN(AniEp)){
            window.location.href = `/AniPlayer/${AniId}/${Math.abs(Number(AniEp)+1)}`
     }
     else {
         AniEp = AniEp.split("?");
-        AniEp = Math.abs(Number(AniEp[0])+1) + AniEp[1]
+        AniEp = Math.abs(Number(AniEp[0])+1) +"?" + AniEp[1]
          window.location.href = `/AniPlayer/${AniId}/${AniEp}`
     }
 })
