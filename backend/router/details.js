@@ -196,14 +196,15 @@ DetailsRouter.get("/v1/api/details/:id",streamLimiter, async (req, res) => {
 
 DetailsRouter.post(["/anime/api/check","/api/check"], async (req, res) => {
     try {
+        console.log(req.body.Name)
         const { Name, Genre } = req.body;
-        if (!Name || (Genre === undefined || Genre === null)) {
+        if (!Name && Genre === undefined || Genre === null) {
             return res.status(400).json({ error: "Name and Genre are required" });
         }
 
         // search by name case-insensitively (exact match)
         const regex = new RegExp(`^${Name}$`, "i");
-        const anime = await AnimeDB.findOne({ Name: regex });
+        const anime = await AnimeDB.find({ Name: regex });
 
         if (!anime) {
             return res.json({ exists: false, genreMatch: false });
