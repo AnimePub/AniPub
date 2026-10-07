@@ -202,8 +202,9 @@ DetailsRouter.post(["/anime/api/check","/api/check"], async (req, res) => {
             return res.status(400).json({ error: "Name and Genre are required" });
         }
 
-        // search by name case-insensitively (exact match)
-        const regex = new RegExp(`^${Name}$`, "i");
+        
+       const regex = new RegExp(`^${Name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, "i");
+
         const anime = await AnimeDB.find({ Name: regex });
 
         if (!anime) {
