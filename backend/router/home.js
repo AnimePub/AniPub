@@ -439,6 +439,6 @@ HomeRouter.get("/api/findByRating",async (req,res)=>{
     }
 })
 HomeRouter.get("/API",(req,res)=>{
-    res.json(["Docs https://api.anipub.xyz"])
+    res.json(["Docs https://api.anipub.org"])
 })
 module.exports = HomeRouter;

@@ -14,7 +14,7 @@ const PerChaseC = (name) => {
           <!-- Header -->
           <tr>
             <td style="background: linear-gradient(90deg, #ff4b5c, #4b0082); padding: 30px 20px; text-align: center;">
-              <img src="https://www.anipub.xyz/luffy5.png" alt="AniPub Logo" style="max-width: 140px; margin-bottom: 15px;">
+              <img src="https://www.anipub.org/luffy5.png" alt="AniPub Logo" style="max-width: 140px; margin-bottom: 15px;">
               <h1 style="color: #ffffff; font-size: 32px; margin: 0; text-transform: uppercase; letter-spacing: 2px;">PREMIUM ACTIVATED!</h1>
             </td>
           </tr>
@@ -42,7 +42,7 @@ const PerChaseC = (name) => {
                 <li style="margin-bottom: 12px; font-size: 16px;">Priority Support (24/7)</li>
               </ul>
 
-              <a href="https://www.anipub.xyz/Home" style="display: inline-block; background: linear-gradient(90deg, #ff4b5c, #ff1b6b); color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 15px rgba(255, 75, 92, 0.4);">
+              <a href="https://www.anipub.org/Home" style="display: inline-block; background: linear-gradient(90deg, #ff4b5c, #ff1b6b); color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 15px rgba(255, 75, 92, 0.4);">
                 Start Watching Now
               </a>
 
