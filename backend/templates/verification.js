@@ -1,118 +1,156 @@
+const escapeHtml = (str = "") =>
+  String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
 function mailBody(name, code) {
-    const temp = `
-<!DOCTYPE html>
-<html lang="en">
+  const safeName = escapeHtml(name);
+  const verifyUrl = `https://anipub.org/verify/${encodeURIComponent(code)}`;
+  const year = new Date().getFullYear();
+
+  return `<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verify Your Account</title>
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <title>Verify your AniPub account</title>
   <style>
-  p {
-    color:white;
-  }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #1C2526;
-      color: #E0E0E0;
+    body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+    body { margin: 0 !important; padding: 0 !important; width: 100% !important; }
+    a { text-decoration: none; }
+    @media only screen and (max-width: 620px) {
+      .container { width: 100% !important; }
+      .px { padding-left: 20px !important; padding-right: 20px !important; }
+      .btn a { display: block !important; }
     }
-    .container {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #2E3B3E;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
-    .header {
-      text-align: center;
-      padding: 20px 0;
-    }
-    .header h1 {
-      color: #00A3E0;
-      font-size: 28px;
-      margin: 0;
-    }
-    .header h2 {
-      color: #E0E0E0;
-      font-size: 20px;
-      margin: 10px 0;
-    }
-    .content {
-      padding: 20px;
-      text-align: center;
-    }
-    .verification-code {
-      display: inline-block;
-      background-color: #1C2526;
-      border: 2px solid #4B5EAA;
-      padding: 15px 30px;
-      border-radius: 8px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #00A3E0;
-      margin: 20px 0;
-    }
-    .instructions {
-      font-size: 16px;
-      line-height: 1.5;
-      color: #E0E0E0;
-    }
-    .instructions strong {
-      color: #00A3E0;
-    }
-    .security-notice {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #B0B0B0;
-    }
-    .security-notice a {
-      color: #00A3E0;
-      text-decoration: none;
-    }
-    .security-notice a:hover {
-      text-decoration: underline;
-    }
-    .footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      color: #B0B0B0;
-    }
-    .footer a {
-      color: #00A3E0;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    .footer a:hover {
-      text-decoration: underline;
+    @media (prefers-color-scheme: dark) {
+      .body-bg { background-color: #0F1417 !important; }
+      .card { background-color: #1A2226 !important; }
+      .text { color: #D5DBDE !important; }
+      .heading { color: #FFFFFF !important; }
+      .muted { color: #8F9BA0 !important; }
+      .divider { border-color: #2B373C !important; }
+      .link-box { background-color: #11181B !important; border-color: #2B373C !important; }
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>AniPub</h1>
-      <h2>Verify Your Account</h2>
-    </div>
-    <div class="content">
-      <p>Welcome, ${name}</p>
-      <p>You're one step away from unlocking the full experience on <strong>AniPub</strong>. Use the link below to confirm your account.</p>
-      <div class="verification-code">https://anipub.org/verify/${code}</div>
-      <p class="instructions">Enter this code on our website to verify your account. For security, this code will <strong>expire in 30 minutes</strong>.</p>
-      <p class="security-notice">If you didn’t request this code, please ignore this email or contact our support team at <a href="mailto:support@anipub.org">support@anipub.org</a>.</p>
-    </div>
-    <div class="footer">
-       <p>&copy; 2025 AniPub. All rights reserved.</p>
-      <p>AniPub, 123 Anime Lane, Fictional City, FC 12345</p>
-       <a href="https://www.anipub.org/Privacy-policy">Privacy Policy</a></p>
-    </div>
+<body class="body-bg" style="margin:0;padding:0;background-color:#F2F5F7;">
+
+  <!-- Preheader -->
+  <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">
+    Welcome to AniPub! Verify your account to get started. This link expires in 30 minutes.
+    &#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;
   </div>
+
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" class="body-bg" style="background-color:#F2F5F7;">
+    <tr>
+      <td align="center" style="padding:32px 12px;">
+
+        <table role="presentation" class="container" width="600" cellspacing="0" cellpadding="0" border="0" style="width:600px;max-width:600px;">
+
+          <!-- Header -->
+          <tr>
+            <td align="center" style="background-color:#111A1D;border-radius:12px 12px 0 0;padding:32px 24px;">
+              <div style="font-family:Arial,Helvetica,sans-serif;font-size:30px;font-weight:700;letter-spacing:1px;color:#FFFFFF;">
+                Ani<span style="color:#00A3E0;">Pub</span>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color:#00A3E0;height:4px;line-height:4px;font-size:0;">&nbsp;</td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td class="card px" style="background-color:#FFFFFF;padding:40px 40px 32px 40px;">
+
+              <h1 class="heading" style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:32px;font-weight:700;color:#111A1D;">
+                Verify your account
+              </h1>
+
+              <p class="text" style="margin:0 0 16px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#3B4A50;">
+                Welcome, ${safeName}!
+              </p>
+
+              <p class="text" style="margin:0 0 28px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;color:#3B4A50;">
+                You&rsquo;re one step away from the full <strong>AniPub</strong> experience.
+                Click the button below to confirm your account.
+              </p>
+
+              <!-- Button -->
+              <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" class="btn" style="margin:0 auto 28px auto;">
+                <tr>
+                  <td align="center" bgcolor="#00A3E0" style="border-radius:8px;">
+                    <a href="${verifyUrl}" target="_blank"
+                       style="display:inline-block;padding:15px 36px;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#FFFFFF;background-color:#00A3E0;border-radius:8px;">
+                      Verify My Account
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Expiry notice -->
+              <p class="text" style="margin:0 0 24px 0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:22px;color:#3B4A50;text-align:center;">
+                &#9201; For your security, this link will expire in <strong>30 minutes</strong>.
+              </p>
+
+              <!-- Fallback link -->
+              <p class="muted" style="margin:0 0 8px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:20px;color:#6B7A80;">
+                If the button doesn&rsquo;t work, copy and paste this link into your browser:
+              </p>
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="link-box" style="background-color:#F6F9FA;border:1px solid #E1E8EB;border-radius:6px;padding:12px 14px;font-family:Consolas,Menlo,monospace;font-size:12px;line-height:18px;word-break:break-all;">
+                    <a href="${verifyUrl}" target="_blank" style="color:#0086B8;">${verifyUrl}</a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Divider -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:32px 0 24px 0;">
+                <tr><td class="divider" style="border-top:1px solid #E1E8EB;font-size:0;line-height:0;">&nbsp;</td></tr>
+              </table>
+
+              <!-- Security notice -->
+              <p class="muted" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:21px;color:#6B7A80;">
+                <strong style="color:#3B4A50;">Didn&rsquo;t create an account?</strong>
+                You can safely ignore this email. If you have any concerns, contact us at
+                <a href="mailto:support@anipub.org" style="color:#0086B8;">support@anipub.org</a>.
+              </p>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td class="card px" align="center" style="background-color:#FFFFFF;border-top:1px solid #E1E8EB;border-radius:0 0 12px 12px;padding:24px 40px 28px 40px;">
+              <p class="muted" style="margin:0 0 10px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#8A979C;">
+                <a href="https://anipub.org" style="color:#6B7A80;">Website</a>
+                &nbsp;&bull;&nbsp;
+                <a href="https://www.anipub.org/Privacy-policy" style="color:#6B7A80;">Privacy Policy</a>
+                &nbsp;&bull;&nbsp;
+                <a href="mailto:support@anipub.org" style="color:#6B7A80;">Support</a>
+              </p>
+              <p class="muted" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#8A979C;">
+                &copy; ${year} AniPub. All rights reserved.<br>
+                This is an automated message &mdash; please do not reply directly.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
 </body>
-</html>
-`
-    return temp;
+</html>`;
 }
 
 module.exports = mailBody;
