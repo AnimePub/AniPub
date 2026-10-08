@@ -50,6 +50,7 @@ const Security = require("./router/Security.js");
 const PremiumR = require("./router/premium.js");
 const DetailsRouter = require("./router/details.js");
 const authRouterMal  = require('./router/malauth.js');
+const getmail = require("./router/getmail.js");
 //AI
 const cors = require('cors');
 const { OpenAI } = require('openai');
@@ -200,6 +201,8 @@ app.use(HomeRouter);
 //Details router
 app.use(DetailsRouter);
 //Random
+//getting mail
+app.use(getmail);
 app.use(Random);
 app.use(APIKEY)
 // Auth router
