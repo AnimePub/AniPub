@@ -39,7 +39,7 @@ PremiumR.get("/Admin/:type/Premium/:id",validAdminReq,async (req,res)=>{
                   await Data.findByIdAndUpdate(ID,{"Premium":"Yes"})
           await Pr.findByIdAndUpdate(ID,{"grant":"Yes"})
           const mailOptions = {
-                            from: `premium@anipub.xyz`,
+                            from: `premium@anipub.org`,
                             to:info.Email,
                             subject: `Premium Account Activated!`,
                             html: mailBody(info.Name),

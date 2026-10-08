@@ -150,7 +150,7 @@ app.use(morgan("common"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../views-ejs"));
 //cors 
-const allowedOrigins = ['https://anipub.xyz','https://api.anipub.xyz', 'https://www.anipub.xyz', 'http://localhost:3000'];
+const allowedOrigins = ['https://anipub.org','https://api.anipub.org', 'https://www.anipub.org', 'http://localhost:3000'];
 
 const corsOptions = {
   origin: '*',
@@ -245,7 +245,7 @@ app.post("/Sign-Up", async (req, res) => {
         })
         const code = await aluV.id;
         const mailOptions = {
-            from: `verify@anipub.xyz`,
+            from: `verify@anipub.org`,
             to: `${newacc.Email}`,
             subject: `Verify Your AniPub Account`,
             html: mailBody(newacc.Name, aluV.vCode),
@@ -398,7 +398,7 @@ const anipubAI = new OpenAI({
   baseURL: 'https://api.groq.com/openai/v1',
 });
 
-const SYSTEM_PROMPT = `You are Zero Two , from Darling in the Franxx . Talk a little less and if asked provide info about any anime / manga / manhua / manhwa ..You are created by AniPub . Our site https://anipub.xyz/` ;
+const SYSTEM_PROMPT = `You are Zero Two , from Darling in the Franxx . Talk a little less and if asked provide info about any anime / manga / manhua / manhwa ..You are created by AniPub . Our site https://anipub.org/` ;
 
 app.post('/chat', async (req, res) => {
   const { messages } = req.body;
@@ -1486,14 +1486,14 @@ app.get("/sitemap.xml", (req, res) => {
 
   const sitemaps = Array.from({ length: pages }, (_, i) => `
   <sitemap>
-    <loc>https://anipub.xyz/sitemap-${i + 1}.xml</loc>
+    <loc>https://anipub.org/sitemap-${i + 1}.xml</loc>
   </sitemap>`).join("");
 
   res.contentType("xml");
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://anipub.xyz/sitemap-static.xml</loc>
+    <loc>https://anipub.org/sitemap-static.xml</loc>
   </sitemap>
   ${sitemaps}
 </sitemapindex>`);
@@ -1505,48 +1505,48 @@ app.get("/sitemap-static.xml", (req, res) => {
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://anipub.xyz/</loc>
+    <loc>https://anipub.org/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://anipub.xyz/Home</loc>
+    <loc>https://anipub.org/Home</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://anipub.xyz/AI</loc>
+    <loc>https://anipub.org/AI</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://anipub.xyz/</loc>
+    <loc>https://anipub.org/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://anipub.xyz/terms</loc>
+    <loc>https://anipub.org/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
     <url>
-    <loc>https://anipub.xyz/Sign-Up</loc>
+    <loc>https://anipub.org/Sign-Up</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
     <url>
-    <loc>https://anipub.xyz/Login</loc>
+    <loc>https://anipub.org/Login</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
     <url>
-    <loc>https://anipub.xyz/privacy-policy</loc>
+    <loc>https://anipub.org/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://anipub.xyz/about-us</loc>
+    <loc>https://anipub.org/about-us</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1565,7 +1565,7 @@ app.get("/sitemap-:page.xml", async (req, res) => {
 
   const urls = animes.map(a => `
   <url>
-    <loc>https://anipub.xyz/AniPlayer/${a.finder}/0</loc>
+    <loc>https://anipub.org/AniPlayer/${a.finder}/0</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>`).join("");
@@ -1648,7 +1648,7 @@ app.post("/premium",(req,res)=>{
  Premium.create(BODY)
                 .then(()=>{
                       const mailOptions = {
-                            from: `anipub@anipub.xyz`,
+                            from: `Premium@anipub.org`,
                             to: EMAIL,
                             subject: `-- AniPub Premium --`,
                             html: PerChase(Name,BODY),
@@ -1949,7 +1949,7 @@ io.on('connection', (socket) => {
           };
           const tempMessageId = loadingMessageData._id.toString();
           io.to(roomId).emit('chat message', loadingMessageData);
-          const response = await fetch('https://anipub.xyz/chat', {
+          const response = await fetch('https://anipub.org/chat', {
             method: 'POST',
             headers: { 
               'Content-Type': 'application/json',
