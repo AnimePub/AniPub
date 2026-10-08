@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    background-image: url(Attack\ On\ Titan.jpg);
+    background-image: url(https://raw.githubusercontent.com/AnimePub/AniPub/refs/heads/main/Cover/QingXiao.jpg);
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -93,7 +93,11 @@ p {
 .logoA {
     width: 100%;
     object-fit: cover;
+    filter: brightness(1.2);
 
+}
+.logo{
+     filter: brightness(0);
 }
 
 .nameA {
@@ -104,10 +108,15 @@ p {
     font-family: Gruppo;
     font-weight: 600;
 }
-
+.name {
+     color: rgba(12, 11, 11, 0.856);
+}
+.slogan {
+    color: rgba(12, 11, 11, 0.856);
+}
 .sloganA {
     font-family: Tenali Ramakrishna;
-    color: rgba(255, 255, 255, 0.856);
+    color: rgba(12, 11, 11, 0.856);
 
     font-size: 18px;
     margin: 0;
@@ -268,4 +277,10 @@ form {
     font-size: 12px;
     font-family: Gruppo;
     font-weight: bold;
+}
+.about-us{
+    color: black;
+}
+.help-button {
+    color: black;
 }

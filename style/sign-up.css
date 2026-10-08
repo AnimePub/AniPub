@@ -1,6 +1,6 @@
 body {
     height: 100vh;
-    background-image: url(Attack\ On\ Titan.jpg);
+    background-image: url(https://raw.githubusercontent.com/AnimePub/AniPub/refs/heads/main/Cover/hiyuki.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -192,4 +192,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.logo{
+     filter: brightness(1.2);
 }
