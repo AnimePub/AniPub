@@ -31,6 +31,7 @@ const Vcode = require("./models/auth.js")
 const mailBody = require("./templates/verification.js");
 const PerChase = require("./templates/perchase.js");
 const resetCode = require("./templates/resetcode");
+const Recovery = require("./templates/recover");
 const OP = require("./Data/data");
 const PASSRECOVER = require("./models/PassChanger.js");
 
@@ -356,7 +357,7 @@ app.post("/Login", async (req, res) => {
                 } 
                 else if (info && info.AcStats === "Pending") {
                     res.json(`<p>This account is on Pending Stat Please Verify The Account first
-                    The Link Only Stays for 30 min ! 
+                    The Link Only Stays for 30 min ! Check Spam Folder if you don't find it  
                     </p>`)
                 } else {
                     res.json(["Could't find any account with this account"])
@@ -414,9 +415,48 @@ app.get("/Forget",(req,res)=>{
         });
     }
 })
+app.post("/passRec",async(req,res)=>{
+    const body = {
+        code : req.body.code,
+        email : req.body.email
+    }
+    if(body.code && body.email) {
+       
+        codeModel.find({email:body.email})
+        .then( async info=>{
+            if(info.length > 0 ) {
+                const data = await Data.find({"Email":body.email});
+                const Name = await data[0].Name;
+                if(info[0].code === Number(body.code)) {
+                    let secret = info[0]._id ;
+                     const mailOptions = {
+            from: `reset@anipub.org`,
+            to: `${body.email}`,
+            subject: `Recover and Reset Link for Your Password`,
+            html: Recovery(Name,secret,Number(body.code)),
+        }
+        transporter.sendMail(mailOptions, (err, DATAINFO) => {
+            console.log(DATAINFO);
+            if(err){
+                console.log(err)
+            }
+            res.json(1);
+        })
+                }
+            }
+            else {
+                res.json(0)
+            }
+        })
+
+
+
+    }
+})
+
 //Logout 
 
-app.post("/Forget",(req,res)=>{
+app.post("/Forget",async (req,res)=>{
     const code = Math.round(Math.random()*100000)
     let body = {
         code ,
@@ -440,7 +480,7 @@ app.post("/Forget",(req,res)=>{
             from: `reset@anipub.org`,
             to: `${body.email}`,
             subject: `Your Password Reset Code`,
-            html: resetCode(info.Name,body.email,body.code ),
+            html: resetCode(info[0].Name,body.email,body.code ),
         }
         transporter.sendMail(mailOptions, (err, DATAINFO) => {
             console.log(DATAINFO);

@@ -15,7 +15,7 @@ const codes = new Schema({
     }
  , createdAt: {
         type: Date,
-        expires: 345600,
+        expires: 1800,
         default: Date.now
 }
     })
