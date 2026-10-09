@@ -387,6 +387,31 @@ app.get("/Login", (req, res) => {
     }
 
 })
+
+app.get("/Forget",(req,res)=>{
+    const Token = req.cookies.anipub;
+    if (Token) {
+        jwt.verify(Token, JSONAUTH , (err, data) => {
+            if (err) {
+                console.log(err)
+            }
+
+            if (data.id) {
+                res.render("forgot", {
+                    Auth: true,
+                    Data: data.id,
+                    oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
+                });
+            }
+        })
+    } else {
+        res.render("forgot", {
+            Auth: false,
+            Data: "",
+            oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
+        });
+    }
+})
 //Logout 
 app.get("/logout", (req, res) => {
     req.session.destroy();
