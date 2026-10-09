@@ -25,10 +25,12 @@ const {globalLimiter} = require("./middleware/ratelimit.js")
 const bcrypt = require("bcrypt");
 require('dotenv').config();
 const mailChanger = require("./models/VERIFY.js")
+const codeModel = require("./models/codes")
 const nodemailer = require("nodemailer");
 const Vcode = require("./models/auth.js")
 const mailBody = require("./templates/verification.js");
 const PerChase = require("./templates/perchase.js");
+const resetCode = require("./templates/resetcode");
 const OP = require("./Data/data");
 const PASSRECOVER = require("./models/PassChanger.js");
 
@@ -413,6 +415,48 @@ app.get("/Forget",(req,res)=>{
     }
 })
 //Logout 
+
+app.post("/Forget",(req,res)=>{
+    const code = Math.round(Math.random()*100000)
+    let body = {
+        code ,
+        email : req.body.email
+    }
+    Data.find({Email:body.email})
+    .then( async info=>{
+        if(info.length > 0) {
+            codeModel.find({email:body.email})
+            .then( async anfo=>{
+                if(anfo.length > 0) {
+                     res.json(3)
+                }
+                else {
+                   const saved = await codeModel.create({
+                    email:body.email,
+                    code:Number(body.code),
+        })
+        let sav =  saved ;
+        const mailOptions = {
+            from: `reset@anipub.org`,
+            to: `${body.email}`,
+            subject: `Your Password Reset Code`,
+            html: resetCode(info.Name,body.email,body.code ),
+        }
+        transporter.sendMail(mailOptions, (err, DATAINFO) => {
+            console.log(DATAINFO);
+            if(err){
+                console.log(err)
+            }
+            res.json(1);
+        })
+                }
+            })
+        }
+        else {
+            res.json(0);
+        }
+    })
+})
 app.get("/logout", (req, res) => {
     req.session.destroy();
     res.cookie("anipub", "", {
