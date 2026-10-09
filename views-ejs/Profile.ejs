@@ -20,7 +20,8 @@
         <div class="profile-container">
             <div class="profile-card">
                 <div class="profile-header">
-                    <% let coverpic = `${userInfo.Cover}` ?? `/Esdeath.jpg`%>
+
+                    <%let coverpic ; if (userInfo.Cover !== undefined ){ coverpic = `${userInfo.Cover}`  } else { coverpic = `/Esdeath.jpg`}%>
                     <img src=<%=coverpic%> alt="Cover photo" class="profile-bg">
                     <div class="profile-img-container">
                         <img class="profile-img" <% if(userInfo.Gender === "Male") {%>
