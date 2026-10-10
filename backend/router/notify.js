@@ -3,7 +3,12 @@ const Notify = express.Router();
 const getID = require("../middleware/getcookieID");
 const JSONAUTH = process.env.jsonauth;
 const User = require('../models/model');
-
+const {
+    newList
+} = require("../models/list");
+const wpid = process.env.wpid;
+const wpkey = process.env.wpkey ;
+const msgekey = process.env.nkey ;
 Notify.get("/Notify/", (req, res) => {
     const query = req.query.active;
     if (query === "false" || query === "pending") {
@@ -94,4 +99,52 @@ Notify.get("/user/n/t2",async(req,res)=>{
         res.json("bro get a id first ");
     }
 })
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+Notify.get("/sentMsge",(req,res)=>{
+  const key = req.query.key;
+  if(msgekey === key) {
+  const ids = req.query.id ;
+  let id = ids.split(",");
+  let respi = "Sent";
+  let count = 0;
+  id = id.map(value=> Number(value))
+  User.find({"nStat":true}).select('-accessToken -GenreList -AcStats -Hide -userType -Bio -Image -Premium -profilePicture -malId -malProfile -malpicture -lastLogin -RelationshipStatus -BloodGroup -Cover -count -Gender -malusername -refreshToken -Password -googleId -List -Email -Address -tokenExpiresAt')
+      .lean()
+  .then(info=>{
+      let userArray = info ;
+      userArray.forEach( async value=>{
+        newList.find({"Owner":value._id,"AniID":{$in:id}})
+        .then( async anfu =>{
+          anfu.forEach(async alu=>{
+            count++;
+              await sleep(count * 10000)
+                 fetch(`https://app.wpsent.xyz/send?clientid=${wpid}&key=${wpkey}&to=${value.Number}`,{
+ method:"POST",
+          headers: {
+                        "Content-Type": "application/json"
+                    },
+        body:JSON.stringify({"message":`Hi ${value.Name}! The Anime you have saved in AniPub PlayList got a new Episode .. Check it out here ...Your last Watched Ep:${alu.Progress} now start from new Ep https://anipub.org/AniPlayer/${alu.AniID}/${alu.Progress}
+          This message is sent to you automatically .
+          
+          --Don't know why you get this message ? Please contact Admin
+          - abdullahaladnan95@gmail.com
+
+          `})
+        })
+        .then( resp => resp.json())
+        .then ( respi =>{
+          respi = respi
+        })
+          })
+         
+      })
+  })
+ 
+
+})
+ .then(aluu=> res.json(respi))
+}else {
+  res.json("Wrong Key Bro");
+}});
+
 module.exports = Notify;
