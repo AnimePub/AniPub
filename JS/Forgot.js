@@ -5,7 +5,7 @@ sb.addEventListener('click',async ()=>{
     const user = document.querySelector(".username");
     if(user.value.length <= 6) {
         wr.innerHTML = `
-        <span style="color:red";> Invalid Req <span>
+        <span style="color:red ; text-decoration: none;"> Invalid Req </span>
         `
         setTimeout(()=>{
             wr.innerHTML= ""
@@ -13,6 +13,8 @@ sb.addEventListener('click',async ()=>{
 
 }
 else {
+    wr.innerHTML = `<span id="sendingText">Sending Code<span style="color: #22c55e;">.</span></span>`;
+    animate("Sending Code","#22c55e")
    const wa = await fetch("/forget",{
         method:"POST",
           headers: {
@@ -25,7 +27,7 @@ else {
     let w =await wa.json();
     if(w === 3 || w === 0){
          wr.innerHTML = `
-        <span style="color:red";> User not Found <span>
+        <span style="color:red ; text-decoration: none;"> User not Found </span>
         `
         setTimeout(()=>{
             wr.innerHTML= ""
@@ -47,7 +49,7 @@ submit.addEventListener('click',async ()=>{
        const code = document.querySelector(".pass");
     if(user.value.length <= 6 && pass.length === 0) {
         wr.innerHTML = `
-        <span style="color:red";> Please Provide Something <span>
+        <span style="color:red;text-decoration: none;"> Please Provide Something </span>
         `
         setTimeout(()=>{
             wr.innerHTML= ""
@@ -55,6 +57,8 @@ submit.addEventListener('click',async ()=>{
 
 }
 else {
+     wr.innerHTML = `<span id="sendingText">Sending Link<span style="color: #22c55e;">.</span></span>`;
+    animate("Sending Link","#22c55e")
 const wa = await fetch("/passRec",{
         method:"POST",
           headers: {
@@ -68,7 +72,7 @@ const wa = await fetch("/passRec",{
 const w = await wa.json();
 if(w === 1 ) {
       wr.innerHTML = `
-        <span style="color:green " ;> Check Inbox <span>
+        <span style="color:green; text-decoration: none;" > Check Inbox </span>
         `
         setTimeout(()=>{
             wr.innerHTML= ""
@@ -76,7 +80,7 @@ if(w === 1 ) {
 }
 else {
       wr.innerHTML = `
-        <span style="color:red";> Invalid Req <span>
+        <span style="color:red;text-decoration: none;"> Invalid Req </span>
         `
         setTimeout(()=>{
             wr.innerHTML= ""
@@ -85,3 +89,13 @@ else {
 }
 
 })
+function animate (text,color) {
+    const element = document.getElementById('sendingText');
+        let dotCount = 0;
+
+        setInterval(() => {
+            dotCount = (dotCount + 1) % 4;
+            const dots = '.'.repeat(dotCount);
+            element.innerHTML = `${text}<span style="color:${color} ;">' + dots + '</span>`;
+        }, 500);
+}
