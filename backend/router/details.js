@@ -225,8 +225,13 @@ DetailsRouter.post(["/anime/api/check","/api/check"], async (req, res) => {
             const animeGenres = anime.Genres.map(g => String(g).toLowerCase());
             genreMatch = requested.some(r => animeGenres.includes(r));
         }
-
-        res.json({ exists: true, genreMatch });
+        if(anime.length > 0 ) {
+              res.json({ exists: true, genreMatch });
+        }
+        else{
+  res.json({ exists: false, genreMatch });
+        }
+      
     } catch (err) {
         console.error("Error in /api/check route:", err);
         res.status(500).json({ error: "Internal server error" });
