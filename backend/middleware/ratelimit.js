@@ -42,5 +42,21 @@ const infoLimiter = rateLimit({
   message: { error: 'Too many info requests.' },
   keyGenerator: (req) => getClientIP(req),
 });
+const netifyRate = rateLimit({
+  windowMs: 60 * 60,
+  max: 10,
+   standardHeaders: true,                   
+  legacyHeaders: false,     
+  message: { error: 'Too many number change req requests.' },
+  keyGenerator: (req) => getClientIP(req),
+});
+const reseter = rateLimit({
+  windowMs: 60 * 60,
+  max: 10,
+   standardHeaders: true,                   
+  legacyHeaders: false,     
+  message: { error: 'Too many number change req requests.' },
+  keyGenerator: (req) => getClientIP(req),
+});
 
-module.exports = { globalLimiter, streamLimiter, infoLimiter };
+module.exports = { globalLimiter, streamLimiter, infoLimiter , netifyRate,reseter };

@@ -21,7 +21,7 @@ const {
 } = require("./middleware/valideAcc.js");
 const getID = require("./middleware/getcookieID.js");
 //rate limiter
-const {globalLimiter} = require("./middleware/ratelimit.js")
+const {globalLimiter,reseter} = require("./middleware/ratelimit.js")
 const bcrypt = require("bcrypt");
 require('dotenv').config();
 const mailChanger = require("./models/VERIFY.js")
@@ -415,7 +415,7 @@ app.get("/Forget",(req,res)=>{
         });
     }
 })
-app.post("/passRec",async(req,res)=>{
+app.post("/passRec",reseter,async(req,res)=>{
     const body = {
         code : req.body.code,
         email : req.body.email
@@ -456,7 +456,7 @@ app.post("/passRec",async(req,res)=>{
 
 //Logout 
 
-app.post("/Forget",async (req,res)=>{
+app.post("/Forget",reseter,async (req,res)=>{
     const code = Math.round(Math.random()*100000)
     let body = {
         code ,

@@ -9,7 +9,8 @@ const {
 const wpid = process.env.wpid;
 const wpkey = process.env.wpkey ;
 const msgekey = process.env.nkey ;
-Notify.get("/Notify/", (req, res) => {
+const {netifyRate} = require("../middleware/ratelimit.js")
+Notify.get("/Notify/", netifyRate, (req, res) => {
     const query = req.query.active;
     if (query === "false" || query === "pending") {
         const Msge = ["A Link Have been sent to your email account", "Please Verify it within 30min"]
@@ -34,7 +35,7 @@ Notify.get("/Notifications",async(req,res)=>{
       .lean();
     res.render("notifications",{alu:"notify",userData,Number:userData.Number});
 })
-Notify.post("/user/number",async(req,res)=>{
+Notify.post("/user/number",netifyRate,async(req,res)=>{
       const id = await getID(req,JSONAUTH);
       if(id){
       let number = req.body.number;
@@ -47,7 +48,10 @@ Notify.post("/user/number",async(req,res)=>{
         }
       
         number = Number(number)
-        User.findByIdAndUpdate({
+        User.find({"Number":number})
+        .then(alu =>{
+          if(alu.length>0 ) {
+  User.findByIdAndUpdate({
         _id:id
       },{
         Number:Number(number),
@@ -57,6 +61,12 @@ Notify.post("/user/number",async(req,res)=>{
       .then(tes=>{
         res.json([0]);
       })
+          }
+          else {
+            res.json(0)
+          }
+        })
+      
     }else {
         res.json([1])
     }
@@ -65,7 +75,7 @@ Notify.post("/user/number",async(req,res)=>{
         res.json("Bro Do you have id ?");
       }
 })
-Notify.get("/user/n/t1",async(req,res)=>{
+Notify.get("/user/n/t1",netifyRate,async(req,res)=>{
       const id = await getID(req,JSONAUTH);
     if(id) {
         User.findByIdAndUpdate({
@@ -82,7 +92,7 @@ Notify.get("/user/n/t1",async(req,res)=>{
         res.json("bro get a id first ");
     }
 })
-Notify.get("/user/n/t2",async(req,res)=>{
+Notify.get("/user/n/t2",netifyRate,async(req,res)=>{
       const id = await getID(req,JSONAUTH);
     if(id) {
         User.findByIdAndUpdate({
