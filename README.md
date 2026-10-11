@@ -9,7 +9,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/AnimePub/AniPub?style=for-the-badge&logo=github&color=blue)](https://github.com/AnimePub/AniPub/network/members)
 [![GitHub Watchers](https://img.shields.io/github/watchers/AnimePub/AniPub?style=for-the-badge&logo=github&color=orange)](https://github.com/AnimePub/AniPub/watchers)
 [![License: GPL-3.0](https://img.shields.io/github/license/AnimePub/AniPub?style=for-the-badge&logo=gnu&color=purple)](https://github.com/AnimePub/AniPub/blob/main/LICENSE)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fanipub.xyz&style=for-the-badge&logo=google-chrome&color=cyan&label=Live%20Site)](https://anipub.org)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fanipub.org&style=for-the-badge&logo=google-chrome&color=cyan&label=Live%20Site)](https://anipub.org)
 
 
 Welcome to **AniPub**, the modern, ad-free, and privacy-first anime streaming platform built for true otakus. Dive into a vast multiverse of anime without distractions, trackers, or interruptions. Powered by a passionate community, AniPub combines blazing-fast performance, intuitive design, and innovative features like AI assistance to redefine how you watch, discover, and connect over anime.
@@ -281,7 +281,7 @@ For quick setups:
 Example API Endpoint (for developers): `/api/anime/search?q=onepiece` – Returns JSON results.
 
 ## API Documentation
-AniPub provides public API endpoints for accessing anime data. Base URLs: `https://api.anipub.xyz` or `https://www.anipub.xyz`. No authentication required—all endpoints are open.
+AniPub provides public API endpoints for accessing anime data. Base URLs: `https://api.anipub.org` or `https://www.anipub.org`. No authentication required—all endpoints are open.
 
 | Endpoint | Method | Description | Parameters | Response (JSON Example) |
 |----------|--------|-------------|------------|-------------------------|
@@ -291,12 +291,12 @@ AniPub provides public API endpoints for accessing anime data. Base URLs: `https
 | **/anime/api/details/:id** | GET | Get full details including MAL (Jikan) data and characters. | `id` (integer) | `{ "local": {...}, "jikan": {...}, "characters": [{ "character": {...}, "role": "Main", "voice_actors": [] }, ...] }` |
 | **/api/check** | POST | Check if anime name and genre exist. | Body: `{ "Name": "string", "Genre": "string or array" }` | `{ "nameMatch": true, "genreMatch": true, ... }` |
 
-- **Image URLs**: Prepend `https://anipub.xyz/` if paths are relative.
+- **Image URLs**: Prepend `https://anipub.org/` if paths are relative.
 - **Error Codes**: 200 OK, 400 Bad Request, 404 Not Found, 500 Server Error.
 - **Rate Limiting**: May apply for heavy use.
 - **MAL Integration**: Uses Jikan API for MAL data in `/anime/api/details/:id` and frontend /details/animename pages, even without user-specific MAL connection.
 
-For more details, visit [api.anipub.xyz](https://api.anipub.xyz).
+For more details, visit [api.anipub.org](https://api.anipub.org).
 
 ## Contributing
 We love contributions! Whether it's bug fixes, new features, or UI tweaks:

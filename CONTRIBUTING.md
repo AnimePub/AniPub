@@ -81,7 +81,7 @@ All skill levels are welcome! If you're not sure where to start, check the [issu
 ## 💸 Support AniPub
 
 AniPub is powered by open source and community support.  
-If you’d like to help with hosting and development costs, see donation links on the [main site](https://anipub.xyz) or repo.
+If you’d like to help with hosting and development costs, see donation links on the [main site](https://anipub.org) or repo.
 
 ---
 
