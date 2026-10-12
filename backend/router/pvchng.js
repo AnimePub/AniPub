@@ -186,19 +186,23 @@ Settings.post("/change/pass",(req,res)=>{
     const code = req.body.code ;
 
       jwt.verify(secretCode,ResetSecret , (err, data) => {
-        if(err){
+       console.log(data) 
+       if(err){
             console.log(err);
             res.json(0);
         }
+        
         else {
-            codeModel.find({"_id":data.id})
+            codeModel.find({_id:data.id})
             .then(async info=>{
                 if(info.length > 0) {
-                    if(info[0].code === code) {
+                    
+                    if(info[0].code === Number(code)) {
                 const Salt = await bcrypt.genSalt();
                 const HashedPass = await bcrypt.hash(pass, Salt);
                 const ip = req.ip;
-                        Data.findByIdAndUpdate({Email:info[0].email},{
+               
+                        Data.findOneAndUpdate({Email:info[0].email},{
                               Password: HashedPass
                         })
                             .then(async anfo => {

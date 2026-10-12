@@ -66,10 +66,13 @@
             <div class="form">
             <%if(forget===1){%>
                   <div class="pass-div">
-                    <input class="pass" name="Password" type="password" placeholder="Code" id="code" minlength="8">
+                    <input class="pass" name="Password" type="password" placeholder="Please paste your new password" id="code" minlength="8">
                 </div>
                    <button class="login-button submit-btn">Submit</button>
-                <script>
+                 <div class="Hulu">
+                    <a target="_blank" style="text-decoration-color: rgba(245, 245, 245, 0.664); color:rgba(255, 255, 255, 0.808) ; font-size: 17px;" href="/Login" style="display: block;">Go Back</a>
+                </div>
+               <script>
                     const submit = document.querySelector(".submit-btn");
                     submit.addEventListener('click',async ()=>{
                         const pass = document.querySelector(".pass").value ;
@@ -86,7 +89,13 @@
         }     )       
     })
     const w = wa.json();
-
+    if(w === 1) {
+        alert("Password Successfully Changed .. Check Email");
+        window.location.href = "https://anipub.org/Login";
+    }
+    else {
+          alert("Password Couldn't be Changer");
+    }
 
 
 
