@@ -15,7 +15,7 @@ const AUTHSMTP = process.env.auth;
 const mailBody = require("../templates/Chverification.js");
 const nodemailer = require("nodemailer")
 const PASSWORD = process.env.pass;
-const jwt = require("jsonwebtoken")
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.resend.com',
     port: 2465,
