@@ -181,9 +181,9 @@ Settings.post("/data/change", (req, res) => {
 
 
 Settings.post("/change/pass",(req,res)=>{
-    const pass = req.query.pass;
-    const secretCode = req.query.secretCode;
-    const code = req.query.code ;
+    const pass = req.body.pass;
+    const secretCode = req.body.secretCode;
+    const code = req.body.code ;
 
       jwt.verify(secretCode,ResetSecret , (err, data) => {
         if(err){
