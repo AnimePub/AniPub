@@ -2333,6 +2333,15 @@ io.on('connection', (socket) => {
   });
 });
 
+//health 
+app.get("/health",(req,res)=>{
+    res.json(`server running smothly
+        - Project AniPub
+        - Base : anipub.org
+        - Maintainer : Adnan
+        - Mail : mail@anipub.org or abdullahaladnan95@gmail.com
+        `)
+})
 // Redirect 404
 app.use("*", (req, res) => {
     res.status(404).render("404")
