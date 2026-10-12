@@ -403,6 +403,7 @@ app.get("/Forget",(req,res)=>{
                 res.render("forgot", {
                     Auth: true,
                     Data: data.id,
+                    forget : 2,
                     oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
                 });
             }
@@ -411,6 +412,7 @@ app.get("/Forget",(req,res)=>{
         res.render("forgot", {
             Auth: false,
             Data: "",
+            forget:2,
             oauthEnabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET)
         });
     }
