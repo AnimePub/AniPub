@@ -1,3 +1,5 @@
+const codeModel = require("../models/codes")
+let ResetSecret = process.env.ResetSecret;
 const express = require("express");
 const Settings = express.Router();
 const jwt = require("jsonwebtoken");
@@ -13,7 +15,7 @@ const AUTHSMTP = process.env.auth;
 const mailBody = require("../templates/Chverification.js");
 const nodemailer = require("nodemailer")
 const PASSWORD = process.env.pass;
-
+const jwt = require("jsonwebtoken")
 const transporter = nodemailer.createTransport({
     host: 'smtp.resend.com',
     port: 2465,
@@ -175,6 +177,77 @@ Settings.post("/data/change", (req, res) => {
             }
         })
     }
+})
+
+
+Settings.post("/change/pass",(req,res)=>{
+    const pass = req.query.pass;
+    const secretCode = req.query.secretCode;
+    const code = req.query.code ;
+
+      jwt.verify(secretCode,ResetSecret , (err, data) => {
+        if(err){
+            console.log(err);
+            res.json(0);
+        }
+        else {
+            codeModel.find({"_id":data.id})
+            .then(async info=>{
+                if(info.length > 0) {
+                    if(info[0].code === code) {
+                const Salt = await bcrypt.genSalt();
+                const HashedPass = await bcrypt.hash(pass, Salt);
+                const ip = req.ip;
+                        Data.findByIdAndUpdate({Email:info[0].email},{
+                              Password: HashedPass
+                        })
+                            .then(async anfo => {
+                        if(anfo) {
+                            console.log(`${anfo.id} requested a password change`)
+                            const KEY = generateKey(anfo.id);
+                            const mailOptions = {
+                            from: `security@anipub.org`,
+                            to: anfo.Email,
+                            subject: `Your AniPub Account Pass Have Been Changed`,
+                            html: passwordMsge(anfo.Name,anfo.Email,KEY,ip),
+                            }
+                           await PASSRECOVER.create({
+                                _id:anfo.id,
+                                KEY:KEY,
+                            })
+                             transporter.sendMail(mailOptions, (err, DATAINFO) => { 
+                                if(err) {
+                                    console.log(err)
+                                }
+                                else {
+                                      res.json(1)
+                                }
+                               
+                               
+                             })
+
+                        }
+                        else {
+                            res.json(0)
+                        }
+                       
+
+                    })
+
+
+                    }
+                    else {
+                        res.json(0);
+                    }
+                }
+                else {
+                    res.json(0)
+                }
+            })
+        }
+    }
+
+)
 })
 
 

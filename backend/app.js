@@ -59,7 +59,7 @@ const cors = require('cors');
 const { OpenAI } = require('openai');
 
 const JSONAUTH = process.env.jsonauth;
-
+let ResetSecret = process.env.ResetSecret;
 
 const AUTHSMTP = process.env.auth;
 
@@ -415,6 +415,14 @@ app.get("/Forget",(req,res)=>{
         });
     }
 })
+const Tokenreset = (id) => {
+    return jwt.sign({
+        id
+    }, ResetSecret , {
+        expiresIn: 60 * 30* 60
+    });
+}
+
 app.post("/passRec",reseter,async(req,res)=>{
     const body = {
         code : req.body.code,
@@ -428,7 +436,7 @@ app.post("/passRec",reseter,async(req,res)=>{
                 const data = await Data.find({"Email":body.email});
                 const Name = await data[0].Name;
                 if(info[0].code === Number(body.code)) {
-                    let secret = info[0]._id ;
+                    let secret = Tokenreset(info[0]._id) ;
                      const mailOptions = {
             from: `reset@anipub.org`,
             to: `${body.email}`,
@@ -453,8 +461,6 @@ app.post("/passRec",reseter,async(req,res)=>{
 
     }
 })
-
-//Logout 
 
 app.post("/Forget",reseter,async (req,res)=>{
     const code = Math.round(Math.random()*100000)
@@ -497,6 +503,8 @@ app.post("/Forget",reseter,async (req,res)=>{
         }
     })
 })
+
+//Logout
 app.get("/logout", (req, res) => {
     req.session.destroy();
     res.cookie("anipub", "", {

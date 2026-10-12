@@ -59,8 +59,37 @@
             </div> <% if(Auth=== false) { %>
             <p class="warning"></p>
             <div class="form">
+            <%if(forget===1){%>
+                  <div class="pass-div">
+                    <input class="pass" name="Password" type="password" placeholder="Code" id="code" minlength="8">
+                </div>
+                   <button class="login-button submit-btn">Submit</button>
+                <script>
+                    const submit = document.querySelector(".submit-btn");
+                    submit.addEventListener('click',async ()=>{
+                        const pass = document.querySelector(".pass").value ;
+                          const wa = await fetch("/change/pass",{
+        method:"POST",
+          headers: {
+                        "Content-Type": "application/json"
+                    },
+        body:JSON.stringify({
+            pass : pass, 
+            secretCode : window.location.href.split("/")[4],
+            code : document.location.href.split("/")[5]
 
-                <div class="username-div">
+        }     )       
+    })
+    const w = wa.json();
+
+
+
+
+                    })
+
+                </script>
+                   <%} else {%>
+                       <div class="username-div">
                     <input name="Email" class="username" type="email" placeholder="Username or Email" id="mail">
                    
                 </div> 
@@ -75,12 +104,15 @@
 
                 <button class="login-button submit-btn">Submit</button>
 
+            <script src="Forgot.js"></script>
+                <%}%>
+             
+
             </div>
             
            
           
 
-            <script src="Forgot.js"></script>
 
             <% } else { %>
             <div class="logout-div" data-id="<%=Data %> ">
