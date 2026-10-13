@@ -28,12 +28,27 @@ Notify.get("/Notify/", netifyRate, (req, res) => {
 })
 
 Notify.get("/Notifications",async(req,res)=>{
-   
-     const id = await getID(req,JSONAUTH);
+    const Token = req.cookies.anipub;
+    let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
+//instead of doing it like .. we pick randomly .. now it looks fine 
+  const id = await getID(req,JSONAUTH);
     const userData = await User.findById(id)
       .select('-accessToken -refreshToken -Password -googleId -List -Email -Address -tokenExpiresAt')
       .lean();
-    res.render("notifications",{alu:"notify",userData,Number:userData.Number});
+    if (Token) {
+        jwt.verify(Token, JSONAUTH, (err, data) => {
+            if (err) {
+                console.log(err);
+                res.redirect("/Login")
+            }
+else { res.render("notifications",{alu:"notify",userData,Number:userData.Number});
+
+}
+})    
+
+        } else {
+       res.redirect("/Login");
+    }
 })
 Notify.post("/user/number",netifyRate,async(req,res)=>{
       const id = await getID(req,JSONAUTH);
