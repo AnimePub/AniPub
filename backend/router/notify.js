@@ -10,6 +10,7 @@ const {
 const wpid = process.env.wpid;
 const wpkey = process.env.wpkey ;
 const msgekey = process.env.nkey ;
+const {AuthAccJson} = require("../middleware/valideAcc")
 const {netifyRate} = require("../middleware/ratelimit.js")
 Notify.get("/Notify/", netifyRate, (req, res) => {
     const query = req.query.active;
@@ -50,7 +51,7 @@ else { res.render("notifications",{alu:"notify",userData,Number:userData.Number}
        res.redirect("/Login");
     }
 })
-Notify.post("/user/number",netifyRate,async(req,res)=>{
+Notify.post("/user/number",netifyRate,AuthAccJson,async(req,res)=>{
       const id = await getID(req,JSONAUTH);
       if(id){
       let number = req.body.number;
@@ -90,7 +91,7 @@ Notify.post("/user/number",netifyRate,async(req,res)=>{
         res.json("Bro Do you have id ?");
       }
 })
-Notify.get("/user/n/t1",netifyRate,async(req,res)=>{
+Notify.get("/user/n/t1",netifyRate,AuthAccJson,async(req,res)=>{
       const id = await getID(req,JSONAUTH);
     if(id) {
         User.findByIdAndUpdate({
@@ -107,7 +108,7 @@ Notify.get("/user/n/t1",netifyRate,async(req,res)=>{
         res.json("bro get a id first ");
     }
 })
-Notify.get("/user/n/t2",netifyRate,async(req,res)=>{
+Notify.get("/user/n/t2",netifyRate,AuthAccJson,async(req,res)=>{
       const id = await getID(req,JSONAUTH);
     if(id) {
         User.findByIdAndUpdate({

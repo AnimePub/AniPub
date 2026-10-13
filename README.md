@@ -51,7 +51,8 @@ AniPub is packed with features designed to enhance your anime experience:
 - **Search & Discovery**: Advanced search with by Genres or Names upto 8k+ Anime .
 - **Secure Chat (/chat)**: Real-time communication between users with secure sessions to discuss anime, share recommendations, or connect with fellow otakus.
 - **MyAnimeList (MAL) Integration**: Connect your MyAnimeList account in settings to sync watchlists, ratings, and progress seamlessly. Uses secure sessions and stores connection info in the user database for validation and data modification. Even if not connected, AniPub uses the Jikan API (unofficial MAL API) to fetch and display detailed anime information on the /details/animename page.
-
+- **WPSent Integration** : WPsent let's us sent you Automatic Anime Updates to your Whatsapp number
+- **Commex**: Let's us manage comments 
 ## Why AniPub?
 In a world flooded with ad-riddled streaming sites, AniPub stands out as a beacon for anime lovers. Born from frustration with bloated platforms, it's crafted with:
 - **Community at Heart**: Open-source contributions drive innovation.
@@ -297,7 +298,11 @@ AniPub provides public API endpoints for accessing anime data. Base URLs: `https
 - **MAL Integration**: Uses Jikan API for MAL data in `/anime/api/details/:id` and frontend /details/animename pages, even without user-specific MAL connection.
 
 For more details, visit [api.anipub.org](https://api.anipub.org).
+Or Simple you can use our npm package 
+```bash
+npm install anipub
 
+```
 ## Contributing
 We love contributions! Whether it's bug fixes, new features, or UI tweaks:
 - Check `CONTRIBUTING.md` for guidelines.
