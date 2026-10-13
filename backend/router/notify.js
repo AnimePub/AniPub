@@ -3,6 +3,7 @@ const Notify = express.Router();
 const getID = require("../middleware/getcookieID");
 const JSONAUTH = process.env.jsonauth;
 const User = require('../models/model');
+const jwt = require("jsonwebtoken")
 const {
     newList
 } = require("../models/list");
@@ -29,8 +30,6 @@ Notify.get("/Notify/", netifyRate, (req, res) => {
 
 Notify.get("/Notifications",async(req,res)=>{
     const Token = req.cookies.anipub;
-    let linkI = `/account_circle_24dp_000000_FILL0_wght400_GRAD0_opsz24.svg`;
-//instead of doing it like .. we pick randomly .. now it looks fine 
   const id = await getID(req,JSONAUTH);
     const userData = await User.findById(id)
       .select('-accessToken -refreshToken -Password -googleId -List -Email -Address -tokenExpiresAt')
