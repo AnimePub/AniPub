@@ -30,11 +30,12 @@ Notify.get("/Notify/", netifyRate, (req, res) => {
 
 Notify.get("/Notifications",async(req,res)=>{
     const Token = req.cookies.anipub;
-  const id = await getID(req,JSONAUTH);
+  
+    if (Token) {
+      const id = await getID(req,JSONAUTH);
     const userData = await User.findById(id)
       .select('-accessToken -refreshToken -Password -googleId -List -Email -Address -tokenExpiresAt')
       .lean();
-    if (Token) {
         jwt.verify(Token, JSONAUTH, (err, data) => {
             if (err) {
                 console.log(err);
