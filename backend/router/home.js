@@ -104,7 +104,7 @@ HomeRouter.get("/Home", async (req, res) => {
     })
 })
 HomeRouter.get("/api/getHome",async(req,res)=>{
-    const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"$ep"}}).sort({
+    const animeDb = await AnimeDB.find({},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({
         updatedAt: -1
     }).limit(20);
     let ArrayList =[];
@@ -120,7 +120,7 @@ HomeRouter.get("/api/getHome",async(req,res)=>{
             $in: DBarray
         }
     })
-     AnimeDB.find({"Status":"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,epCount:{$size:"$ep"}}).sort({createdAt:-1}).limit(10)
+     AnimeDB.find({"Status":"Ongoing"},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1}).sort({createdAt:-1}).limit(10)
     .then(Airing=>{
     res.json({
             Anime: animeDb,
@@ -128,6 +128,13 @@ HomeRouter.get("/api/getHome",async(req,res)=>{
             Airing})
     })
 })
+})
+
+HomeRouter.get("/api/slides",(req,res)=>{
+        slider.find({"_id":1})
+        .then(info=>{
+            res.json(info)
+        })
 })
 HomeRouter.get("/Slider/:id1/:id2/:id3/:id4",validAdminReqJs,(req,res)=>{
     const id1 = Number(req.params.id1);
