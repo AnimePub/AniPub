@@ -476,6 +476,7 @@ const KeyGen = (id) => {
 }
 
 HomeRouter.get("/getDet",(req,res)=>{
+     const Token = req.cookies.anipub;
      if (Token) {
         jwt.verify(Token, JSONAUTH, (err, data) => {
             if (err) {
