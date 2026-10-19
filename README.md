@@ -17,10 +17,21 @@ Welcome to **AniPub**, the modern, ad-free, and privacy-first anime streaming pl
 Whether you're binge-watching classics like *One Piece* or exploring hidden gems, AniPub is your gateway to an endless anime adventure. Open-source, extensible, and community-driven—join us in shaping the future of anime streaming!
 
 ```
-Currenlty we aren't able to block Ads by 100% .. it should be arround 97~100 % ..
+Currenlty we aren't able to block Ads by 100% in our Website.. it should be blocked arround 97~100 % ..
 Working on Providing complete Ad Free Service to you all 
-But our AniPub is Completely Ad Free and which we will be publishing soon 
+Our AniPub Mobile App is Completely Ad Free .. Download it From The Link Bellow to Enjoy Ad Free Anime episodes and download them to play when you are out of Internet  
 ```
+----
+
+**Download AniPub**
+
+<p align="center">
+  <a href="https://github.com/AnimePub/AniPub-APP/raw/master/app/release/app-release.apk" target="_blank">
+    <img src="https://img.shields.io/badge/Download-APK-4CAF50?style=for-the-badge&logo=android&logoColor=white" alt="Download APK" width="220" />
+  </a>
+</p>
+
+- [AniPub App Github Repo](https://github.com/AnimePub/AniPub-App/)
 ## Table of Contents
 - [Features](#features)
 - [Why AniPub?](#why-anipub)
