@@ -451,29 +451,20 @@ HomeRouter.get("/api/findByRating",async (req,res)=>{
 HomeRouter.get("/API",(req,res)=>{
     res.json(["Docs https://api.anipub.org"])
 })
-HomeRouter.post("/sign-in/id",(req,res)=>{
-    let id = req.body.id;
-    if (id) {
-        Device.find({_id:id})
-        .then(info=>{
-            if(info.length >0) {
-                Device.create({
-                    _id:id,
-                    type:"Guest"
-                })
-                .then (alu =>{
-                      res.json([{success:true}])
-                })
-            }   
-            else {
-                  res.json([{success:true}])
-            }
-        })
+
+//appp 
+HomeRouter.post("/sign-in/id", async (req, res) => {
+    const id = req.body.id;
+    if (!id) return res.json([{ success: false }]);
+    try {
+        const exists = await Device.findById(id);
+        if (!exists) await Device.create({ _id: id, type: "Guest", downloads: 0 });
+        res.json([{ success: true }]);
+    } catch (e) {
+        console.log(e);
+        res.json([{ success: false }]);
     }
-    else {
-        res.json([{success:false}])
-    }
-})
+});
 
 ////let's make it for 1 year heh ..
 const KeyGen = (id) => {
@@ -510,44 +501,35 @@ HomeRouter.get("/getDet",(req,res)=>{
          res.json([{Token:false}])
     }
 })
-HomeRouter.post("/should/download",(req,res)=>{
-    const id = req.body.id;
-    const token = req.body.aToken;
-    if(id && token ) {
-           jwt.verify(token, apikey , (err, data) => { 
-                if(err) {
-                      res.json([{success:false}])
-                }
-                else {
-                    Device.find({_id:id})
-                    .then(info=>{
-                        if(info[0].type === "Guest") {
-                            Device.findByIdAndUpdate(id,{
-                            type : "Member",
-                             $inc: { downloads: 1 }
-                        })
-                           .then(aluu =>{
-                            res.json([{downloads: aluu.downloads}])
-                        })
+HomeRouter.post("/api/downloads/check", async (req, res) => {
+    const { id, aToken } = req.body;
+    if (!id) return res.json([{ success: false }]);
+    try {
+        // If a logged-in token is sent, link this device to the account (no limit).
+        if (aToken) {
+            const data = jwt.verify(aToken, apikey);
+            await Device.findByIdAndUpdate(id, { type: "Member", userId: data.id });
+        }
 
-                        }
-                        else {
-                             Device.findByIdAndUpdate(id,{
-                             $inc: { downloads: 1 }
-                        })
-                        .then(aluu =>{
-                            res.json([{downloads: aluu.downloads}])
-                        })
-                        }
-                        
-                    })
-                }
-           }
-        )
+        const dev = await Device.findById(id);
+        if (!dev) return res.json([{ success: false }]);
+
+        if (dev.type === "Guest") {
+            // Atomic: only increments while under 5, so two fast requests can't both pass.
+            const u = await Device.findOneAndUpdate(
+                { _id: id, type: "Guest", downloads: { $lt: 5 } },
+                { $inc: { downloads: 1 } },
+                { new: true }
+            );
+            if (!u) return res.json([{ msge: "login" }]);
+            return res.json([{ success: true, downloads: u.downloads }]);
+        }
+
+        const u = await Device.findByIdAndUpdate(id, { $inc: { downloads: 1 } }, { new: true });
+        res.json([{ success: true, downloads: u.downloads }]);
+    } catch (e) {
+        console.log(e);
+        res.json([{ success: false }]);
     }
-    else {
-         res.json([{success:false}])
-    }
-    
-})
+});
 module.exports = HomeRouter;
