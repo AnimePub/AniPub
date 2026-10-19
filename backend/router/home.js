@@ -7,6 +7,8 @@ const Data = require("../models/model");
 const AnimeDB = require("../models/AniDB.js");
 const JSONAUTH = process.env.jsonauth;
 const isKeyValid = require("../middleware/validkey.js");
+const Device = require("../models/download");
+const apikey = process.env.apikey;
 
 const validAdminReqJs = require("../middleware/validReqfAdmin.js");
 HomeRouter.get("/", (req, res) => {
@@ -448,5 +450,104 @@ HomeRouter.get("/api/findByRating",async (req,res)=>{
 
 HomeRouter.get("/API",(req,res)=>{
     res.json(["Docs https://api.anipub.org"])
+})
+HomeRouter.post("/sign-in/id",(req,res)=>{
+    let id = req.body.id;
+    if (id) {
+        Device.find({_id:id})
+        .then(info=>{
+            if(info.length >0) {
+                Device.create({
+                    _id:id,
+                    type:"Guest"
+                })
+                .then (alu =>{
+                      res.json([{success:true}])
+                })
+            }   
+            else {
+                  res.json([{success:true}])
+            }
+        })
+    }
+    else {
+        res.json([{success:false}])
+    }
+})
+
+////let's make it for 1 year heh ..
+const KeyGen = (id) => {
+    return jwt.sign({
+        id
+    }, apikey , {
+        expiresIn:  31536000
+    });
+}
+
+HomeRouter.get("/getDet",(req,res)=>{
+     if (Token) {
+        jwt.verify(Token, JSONAUTH, (err, data) => {
+            if (err) {
+                console.log(err);
+                res.json([{Token:false}])
+            }
+            else {
+                  Data.findById(`${data.id}`)
+                .then((info) => {
+                    let link = info.Image;
+                    let name = info.Name;
+                    let aToken = KeyGen(info._id);
+                    res.json([
+                        {
+                            link,name,aToken
+                        }
+                    ])
+            })
+        }
+        })
+    }
+    else {
+         res.json([{Token:false}])
+    }
+})
+HomeRouter.post("/should/download",(req,res)=>{
+    const id = req.body.id;
+    const token = req.body.aToken;
+    if(id && token ) {
+           jwt.verify(token, apikey , (err, data) => { 
+                if(err) {
+                      res.json([{success:false}])
+                }
+                else {
+                    Device.find({_id:id})
+                    .then(info=>{
+                        if(info[0].type === "Guest") {
+                            Device.findByIdAndUpdate(id,{
+                            type : "Member",
+                             $inc: { downloads: 1 }
+                        })
+                           .then(aluu =>{
+                            res.json([{downloads: aluu.downloads}])
+                        })
+
+                        }
+                        else {
+                             Device.findByIdAndUpdate(id,{
+                             $inc: { downloads: 1 }
+                        })
+                        .then(aluu =>{
+                            res.json([{downloads: aluu.downloads}])
+                        })
+                        }
+                        
+                    })
+                }
+           }
+        )
+    }
+    else {
+         res.json([{success:false}])
+    }
+    
 })
 module.exports = HomeRouter;
