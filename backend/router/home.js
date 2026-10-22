@@ -271,7 +271,7 @@ HomeRouter.get("/api/findByGenre/:genre",async (req,res)=>{
        else {
         alus = alus * 1
        }
-        AnimeDB.find({"Genres":query},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).skip(alus).limit(20)
+        AnimeDB.find({"Genres":query},{Name:1,ImagePath:1,DescripTion:1,_id:1,MALScore:1,RatingsNum:1,finder:1}).sort({ updatedAt: -1 }).skip(alus).limit(20)
     .then(info=>{
         const AniData = info; 
         res.json({
